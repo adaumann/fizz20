@@ -1,0 +1,524 @@
+procedure InitCharacter(x: byte, y: byte, controlId: byte);
+var 
+	id: byte;
+	laserEmitId: byte;
+begin
+	id := GetId();
+	laserEmitId := GetLaserEmitId();
+	if(id <> $FF and laserEmitId <> $FF) then begin
+		objectList[id].rendTilePos := 0;
+		objectList[id].rendType := @REND_TYPE_SPRITE;
+		objectList[id].component0 := $00 | @COMP_COLLIDE_ABLE_0 | @COMP_CONTROL_0 | @COMP_PHYSICS_0 | @COMP_ANIMATION_0;
+		objectList[id].component1 := $00 | @COMP_FLOATER_1 | @COMP_LASER_1;
+		objectList[id].component2 := $00 | @COMP_DESTROY_ABLE_2;
+		objectList[id].component3 := $00;
+		objectList[id].controlId := controlId;
+		controlList[controlId].controlState := @CTRL_STATE_WALK;
+		controlList[controlId].b_controlPressLeft := false;
+		controlList[controlId].b_controlPressRight := false;
+		controlList[controlId].b_controlPressUp := false;
+		controlList[controlId].b_controlPressDown := false;
+		controlList[controlId].controlLastPortal := $FF;
+		controlList[controlId].lastWaypointId := $FF;
+		controlList[controlId].controlCollideLaserTag := $FF;		
+		objectList[id].moves := 0;
+		objectList[id].animId := @ANIM_STAND;
+		objectList[id].animPos := 0;
+		objectList[id].animFinish := true;
+		controlList[controlId].controlFollowKeyLeft := false;
+		controlList[controlId].controlFollowKeyRight := false;
+		controlList[controlId].controlLastPortal := $FF;
+		controlList[controlId].b_waitRelease := false;
+		controlList[controlId].b_release := false;
+		objectList[id].transX := x;
+		objectList[id].transY := y;
+		objectList[id].transZ := @Z_MAIN;
+		objectList[id].physGravity := @DOWN;
+		objectList[id].b_physRollLeftRight := false;
+		objectList[id].b_physFallDown := true;
+		objectList[id].shiftDir := $FF;
+		objectList[id].laserEmitId := laserEmitId;
+		laserList[laserEmitId].laserType := @LASER_TYPE_USER;
+		laserList[laserEmitId].lastLaserDir := $FF;
+		laserList[laserEmitId].laserDir := $FF;
+		objectList[id].onOff := @ON;
+		AddDynItem(id);
+		AddAnimItem(id);
+		AddMapItem(id, x, y, @Z_MAIN);
+	end;
+end;
+
+procedure InitBrick(x: byte, y: byte);
+var 
+	id: byte;
+begin
+	id := GetId();
+	if(id <> $FF) then begin
+		objectList[id].rendTilePos := 0;
+		objectList[id].rendType := @REND_TYPE_TILE;		
+		objectList[id].component0 := $00 | @COMP_COLLIDE_ABLE_0;
+		objectList[id].component1 := $00;
+		objectList[id].component2 := $00;
+		objectList[id].component3 := $00;
+		objectList[id].transX := x;
+		objectList[id].transY := y;
+		objectList[id].transZ := @Z_MAIN;
+		objectList[id].physGravity := @DOWN;
+		objectList[id].shiftDir := @UP;
+		AddMapItem(id, x, y, @Z_MAIN);
+	end;
+end;
+
+procedure InitStone(tilen: byte, x: byte, y: byte, rollLeftRight: boolean);
+var 
+	pg: pointer of gobject;
+	id: byte;
+begin
+	id := GetId();
+	if(id <> $FF) then begin
+		objectList[id].rendTilePos := tilen;
+		objectList[id].rendType := @REND_TYPE_TILE;		
+		objectList[id].component0 := $00 | @COMP_PHYSICS_0 | @COMP_COLLIDE_ABLE_0;
+		objectList[id].component1 := $00 | @COMP_PUSHPULL_1;
+		objectList[id].component2 := $00;
+		objectList[id].component3 := $00 | @COMP_BULK_PHYS_3;
+		objectList[id].transX := x;
+		objectList[id].transY := y;
+		objectList[id].transZ := @Z_MAIN;
+		objectList[id].physGravity := @DOWN;
+		objectList[id].b_physRollLeftRight := rollLeftRight;
+		objectList[id].b_physFallDown := true;
+		objectList[id].onOff := 1;		
+		objectList[id].controlId := $FF;
+		AddDynItem(id);
+		AddMapItem(id, x, y, @Z_MAIN);
+	end;
+end;
+
+procedure InitSand(x: byte, y: byte);
+var 
+	id: byte;
+begin
+	id := GetId();
+	if(id <> $FF) then begin
+		objectList[id].rendTilePos := 108;
+		objectList[id].rendType := @REND_TYPE_TILE;		
+		objectList[id].component0 := $00 | @COMP_COLLIDE_ABLE_0|@COMP_ERASE_ABLE_0;
+		objectList[id].component1 := $00;
+		objectList[id].component2 := $00;
+		objectList[id].component3 := $00;
+		objectList[id].transX := x;
+		objectList[id].transY := y;
+		objectList[id].transZ := @Z_MAIN;
+		AddMapItem(id, x, y, @Z_MAIN);
+	end;
+end;
+
+procedure InitWater(x: byte, y: byte);
+var 
+	id: byte;
+begin
+	id := GetId();
+	if(id <> $FF) then begin
+		objectList[id].rendTilePos := 22;
+		objectList[id].rendType := @REND_TYPE_TILE;		
+		objectList[id].component0 := $00 | @COMP_COLLIDE_ABLE_0|@COMP_WATER_0;
+		objectList[id].component1 := $00;
+		objectList[id].component2 := $00;
+		objectList[id].component3 := $00;
+		objectList[id].transX := x;
+		objectList[id].transY := y;
+		objectList[id].transZ := @Z_BACK2;
+		objectList[id].laserTag := $FF;
+		AddMapItem(id, x, y, @Z_BACK2);
+	end;
+end;
+
+procedure InitWaterFlow(x: byte, y: byte, tilen: byte, grav: byte);
+var 
+	id: byte;
+begin
+	id := GetId();
+	if(id <> $FF) then begin
+		objectList[id].rendTilePos := tilen;
+		objectList[id].rendType := @REND_TYPE_BYTE;		
+		objectList[id].component0 := $00 | @COMP_COLLIDE_ABLE_0|@COMP_WATER_0;
+		objectList[id].component1 := $00;
+		objectList[id].component2 := $00;
+		objectList[id].component3 := $00;
+		objectList[id].transX := x;
+		objectList[id].transY := y;
+		objectList[id].transZ := @Z_BACK2;
+		objectList[id].physGravity := grav;
+		objectList[id].laserTag := $FF;
+		AddMapItem(id, x, y, @Z_BACK2);
+	end;
+end;
+
+
+procedure InitShiftPlattform(x: byte, y: byte, tilen: byte, grav: byte);
+var 
+	id: byte;
+begin
+	id := GetId();
+	if(id <> $FF) then begin
+		objectList[id].rendTilePos := tilen;
+		objectList[id].rendType := @REND_TYPE_TILE;		
+		objectList[id].component0 := $00 | @COMP_COLLIDE_ABLE_0|@COMP_SHIFT_PLATTFORM_0;
+		objectList[id].component1 := $00;
+		objectList[id].component2 := $00;
+		objectList[id].component3 := $00;
+		objectList[id].transX := x;
+		objectList[id].transY := y;
+		objectList[id].transZ := @Z_MAIN;
+		objectList[id].shiftDir := grav;
+		AddMapItem(id, x, y, @Z_MAIN);
+	end;
+end;
+
+procedure InitLadder(x: byte, y: byte);
+var 
+	id: byte;
+begin
+	id := GetId();
+	if(id <> $FF) then begin
+		objectList[id].rendTilePos := 86;
+		objectList[id].rendType := @REND_TYPE_TILE;		
+		objectList[id].component0 := $00;
+		objectList[id].component1 := $00 | @COMP_CLIMB_ABLE_1;
+		objectList[id].component2 := $00;
+		objectList[id].component3 := $00;
+		objectList[id].transX := x;
+		objectList[id].transY := y;
+		objectList[id].transZ := @Z_BACK1;
+		objectList[id].physGravity := @DOWN;
+		AddMapItem(id, x, y, @Z_BACK1);
+	end;
+end;
+
+procedure InitRobe(x: byte, y: byte, tilen: byte, grav: byte);
+var 
+	id: byte;
+begin
+	id := GetId();
+	if(id <> $FF) then begin
+		objectList[id].rendTilePos := tilen;
+		objectList[id].rendType := @REND_TYPE_TILE;	
+		objectList[id].component0 := $00;
+		objectList[id].component1 := $00 | @COMP_ROBE_ABLE_1;
+		objectList[id].component2 := $00;
+		objectList[id].component3 := $00;
+		objectList[id].transX := x;
+		objectList[id].transY := y;
+		objectList[id].transZ := @Z_BACK1;
+		objectList[id].physGravity := grav;
+		AddMapItem(id, x, y, @Z_BACK1);
+	end;
+end;
+
+procedure InitPortal(x: byte, y: byte, exitDir: byte);
+var 
+	id: byte;
+begin
+	id := GetId();
+	if(id <> $FF) then begin
+		objectList[id].rendTilePos := $A8;
+		objectList[id].rendType := @REND_TYPE_TILE;	
+		objectList[id].component0 := $00 |@COMP_ANIMATION_0;
+		objectList[id].component1 := $00 | @COMP_PORTAL_1;
+		objectList[id].component2 := $00;
+		objectList[id].component3 := $00;
+		objectList[id].animId := @ANIM_PORTAL;
+		objectList[id].animPos := 0;
+		objectList[id].animFinish := false;
+		objectList[id].transX := x;
+		objectList[id].transY := y;
+		objectList[id].transZ := @Z_BACK1;
+		objectList[id].portalFireExitDir := exitDir;
+		lastPortal := $FF;
+		if(portals[0] = $FF) then begin 
+			portals[0] := id;
+			lastPortal := 0;
+		end
+		else if(portals[1] = $FF) then begin 
+			portals[1] := id;
+			lastPortal := 1;
+		end;
+		if(lastPortal <> $FF) then begin
+			AddAnimItem(id);
+			AddMapItem(id, x, y, @Z_BACK1);
+		end;
+	end;
+end;
+
+procedure InitGravPad(x: byte, y: byte, tilen: byte, grav: byte);
+var 
+	id: byte;
+begin
+	id := GetId();
+	if(id <> $FF) then begin
+		objectList[id].rendTilePos := tilen;
+		objectList[id].rendType := @REND_TYPE_TILE;		
+		objectList[id].component0 := $00;
+		objectList[id].component1 := $00 | @COMP_GRAVPAD_1;
+		objectList[id].component2 := $00;
+		objectList[id].component3 := $00;
+		objectList[id].transX := x;
+		objectList[id].transY := y;
+		objectList[id].transZ := @Z_BACK1;
+		objectList[id].physGravity := grav;
+		AddMapItem(id, x, y, @Z_BACK1);
+	end;
+end;
+
+procedure InitMirror(x: byte, y: byte, tilen: byte, turn: byte);
+var 
+	id: byte;
+begin
+	id := GetId();
+	if(id <> $FF) then begin
+		objectList[id].rendTilePos := tilen;
+		objectList[id].rendType := @REND_TYPE_TILE;		
+		objectList[id].component0 := $00 | @COMP_COLLIDE_ABLE_0;
+		objectList[id].component1 := $00 | @COMP_MIRROR_1;
+		objectList[id].component2 := $00;
+		objectList[id].component3 := $00;
+		objectList[id].transX := x;
+		objectList[id].transY := y;
+		objectList[id].transZ := @Z_MAIN;
+		objectList[id].mirrorTurn := turn;
+		AddMapItem(id, x, y, @Z_MAIN);
+	end;
+end;
+
+procedure InitLaserTransport(x: byte, y: byte);
+var 
+	id: byte;
+begin
+	id := GetId();
+	if(id <> $FF) then begin
+		objectList[id].rendTilePos := 94;
+		objectList[id].rendType := @REND_TYPE_TILE;		
+		objectList[id].component1 := $00;
+		objectList[id].component0 := $00 | @COMP_COLLIDE_ABLE_0;
+		objectList[id].component2 := $00 | @COMP_LASERTRANS_ABLE_2;
+		objectList[id].component3 := $00;
+		objectList[id].transX := x;
+		objectList[id].transY := y;
+		objectList[id].transZ := @Z_MAIN;
+		AddMapItem(id, x, y, @Z_MAIN);
+	end;
+end;
+
+/*
+procedure InitLaserTransportOnce(x: byte, y: byte);
+var 
+	id: byte;
+begin
+	id := GetId();
+	if(id <> $FF) then begin
+		objectList[id].rendTilePos := 94;
+		objectList[id].rendType := @REND_TYPE_TILE;		
+		objectList[id].component0 := $00 | @COMP_COLLIDE_ABLE_0;
+		objectList[id].component1 := $00;
+		objectList[id].component2 := $00 | @COMP_LASERTRANS_ABLE_2 | @COMP_LASERONCE_2;
+		objectList[id].component3 := $00;
+		objectList[id].transX := x;
+		objectList[id].transY := y;
+		objectList[id].transZ := @Z_MAIN;
+		AddMapItem(id, x, y, @Z_MAIN);
+	end;
+end;
+*/
+
+procedure InitBox(x: byte, y: byte, tilen, dir: byte);
+var 
+	id: byte;
+begin
+	id := GetId();
+	if(id <> $FF) then begin
+		objectList[id].rendTilePos := tilen;
+		objectList[id].rendType := @REND_TYPE_TILE;		
+		objectList[id].component0 := $00 | @COMP_COLLIDE_ABLE_0;
+		objectList[id].component1 := $00 | @COMP_FLOATER_1 | @COMP_PUSHPULL_1;
+		objectList[id].component2 := $00;
+		objectList[id].component3 := $00;
+		objectList[id].transX := x;
+		objectList[id].transY := y;
+		objectList[id].transZ := @Z_MAIN;
+		objectList[id].onOff := dir;
+		AddMapItem(id, x, y, @Z_MAIN);
+	end;
+end;
+
+procedure InitPortalActivate(x: byte, y:byte); 
+var 
+	id: byte;
+begin
+	id := GetId();
+	if(id <> $FF) then begin
+		objectList[id].rendTilePos := 160;
+		objectList[id].rendType := @REND_TYPE_TILE;		
+		objectList[id].component0 := $00 | @COMP_COLLIDE_ABLE_0;
+		objectList[id].component1 := $00;
+		objectList[id].component2 := $00 | @COMP_PORTAL_ACTIVATE_2;
+		objectList[id].component3 := $00;
+		objectList[id].transX := x;
+		objectList[id].transY := y;
+		objectList[id].transZ := @Z_MAIN;
+		AddMapItem(id, x, y, @Z_MAIN);
+	end;
+end;
+
+procedure InitFontaine(x: byte, y: byte, tilen: byte, grav: byte);
+var 
+	id: byte;
+	laserId: byte;
+	laserEmitId: byte;
+begin
+	id := GetId();
+	laserEmitId := GetLaserEmitId();
+	if(id <> $FF and laserId <> $FF) then begin
+		objectList[id].rendTilePos := tilen;
+		objectList[id].rendType := @REND_TYPE_TILE;		
+		objectList[id].component0 := $00 | @COMP_COLLIDE_ABLE_0;
+		objectList[id].component1 := $00;
+		objectList[id].component2 := $00 | @COMP_FONTAINE_2;
+		objectList[id].component3 := $00;
+		objectList[id].transX := x;
+		objectList[id].transY := y;
+		objectList[id].transZ := @Z_MAIN;
+		objectList[id].physGravity := @DOWN;
+		objectList[id].laserEmitId := laserEmitId;
+		laserList[laserEmitId].laserType := grav;
+		laserList[laserEmitId].lastLaserDir := $FF;
+		laserList[laserEmitId].laserDir := $FF;
+		objectList[id].onOff := @ON;
+		AddDynItem(id);
+		AddMapItem(id, x, y, @Z_MAIN);
+	end;
+end;
+	
+procedure InitCannon(x: byte, y: byte, tilen: byte, grav: byte);
+var 
+	id: byte;
+	laserEmitId: byte;
+begin
+	id := GetId();
+	laserEmitId := GetLaserEmitId();
+	if(id <> $FF and laserEmitId <> $FF) then begin
+		objectList[id].rendTilePos := tilen;
+		objectList[id].rendType := @REND_TYPE_TILE;		
+		objectList[id].component0 := $00 | @COMP_COLLIDE_ABLE_0;
+		objectList[id].component1 := $00 | @COMP_LASER_1;
+		objectList[id].component2 := $00;
+		objectList[id].component3 := $00;
+		objectList[id].transX := x;
+		objectList[id].transY := y;
+		objectList[id].transZ := @Z_MAIN;
+		objectList[id].physGravity := @DOWN;
+		objectList[id].laserEmitId := laserEmitId;
+		laserList[laserEmitId].laserType := grav;
+		laserList[laserEmitId].lastLaserDir := $FF;
+		laserList[laserEmitId].laserDir := $FF;
+		objectList[id].onOff := @ON;
+		AddDynItem(id);
+		AddMapItem(id, x, y, @Z_MAIN);
+	end;
+end;
+
+procedure InitSwitchManual(x: byte, y: byte);
+var 
+	id: byte;
+begin
+	id := GetId();
+	if(id <> $FF) then begin
+		objectList[id].rendTilePos := 112;
+		objectList[id].rendType := @REND_TYPE_TILE;		
+		objectList[id].component0 := $00 | @COMP_COLLIDE_ABLE_0 |@COMP_ANIMATION_0 ;
+		objectList[id].component1 := $00;
+		objectList[id].component2 := $00 | @COMP_SWITCH_2;
+		objectList[id].component3 := $00 | @COMP_WAYPOINT_3 ;
+		objectList[id].transX := x;
+		objectList[id].transY := y;
+		objectList[id].transZ := @Z_BACK1;
+		objectList[id].physGravity := @DOWN;
+		objectList[id].onOff := @OFF;		// Push=off
+		objectList[id].animId := @ANIM_SWITCH_OFF;
+		objectList[id].animPos := 0;
+		objectList[id].animFinish := false;
+		AddAnimItem(id);
+		AddMapItem(id, x, y, @Z_BACK1);
+	end;
+end;
+
+procedure InitWaypoint(x: byte, y: byte);
+var 
+	id: byte;
+begin
+	id := GetId();
+	if(id <> $FF) then begin
+		objectList[id].rendTilePos := $FF;
+		objectList[id].rendType := @REND_TYPE_BYTE;		
+		objectList[id].component0 := $00;
+		objectList[id].component1 := $00;
+		objectList[id].component2 := $00;
+		objectList[id].component3 := $00 | @COMP_WAYPOINT_3 ;
+		objectList[id].transX := x;
+		objectList[id].transY := y;
+		objectList[id].transZ := @Z_BACK1;
+		objectList[id].physGravity := @DOWN;
+		objectList[id].onOff := @ON;		// Push=off
+		AddMapItem(id, x, y, @Z_BACK1);
+	end;
+end;
+
+procedure InitDoor(x: byte, y: byte);
+var 
+	id: byte;
+begin
+	id := GetId();
+	if(id <> $FF) then begin
+		objectList[id].rendTilePos := $76;
+		objectList[id].rendType := @REND_TYPE_TILE;		
+		objectList[id].component0 := $00 | @COMP_COLLIDE_ABLE_0 |@COMP_ANIMATION_0 ;
+		objectList[id].component1 := $00;
+		objectList[id].component2 := $00 | @COMP_DOOR_2;
+		objectList[id].component3 := $00;
+		objectList[id].transX := x;
+		objectList[id].transY := y;
+		objectList[id].transZ := @Z_MAIN;
+		objectList[id].physGravity := @DOWN;
+		objectList[id].onOff := @OFF;	// Push= Off
+		objectList[id].animId := @ANIM_DOOR_OFF;
+		objectList[id].animPos := 0;
+		objectList[id].animFinish := false;
+		AddAnimItem(id);
+		AddMapItem(id, x, y, @Z_MAIN);
+	end;
+end;
+
+procedure InitExit(x: byte, y: byte);
+var 
+	id: byte;
+begin
+	id := GetId();
+	if(id <> $FF) then begin
+		objectList[id].rendTilePos := $1e;
+		objectList[id].rendType := @REND_TYPE_TILE;		
+		objectList[id].component0 := $00 | @COMP_COLLIDE_ABLE_0 |@COMP_ANIMATION_0 ;
+		objectList[id].component1 := $00;
+		objectList[id].component2 := $00;
+		objectList[id].component3 := $00 | @COMP_EXIT_3 | @COMP_WAYPOINT_3;
+		objectList[id].transX := x;
+		objectList[id].transY := y;
+		objectList[id].transZ := @Z_BACK1;
+		objectList[id].physGravity := @DOWN;
+		objectList[id].onOff := @OFF;	// Push= Off
+		objectList[id].animId := @ANIM_EXIT_OFF;
+		objectList[id].animPos := 0;
+		objectList[id].animFinish := false;
+		AddAnimItem(id);
+		AddMapItem(id, x, y, @Z_BACK1);
+	end;
+end;

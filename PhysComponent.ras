@@ -1,0 +1,110 @@
+procedure UpdatePhysics(id: byte);
+var
+	fall,fallDown, fallLeftDown, fallRightDown: boolean;
+	colObj, eraseObj, destroyObj: byte;
+	oldx, oldy, newx, newy: byte = $FF;
+	gravity: byte;
+	shift: integer;
+	shiftDir: byte;
+	doPhys:boolean;
+//	c:boolean;
+	controlId: byte;
+begin
+	gravity := objectList[id].physGravity;
+	fallDown := false;
+	fallLeftDown := false;
+	fallRightDown := false;
+	fall := @UNKNOWN;
+	doPhys := true;
+	controlId := objectList[id].controlId;
+//	if(controlId <> $FF) then begin
+//		controlList[controlId].b_fallDown := false;
+//	end;
+
+	if(objectList[id].b_physFallDown = true) then begin
+		colObj := GetObjArea(id, objectList[id].transZ, 7, @COMP_COLLIDE_ABLE_0,0, false);	
+		if(colObj = $FF) then fallDown := true
+		else if((GetObjArea(id, objectList[id].transZ, 3, @COMP_COLLIDE_ABLE_0,0, false) = $FF and GetObjArea(id, objectList[id].transZ, 6, @COMP_COLLIDE_ABLE_0,0, false) = $FF) and objectList[id].b_physRollLeftRight = true) then fallLeftDown := true
+		else if((GetObjArea(id, objectList[id].transZ, 5, @COMP_COLLIDE_ABLE_0,0, false) = $FF and GetObjArea(id, objectList[id].transZ, 8, @COMP_COLLIDE_ABLE_0,0, false) = $FF) and objectList[id].b_physRollLeftRight = true) then fallRightDown := true;
+		if(colObj <> $FF) then begin
+			if(controlId <> $FF and controlList[controlId].b_fallDown = true) then PlaySfx(@SOUND_FALL_CRASH);
+			shiftDir := objectList[colObj].shiftDir;
+			if(objectList[colObj].component0 & @COMP_SHIFT_PLATTFORM_0 = @COMP_SHIFT_PLATTFORM_0) then begin		
+				if(GetObjArea(id, objectList[id].transZ, shiftDir, @COMP_COLLIDE_ABLE_0,0, true) = $FF 
+						or GetObjArea(id, objectList[id].transZ, shiftDir, @COMP_ERASE_ABLE_0,0, true) <> $FF ) then begin
+					if(gravity = @DOWN and shiftDir = @LEFT) then fall := @LEFT
+					else if(gravity = @DOWN and shiftDir = @RIGHT) then fall := @RIGHT
+					else if(gravity = @LEFT and shiftDir = @UP) then fall := @LEFT
+					else if(gravity = @LEFT and shiftDir = @DOWN) then fall := @RIGHT		
+					else if(gravity = @UP and shiftDir = @LEFT) then fall := @RIGHT		
+					else if(gravity = @UP and shiftDir = @RIGHT) then fall := @LEFT		
+					else if(gravity = @RIGHT and shiftDir = @UP) then fall := @RIGHT		
+					else if(gravity = @RIGHT and shiftDir = @DOWN) then fall := @LEFT; 
+				end;
+				
+			end;
+		end;
+	
+		if(fallDown = true) then begin
+			SwitchAnimation(id, @ANIM_STAND);
+			fall := @DOWN;
+			if(controlId <> $FF) then begin
+				controlList[controlId].b_fallDown := true;
+			end;
+		end
+		else if(fallLeftDown = true) then begin
+			fall := @DOWN_LEFT;
+			if(controlId <> $FF) then begin
+				controlList[controlId].b_fallDown := false;
+			end;			
+		end
+		else if(fallRightDown = true) then begin
+			fall := @DOWN_RIGHT;
+			if(controlId <> $FF) then begin
+				controlList[controlId].b_fallDown := false;
+			end;	
+		end		
+		else begin
+			if(controlId <> $FF) then begin
+				controlList[controlId].b_fallDown := false;
+			end;			
+		end;
+		
+		oldx := objectList[id].transX;
+		oldy := objectList[id].transY;
+		newx := $FF;
+		if(fall = @DOWN) then begin
+			shift := ConvertShift(gravity, 7);
+			newx := CalcPositionX(oldx, Hi(shift));
+			newy := CalcPositionY(oldy, Lo(shift));
+		end
+		else if(fall = @DOWN_LEFT) then begin
+			shift := ConvertShift(gravity, 6);
+			newx := CalcPositionX(oldx, Hi(shift));
+			newy := CalcPositionY(oldy, Lo(shift));
+		end
+		else if(fall = @DOWN_RIGHT) then begin		
+			shift := ConvertShift(gravity, 8);
+			newx := CalcPositionX(oldx, Hi(shift));
+			newy := CalcPositionY(oldy, Lo(shift));
+		end
+		else if(fall = @LEFT) then begin		
+			shift := ConvertShift(gravity, 3);
+			newx := CalcPositionX(oldx, Hi(shift));
+			newy := CalcPositionY(oldy, Lo(shift));
+			eraseObj := GetObjArea(id, objectList[id].transZ, 3, @COMP_ERASE_ABLE_0,0, false);
+			PlaySfx(@SOUND_SHIFT);
+			if(eraseObj <> $FF) then DeletePos(eraseObj, false, false);
+		end
+		else if(fall = @RIGHT) then begin		
+			shift := ConvertShift(gravity, 5);
+			newx := CalcPositionX(oldx, Hi(shift));
+			newy := CalcPositionY(oldy, Lo(shift));
+			eraseObj := GetObjArea(id, objectList[id].transZ, 5, @COMP_ERASE_ABLE_0,0, false);
+			PlaySfx(@SOUND_SHIFT);
+			if(eraseObj <> $FF) then DeletePos(eraseObj, false, false);
+		end;
+	
+		if(newx <> $FF) then SetPos(id,oldx, oldy, newx,newy,objectList[id].transZ);
+	end;
+end;
