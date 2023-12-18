@@ -1,0 +1,37 @@
+program LoadTest;
+var  
+   i: byte; 
+   filename: string = "FLASH";
+
+begin
+	AddBreakpoint();
+	asm("
+block       = $A000              ; Load address
+
+; KERNEL/BASIC ROM Routines
+LOAD        = $FFD5
+SETLFS      = $FFBA
+SETNAM      = $FFBD
+
+main        LDA  #$08            ; Logical file number
+            LDX  #$08            ; Device number
+            LDY  #$00            ; Secondary address
+                                 ; $00 Load using specifed address
+                                 ; $01 Load using original address from file
+            JSR  SETLFS          ; Set above parameters
+
+            LDA  #$05            ; Length of file name
+            LDX  #<filename      ; Low byte of file name location
+            LDY  #>filename      ; High byte of file name location
+            JSR  SETNAM          ; Set the name
+
+            LDA  #$00            ; Load = 0, Verify = 1
+            LDX  #<block         ; Low byte of start address
+            LDY  #>block         ; High byte of start address
+            JSR  LOAD            ; Perform load
+            BCS  error           ; Jump to error handler if error
+
+error       ; Handle error in A
+	");
+	loop();
+end.

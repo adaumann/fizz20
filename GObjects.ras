@@ -6,8 +6,7 @@ begin
 	id := GetId();
 	laserEmitId := GetLaserEmitId();
 	if(id <> $FF and laserEmitId <> $FF) then begin
-		objectList[id].rendTilePos := 0;
-		objectList[id].rendType := @REND_TYPE_SPRITE;
+		objectList[id].rendTilePos := $80;
 		objectList[id].component0 := $00 | @COMP_COLLIDE_ABLE_0 | @COMP_CONTROL_0 | @COMP_PHYSICS_0 | @COMP_ANIMATION_0;
 		objectList[id].component1 := $00 | @COMP_FLOATER_1 | @COMP_LASER_1;
 		objectList[id].component2 := $00 | @COMP_DESTROY_ABLE_2;
@@ -54,8 +53,7 @@ var
 begin
 	id := GetId();
 	if(id <> $FF) then begin
-		objectList[id].rendTilePos := 0;
-		objectList[id].rendType := @REND_TYPE_TILE;		
+		objectList[id].rendTilePos := $40;
 		objectList[id].component0 := $00 | @COMP_COLLIDE_ABLE_0;
 		objectList[id].component1 := $00;
 		objectList[id].component2 := $00;
@@ -77,7 +75,6 @@ begin
 	id := GetId();
 	if(id <> $FF) then begin
 		objectList[id].rendTilePos := tilen;
-		objectList[id].rendType := @REND_TYPE_TILE;		
 		objectList[id].component0 := $00 | @COMP_PHYSICS_0 | @COMP_COLLIDE_ABLE_0;
 		objectList[id].component1 := $00 | @COMP_PUSHPULL_1;
 		objectList[id].component2 := $00;
@@ -101,8 +98,7 @@ var
 begin
 	id := GetId();
 	if(id <> $FF) then begin
-		objectList[id].rendTilePos := 108;
-		objectList[id].rendType := @REND_TYPE_TILE;		
+		objectList[id].rendTilePos := $62;
 		objectList[id].component0 := $00 | @COMP_COLLIDE_ABLE_0|@COMP_ERASE_ABLE_0;
 		objectList[id].component1 := $00;
 		objectList[id].component2 := $00;
@@ -120,8 +116,7 @@ var
 begin
 	id := GetId();
 	if(id <> $FF) then begin
-		objectList[id].rendTilePos := 22;
-		objectList[id].rendType := @REND_TYPE_TILE;		
+		objectList[id].rendTilePos := $4a;
 		objectList[id].component0 := $00 | @COMP_COLLIDE_ABLE_0|@COMP_WATER_0;
 		objectList[id].component1 := $00;
 		objectList[id].component2 := $00;
@@ -141,7 +136,6 @@ begin
 	id := GetId();
 	if(id <> $FF) then begin
 		objectList[id].rendTilePos := tilen;
-		objectList[id].rendType := @REND_TYPE_BYTE;		
 		objectList[id].component0 := $00 | @COMP_COLLIDE_ABLE_0|@COMP_WATER_0;
 		objectList[id].component1 := $00;
 		objectList[id].component2 := $00;
@@ -163,7 +157,6 @@ begin
 	id := GetId();
 	if(id <> $FF) then begin
 		objectList[id].rendTilePos := tilen;
-		objectList[id].rendType := @REND_TYPE_TILE;		
 		objectList[id].component0 := $00 | @COMP_COLLIDE_ABLE_0|@COMP_SHIFT_PLATTFORM_0;
 		objectList[id].component1 := $00;
 		objectList[id].component2 := $00;
@@ -182,8 +175,7 @@ var
 begin
 	id := GetId();
 	if(id <> $FF) then begin
-		objectList[id].rendTilePos := 86;
-		objectList[id].rendType := @REND_TYPE_TILE;		
+		objectList[id].rendTilePos := $57;
 		objectList[id].component0 := $00;
 		objectList[id].component1 := $00 | @COMP_CLIMB_ABLE_1;
 		objectList[id].component2 := $00;
@@ -203,7 +195,6 @@ begin
 	id := GetId();
 	if(id <> $FF) then begin
 		objectList[id].rendTilePos := tilen;
-		objectList[id].rendType := @REND_TYPE_TILE;	
 		objectList[id].component0 := $00;
 		objectList[id].component1 := $00 | @COMP_ROBE_ABLE_1;
 		objectList[id].component2 := $00;
@@ -222,8 +213,7 @@ var
 begin
 	id := GetId();
 	if(id <> $FF) then begin
-		objectList[id].rendTilePos := $A8;
-		objectList[id].rendType := @REND_TYPE_TILE;	
+		objectList[id].rendTilePos := $6b;
 		objectList[id].component0 := $00 |@COMP_ANIMATION_0;
 		objectList[id].component1 := $00 | @COMP_PORTAL_1;
 		objectList[id].component2 := $00;
@@ -258,7 +248,6 @@ begin
 	id := GetId();
 	if(id <> $FF) then begin
 		objectList[id].rendTilePos := tilen;
-		objectList[id].rendType := @REND_TYPE_TILE;		
 		objectList[id].component0 := $00;
 		objectList[id].component1 := $00 | @COMP_GRAVPAD_1;
 		objectList[id].component2 := $00;
@@ -278,7 +267,6 @@ begin
 	id := GetId();
 	if(id <> $FF) then begin
 		objectList[id].rendTilePos := tilen;
-		objectList[id].rendType := @REND_TYPE_TILE;		
 		objectList[id].component0 := $00 | @COMP_COLLIDE_ABLE_0;
 		objectList[id].component1 := $00 | @COMP_MIRROR_1;
 		objectList[id].component2 := $00;
@@ -297,8 +285,7 @@ var
 begin
 	id := GetId();
 	if(id <> $FF) then begin
-		objectList[id].rendTilePos := 94;
-		objectList[id].rendType := @REND_TYPE_TILE;		
+		objectList[id].rendTilePos := $5b;
 		objectList[id].component1 := $00;
 		objectList[id].component0 := $00 | @COMP_COLLIDE_ABLE_0;
 		objectList[id].component2 := $00 | @COMP_LASERTRANS_ABLE_2;
@@ -318,7 +305,6 @@ begin
 	id := GetId();
 	if(id <> $FF) then begin
 		objectList[id].rendTilePos := 94;
-		objectList[id].rendType := @REND_TYPE_TILE;		
 		objectList[id].component0 := $00 | @COMP_COLLIDE_ABLE_0;
 		objectList[id].component1 := $00;
 		objectList[id].component2 := $00 | @COMP_LASERTRANS_ABLE_2 | @COMP_LASERONCE_2;
@@ -338,7 +324,6 @@ begin
 	id := GetId();
 	if(id <> $FF) then begin
 		objectList[id].rendTilePos := tilen;
-		objectList[id].rendType := @REND_TYPE_TILE;		
 		objectList[id].component0 := $00 | @COMP_COLLIDE_ABLE_0;
 		objectList[id].component1 := $00 | @COMP_FLOATER_1 | @COMP_PUSHPULL_1;
 		objectList[id].component2 := $00;
@@ -357,8 +342,7 @@ var
 begin
 	id := GetId();
 	if(id <> $FF) then begin
-		objectList[id].rendTilePos := 160;
-		objectList[id].rendType := @REND_TYPE_TILE;		
+		objectList[id].rendTilePos := $68;
 		objectList[id].component0 := $00 | @COMP_COLLIDE_ABLE_0;
 		objectList[id].component1 := $00;
 		objectList[id].component2 := $00 | @COMP_PORTAL_ACTIVATE_2;
@@ -380,7 +364,6 @@ begin
 	laserEmitId := GetLaserEmitId();
 	if(id <> $FF and laserId <> $FF) then begin
 		objectList[id].rendTilePos := tilen;
-		objectList[id].rendType := @REND_TYPE_TILE;		
 		objectList[id].component0 := $00 | @COMP_COLLIDE_ABLE_0;
 		objectList[id].component1 := $00;
 		objectList[id].component2 := $00 | @COMP_FONTAINE_2;
@@ -408,7 +391,6 @@ begin
 	laserEmitId := GetLaserEmitId();
 	if(id <> $FF and laserEmitId <> $FF) then begin
 		objectList[id].rendTilePos := tilen;
-		objectList[id].rendType := @REND_TYPE_TILE;		
 		objectList[id].component0 := $00 | @COMP_COLLIDE_ABLE_0;
 		objectList[id].component1 := $00 | @COMP_LASER_1;
 		objectList[id].component2 := $00;
@@ -433,8 +415,7 @@ var
 begin
 	id := GetId();
 	if(id <> $FF) then begin
-		objectList[id].rendTilePos := 112;
-		objectList[id].rendType := @REND_TYPE_TILE;		
+		objectList[id].rendTilePos := $63;
 		objectList[id].component0 := $00 | @COMP_COLLIDE_ABLE_0 |@COMP_ANIMATION_0 ;
 		objectList[id].component1 := $00;
 		objectList[id].component2 := $00 | @COMP_SWITCH_2;
@@ -458,8 +439,7 @@ var
 begin
 	id := GetId();
 	if(id <> $FF) then begin
-		objectList[id].rendTilePos := $FF;
-		objectList[id].rendType := @REND_TYPE_BYTE;		
+		objectList[id].rendTilePos := $20;
 		objectList[id].component0 := $00;
 		objectList[id].component1 := $00;
 		objectList[id].component2 := $00;
@@ -479,8 +459,7 @@ var
 begin
 	id := GetId();
 	if(id <> $FF) then begin
-		objectList[id].rendTilePos := $76;
-		objectList[id].rendType := @REND_TYPE_TILE;		
+		objectList[id].rendTilePos := $66;
 		objectList[id].component0 := $00 | @COMP_COLLIDE_ABLE_0 |@COMP_ANIMATION_0 ;
 		objectList[id].component1 := $00;
 		objectList[id].component2 := $00 | @COMP_DOOR_2;
@@ -504,8 +483,7 @@ var
 begin
 	id := GetId();
 	if(id <> $FF) then begin
-		objectList[id].rendTilePos := $1e;
-		objectList[id].rendType := @REND_TYPE_TILE;		
+		objectList[id].rendTilePos := $4f;
 		objectList[id].component0 := $00 | @COMP_COLLIDE_ABLE_0 |@COMP_ANIMATION_0 ;
 		objectList[id].component1 := $00;
 		objectList[id].component2 := $00;

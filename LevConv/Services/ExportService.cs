@@ -95,7 +95,7 @@ namespace LevConv.Services
                     if(incHeader)
                     {
                         bwWriter.Write((byte)0x0);
-                        bwWriter.Write((byte)0x1c);
+                        bwWriter.Write((byte)0xa0);
                     }
                     // Level map
                     var i = 0;
@@ -148,7 +148,7 @@ namespace LevConv.Services
                     // Flags
                     bwWriter.Write(level.BothPlayersMustExit);
                     // Strings
-                    pos = 0x1df2;
+                    pos = 0xa1f2;
                     pos += (level.Texts.Count * 2);
                     foreach (var str in level.Texts)
                     {

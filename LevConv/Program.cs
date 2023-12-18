@@ -16,6 +16,7 @@ namespace LevConv
             int testLevelNumber = -1;
             bool doTest = false;
             bool isMulti = false;
+            bool incHeader = true;
             for (int i = 0; i < args.Length; i++)
             {
                 if (args[i] == "-i")
@@ -37,6 +38,10 @@ namespace LevConv
                     isMulti = bool.Parse(args[i + 2]);
                     doTest = true;
                 }
+                if (args[i] == "-h")
+                {
+                    incHeader = bool.Parse(args[i + 1]);
+                }
             }
 
             if ((doTest && testLevelNumber >= 0 && !string.IsNullOrEmpty(importFile) && !string.IsNullOrEmpty(exportFolder) && !string.IsNullOrEmpty(gameFile)) ||
@@ -47,26 +52,28 @@ namespace LevConv
                 Console.WriteLine($"Game File: {gameFile}");
                 Console.WriteLine($"Level: {testLevelNumber}");
                 Console.WriteLine($"isMulti: {isMulti}");
+                Console.WriteLine($"incHeader: {incHeader}");
                 var levelSet = FileService.LoadLevelSet(importFile);
                 if (levelSet == null)
                 {
                     Console.WriteLine("Error loading level set");
                     return;
                 }
-                ExportService.ExportAsBinary(levelSet, exportFolder, true);
+                ExportService.ExportAsBinary(levelSet, exportFolder, inc);
                 if (doTest)
                 {
-                    ExportService.BuildTestExecutable(testLevelNumber, isMulti, exportFolder, gameFile, true);
+                    ExportService.BuildTestExecutable(testLevelNumber, isMulti, exportFolder, gameFile, incHeader);
 
                 }
             }
             else
             {
-                Console.WriteLine("Usage: LevConv -i <import file> -e <export folder> [-t <level> <2player>] [-l]  [-g <game file>]");
+                Console.WriteLine("Usage: LevConv -i <import file> -e <export folder> [-t <level> <2player>] [-l]  [-g <game file>] [-h <incheader>]");
                 Console.WriteLine(" -i : Import File as Json");
                 Console.WriteLine(" -e : Export folder containing binary levels to be transferred on disk");
                 Console.WriteLine(" -t : Build a test PRG file with level and single/multi flag, output in test.prg");
                 Console.WriteLine(" -g : Base game file for testing, with -t flag");
+                Console.WriteLine(" -h : Include header *true|false (VIC20=false)");
             }
 
         }

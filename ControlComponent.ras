@@ -193,14 +193,8 @@ begin
 	if(gameMode = @MODE_SINGLE_2CHAR and activeChar <> controlId) then
 		// do nothin
 	else begin
-		if(gameMode = @MODE_COOP and controlId = 1) then begin 
-			joy := joy1;
-			joyShift := 0;
-		end
-		else begin 
-			joy := joy2;
-			joyShift := 1;
-		end;
+		joy := joy1;
+		joyShift := 0;
 		if(objectList[id].component0 & @COMP_PHYSICS_0 = @COMP_PHYSICS_0) then gravity := objectList[id].physGravity else gravity := @DOWN;
 		if(joy = (joyShift shl 7)) then begin
 			if(controlList[controlId].b_firePressed > 0) then
@@ -464,7 +458,7 @@ begin
 			ClearLaserWithTag(controlList[controlId].controlCollideLaserTag);
 			laserId := GetId();
 			if(laserId <> $FF) then begin				
-				objectList[laserId].rendTilePos := 92;
+				objectList[laserId].rendTilePos := $5a;
 				objectList[laserId].component0 := $00 | @COMP_DESTROY_COLLIDE_0;
 				objectList[laserId].component1 := $00;
 				objectList[laserId].component2 := $00;

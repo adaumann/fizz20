@@ -1,0 +1,14 @@
+; labels
+al  $1201 .StartBlock1201
+al  $120e .EndBlock1201
+al  $1210 .StartBlock1210
+al  $1210 .LoadTest
+al  $1213 .filename
+al  $1219 .block1
+al  $1219 .main_block_begin_
+al  $1219 .main
+al  $1236 .error
+al  $1239 .main_block_end_
+al  $1239 .EndBlock1210
+; breakpoints
+break $1219
