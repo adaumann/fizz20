@@ -64,12 +64,12 @@ begin
 			if(newx <> $FF) then begin
 				portalHitObj := GetObjectByPosFilterComp(newx, newy, @Z_MAIN, @COMP_COLLIDE_ABLE_0,0);
 				if(portalHitObj = $FF) then begin
-					PlaySfx(@SOUND_PORTAL); 
+					@PLAY_SOUND("1","sndPortal","240")
 					GetObjArea(id, @Z_MAIN, 5, @COMP_COLLIDE_ABLE_0,0, false);
 					SetPos(id, objectList[id].transX, objectList[id].transY, newx, newy, objectList[id].transZ);
 				end
 				else begin
-					PlaySfx(@SOUND_EXIT_CLOSE);
+					@PLAY_SOUND("1","sndExitClose","60")
 				end;
 			end;
 			defWalk := true;
@@ -85,7 +85,7 @@ begin
 			end
 		end
 		else if(gravPadId <> $FF and objectList[id].physGravity <> objectList[gravPadId].physGravity) then begin
-			PlaySfx(@SOUND_GRAV_ACTIVATE); 
+			@PLAY_SOUND("2","sndGravActivate","240") 
 			objectList[id].physGravity := objectList[gravPadId].physGravity;
 		end;
 		
@@ -125,7 +125,7 @@ begin
 					objectList[switchId].onOff := @OFF;
 					controlList[controlId].b_controlPressAction := false;
 					DispatchEvent(@EVENT_SWITCH_OFF, switchId, $FF, $FF);
-					soundId := @SOUND_SWITCH_ON
+					@PLAY_SOUND("0","sndSwitchOn","240")
 				end
 				else begin
 					sp := #txtActiveSwitch;
@@ -134,16 +134,15 @@ begin
 					objectList[switchId].onOff := @ON;
 					controlList[controlId].b_controlPressAction := false;
 					DispatchEvent(@EVENT_SWITCH_ON, switchId, $FF, $FF);
-					soundId := @SOUND_SWITCH_OFF
+					@PLAY_SOUND("0","sndSwitchOff","240") 
 				end;
-				PlaySfx(soundId); 
 			end
 		end
 		else if(exitId <> $FF and controlId <> $FF) then begin
 			if(controlList[controlId].b_controlPressAction = true) then begin
 				if(objectList[exitId].onOff = @ON) then begin
 				 	controlList[controlId].controlState := @CTRL_STATE_EXITED;
-				 	PlaySfx(@SOUND_EXIT);
+				 	@PLAY_SOUND("0","sndExit","240")
 				 	if(gameMode = @MODE_SINGLE) then begin 
 						state := @STATE_OPEN_SCENE;
 						SetNextLevel();
@@ -169,7 +168,7 @@ begin
 				 	end;
 				end
 				else begin
-				 	PlaySfx(@SOUND_EXIT_CLOSE);
+				 	@PLAY_SOUND("2","sndExitClose","128")
 				 	sp := #txtExitClosed;
 					PrintText(@EXIT_CLOSED_START);
 					controlList[controlId].b_controlPressAction := false;
@@ -503,11 +502,18 @@ begin
 	oldy := objectList[id].transY;
 	
 	if(moveDir <> $FF) then begin
-		if(controlList[controlId].controlState = @CTRL_STATE_SWIM) then soundId := @SOUND_SWIM
-		else if(controlList[controlId].controlState = @CTRL_STATE_JUMP) then soundId := @SOUND_JUMP
-		else if(controlList[controlId].controlState = @CTRL_STATE_ROBE or controlList[controlId].controlState = @CTRL_STATE_CLIMB) then soundId := @SOUND_LADDER
-		else  soundId := @SOUND_STEP;
-		PlaySfx(soundId);
+		if(controlList[controlId].controlState = @CTRL_STATE_SWIM) then begin 
+			@PLAY_SOUND("1","sndSwim","128")
+		end
+		else if(controlList[controlId].controlState = @CTRL_STATE_JUMP) then begin
+			@PLAY_SOUND("1","sndJump","128")
+		end
+		else if(controlList[controlId].controlState = @CTRL_STATE_ROBE or controlList[controlId].controlState = @CTRL_STATE_CLIMB) then begin 
+			@PLAY_SOUND("1","sndLadder","128")
+		end
+		else  begin 
+			@PLAY_SOUND("1","sndStep","128")
+		end;
 	end;
 
 	

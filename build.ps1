@@ -43,7 +43,7 @@ try {
     Get-ChildItem -Path ".\levels\s*" |
 
     Foreach-Object {
-        cc1541.exe -n fizz -q -d 19 -w $_.FullName -f $_.BaseName fizz.d64 
+        cc1541.exe -n fizz -d 19 -w $_.FullName -f $_.BaseName fizz.d64 
         Write-Host $_.BaseName
     }
     
@@ -51,7 +51,7 @@ try {
 
     Foreach-Object {
     
-        cc1541.exe -n fizz -q -d 19 -w $_.FullName -f $_.BaseName fizz.d64 
+        cc1541.exe -n fizz  -d 19 -w $_.FullName -f $_.BaseName fizz.d64 
         Write-Host $_.BaseName
     
     }  

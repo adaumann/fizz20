@@ -1,0 +1,115 @@
+Please generate similar array patterns for a sound generator. The array contains n (between 2 and 10) elements while n0 and n1, n2 and n3 belong together. Even elements mark the command in the higher nibble: $8x: play incremental note low nibble is the inc value, $4x play decrimental note  low nibble is the dec note, $20 play note . The uneven values are the note. @VSA_IDLE stops the sound 
+	sndGhostAppear : array[] of byte = (
+		$81,7, $20,2, $43,4,
+		@VSA_IDLE);
+	
+	sndPumpkidFootsteps : array[] of byte = (
+		$4F,3,
+		@VSA_IDLE);
+		
+	sndWitchDive : array[] of byte = (
+		$41,35,	$42,8, $41,6, $20,12, $83,25,
+		@VSA_IDLE);
+		
+	sndWitchSpell : array[] of byte = (
+		$8f,4, $42,12, $41,2,
+		@VSA_IDLE);
+		
+	sndDead : array[] of byte = (
+		$41,10, $10,3, $41,8, $10,3, $41,6,
+		@VSA_IDLE);
+
+	sndPickup : array[] of byte = (
+		$42,4, $10,3, $8f,4,
+		@VSA_IDLE);
+		
+	sndCAppear : array[] of byte = (
+		$20,1, $10,1, $20,1,
+		@VSA_IDLE);
+
+	sndShoot : array[] of byte = (
+		$20,1, $10,1, $41,10,
+		@VSA_IDLE);
+		
+	sndGrave : array[] of byte = (
+		$20,13, $10,5,  $89,1, $20,12, $10,5,  $89,1, $20,12,
+		@VSA_IDLE);
+
+	sndExplode : array[] of byte = (
+		$10,2, $20,5, $44,4,
+		@VSA_IDLE);	
+
+	sndMNoteShort : array[] of byte = (
+		$41,1, $81,1, $41,1, $81,1, $20,1,
+		$41,1, $81,1, $41,1, $81,1, $20,2,
+		$41,1, $81,1, $41,1, $81,1, $20,1,
+		$41,1, $81,1, $41,1, $81,1, $20,2, 
+		@VSA_IDLE);
+
+	sndSWitch : array[] of byte = (
+		$20,1,
+		@VSA_IDLE);
+
+
+sndJump : array[] of byte = ( $4F,5, $20,1, @VSA_IDLE);
+
+sndSpin : array[] of byte = ( $81,8, $20,2, $43,3, @VSA_IDLE);
+
+sndMagic : array[] of byte = ( $20,3, $3F,8, @VSA_IDLE);
+
+sndDisappear : array[] of byte = ( $81,7, $20,2, $43,4, $20,1, @VSA_IDLE);
+
+sndExplodeSmall : array[] of byte = ( $4F,3, $10,2, @VSA_IDLE);
+
+sndWitchLaugh : array[] of byte = ( $41,35, $42,10, $41,6, $20,12, $83,25, $30,6, @VSA_IDLE);
+
+sndMonsterGrowl : array[] of byte = ( $8f,8, $42,12, $41,4, @VSA_IDLE);
+
+sndZap : array[] of byte = ( $41,10, $10,5, $41,9, $10,3, $41,7, $20,2, @VSA_IDLE);
+
+sndKeyPickup : array[] of byte = ( $42,3, $10,2, $8f,4, @VSA_IDLE);
+
+sndDoorCreak : array[] of byte = ( $20,3, $10,2, $20,1, @VSA_IDLE);
+
+sndSlam : array[] of byte = ( $20,4, $10,3, $41,11, @VSA_IDLE);
+
+
+sndMagicAppear : array[] of byte = ( $44,11, $85,3, $20,7, @VSA_IDLE);
+
+@define PLAY_MAGIC_APPEAR psnd1 := #sndMagicAppear; vsnd1 := 240; vsndTime := 0;
+
+sndSwordSwing : array[] of byte = ( $81,3, @VSA_IDLE);
+
+@define PLAY_SWORD_SWING psnd1 := #sndSwordSwing ; vsnd1 := 180; vsnd1Time := 0;
+
+sndDragonRoar : array[] of byte = ( $10,20, $42,5, $10,10, $20,15, $83,30, @VSA_IDLE);
+
+@define PLAY_DRAGON_ROAR psnd1 := #sndDragonRoar ; vsnd1 := 248; vsnd1Time := 0;
+
+sndLightingSpell : array[] of byte = ( $8f,5, $20,15, $42,3, @VSA_IDLE);
+
+@define PLAY_LIGHTING_SPELL psnd1 := #sndLightingSpell ; vsnd1 := 240; vsnd1Time := 0;
+
+sndAmbush : array[] of byte = ( $41,12, $42,4, $81,7, $10,2, $8f,5, @VSA_IDLE);
+
+@define PLAY_AMBUSH psnd1 := #sndAmbush ; vsnd1 := 130; vsnd1Time := 0;
+
+sndVictory : array[] of byte = ( $81,4, $20,3, $42,8, @VSA_IDLE);
+
+@define PLAY_VICTORY psnd1 := #sndVictory ; vsnd1 := 220; vsnd1Time := 0;
+
+sndEvilLaugh : array[] of byte = ( $20,2, $10,2, $20,2, @VSA_IDLE);
+
+@define PLAY_EVIL_LAUGH psnd1 := #sndEvilLaugh ; vsnd1 := 174; vsnd1Time := 0;
+
+sndCharge : array[] of byte = ( $20,3, $10,2, $41,12, @VSA_IDLE);
+
+@define PLAY_CHARGE psndFx := #sndCharge ; vsndFx := 230; vsndFxTime := 0;
+
+sndTransform : array[] of byte = ( $20,15, $10,7, $89,2, $20,12, $10,6, $89,2, $20,11, @VSA_IDLE);
+
+@define PLAY_TRANSFORM psndFx := #sndTransform ; vsndFx := 210; vsndFxTime := 0;
+
+sndExplosion : array[] of byte = ( $44,3, $20,6, $81,5, @VSA_IDLE);
+
+@define PLAY_EXPLOSION psndFx := #sndExplosion ; vsndFx := 235; vsndFxTime := 0;

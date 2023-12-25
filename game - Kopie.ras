@@ -4,7 +4,8 @@ program game;
 @export "chr/tileset.flf" "chr/tileset.bin" 128	
 
 @macro "PLAY_SOUND" 3
-     writeln('psnd['+p0+'] := #'+p1+'; vsnd['+p0+'] := '+p2+'; vsndTime['+p0+'] := 0;');
+     writeln('psnd1 := #'+p1+'; vsnd1 := '+p2+'; vsnd1Time := 0;');
+     //writeln('psnd'+p0+' := #'+p1+'; vsnd'+p0+' := '+p2+'; vsnd'+p0+'Time := 0;');
 @endmacro
 
 
@@ -15,7 +16,6 @@ var
 	@define USE_KERNAL 0
 
 	// Charsets
-
 	@define tilesetLoc1 $1800
 	@define tilesetHeroLoc1 $1C00 
 	@define tilesetCol $1700
@@ -145,11 +145,10 @@ var
 	@define SOUND_EXIT 22
 	@define SOUND_EXIT_CLOSE 23 
 
-	psnd : array[4] of integer = (0,0,0,0);
-	vsnd : array[4] of byte = (0,0,0,0);
-	vsndTime : array[4] of byte = (0,0,0,0);
-	soundPointer : pointer; 
-	
+//	psnd1, psnd2, psnd3, psndfx : pointer; // pointer to sound bytes in a definition	
+	psnd1 : integer;
+	vsnd1, vsnd2,vsnd3, vsndfx: byte;
+	vsnd1Time, vsnd2Time, vsnd3Time, vsndfxTime: byte;
 	ticks,i: byte;
 	sndFlag : byte = true;
 	// need local variables set OFF in the TRSE project settings
@@ -157,7 +156,7 @@ var
 	@define VICsnd1		$900a
 	@define VICsnd2		$900b
 	@define VICsnd3		$900c
-	@define VICsnd4	    $900d
+	@define VICsndfx	$900d
 
 	// bitwise settings
 	@define VSA_IDLE	0	// 
@@ -278,7 +277,7 @@ var
 	@define COMP_LASER_1		   	%01000000
 	@define COMP_MIRROR_1		    %10000000
 	@define COMP_DESTROY_ABLE_2     %00000001
-	@define COMP_LASERBEAN_2		%00000010
+	@define COMP_LASERBEAN_2		   %00000010
 	@define COMP_LASERTRANS_ABLE_2  %00000100
 	@define COMP_LASERONCE_2        %00001000
 	@define COMP_PORTAL_ACTIVATE_2  %00010000
@@ -562,7 +561,6 @@ var
 
 @startblock $2000 "Code"
 
-interrupt vbl();
 
 
 
@@ -699,8 +697,6 @@ begin
 	statusCol := @BLUE;
 
 	levStr[2] := 0;
-	DisableVic20IRQ();
-	
 	// TODO: new mem pos
 	for i:= $AECF to $BFF0 do begin
 		sp := int2ptr(i);
@@ -729,7 +725,6 @@ begin
 			// TODO: Load 
 //		end;
 	end;
-	VIARasterIRQ(vbl(), 121, 0);
 end;
 
 
@@ -1487,7 +1482,7 @@ begin
 end;
 
 
-@include "Sounds.ras"
+// @include "Sounds.ras"
 procedure DecreaseTextTimer();
 begin
 	if(textTimer > 0) then begin
@@ -1552,8 +1547,8 @@ begin
 	ColorLine(12 + oldMenuItem, @WHITE);
 	ColorLine(12 + menuItem, @BLUE);
 end;
-// @include "Sounds.ras"
 
+@include "Sounds.ras"
 @include "Actions.ras"
 @include "GObjects.ras"
 @include "ControlComponent.ras"
@@ -1588,7 +1583,7 @@ begin
 			if(objectList[id].moves > 0 and controlList[controlId].b_fallDown = false) then needExtraCycle := true
 			else begin
 				if(retryPressed = true and controlList[controlId].controlState <> @CTRL_STATE_DESTROY) then begin
-					@PLAY_SOUND("4","sndDamage","240")
+					@PLAY_SOUND("fx","sndDamage","240")
 					objectList[id].b_physFallDown := false;
 					controlList[controlId].controlState := @CTRL_STATE_DESTROY;
 					controlList[controlId].controlJumpStep := 0;
@@ -1605,7 +1600,7 @@ begin
 		if(objectList[id].component0 & @COMP_CONTROL_0 = @COMP_CONTROL_0) then begin
 			controlId := objectList[id].controlId;
 			if(retryPressed = true and controlList[controlId].controlState <> @CTRL_STATE_DESTROY) then begin
-				@PLAY_SOUND("4","sndDamage","240")
+				@PLAY_SOUND("fx","sndDamage","240")
 				objectList[id].b_physFallDown := false;
 				controlList[controlId].controlState := @CTRL_STATE_DESTROY;
 				controlList[controlId].controlJumpStep := 0;
@@ -1630,7 +1625,7 @@ begin
 	if(gameMode = @MODE_SINGLE_2CHAR) then begin
 		//Key::Read();
 		if (i = KEY_SPACE) then begin
-			@PLAY_SOUND("2","sndPlayerChange","240")
+			@PLAY_SOUND("3","sndPlayerChange","240")
 			SwapActiveChar();
 		end;
 	end;
@@ -1909,7 +1904,7 @@ begin
 		PrintCenterStringColor(#txtMainMenu, 13, 8);
 	
 		PrintCenterStringColor(#txtPressDel, 17, 19);
-		@PLAY_SOUND("1","sndEnd","240")
+		@PLAY_SOUND("2","sndEnd","240")
 		if(gameMode = @MODE_SINGLE_2CHAR) then PrintCenterStringColor(#txtPressSpace,18,7);
 		if(gameMode <> @MODE_SINGLE) then begin
 			if(levBothMustComplete = true) then PrintCenterStringColor(#txtBothMustComplete,19,7) 
@@ -1985,8 +1980,8 @@ begin
 			@LEV_SAND: InitSand(x, y);
 			@LEV_SHIFT_UP: InitShiftPlattform(x, y,$42,@UP);
 			@LEV_SHIFT_DOWN: InitShiftPlattform(x, y,$43,@DOWN);
-			@LEV_SHIFT_RIGHT: InitShiftPlattform(x, y, $45,@RIGHT);
-			@LEV_SHIFT_LEFT: InitShiftPlattform(x, y, $44,@LEFT);
+			@LEV_SHIFT_RIGHT: InitShiftPlattform(x, y, $44,@RIGHT);
+			@LEV_SHIFT_LEFT: InitShiftPlattform(x, y, $45,@LEFT);
 			@LEV_LADDER: InitLadder(x,y);
 			@LEV_ROBE_UP: InitRobe(x,y,$5e,@DOWN);
 			@LEV_ROBE_DOWN: InitRobe(x,y,$5f,@UP);
@@ -2152,7 +2147,7 @@ begin
 	
 	InitAnimations();
 	state := @STATE_PLAY;
-	@PLAY_SOUND("2","sndSceneStart","240")
+	@PLAY_SOUND("3","sndSceneStart","240")
 	
 	VIARasterIRQ(vbl(), 121, 0);
 	DispatchEvent(@EVENT_INIT_LEVEL, $FF, $FF, $FF);
@@ -2166,6 +2161,9 @@ begin
 	DisableVic20IRQ();
 	InitScreen();
 	SetupSound();
+	
+	@PLAY_SOUND("1","sndSift",240)
+	
 	
 	ClearFullScreen();  // clear screen
 	
@@ -2200,41 +2198,42 @@ begin
 	
 	while(true) do begin
 		waitforraster(0);
+		UpdateSound();		
 		frameStatus := 1;
 		inc(globaltime);
 		i := getkey();
 		if (i = KEY_F1) then begin 
-			@PLAY_SOUND("0","sndLadder","240")
+			@PLAY_SOUND("1","sndLadder","240")
 		end; 
 		if (i = KEY_F3) then begin
-			@PLAY_SOUND("0","sndFall","240")
+			@PLAY_SOUND("1","sndFall","240")
 		end; 
 		if (i = KEY_F5) then begin
-			@PLAY_SOUND("0","sndFall","240")
+			@PLAY_SOUND("1","sndFall","240")
 		end; 
 		if (i = KEY_F7) then begin
-			@PLAY_SOUND("0","sndExit","240")
+			@PLAY_SOUND("1","sndExit","240")
  		end; 
 		if (i = KEY_A) then begin
-			@PLAY_SOUND("0","sndSwim","240")
+			@PLAY_SOUND("1","sndSwim","240")
 		end; 
 		if (i = KEY_B) then begin
-			@PLAY_SOUND("0","sndGravActivate","240")
+			@PLAY_SOUND("1","sndGravActivate","240")
 		end; 
 		if (i = KEY_C) then begin
-			@PLAY_SOUND("0","sndPlayerChange","240")
+			@PLAY_SOUND("1","sndPlayerChange","240")
  		end; 
 		if (i = KEY_D) then begin
-			@PLAY_SOUND("0","sndSwitchOn","240")
+			@PLAY_SOUND("1","sndSwitchOn","240")
 		end; 
 		if (i = KEY_E) then begin
-			@PLAY_SOUND("0","sndSwitchOff","240")
+			@PLAY_SOUND("1","sndSwitchOff","240")
 		end;
 		if(i = KEY_F) then begin
-			@PLAY_SOUND("0","sndExitClose","240")
+			@PLAY_SOUND("1","sndExitClose","240")
 		end;
 		if(i = KEY_G) then begin
-			@PLAY_SOUND("0","sndEnd","240")
+			@PLAY_SOUND("1","sndEnd","240")
 		end;
 
 
@@ -2242,6 +2241,6 @@ begin
 
 	end;
 	*/
-    GameLoop(); 
+    //GameLoop(); 
 	Loop();
 end.
