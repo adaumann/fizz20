@@ -192,8 +192,14 @@ begin
 	if(gameMode = @MODE_SINGLE_2CHAR and activeChar <> controlId) then
 		// do nothin
 	else begin
-		joy := joy1;
-		joyShift := 0;
+		if(gameMode = @MODE_COOP and controlId = 1) then begin 
+			joy := simJoy;
+			joyShift := 0;
+		end
+		else begin 
+			joy := joy1;
+			joyShift := 0;
+		end;
 		if(objectList[id].component0 & @COMP_PHYSICS_0 = @COMP_PHYSICS_0) then gravity := objectList[id].physGravity else gravity := @DOWN;
 		if(joy = (joyShift shl 7)) then begin
 			if(controlList[controlId].b_firePressed > 0) then

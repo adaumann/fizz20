@@ -291,7 +291,7 @@ begin
 	laserEmitId := objectList[id].laserEmitId;
     if(objectList[id].component0 & @COMP_CONTROL_0 = @COMP_CONTROL_0) then begin
 		controlId := objectList[id].controlId;
-		if(gameMode = @MODE_COOP and controlId = 1) then joy := joy1 ;
+		if(gameMode = @MODE_COOP and controlId = 1) then joy := simJoy;
 	end;
 	if(gameMode = @MODE_SINGLE_2CHAR and (activeChar <> controlId and controlId <> $FF)) then
 		// do nothin

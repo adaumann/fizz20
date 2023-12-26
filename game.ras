@@ -1,6 +1,10 @@
 program game;
 
+@ignoremethod "initmoveto"
+
 @use "system/str"
+@use "input/key"
+
 @export "chr/tileset.flf" "chr/tileset.bin" 128	
 
 @macro "PLAY_SOUND" 3
@@ -18,7 +22,7 @@ var
 
 	@define tilesetLoc1 $1800
 	@define tilesetHeroLoc1 $1C00 
-	@define tilesetCol $1700
+	@define tilesetCol $0f00
 	
 	@define SCREEN_ADDR1 	$1000		// Screen address1
 	@define SCREEN_ADDR2 	$1e00		// Screen address2	
@@ -419,12 +423,7 @@ var
 	activeChar: byte;
 	retryPressed: byte;
 	menuItem: byte = 0;
-	soundId: byte;
-	soundTimer: byte;
-	initSound: byte;
-	freq: byte;
-	voice: byte;
-	musicStr: string = ("T1");
+	simJoy: byte;	
 	
 	@define ANIM_CONSIDER_GRAV_IGNORE 0
 	@define ANIM_CONSIDER_GRAV_FULL 1
@@ -562,8 +561,18 @@ var
 
 @startblock $2000 "Code"
 
-interrupt vbl();
+procedure ReadJoySim();
+begin
+	Key::Read();
+	simJoy := 0;
+	if ( Key::Held( Key::KW )) then simJoy := simJoy | JOY_UP;
+	if ( Key::Held( Key::KS )) then simJoy := simJoy | JOY_DOWN;
+	if ( Key::Held( Key::KA )) then simJoy := simJoy | JOY_LEFT;
+	if ( Key::Held( Key::KD )) then simJoy := simJoy | JOY_RIGHT;
+	if ( Key::Held( Key::KJ )) then simJoy := simJoy | JOY_FIRE;
+end;
 
+interrupt vbl();
 
 
 procedure PrintStringColor(p1 : pointer; x, y, c : byte);
@@ -2071,6 +2080,7 @@ procedure GameLoop();
 begin
 	While(true) do begin
 		ReadJoy1();
+		
 		waitnoraster(0);
 		case state of
 			@STATE_MENU: 
@@ -2091,6 +2101,7 @@ begin
 				time := 0;
 				while(state = @STATE_PLAY) do begin
 					ReadJoy1();
+					ReadJoySim();
 					waitnoraster(0);
 					if(frameStatus = 0)	then begin
 						Update();
