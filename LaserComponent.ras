@@ -193,7 +193,7 @@ begin
 			if(laserType <> @LASER_TYPE_USER) then begin
 				collideControlId := objectList[collideId].controlId;
 				if(collideControlId <> $FF and controlList[collideControlId].controlState <> @CTRL_STATE_DESTROY) then begin
-					@PLAY_SOUND("3","sndDamage","255")
+					@PLAY_SOUND("4","sndDamage","255")
 					objectList[collideId].b_physFallDown := false;
 					controlList[collideControlId].controlState := @CTRL_STATE_DESTROY;
 					controlList[collideControlId].controlJumpStep := 0;

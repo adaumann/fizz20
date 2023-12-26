@@ -384,10 +384,10 @@ var
     txtSinglePlayer: string=("ONE PLAYER"); // 3
     txtSinglePlayer2Chars: string=("ONE PLAYER TWO CHARS"); //0
     txtCoop: string=("TWO PLAYER CO-OP"); // 2 
-    txtSingleStart: string=("1P START LEVEL:"); // 1
-    txtCoopStart: string=("2P START LEVEL:"); //1
+    txtSingleStart: string=("1P START LEVEL: XX"); // 1
+    txtCoopStart: string=("2P START LEVEL: XX"); //1
     txtAuthor: string=("CODE: ANDY DAUMANN"); //1
-	txtLevel: string=("LEVEL"); // 5
+	txtLevel: string=("LEVEL: XX"); // 5
 	txtStartLevel: string=("START LEVEL"); // 5
     txtMainMenu: string=("MAIN MENU"); // 5
     txtPressDel: string=("'F7' TO RETRY"); // 3
@@ -677,10 +677,7 @@ main        LDA  #$08            ; Logical file number
             LDX  localVariable_LoadFile_addr         ; Low byte of start address
             LDY  localVariable_LoadFile_addr+1         ; High byte of start address
             JSR  LOAD            ; Perform load
-            BCS  error           ; Jump to error handler if error
-
-error       ; Handle error in A
-			NOP
+            BCS  main           ; Jump to error handler if error
 	");
 end;
 
@@ -1541,13 +1538,11 @@ end;
 
 procedure MenuMove(len: byte, oldMenuItem: byte);
 begin
-	if(mod(globaltime,4) = 0) then begin
 		if(joy1 & JOY_UP = JOY_UP) then begin
 			if(menuItem > 0) then dec(menuItem);
 		end
 		else if(joy1 & JOY_DOWN = JOY_DOWN) then begin
 			if(menuItem < len-1 ) then inc(menuItem); 
-		end;
 	end;
 	ColorLine(12 + oldMenuItem, @WHITE);
 	ColorLine(12 + menuItem, @BLUE);
@@ -1829,14 +1824,39 @@ begin
 	
 
 end;
+procedure InitialiseTables();
+begin
+	// create an address table of screen row addresses, we will use this to quickly find the Y position in screen memory
+	// without needing to use costly multiplication
+	createaddresstable(#scr1, @SCREEN_ADDR1, @SCREEN_WIDTH, @SCREEN_HEIGHT);
+	createaddresstable(#scr2, @SCREEN_ADDR2, @SCREEN_WIDTH, @SCREEN_HEIGHT);
+	createaddresstable(#col1, @COLOR_ADDR1, @SCREEN_WIDTH, @SCREEN_HEIGHT);
+	createaddresstable(#col2, @COLOR_ADDR2, @SCREEN_WIDTH, @SCREEN_HEIGHT);
+end;
+
+procedure InitScreen();
+begin
+	// set the screen and border colour
+	SCREEN_TEXT_WIDTH := @SCREEN_WIDTH | 128;  // width
+	SCREEN_TEXT_HEIGHT := 38; // 24 (25 rows-1) x 2
+	HSCROLL_REGISTER := peek(HSCROLL_REGISTER, 0) + 2;
+	VSCROLL_REGISTER := peek(VSCROLL_REGISTER, 0) + 2;
+
+	definescreen();	
+	
+	SCREEN_BG_COLOR := %00001110;
+	VICCR5 := $ce;
+	VICCR2 := VICCR2 & $7F;		
+	InitialiseTables();
+end;
 
 @endblock
 @startblock "$A280" code
 
 procedure UpdateMain();
 var
-	levStr: string;
-	levStr2: string;
+	levStr: string="00";
+	levStr2: string="00";
 	pos : byte;
 	len: byte;
 begin
@@ -1845,9 +1865,9 @@ begin
 	
 	if(state = @STATE_MENU_INPUT) then begin
 		if(levelSingle >= 9) then pos := 0 else pos := 1; 
-		str::itoa(levelSingle + 1, #levStr + pos, 16);
+		str::itoa(levelSingle + 1, #levStr + pos, 10);
 		if(levelCoop >= 9) then pos := 0 else pos := 1; 
-		str::itoa(levelCoop + 1, #levStr2 + pos, 16); 
+		str::itoa(levelCoop + 1, #levStr2 + pos, 10); 
 		
 		if(joy1 & JOY_FIRE = JOY_FIRE) then begin
 			if(menuItem = 0 or menuItem = 3) then InitGame(levelSingle, levelCoop, @MODE_SINGLE);
@@ -1864,8 +1884,8 @@ begin
 			if(menuItem = 4) then IncLevel(@MODE_COOP);
 		end;
 		
-		PrintStringColor(#levStr,15,15,@WHITE);
-		PrintStringColor(#levStr2,15,16,@WHITE);
+		PrintStringColor(#levStr,17,15,@WHITE);
+		PrintStringColor(#levStr2,17,16,@WHITE);
 		
 		MenuMove(5, menuItem);
 	end
@@ -1891,7 +1911,7 @@ begin
 	menuItem := 0;
 	levStr[0] := '0';
 	if(state = @STATE_OPEN_SCENE) then begin 
-		InitLevel();
+//		InitLevel();
 		if(gameMode = @MODE_SINGLE) then begin
 			if(levelSingle >= 9) then pos := 0 else pos := 1; 
 			str::itoa(levelSingle + 1, #levStr + pos, 10)
@@ -1901,19 +1921,19 @@ begin
 			str::itoa(levelCoop + 1, #levStr + pos, 10)
 		end;
 		PrintCenterStringColor(#txtLevel, 4, 5);
-		PrintStringColor(#levStr, 12, 4, 5);
+		PrintStringColor(#levStr, 13, 4, 5);
 				
 		PrintCenterStringColor(levStrings[0], 6, 7);
 
 		PrintCenterStringColor(#txtStartLevel, 12, 7);
 		PrintCenterStringColor(#txtMainMenu, 13, 8);
 	
-		PrintCenterStringColor(#txtPressDel, 17, 19);
+		PrintCenterStringColor(#txtPressDel, 16, 19);
 		@PLAY_SOUND("1","sndEnd","240")
-		if(gameMode = @MODE_SINGLE_2CHAR) then PrintCenterStringColor(#txtPressSpace,18,7);
+		if(gameMode = @MODE_SINGLE_2CHAR) then PrintCenterStringColor(#txtPressSpace,17,7);
 		if(gameMode <> @MODE_SINGLE) then begin
-			if(levBothMustComplete = true) then PrintCenterStringColor(#txtBothMustComplete,19,7) 
-			else PrintCenterStringColor(#txtOneMustComplete,19,7);
+			if(levBothMustComplete = true) then PrintCenterStringColor(#txtBothMustComplete,18,7) 
+			else PrintCenterStringColor(#txtOneMustComplete,18,7);
 		end;
 		
 		state := @STATE_OPEN_SCENE_INPUT;
@@ -1929,7 +1949,7 @@ begin
 		PrintCenterStringColor(#txtSingleStart,15,8);
 		PrintCenterStringColor(#txtCoopStart,16,8);
 		
-		// PrintCenterStringColor(#txtAuthor,18,0);
+		//PrintCenterStringColor(#txtAuthor,18,0);
 	
 		state := @STATE_MENU_INPUT;
 	end;
@@ -2014,6 +2034,7 @@ begin
 end;
 
 
+
 procedure LoopMenu();
 begin
 	while(state = @STATE_MENU_INPUT or state = @STATE_OPEN_SCENE_INPUT) do begin
@@ -2023,6 +2044,23 @@ begin
 			UpdateMain();
 			frameStatus := 1;
 			inc(globaltime);	
+		end;	
+	end;				
+end;
+
+procedure LoopMenu1();
+var 
+	exitOpen: boolean;
+begin
+	ClearFullScreen();  // clear screen
+	exitOpen := false;
+	frameStatus := 1;
+	while(exitOpen = false) do begin
+		//waitnoraster(0);
+		if(frameStatus = 0)	then begin
+			OpenMain();
+			frameStatus := 1;
+			exitOpen := true;
 		end;					
 	end;
 end;
@@ -2035,26 +2073,17 @@ begin
 		ReadJoy1();
 		waitnoraster(0);
 		case state of
-			@STATE_MENU: begin
-				ClearFullScreen();  // clear screen
-				frameStatus := 1;
-				OpenMain();
-				frameStatus := 1;
-				OpenMain();
-				
-			end;
+			@STATE_MENU: 
+				LoopMenu1();	
 			@STATE_OPEN_SCENE: begin
-				ClearFullScreen();  // clear screen
 				InitLevel();
-				frameStatus := 1;
-				OpenMain();
-				frameStatus := 1;
-				OpenMain();
+				LoopMenu1();	
 			end;
 			@STATE_MENU_INPUT:
 				LoopMenu();
-			@STATE_OPEN_SCENE_INPUT:
+			@STATE_OPEN_SCENE_INPUT: begin
 				LoopMenu();
+			end;
 			@STATE_INIT: InitScene();
 			@STATE_PLAY: begin
 			
@@ -2077,31 +2106,6 @@ begin
 	end;	
 end;
 
-procedure InitialiseTables();
-begin
-	// create an address table of screen row addresses, we will use this to quickly find the Y position in screen memory
-	// without needing to use costly multiplication
-	createaddresstable(#scr1, @SCREEN_ADDR1, @SCREEN_WIDTH, @SCREEN_HEIGHT);
-	createaddresstable(#scr2, @SCREEN_ADDR2, @SCREEN_WIDTH, @SCREEN_HEIGHT);
-	createaddresstable(#col1, @COLOR_ADDR1, @SCREEN_WIDTH, @SCREEN_HEIGHT);
-	createaddresstable(#col2, @COLOR_ADDR2, @SCREEN_WIDTH, @SCREEN_HEIGHT);
-end;
-
-procedure InitScreen();
-begin
-	// set the screen and border colour
-	SCREEN_TEXT_WIDTH := @SCREEN_WIDTH | 128;  // width
-	SCREEN_TEXT_HEIGHT := 38; // 24 (25 rows-1) x 2
-	HSCROLL_REGISTER := peek(HSCROLL_REGISTER, 0) + 2;
-	VSCROLL_REGISTER := peek(VSCROLL_REGISTER, 0) + 2;
-
-	definescreen();	
-	
-	SCREEN_BG_COLOR := %00001110;
-	VICCR5 := $ce;
-	VICCR2 := VICCR2 & $7F;		
-	InitialiseTables();
-end;
 
 @endblock
 

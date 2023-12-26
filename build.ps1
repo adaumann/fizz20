@@ -19,7 +19,8 @@ $range3End = 0x0FFF - 0x0400
 $outputFilePath1 = "boot"
 $outputFilePath2 = "cod"
 $outputFilePath3 = "var"
-
+# $extra = "-d 19"
+$extra = ""
 try {
     # Read the entire content of the binary file
     $fileContent = Get-Content -Path $filePath -Raw -Encoding Byte
@@ -34,16 +35,16 @@ try {
     $extractedRange2 | Set-Content -Path $outputFilePath2 -Encoding Byte
     $extractedRange3 | Set-Content -Path $outputFilePath3 -Encoding Byte
 
-    cc1541.exe -n fizz -d 19 -w "boot" -f "boot" fizz.d64 
-    cc1541.exe -n fizz -d 19 -w "cod" -f "cod" fizz.d64 
-    cc1541.exe -n fizz -d 19 -w "var" -f "var" fizz.d64 
+    cc1541.exe -n fizz $extra -w "boot" -f "boot" fizz.d64 
+    cc1541.exe -n fizz $extra -w "cod" -f "cod" fizz.d64 
+    cc1541.exe -n fizz $extra -w "var" -f "var" fizz.d64 
 
     dotnet LevConv\bin\Debug\net7.0\LevConv.dll -i levelsSrc\baseLevels.json -e levels -h false
 
     Get-ChildItem -Path ".\levels\s*" |
 
     Foreach-Object {
-        cc1541.exe -n fizz -d 19 -w $_.FullName -f $_.BaseName fizz.d64 
+        cc1541.exe -n fizz $extra -w $_.FullName -f $_.BaseName fizz.d64 
         Write-Host $_.BaseName
     }
     
@@ -51,7 +52,7 @@ try {
 
     Foreach-Object {
     
-        cc1541.exe -n fizz  -d 19 -w $_.FullName -f $_.BaseName fizz.d64 
+        cc1541.exe -n fizz  $extra -w $_.FullName -f $_.BaseName fizz.d64 
         Write-Host $_.BaseName
     
     }  
