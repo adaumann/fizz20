@@ -474,7 +474,7 @@ begin
 				objectList[laserId].laserTag := id;
 	
 				AddMapItem(laserId, objectList[id].transX, objectList[id].transY, @Z_FRONT);
-				PaintPos(objectList[id].transX + ystart[objectList[id].transY], false);
+				PaintPos(objectList[id].transX + ystart[objectList[id].transY], false,$91);
 			end;
 		end
 		else if(controlList[controlId].controlJumpStep = 1) then laserList[laserEmitId].currentLaser := 5

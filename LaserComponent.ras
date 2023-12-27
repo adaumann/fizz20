@@ -151,7 +151,7 @@ begin
 							else if (xdir <> 0 and ydir = 0) then objectList[laserId].rendTilePos := $4c;
 						end;
 						AddMapItem(laserId, laserx, lasery, @Z_FRONT);
-						PaintPos(laserx + ystart[lasery], false);
+						PaintPos(laserx + ystart[lasery], false, $91);
 					end;
 					
 					portalId := GetObjectByPosFilterComp(laserx, lasery, @Z_BACK1, @COMP_PORTAL_1, 1);
@@ -262,7 +262,7 @@ begin
 					end
 					else begin
 						InitPortal(lastx, lasty, CalcFireExitDir(xdir, ydir));
-						PaintPos(lastx + ystart[lasty], false);
+						PaintPos(lastx + ystart[lasty], false, $91);
 					end;
 					@PLAY_SOUND("2","sndPortalActivate","240")
 					if(controlId <> $FF) then begin

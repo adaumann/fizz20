@@ -81,3 +81,4 @@ disk1_paw = 0
 disk1_flf = 0
 disk1_type = 0
 disk1_name = disk1
+data_header_chr/logo.flf = 0

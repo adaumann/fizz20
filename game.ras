@@ -176,7 +176,7 @@ var
 	// format:  action, duration
 	noSound : byte = @VSA_IDLE;  // used to point all sounds to stop / idle
 
-	sndJump : array[] of byte = (
+	sndFall : array[] of byte = (
 		$81,7, $20,2, $43,4,
 		@VSA_IDLE);
 	
@@ -214,7 +214,7 @@ var
 	
 	sndLadder : array[] of byte = ( $44,11, $85,3, $20,7, @VSA_IDLE);
 
-	sndFall : array[] of byte = ( $81,3, @VSA_IDLE);
+	sndJump : array[] of byte = ( $81,3, @VSA_IDLE);
 
 	sndExit : array[] of byte = ( $10,20, $42,5, $10,10, $20,15, $83,30, @VSA_IDLE);
 
@@ -379,7 +379,7 @@ var
 	@define EXIT_CLOSED_START 4
     txtExitClosed: string=("EXIT CLOSED");
 	@define CHAR_SWAP_RED 5
-	txtCharSwapRed: string=("ACTIVE: RED");
+	txtCharSwapRed: string=("ACTIVE: WHITE");
 	@define CHAR_SWAP_GREEN 4
 	txtCharSwapGreen: string=("ACTIVE: GREEN");
 	@define PLAYER_EXIT 3
@@ -390,12 +390,14 @@ var
     txtCoop: string=("TWO PLAYER CO-OP"); // 2 
     txtSingleStart: string=("1P START LEVEL: XX"); // 1
     txtCoopStart: string=("2P START LEVEL: XX"); //1
+	txtLogo: string=("F @ Z Z");
     txtAuthor: string=("CODE: ANDY DAUMANN"); //1
 	txtLevel: string=("LEVEL: XX"); // 5
 	txtStartLevel: string=("START LEVEL"); // 5
     txtMainMenu: string=("MAIN MENU"); // 5
     txtPressDel: string=("'F7' TO RETRY"); // 3
     txtPressSpace: string=("'SPACE' TO SWAP"); // 2
+    txtPressWasd: string=("P2: USE 'WASD'+'J'"); // 2
 	txtBothMustComplete: string=("BOTH MUST EXIT"); // 3 
 	txtOneMustComplete:	string=("ONLY ONE MUST EXIT"); // 1
     
@@ -574,6 +576,11 @@ end;
 
 interrupt vbl();
 
+procedure ColorLine(y: byte, col: byte);
+begin
+	if(currentBank = 1) then	screenmemory := col1[y] else screenmemory := col2[y];
+	fillfast(screenmemory,col,19);
+end;
 
 procedure PrintStringColor(p1 : pointer; x, y, c : byte);
 var
@@ -587,6 +594,9 @@ begin
 		if(currentBank = 1) then	screenmemory := scr1[y] else screenmemory := scr2[y];
 		screenmemory := screenmemory + x;
  		printstring(p1,0, len);
+		if(currentBank = 1) then	screenmemory := col1[y] else screenmemory := col2[y];
+		screenmemory := screenmemory + x;
+ 		fillfast(screenmemory, c, len);
 	@ENDIF		
 end;
 
@@ -603,11 +613,8 @@ begin
 			x := 10 - (len / 2)
 		else begin 
 			x := 0;
-			len := 20;
 		end;
-		if(currentBank = 1) then	screenmemory := scr1[y] else screenmemory := scr2[y];
-		screenmemory := screenmemory + x;
- 		printstring(p1,0, len);
+		PrintStringColor(p1, x, y, c);
 	@ENDIF		
 end;
 
@@ -623,12 +630,23 @@ begin
 	@ENDIF		
 end;
 
+procedure PrintFrame();
+var
+	i: byte;
+begin
+	if(currentBank = 1) then	screenmemory := scr1[0] else screenmemory := scr2[0];
+	fillfast(screenmemory,$1e,19);
+	ColorLine(0,@GREEN);
+	if(currentBank = 1) then	screenmemory := scr1[13] else screenmemory := scr2[13];
+	fillfast(screenmemory,$1f,19);
+	ColorLine(13,@GREEN);
+end;
 
 procedure ClearText();
 begin
 	@IFNDEF DEBUG
 		if(currentBank = 1) then	screenmemory := scr1[17] else screenmemory := scr2[17];
-		fillfast(screenmemory,$20,20);
+		fillfast(screenmemory,$20,19);
 	@ENDIF
 end;
 
@@ -788,7 +806,7 @@ begin
 end;
 
 
-procedure print2x2block(x,y,c: byte);
+procedure print2x2block(x,y,c, col: byte);
 begin
 	@IFDEF OVERFLOW_CHECK
 		if(x = $FF or y = $FF) then SCREEN_BG_COLOR:=WHITE;
@@ -800,7 +818,7 @@ begin
 	screenmemory[x]:=c;
 	if(currentBank = 1) then	screenmemory := col1[y+1] else screenmemory := col2[y+1];
 	if(c >= $80) then
-		screenmemory[x] := $91
+		screenmemory[x] := col
 	else
 		screenmemory[x] := tilesetColors[c];
 		
@@ -918,7 +936,7 @@ begin
 	PaintPosAnim := currentTile;
 end;
 
-procedure PaintPos(pos: byte, considerAnimation: boolean);
+procedure PaintPos(pos: byte, considerAnimation: boolean, col: byte);
 var
 	x,y: byte;
 	t, tHide: byte;
@@ -956,9 +974,9 @@ begin
  	end;
 	
 	if(t <> $FF) then begin
-		print2x2block(x,y,currentTile)
+		print2x2block(x,y,currentTile,col)
 	end
-	else print2x2block(x,y,$20);
+	else print2x2block(x,y,$20,$91);
 end;
 
 function ConvertShift(gravity: byte, pos: byte) : integer;
@@ -1084,6 +1102,7 @@ procedure ChangeMapItem(id: byte, oldx: byte, oldy: byte, x: byte, y: byte, z:by
 var
 	oldpos: byte;
 	pos: byte;
+	col: byte;
 begin
 	oldpos := oldx + ystart[oldy];
 	pos := x + ystart[y];
@@ -1095,20 +1114,29 @@ begin
 	tempPointer[oldpos] := $FF;
 	tempPointer[pos] := id;
 	// ##
-	PaintPos(oldpos, true);
-	PaintPos(pos, true);
+	if(objectList[id].controlId = 1) then begin
+		col := @GREEN;
+	end
+	else
+		col := @WHITE;
+
+	PaintPos(oldpos, true,col);
+	PaintPos(pos, true, col);
 end;
 
 procedure UpdateMapItem(id: byte, x: byte, y: byte);
 var
 	oldpos: byte;
 	pos: byte;
+	col: byte;
 begin
 	pos := x + ystart[y];
 	@IFDEF OVERFLOW_CHECK
 		if(pos >= @DIMTILES) then SCREEN_BG_COLOR:=CYAN;
 	@ENDIF
-	PaintPos(pos, true);
+	if(objectList[id].controlId = 1) then col := @GREEN else col:= @WHITE;
+	
+	PaintPos(pos, true,col);
 end;
 
 procedure SetPos(i: byte,oldx:byte, oldy:byte, x: byte, y: byte, z: byte);
@@ -1156,7 +1184,7 @@ begin
 	GetZLayerPointer(newz);
 	tempPointer[pos] := id;
 	objectList[id].transZ := newz;
-	PaintPos(pos, true);
+	PaintPos(pos, true,$91);
 end;
 
 procedure AddMapItem(Id: byte, x: byte, y: byte, z:byte);
@@ -1232,7 +1260,7 @@ var
 begin
     for i := 0 to @DIMTILES do
 	begin
-		PaintPos(i, false);
+		PaintPos(i, false,$91);
 	end;
 end;
 
@@ -1299,11 +1327,11 @@ begin
 		DeleteMapItem(id, objectList[id].transX, objectList[id].transY, objectList[id].transZ);
 		if(isDyn = true) then begin
 			DeleteDynObject(id); 
-			PaintPos(objectList[id].transX + ystart[objectList[id].transY], true);
+			PaintPos(objectList[id].transX + ystart[objectList[id].transY], true, $91);
 		end;
 
 		if(isAnim = true) then DeleteAnimObject(id);
-		PaintPos(objectList[id].transX + ystart[objectList[id].transY], true);
+		PaintPos(objectList[id].transX + ystart[objectList[id].transY], true,$91);
 	end; 
 end;	
 
@@ -1466,7 +1494,7 @@ begin
 						objectList[laserId].transZ := z;
 						objectList[laserId].laserTag := id;
 						AddMapItem(laserId, laserx, lasery, z);
-						PaintPos(laserx + ystart[lasery], false);
+						PaintPos(laserx + ystart[lasery], false,$91);
 					end;
 				end;
 				lastx := laserx;
@@ -1536,16 +1564,10 @@ begin
 	end;
 end;
 
-procedure ColorLine(y: byte, col: byte);
-var
-	i: byte;
-begin
-	if(currentBank = 1) then	screenmemory := col1[y] else screenmemory := col2[y];
-	for i:=0 to 20 do screenmemory[i]:= col;
-end;
-
 
 procedure MenuMove(len: byte, oldMenuItem: byte);
+var 
+	col: byte;
 begin
 		if(joy1 & JOY_UP = JOY_UP) then begin
 			if(menuItem > 0) then dec(menuItem);
@@ -1554,7 +1576,8 @@ begin
 			if(menuItem < len-1 ) then inc(menuItem); 
 	end;
 	ColorLine(12 + oldMenuItem, @WHITE);
-	ColorLine(12 + menuItem, @BLUE);
+	if(mod(globaltime, 4) < 2) then col := @BLUE else col := @CYAN;
+	ColorLine(12 + menuItem, col);
 end;
 // @include "Sounds.ras"
 
@@ -1853,7 +1876,8 @@ begin
 
 	definescreen();	
 	
-	SCREEN_BG_COLOR := %00001110;
+//	SCREEN_BG_COLOR := %00001110;
+	SCREEN_BG_COLOR := %00001000;
 	VICCR5 := $ce;
 	VICCR2 := VICCR2 & $7F;		
 	InitialiseTables();
@@ -1929,36 +1953,43 @@ begin
 			if(levelCoop >= 9) then pos := 0 else pos := 1; 
 			str::itoa(levelCoop + 1, #levStr + pos, 10)
 		end;
-		PrintCenterStringColor(#txtLevel, 4, 5);
-		PrintStringColor(#levStr, 13, 4, 5);
-				
-		PrintCenterStringColor(levStrings[0], 6, 7);
+		PrintCenterStringColor(#txtLevel, 4, @GREEN);
+		PrintStringColor(#levStr, 13, 4, @GREEN);
 
-		PrintCenterStringColor(#txtStartLevel, 12, 7);
-		PrintCenterStringColor(#txtMainMenu, 13, 8);
-	
-		PrintCenterStringColor(#txtPressDel, 16, 19);
-		@PLAY_SOUND("1","sndEnd","240")
-		if(gameMode = @MODE_SINGLE_2CHAR) then PrintCenterStringColor(#txtPressSpace,17,7);
+				
+		PrintCenterStringColor(levStrings[0], 6, @YELLOW);
+
 		if(gameMode <> @MODE_SINGLE) then begin
-			if(levBothMustComplete = true) then PrintCenterStringColor(#txtBothMustComplete,18,7) 
-			else PrintCenterStringColor(#txtOneMustComplete,18,7);
+			if(levBothMustComplete = true) then PrintCenterStringColor(#txtBothMustComplete,8,@YELLOW) 
+			else PrintCenterStringColor(#txtOneMustComplete,8,@YELLOW);
 		end;
+
+		PrintCenterStringColor(#txtStartLevel, 12, @WHITE);
+		PrintCenterStringColor(#txtMainMenu, 13, @WHITE);
+	
+		PrintCenterStringColor(#txtPressDel, 16, @CYAN);
+		@PLAY_SOUND("1","sndEnd","240")
+		if(gameMode = @MODE_SINGLE_2CHAR) then PrintCenterStringColor(#txtPressSpace,17,@CYAN);
+		if(gameMode = @MODE_COOP) then PrintCenterStringColor(#txtPressWasd,17,@CYAN);
 		
 		state := @STATE_OPEN_SCENE_INPUT;
 	end
 	else if(state = @STATE_MENU) then begin
 		
-		PrintCenterStringColor(#txtSelectGameMode,9,5);
+		PrintCenterStringColor(#txtLogo,3,@YELLOW);
 
-		PrintCenterStringColor(#txtSinglePlayer,12,8);
-		PrintCenterStringColor(#txtSinglePlayer2Chars,13,8);
-		PrintCenterStringColor(#txtCoop,14,8);
-
-		PrintCenterStringColor(#txtSingleStart,15,8);
-		PrintCenterStringColor(#txtCoopStart,16,8);
+//		PrintCenterStringColor(#txtSelectGameMode,9,@GREEN);
 		
-		//PrintCenterStringColor(#txtAuthor,18,0);
+//		PrintCenterStringColor(#txtSelectGameMode,9,@GREEN);
+
+		PrintCenterStringColor(#txtSinglePlayer,12,@WHITE);
+		PrintCenterStringColor(#txtSinglePlayer2Chars,13,@WHITE);
+		PrintCenterStringColor(#txtCoop,14,@WHITE);
+
+		PrintCenterStringColor(#txtSingleStart,15,@WHITE);
+		PrintCenterStringColor(#txtCoopStart,16,@WHITE);
+		
+		PrintCenterStringColor(#txtAuthor,18,@CYAN);
 	
 		state := @STATE_MENU_INPUT;
 	end;
@@ -2086,6 +2117,7 @@ begin
 			@STATE_MENU: 
 				LoopMenu1();	
 			@STATE_OPEN_SCENE: begin
+				ClearFullScreen();
 				InitLevel();
 				LoopMenu1();	
 			end;
@@ -2159,10 +2191,12 @@ begin
 	DisableVIC20IRQ();	
 	ClearFullScreen();  // clear screen
 	PaintFull();
+	PrintFrame();
 	ClearText();
 	SwitchBank;
 	ClearFullScreen();  // clear screen
 	PaintFull();
+	PrintFrame();
 	ClearText();
 	
 	InitAnimations();
