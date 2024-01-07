@@ -143,7 +143,7 @@ begin
 	fileName := #loader;
 	LoadFile($0400);
 	// Turn off interrupts so we won't be distrubed
-	DisableVIC20IRQ();
+//	DisableVIC20IRQ();
 	// Background is PURPLE and BLACK		
 	SCREEN_BG_COLOR:=BLACK*16;
 	// Auxilliary color is cyan
@@ -168,7 +168,7 @@ begin
 	while(pressed = false) do begin
 		ReadJoy1();
 		i := getkey();
-		if (i = KEY_SPACE) then 
+		if (i = KEY_SPACE or i = KEY_RETURN) then 
 			pressed := true;
 
 		if(joy1 & joy_fire = joy_fire) then

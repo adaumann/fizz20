@@ -1,0 +1,26 @@
+FIZZ V1.0.1 - VIC20
+-------------------
+
+https://fleischgemuese.itch.io
+
+Code: Andy Daumann
+Graphics: Andy Daumann
+Level Design: Andy Daumann
+
+Installation
+------------
+The game needs 35Kb, a floppy disk and a joystick. In Vice make sure to enable all banks in the Machine settings.
+
+Tools
+-----
+* Programming Language/IDE: Turbo Rascal Syntax Error: Great Pascal like compiler for 8-bit machines (www.turborascal.com)
+* cc1541 (https://csdb.dk/release/?id=220661)
+
+ChangeLog
+---------
+
+V1.0.1: 
+* fixed bug with intro screen
+* level ordering  
+V1.0.0:
+* port of C64 version

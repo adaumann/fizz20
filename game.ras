@@ -2217,7 +2217,7 @@ begin
 	
 	ClearFullScreen();  // clear screen
 	
-	maxSingleLevels := 47;
+	maxSingleLevels := 48;
 	maxMultiLevels := 30;
 	InitGame(0, 0, @MODE_COOP);
 	state := @STATE_MENU;

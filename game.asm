@@ -18,7 +18,7 @@ col1	dc.w
 col2	dc.w	 
 	org col2+40
 	; Resuming memory block at $400
-fileName	=   $6A
+fileName	=  $6A
 	; Resuming memory block at $400
 currentBank	dc.b	$00
 	; Resuming memory block at $400
@@ -48,7 +48,7 @@ vsnd	dc.b $0, $0, $0, $0
 	; Resuming memory block at $400
 vsndTime	dc.b $0, $0, $0, $0
 	; Resuming memory block at $400
-soundPointer	=   $6C
+soundPointer	=  $6C
 	; Resuming memory block at $400
 i	dc.b	0
 	; Resuming memory block at $400
@@ -134,7 +134,7 @@ shiftAreaRightY	dc.b $1, $0, $ff, $1, $0, $ff, $1, $0
 ystart	dc.b $0, $14, $28, $3c, $50, $64, $78, $8c
 	dc.b $a0, $b4, $c8, $dc
 	; Resuming memory block at $400
-tempPointer	=   $6E
+tempPointer	=  $6E
 	; Resuming memory block at $400
 txtActiveSwitch		dc.b	"SWITCH ACTIVATED"
 	dc.b	0
@@ -235,7 +235,7 @@ lastPortal	dc.b	0
 	; Resuming memory block at $400
 state	dc.b	0
 	; Resuming memory block at $400
-sp	=   $70
+sp	=  $70
 	; Resuming memory block at $400
 textTimer	dc.b	0
 	; Resuming memory block at $400
@@ -348,9 +348,9 @@ game
 	; LineNumber: 23
 str_p1	= $64
 	; LineNumber: 23
-str_p2	=   $66
+str_p2	=  $66
 	; LineNumber: 23
-str_p3	=   $68
+str_p3	=  $68
 	; LineNumber: 24
 str_i	dc.b	0
 	; LineNumber: 24
@@ -744,7 +744,7 @@ timers_vic_raster:
 ;  lda #$56
 ;  ldx #$86
   lda $64
-  ldx   $65
+  ldx  $65
   sta $9116     ; load the timer low byte latches
   sta $9126
   ldy #7        ; make a little delay to get the raster effect to the
@@ -761,10 +761,10 @@ timers_vic_raster:
   stx $9115     ; start the reference timer
 pointers_vic_raster:
 ;  lda #00     ; set the raster IRQ routine pointer
-   lda   $66
+   lda  $66
   sta $314
 ;  lda #00
-  lda   $67
+  lda  $67
   sta $315
   lda #$c0
   sta $912e     ; enable Timer A underflow interrupts
@@ -818,8 +818,8 @@ VIC20_PORTACASS = $911F
 VIC20_PORTBVIA2 = $9120  ; Port B 6522 2 value (joystick)
 VIC20_PORTBVIA2d = $9122 ; Port B 6522 2 direction (joystick)
 joy1 = $5e
-joy1last =   $5f
-joy1pressed =   $60
+joy1last =  $5f
+joy1pressed =  $60
 callReadJoy1
 	LDA VIC20_PORTACASS
 	EOR #$FF
@@ -1491,23 +1491,23 @@ InitScene
 	sta vsndTime+$2
 	; LineNumber: 4174
 	lda #<vbl
-	sta   $66
+	sta  $66
 	lda #>vbl
-	sta   $67
+	sta  $67
 	ldx raster ; optimized, look out for bugs
 	lda #$0
 	bne InitScene_viarasterirq_ntsc_timing175832
 	lda #$86
 	sta $64
 	lda #$56
-	sta   $65
+	sta  $65
 	jsr A0_vic_raster
 	jmp InitScene_viarasterirq_end175833
 InitScene_viarasterirq_ntsc_timing175832
 	lda #$43
 	sta $64
 	lda #$42
-	sta   $65
+	sta  $65
 	jsr A0_vic_raster
 InitScene_viarasterirq_end175833
 	; LineNumber: 4175
@@ -1594,7 +1594,7 @@ MainProgram_elsedoneblock175837
 	; LineNumber: 4191
 	
 ; // clear screen
-	lda #$2f
+	lda #$30
 	; Calling storevariable on generic assign expression
 	sta maxSingleLevels
 	; LineNumber: 4192
@@ -1617,23 +1617,23 @@ MainProgram_elsedoneblock175837
 	sta state
 	; LineNumber: 4196
 	lda #<vbl
-	sta   $66
+	sta  $66
 	lda #>vbl
-	sta   $67
+	sta  $67
 	ldx raster ; optimized, look out for bugs
 	lda #$0
 	bne MainProgram_viarasterirq_ntsc_timing175846
 	lda #$86
 	sta $64
 	lda #$56
-	sta   $65
+	sta  $65
 	jsr A0_vic_raster
 	jmp MainProgram_viarasterirq_end175847
 MainProgram_viarasterirq_ntsc_timing175846
 	lda #$43
 	sta $64
 	lda #$42
-	sta   $65
+	sta  $65
 	jsr A0_vic_raster
 MainProgram_viarasterirq_end175847
 	; LineNumber: 4264
@@ -1927,7 +1927,7 @@ end_procedure_ColorLine
 	; LineNumber: 584
 localVariable_PrintStringColor_len	dc.b	0
 	; LineNumber: 582
-localVariable_PrintStringColor_p1	=   $72
+localVariable_PrintStringColor_p1	=  $72
 	; LineNumber: 582
 localVariable_PrintStringColor_x	dc.b	0
 	; LineNumber: 582
@@ -2048,7 +2048,7 @@ localVariable_PrintCenterStringColor_len	dc.b	0
 	; LineNumber: 602
 localVariable_PrintCenterStringColor_x	dc.b	0
 	; LineNumber: 600
-localVariable_PrintCenterStringColor_p1	=   $72
+localVariable_PrintCenterStringColor_p1	=  $72
 	; LineNumber: 600
 localVariable_PrintCenterStringColor_y	dc.b	0
 	; LineNumber: 600
@@ -2703,23 +2703,23 @@ InitLevel_elsedoneblock230
 InitLevel_elsedoneblock211
 	; LineNumber: 753
 	lda #<vbl
-	sta   $66
+	sta  $66
 	lda #>vbl
-	sta   $67
+	sta  $67
 	ldx raster ; optimized, look out for bugs
 	lda #$0
 	bne InitLevel_viarasterirq_ntsc_timing235
 	lda #$86
 	sta $64
 	lda #$56
-	sta   $65
+	sta  $65
 	jsr A0_vic_raster
 	jmp InitLevel_viarasterirq_end236
 InitLevel_viarasterirq_ntsc_timing235
 	lda #$43
 	sta $64
 	lda #$42
-	sta   $65
+	sta  $65
 	jsr A0_vic_raster
 InitLevel_viarasterirq_end236
 	; LineNumber: 754
@@ -3219,7 +3219,7 @@ localVariable_PaintPosAnim_animId	dc.b	0
 	; LineNumber: 894
 localVariable_PaintPosAnim_hideSprite	dc.b	0
 	; LineNumber: 895
-localVariable_PaintPosAnim_pa	=   $72
+localVariable_PaintPosAnim_pa	=  $72
 	; LineNumber: 896
 localVariable_PaintPosAnim_currentTile	dc.b	0
 	; LineNumber: 897
@@ -3478,7 +3478,7 @@ PaintPosAnim_binary_clause_temp_var1981 = $88
 	sec
 	sbc #$1
 	 ; end add / sub var with constant
-PaintPosAnim_binary_clause_temp_2_var1982 =   $8A
+PaintPosAnim_binary_clause_temp_2_var1982 =  $8A
 	sta PaintPosAnim_binary_clause_temp_2_var1982
 	lda PaintPosAnim_binary_clause_temp_var1981
 	cmp PaintPosAnim_binary_clause_temp_2_var1982;keep
@@ -3558,7 +3558,7 @@ PaintPosAnim_binary_clause_temp_var2040 = $88
 	sec
 	sbc #$1
 	 ; end add / sub var with constant
-PaintPosAnim_binary_clause_temp_2_var2041 =   $8A
+PaintPosAnim_binary_clause_temp_2_var2041 =  $8A
 	sta PaintPosAnim_binary_clause_temp_2_var2041
 	lda PaintPosAnim_binary_clause_temp_var2040
 	cmp PaintPosAnim_binary_clause_temp_2_var2041;keep
@@ -3638,7 +3638,7 @@ localVariable_PaintPos_animId	dc.b	0
 	; LineNumber: 941
 localVariable_PaintPos_hideSprite	dc.b	0
 	; LineNumber: 942
-localVariable_PaintPos_pa	=   $72
+localVariable_PaintPos_pa	=  $72
 	; LineNumber: 943
 localVariable_PaintPos_currentTile	dc.b	0
 	; LineNumber: 944
@@ -5794,7 +5794,7 @@ end_procedure_SwitchBank
 	; LineNumber: 1353
 localVariable_CycleAnimation_animId	dc.b	0
 	; LineNumber: 1354
-localVariable_CycleAnimation_pa	=   $72
+localVariable_CycleAnimation_pa	=  $72
 	; LineNumber: 1351
 localVariable_CycleAnimation_id	dc.b	0
 CycleAnimation_block2879
@@ -5852,7 +5852,7 @@ CycleAnimation_binary_clause_temp_var2897 = $88
 	sec
 	sbc #$1
 	 ; end add / sub var with constant
-CycleAnimation_binary_clause_temp_2_var2898 =   $8A
+CycleAnimation_binary_clause_temp_2_var2898 =  $8A
 	sta CycleAnimation_binary_clause_temp_2_var2898
 	lda CycleAnimation_binary_clause_temp_var2897
 	cmp CycleAnimation_binary_clause_temp_2_var2898;keep
@@ -9012,7 +9012,7 @@ end_procedure_InitBrick
 	;    Procedure type : User-defined procedure
 	; LineNumber: 1951
 	; LineNumber: 1949
-localVariable_InitStone_pg	=   $72
+localVariable_InitStone_pg	=  $72
 	; LineNumber: 1950
 localVariable_InitStone_id	dc.b	0
 	; LineNumber: 1947
@@ -11122,7 +11122,7 @@ ProcessBackObj_binary_clause_temp_var11225 = $88
 	; CAST type NADA
 	ldx localVariable_ProcessBackObj_id
 	lda objectList_gobject_gobject_physGravity,x 
-ProcessBackObj_binary_clause_temp_2_var11226 =   $8A
+ProcessBackObj_binary_clause_temp_2_var11226 =  $8A
 	sta ProcessBackObj_binary_clause_temp_2_var11226
 	lda ProcessBackObj_binary_clause_temp_var11225
 	cmp ProcessBackObj_binary_clause_temp_2_var11226;keep
@@ -11544,7 +11544,7 @@ ProcessBackObj_binary_clause_temp_var11620 = $88
 	; CAST type NADA
 	ldx localVariable_ProcessBackObj_gravPadId
 	lda objectList_gobject_gobject_physGravity,x 
-ProcessBackObj_binary_clause_temp_2_var11621 =   $8A
+ProcessBackObj_binary_clause_temp_2_var11621 =  $8A
 	sta ProcessBackObj_binary_clause_temp_2_var11621
 	lda ProcessBackObj_binary_clause_temp_var11620
 	cmp ProcessBackObj_binary_clause_temp_2_var11621;keep
@@ -11754,7 +11754,7 @@ ProcessBackObj_binary_clause_temp_var11797 = $88
 	; CAST type NADA
 	ldx localVariable_ProcessBackObj_controlId
 	lda controlList_controlObject_controlObject_waypointId,x 
-ProcessBackObj_binary_clause_temp_2_var11798 =   $8A
+ProcessBackObj_binary_clause_temp_2_var11798 =  $8A
 	sta ProcessBackObj_binary_clause_temp_2_var11798
 	lda ProcessBackObj_binary_clause_temp_var11797
 	cmp ProcessBackObj_binary_clause_temp_2_var11798;keep
@@ -22168,7 +22168,7 @@ end_procedure_Update
 	;    Procedure type : User-defined procedure
 	; LineNumber: 3650
 	; LineNumber: 3648
-localVariable_InitAnimations_pa	=   $72
+localVariable_InitAnimations_pa	=  $72
 InitAnimations_block174553
 InitAnimations
 	; LineNumber: 3683

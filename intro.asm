@@ -10,7 +10,7 @@ StartBlock400:
 localVariable_Boot_fn		dc.b	"BOOT"
 	dc.b	0
 	; LineNumber: 42
-localVariable_Boot_fileNameb	=  $68
+localVariable_Boot_fileNameb	= $68
 Boot_block5
 Boot
 	; LineNumber: 45
@@ -82,7 +82,7 @@ j	dc.b	0
 	; LineNumber: 30
 k	dc.b	0
 	; LineNumber: 31
-zp	=  $66
+zp	= $66
 	; LineNumber: 32
 	; LineNumber: 33
 	; NodeProcedureDecl -1
@@ -133,8 +133,8 @@ VIC20_PORTACASS = $911F
 VIC20_PORTBVIA2 = $9120  ; Port B 6522 2 value (joystick)
 VIC20_PORTBVIA2d = $9122 ; Port B 6522 2 direction (joystick)
 joy1 = $5e
-joy1last =  $5f
-joy1pressed =  $60
+joy1last = $5f
+joy1pressed = $60
 callReadJoy1
 	LDA VIC20_PORTACASS
 	EOR #$FF
@@ -231,7 +231,7 @@ main_block_begin_
 main_block_end_
 	; End of program
 	; Ending memory block at $1210
-Main_printstring_text82	dc.b	"LOADING..."
+Main_printstring_text84	dc.b	"LOADING..."
 	dc.b	0
 EndBlock1210:
 	org $1400
@@ -412,14 +412,10 @@ Main
 	sta localVariable_LoadFile_addr
 	sty localVariable_LoadFile_addr+1
 	jsr LoadFile
-	; LineNumber: 146
-	
-; // Turn off interrupts so we won't be distrubed
-	lda #$7f
-	sta $912e ; disable and acknowledge interrupts
-	sta $912d
 	; LineNumber: 148
 	
+; // Turn off interrupts so we won't be distrubed
+; //	DisableVIC20IRQ();
 ; // Background is PURPLE and BLACK		
 	; Assigning memory location
 	lda #$0
@@ -513,13 +509,21 @@ Main_ConditionalTrueBlock38: ;Main true block ;keep
 	; Binary clause Simplified: EQUALS
 	; Compare with pure num / var optimization
 	cmp #$20;keep
-	bne Main_elsedoneblock60
-Main_ConditionalTrueBlock58: ;Main true block ;keep 
+	bne Main_localfailed63
+	jmp Main_ConditionalTrueBlock59
+Main_localfailed63: ;keep
+	; ; logical OR, second chance
+	; Binary clause Simplified: EQUALS
+	lda i
+	; Compare with pure num / var optimization
+	cmp #$f;keep
+	bne Main_elsedoneblock61
+Main_ConditionalTrueBlock59: ;Main true block ;keep 
 	; LineNumber: 171
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta pressed
-Main_elsedoneblock60
+Main_elsedoneblock61
 	; LineNumber: 174
 	; Binary clause Simplified: EQUALS
 	; 8 bit binop
@@ -529,13 +533,13 @@ Main_elsedoneblock60
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$10;keep
-	bne Main_elsedoneblock66
-Main_ConditionalTrueBlock64: ;Main true block ;keep 
+	bne Main_elsedoneblock68
+Main_ConditionalTrueBlock66: ;Main true block ;keep 
 	; LineNumber: 174
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta pressed
-Main_elsedoneblock66
+Main_elsedoneblock68
 	; LineNumber: 176
 	jmp Main_while37
 Main_elsedoneblock40
@@ -578,22 +582,22 @@ Main_loopend42
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta i
-Main_forloop69
+Main_forloop71
 	; LineNumber: 185
 	lda #$20
 	; Calling storevariable on generic assign expression
 	; Storing to a pointer
 	ldy i ; optimized, look out for bugs
 	sta (screenmemory),y
-Main_loopstart70
+Main_loopstart72
 	; Compare is onpage
 	; Test Inc dec D
 	inc i
 	lda #$0
 	cmp i ;keep
-	bne Main_forloop69
-Main_loopdone74: ;keep
-Main_loopend71
+	bne Main_forloop71
+Main_loopdone76: ;keep
+Main_loopend73
 	; LineNumber: 187
 	; MoveTo optimization
 	lda #$00
@@ -604,22 +608,22 @@ Main_loopend71
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta i
-Main_forloop75
+Main_forloop77
 	; LineNumber: 188
 	lda #$91
 	; Calling storevariable on generic assign expression
 	; Storing to a pointer
 	ldy i ; optimized, look out for bugs
 	sta (screenmemory),y
-Main_loopstart76
+Main_loopstart78
 	; Compare is onpage
 	; Test Inc dec D
 	inc i
 	lda #$13
 	cmp i ;keep
-	bne Main_forloop75
-Main_loopdone80: ;keep
-Main_loopend77
+	bne Main_forloop77
+Main_loopdone82: ;keep
+Main_loopend79
 	; LineNumber: 190
 	; MoveTo optimization
 	lda #$00
@@ -627,11 +631,11 @@ Main_loopend77
 	lda #$10
 	sta screenmemory+1
 	; LineNumber: 190
-Main_printstring_call81
+Main_printstring_call83
 	clc
-	lda #<Main_printstring_text82
+	lda #<Main_printstring_text84
 	adc #$0
-	ldy #>Main_printstring_text82
+	ldy #>Main_printstring_text84
 	sta print_text+0
 	sty print_text+1
 	ldx #$a ; optimized, look out for bugs

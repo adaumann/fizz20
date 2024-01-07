@@ -2,7 +2,7 @@ Remove-Item ".\boot"
 Remove-Item ".\var"
 Remove-Item ".\vai"
 Remove-Item ".\intro"
-Remove-Item ".\fizz.d64"
+Remove-Item ".\fizz_MVTPB0B1B2B3B5.d64"
 
 # Specify the path to your binary file
 $filePath = "game.prg"
@@ -72,18 +72,18 @@ try {
     # exomizer.exe sfx basic intro.raw -o intro -t 55
     #exomizer.exe sfx $1300 intropacked.prg boot,$3000 -o fizz -t 55
 
-    cc1541.exe -n fizz $extra -q -w "intro" -f "intro" fizz.d64 
-    cc1541.exe -n fizz $extra -q -w "boot" -f "boot" fizz.d64 
-    cc1541.exe -n fizz $extra -q -w "vai" -f "vai" fizz.d64 
-    cc1541.exe -n fizz $extra -q -w "cod" -f "cod" fizz.d64 
-    cc1541.exe -n fizz $extra -q -w "var" -f "var" fizz.d64 
+    cc1541.exe -n fizz35kb $extra -q -w "intro" -f "intro" fizz_MVTPB0B1B2B3B5.d64 
+    cc1541.exe -n fizz35kb $extra -q -w "boot" -f "boot" fizz_MVTPB0B1B2B3B5.d64 
+    cc1541.exe -n fizz35kb $extra -q -w "vai" -f "vai" fizz_MVTPB0B1B2B3B5.d64 
+    cc1541.exe -n fizz35kb $extra -q -w "cod" -f "cod" fizz_MVTPB0B1B2B3B5.d64 
+    cc1541.exe -n fizz35kb $extra -q -w "var" -f "var" fizz_MVTPB0B1B2B3B5.d64 
 
     dotnet LevConv\bin\Debug\net7.0\LevConv.dll -i levelsSrc\baseLevels.json -e levels -h false
 
     Get-ChildItem -Path ".\levels\s*" |
 
     Foreach-Object {
-        cc1541.exe -n fizz -q $extra -w $_.FullName -f $_.BaseName fizz.d64 
+        cc1541.exe -n fizz35kb -q $extra -w $_.FullName -f $_.BaseName fizz_MVTPB0B1B2B3B5.d64 
     }
     Write-Host "Single done"
     
@@ -91,7 +91,7 @@ try {
 
     Foreach-Object {
     
-        cc1541.exe -n fizz  -q $extra -w $_.FullName -f $_.BaseName fizz.d64 
+        cc1541.exe -n fizz35kb  -q $extra -w $_.FullName -f $_.BaseName fizz_MVTPB0B1B2B3B5.d64 
     }  
     Write-Host "Multi done"
 }
@@ -99,5 +99,4 @@ catch {
     Write-Host "Error: $_"
 }
 
-
-  xvic fizz.d64
+xvic fizz_MVTPB0B1B2B3B5.d64
