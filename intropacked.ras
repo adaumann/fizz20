@@ -1,0 +1,166 @@
+program intropacked;
+
+
+@VicMemoryConfig "all"
+@ignoremethod "init16x8div"
+@ignoremethod "init16x8mul"
+@ignoremethod "init8x8div"
+@ignoremethod "initrandom"
+
+
+// Image in images/logo.flf
+
+var  
+
+pressed: boolean;
+
+// Size of image. Defined when creating and drawing the flf file
+const imageWidth:byte = 20;
+const imageHeight:byte = 20;
+
+// Bitmap will be loaded as a charset
+const charsetAndBitmap:address = $1400;
+const colors:address = $2080;
+
+	i,j,k, time,t:byte;
+	zp: pointer;
+	charset : incbin("chr/title.bin", charsetAndBitmap);
+	charset_c : incbin("chr/title_color.bin", colors);
+
+
+@startblock $2600 Code
+
+
+// Copy color data from bitmap data
+procedure CopyImageColor();
+begin
+	/*
+	zp:=#charset_c;
+	moveto(0,0,$94);
+	for i:=0 to 0 do  
+		screenmemory[i]:=zp[i];
+	*/
+	zp:=#charset_c;
+	
+	moveto(0,0,$94);
+	for j:=0 to imageHeight do begin
+		for i:=0 to imageWidth do begin
+			k:=zp[i] | zp[i+imageWidth];
+			screenmemory[i]:= k;
+		end;
+		screenmemory := screenmemory + imageWidth;
+		zp := zp + imageWidth;
+	end;
+end;
+
+procedure Main();
+begin
+	// Turn off interrupts so we won't be distrubed
+	DisableVIC20IRQ();
+	// Background is PURPLE and BLACK		
+	SCREEN_BG_COLOR:=BLACK*16;
+	// Auxilliary color is cyan
+	AUX_COLOR_AND_VOLUME:=WHITE*16;
+	// Screen to $1000
+	setscreenlocation($1000);
+	// Set charset location to where bitmap data is
+	setcharsetlocation(charsetAndBitmap);
+	// Set height of columns (-1, needs to be odd)
+	SCREEN_TEXT_HEIGHT:=imageHeight-1;
+	// Width of screen same as bitmap
+	SCREEN_TEXT_WIDTH:=imageWidth;
+
+	// Copy color data
+	CopyImageColor();
+	moveto(0,0,$10);
+	for i:=0 to 0 do 
+		screenmemory[i]:=i;
+
+	pressed := false;
+		
+	while(pressed = false) do begin
+		ReadJoy1();
+		i := getkey();
+		if (i = KEY_SPACE) then 
+			pressed := true;
+
+		if(joy1 & joy_fire = joy_fire) then
+			pressed := true;
+	end;
+
+
+	setcharsetlocation($8000);
+	VICCR5 := $c0;
+	VICCR2 := VICCR2 & $7F;
+	VICCR3 := VICCR3 & $FE; 		
+
+	moveto(0,0,$10);
+	for i:=0 to 0 do 
+		screenmemory[i]:=$20;
+	moveto(0,0,$94);
+	for i:=0 to 19 do 
+		screenmemory[i]:=$91;
+	moveto(0,0,$10);
+	printstring("WAIT...",0,10);	
+/*
+	// After this, some random raster effect
+	while (true) do begin
+		time:=time+4;
+		t:=sine[time]/4+32;
+		
+		waitforraster(t);
+		aux_color_and_volume:=black*16;
+		for i:=0 to 24 do begin
+			screen_bg_color:=blue;
+			waitnoraster(1);
+						
+		end;
+		aux_color_and_volume:=purple*16;
+		screen_bg_color:=blue*16;
+	end;
+	*/
+   Loop();
+end;
+
+@endblock
+
+procedure Transfer();
+begin	
+	addbreakpoint();
+	asm("	
+	;Copy relocator code to memory $0200
+	ldx #$00
+reloccodecopy:
+	lda reloccode,x
+	sta $0400,x
+	inx
+	bne reloccodecopy
+	;lda #0
+	;sta $0800
+	;cli
+	jmp $0400 ;Jump to self-modified relocator code
+	
+reloccode:
+	sei
+relocate1:  
+	ldx #$00
+relocate2: 
+	lda $3000,x ;Target address to read from
+	sta $1201,x ;Transfer to BASIC load address $1201 - ALWAYS!
+	inx
+	bne relocate2
+	inc $0405 ;Self-mode changing in relocated transfer code
+	inc $0408 ;
+	lda $0405 ;Check if hi-byte of target address has expired $ffff
+	cmp #$5E
+	bcc relocate1
+	cli
+	jmp $120d ;Run Exomizer decruncher from BASIC load address
+	cli");
+end;
+
+begin
+	Main();	
+	Transfer();
+	Loop();
+end.

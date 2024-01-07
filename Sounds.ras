@@ -12,21 +12,7 @@ end;
 
 procedure PlayNote(sindex: byte, note: byte);
 begin
-			asm("
-
-	; get sound channel to play on
-	lda localVariable_PlayNote_sindex
-	lsr
-	tax ; put into x reg
-	
-	; get note
-	lda localVariable_PlayNote_note
-
-	; play sound
-	sta SOUND1_REGISTER,x
-
-		");
-
+	poke(^@VICsnd1, sindex, note);
 end;
 
 procedure StopSounds();

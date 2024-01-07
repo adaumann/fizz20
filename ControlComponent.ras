@@ -518,7 +518,7 @@ begin
 			@PLAY_SOUND("1","sndLadder","128")
 		end
 		else  begin 
-			@PLAY_SOUND("1","sndStep","128")
+			@PLAY_SOUND("4","sndStep","20")
 		end;
 	end;
 

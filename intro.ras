@@ -1,0 +1,217 @@
+program intro;
+
+
+@VicMemoryConfig "all"
+@ignoremethod "init16x8div"
+
+@ignoremethod "init16x8mul"
+
+@ignoremethod "init8x8div"
+
+@ignoremethod "initrandom"
+
+
+// Image in images/logo.flf
+
+var  
+
+loader: string = "VAI";
+fileName: pointer;
+pressed: boolean;
+
+// Size of image. Defined when creating and drawing the flf file
+const imageWidth:byte = 20;
+const imageHeight:byte = 20;
+
+// Bitmap will be loaded as a charset
+const charsetAndBitmap:address = $1400;
+const colors:address = $2080;
+
+	i,j,k, time,t:byte;
+	zp: pointer;
+	charset : incbin("chr/title.bin", charsetAndBitmap);
+	charset_c : incbin("chr/title_color.bin", colors);
+
+
+// Put all code at $2400
+
+@startblock $0400 Code
+procedure Boot();
+var
+	fn: string ="BOOT";
+	fileNameb: pointer;
+	
+begin
+	fileNameb := #fn;
+	asm("
+; KERNEL/BASIC ROM Routines
+
+LOADB       = $FFD5
+SETLFSB     = $FFBA
+SETNAMB     = $FFBD
+RUNB			= $1210
+
+			JMP mainb
+bootb	dc.b $01, $12
+
+mainb       LDA  #$08            ; Logical file number
+            LDX  #$08            ; Device number
+            LDY  #$00            ; Secondary address
+                                 ; $00 Load using specifed address
+                                 ; $01 Load using original address from file
+            JSR  SETLFSB          ; Set above parameters
+
+            LDA  #$04            ; Length of file name
+            LDX  localVariable_Boot_fileNameb      ; Low byte of file name location
+            LDY  localVariable_Boot_fileNameb+1      ; High byte of file name location
+            JSR  SETNAMB          ; Set the name
+
+            LDA  #$00            ; Load = 0, Verify = 1
+            LDX  bootb         ; Low byte of start address
+            LDY  bootb+1         ; High byte of start address
+            JSR  LOADB            ; Perform load
+            BCS  mainb          ; Jump to error handler if error
+            JMP RUNB
+ 
+	");
+end;
+
+@endblock
+
+
+@startblock $2600 Code
+
+procedure LoadFile(addr: integer);
+var
+	len: byte;
+	fn: integer;
+begin
+    len := 3;
+
+	asm("
+; KERNEL/BASIC ROM Routines
+
+LOAD        = $FFD5
+SETLFS      = $FFBA
+SETNAM      = $FFBD
+
+main        LDA  #$08            ; Logical file number
+            LDX  #$08            ; Device number
+            LDY  #$00            ; Secondary address
+                                 ; $00 Load using specifed address
+                                 ; $01 Load using original address from file
+            JSR  SETLFS          ; Set above parameters
+
+            LDA  localVariable_LoadFile_len            ; Length of file name
+            LDX  fileName      ; Low byte of file name location
+            LDY  fileName+1      ; High byte of file name location
+            JSR  SETNAM          ; Set the name
+
+            LDA  #$00            ; Load = 0, Verify = 1
+            LDX  localVariable_LoadFile_addr         ; Low byte of start address
+            LDY  localVariable_LoadFile_addr+1         ; High byte of start address
+            JSR  LOAD            ; Perform load
+            BCS  main           ; Jump to error handler if error
+	");
+end;
+
+
+// Copy color data from bitmap data
+procedure CopyImageColor();
+begin
+	/*
+	zp:=#charset_c;
+	moveto(0,0,$94);
+	for i:=0 to 0 do  
+		screenmemory[i]:=zp[i];
+	*/
+	zp:=#charset_c;
+	
+	moveto(0,0,$94);
+	for j:=0 to imageHeight do begin
+		for i:=0 to imageWidth do begin
+			k:=zp[i] | zp[i+imageWidth];
+			screenmemory[i]:= k;
+		end;
+		screenmemory := screenmemory + imageWidth;
+		zp := zp + imageWidth;
+	end;
+end;
+
+procedure Main();
+begin
+	fileName := #loader;
+	LoadFile($0400);
+	// Turn off interrupts so we won't be distrubed
+	DisableVIC20IRQ();
+	// Background is PURPLE and BLACK		
+	SCREEN_BG_COLOR:=BLACK*16;
+	// Auxilliary color is cyan
+	AUX_COLOR_AND_VOLUME:=WHITE*16;
+	// Screen to $1000
+	setscreenlocation($1000);
+	// Set charset location to where bitmap data is
+	setcharsetlocation(charsetAndBitmap);
+	// Set height of columns (-1, needs to be odd)
+	SCREEN_TEXT_HEIGHT:=imageHeight-1;
+	// Width of screen same as bitmap
+	SCREEN_TEXT_WIDTH:=imageWidth;
+
+	// Copy color data
+	CopyImageColor();
+	moveto(0,0,$10);
+	for i:=0 to 0 do 
+		screenmemory[i]:=i;
+
+	pressed := false;
+		
+	while(pressed = false) do begin
+		ReadJoy1();
+		i := getkey();
+		if (i = KEY_SPACE) then 
+			pressed := true;
+
+		if(joy1 & joy_fire = joy_fire) then
+			pressed := true;
+	end;
+
+
+	setcharsetlocation($8000);
+	VICCR5 := $c0;
+	VICCR2 := VICCR2 & $7F;
+	VICCR3 := VICCR3 & $FE; 		
+
+	moveto(0,0,$10);
+	for i:=0 to 0 do 
+		screenmemory[i]:=$20;
+	moveto(0,0,$94);
+	for i:=0 to 19 do 
+		screenmemory[i]:=$91;
+	moveto(0,0,$10);
+	printstring("LOADING...",0,10);	
+	Boot();
+/*
+	// After this, some random raster effect
+	while (true) do begin
+		time:=time+4;
+		t:=sine[time]/4+32;
+		
+		waitforraster(t);
+		aux_color_and_volume:=black*16;
+		for i:=0 to 24 do begin
+			screen_bg_color:=blue;
+			waitnoraster(1);
+						
+		end;
+		aux_color_and_volume:=purple*16;
+		screen_bg_color:=blue*16;
+	end;
+	*/
+   Loop();
+end;
+
+@endblock
+
+begin
+	Main();	
+end.
