@@ -18,7 +18,7 @@ col1	dc.w
 col2	dc.w	 
 	org col2+40
 	; Resuming memory block at $400
-fileName	=  $6A
+fileName	= $6A
 	; Resuming memory block at $400
 currentBank	dc.b	$00
 	; Resuming memory block at $400
@@ -48,7 +48,7 @@ vsnd	dc.b $0, $0, $0, $0
 	; Resuming memory block at $400
 vsndTime	dc.b $0, $0, $0, $0
 	; Resuming memory block at $400
-soundPointer	=  $6C
+soundPointer	= $6C
 	; Resuming memory block at $400
 i	dc.b	0
 	; Resuming memory block at $400
@@ -134,7 +134,7 @@ shiftAreaRightY	dc.b $1, $0, $ff, $1, $0, $ff, $1, $0
 ystart	dc.b $0, $14, $28, $3c, $50, $64, $78, $8c
 	dc.b $a0, $b4, $c8, $dc
 	; Resuming memory block at $400
-tempPointer	=  $6E
+tempPointer	= $6E
 	; Resuming memory block at $400
 txtActiveSwitch		dc.b	"SWITCH ACTIVATED"
 	dc.b	0
@@ -235,7 +235,7 @@ lastPortal	dc.b	0
 	; Resuming memory block at $400
 state	dc.b	0
 	; Resuming memory block at $400
-sp	=  $70
+sp	= $70
 	; Resuming memory block at $400
 textTimer	dc.b	0
 	; Resuming memory block at $400
@@ -343,14 +343,14 @@ EndBlock1201:
 StartBlock1210:
 	; Starting new memory block at $1210
 game
-	; LineNumber: 4178
+	; LineNumber: 4185
 	jmp block1
 	; LineNumber: 23
 str_p1	= $64
 	; LineNumber: 23
-str_p2	=  $66
+str_p2	= $66
 	; LineNumber: 23
-str_p3	=  $68
+str_p3	= $68
 	; LineNumber: 24
 str_i	dc.b	0
 	; LineNumber: 24
@@ -744,7 +744,7 @@ timers_vic_raster:
 ;  lda #$56
 ;  ldx #$86
   lda $64
-  ldx  $65
+  ldx $65
   sta $9116     ; load the timer low byte latches
   sta $9126
   ldy #7        ; make a little delay to get the raster effect to the
@@ -761,10 +761,10 @@ timers_vic_raster:
   stx $9115     ; start the reference timer
 pointers_vic_raster:
 ;  lda #00     ; set the raster IRQ routine pointer
-   lda  $66
+   lda $66
   sta $314
 ;  lda #00
-  lda  $67
+  lda $67
   sta $315
   lda #$c0
   sta $912e     ; enable Timer A underflow interrupts
@@ -818,8 +818,8 @@ VIC20_PORTACASS = $911F
 VIC20_PORTBVIA2 = $9120  ; Port B 6522 2 value (joystick)
 VIC20_PORTBVIA2d = $9122 ; Port B 6522 2 direction (joystick)
 joy1 = $5e
-joy1last =  $5f
-joy1pressed =  $60
+joy1last = $5f
+joy1pressed = $60
 callReadJoy1
 	LDA VIC20_PORTACASS
 	EOR #$FF
@@ -1189,68 +1189,68 @@ end_procedure_Key_Held
 	; Ending memory block at $1210
 	; ***********  Defining procedure : vbl
 	;    Procedure type : User-defined procedure
-	; LineNumber: 4124
+	; LineNumber: 4131
 vbl
-	; LineNumber: 4125
+	; LineNumber: 4132
 	; StartIRQ
 	pha
 	txa
 	pha
 	tya
 	pha
-	; LineNumber: 4126
+	; LineNumber: 4133
 	jsr UpdateSound
-	; LineNumber: 4127
+	; LineNumber: 4134
 	; Binary clause Simplified: EQUALS
 	lda frameStatus
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne vbl_localfailed175694
-	jmp vbl_ConditionalTrueBlock175581
-vbl_localfailed175694
-	jmp vbl_elsedoneblock175583
-vbl_ConditionalTrueBlock175581: ;Main true block ;keep 
-	; LineNumber: 4127
-	; LineNumber: 4128
+	bne vbl_localfailed175732
+	jmp vbl_ConditionalTrueBlock175619
+vbl_localfailed175732
+	jmp vbl_elsedoneblock175621
+vbl_ConditionalTrueBlock175619: ;Main true block ;keep 
+	; LineNumber: 4134
+	; LineNumber: 4135
 	; Binary clause Simplified: EQUALS
 	clc
 	lda time
 	; cmp #$00 ignored
-	bne vbl_localfailed175752
-	jmp vbl_ConditionalTrueBlock175697
-vbl_localfailed175752
-	jmp vbl_elseblock175698
-vbl_ConditionalTrueBlock175697: ;Main true block ;keep 
-	; LineNumber: 4128
-	; LineNumber: 4129
+	bne vbl_localfailed175790
+	jmp vbl_ConditionalTrueBlock175735
+vbl_localfailed175790
+	jmp vbl_elseblock175736
+vbl_ConditionalTrueBlock175735: ;Main true block ;keep 
+	; LineNumber: 4135
+	; LineNumber: 4136
 	jsr SwitchBank
-	; LineNumber: 4133
-	jmp vbl_elsedoneblock175699
-vbl_elseblock175698
-	; LineNumber: 4132
+	; LineNumber: 4140
+	jmp vbl_elsedoneblock175737
+vbl_elseblock175736
+	; LineNumber: 4139
 	; Binary clause Simplified: EQUALS
 	lda time
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne vbl_localfailed175781
-vbl_localsuccess175782: ;keep
+	bne vbl_localfailed175819
+vbl_localsuccess175820: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	clc
 	lda currentBank
 	; cmp #$00 ignored
-	bne vbl_localfailed175781
-	jmp vbl_ConditionalTrueBlock175756
-vbl_localfailed175781
-	jmp vbl_elseblock175757
-vbl_ConditionalTrueBlock175756: ;Main true block ;keep 
-	; LineNumber: 4132
-	; LineNumber: 4134
+	bne vbl_localfailed175819
+	jmp vbl_ConditionalTrueBlock175794
+vbl_localfailed175819
+	jmp vbl_elseblock175795
+vbl_ConditionalTrueBlock175794: ;Main true block ;keep 
+	; LineNumber: 4139
+	; LineNumber: 4141
 	
 ; // if(state = 8) then state := 2;
 	; Copy half screen unrolled 500 bytes = 12.5*40
 	ldx #00
-vbl_halfcopyloop175784
+vbl_halfcopyloop175822
 	lda $1000 + 0 -1 ,x
 	sta $1e00 + 0 -1 ,x
 	lda $1000 + 40 -1 ,x
@@ -1273,11 +1273,11 @@ vbl_halfcopyloop175784
 	sta $1e00 + 360 -1 ,x
 	inx
 	cpx #40
-	bne vbl_halfcopyloop175784
-	; LineNumber: 4135
+	bne vbl_halfcopyloop175822
+	; LineNumber: 4142
 	; Copy half screen unrolled 500 bytes = 12.5*40
 	ldx #00
-vbl_halfcopyloop175786
+vbl_halfcopyloop175824
 	lda $9400 + 0 -1 ,x
 	sta $9600 + 0 -1 ,x
 	lda $9400 + 40 -1 ,x
@@ -1300,32 +1300,32 @@ vbl_halfcopyloop175786
 	sta $9600 + 360 -1 ,x
 	inx
 	cpx #40
-	bne vbl_halfcopyloop175786
-	; LineNumber: 4137
-	jmp vbl_elsedoneblock175758
-vbl_elseblock175757
-	; LineNumber: 4136
+	bne vbl_halfcopyloop175824
+	; LineNumber: 4144
+	jmp vbl_elsedoneblock175796
+vbl_elseblock175795
+	; LineNumber: 4143
 	; Binary clause Simplified: EQUALS
 	lda time
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne vbl_localfailed175798
-vbl_localsuccess175799: ;keep
+	bne vbl_localfailed175836
+vbl_localsuccess175837: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	lda currentBank
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne vbl_localfailed175798
-	jmp vbl_ConditionalTrueBlock175790
-vbl_localfailed175798
-	jmp vbl_elsedoneblock175792
-vbl_ConditionalTrueBlock175790: ;Main true block ;keep 
-	; LineNumber: 4137
-	; LineNumber: 4138
+	bne vbl_localfailed175836
+	jmp vbl_ConditionalTrueBlock175828
+vbl_localfailed175836
+	jmp vbl_elsedoneblock175830
+vbl_ConditionalTrueBlock175828: ;Main true block ;keep 
+	; LineNumber: 4144
+	; LineNumber: 4145
 	; Copy half screen unrolled 500 bytes = 12.5*40
 	ldx #00
-vbl_halfcopyloop175801
+vbl_halfcopyloop175839
 	lda $1e00 + 0 -1 ,x
 	sta $1000 + 0 -1 ,x
 	lda $1e00 + 40 -1 ,x
@@ -1348,11 +1348,11 @@ vbl_halfcopyloop175801
 	sta $1000 + 360 -1 ,x
 	inx
 	cpx #40
-	bne vbl_halfcopyloop175801
-	; LineNumber: 4139
+	bne vbl_halfcopyloop175839
+	; LineNumber: 4146
 	; Copy half screen unrolled 500 bytes = 12.5*40
 	ldx #00
-vbl_halfcopyloop175803
+vbl_halfcopyloop175841
 	lda $9600 + 0 -1 ,x
 	sta $9400 + 0 -1 ,x
 	lda $9600 + 40 -1 ,x
@@ -1375,55 +1375,55 @@ vbl_halfcopyloop175803
 	sta $9400 + 360 -1 ,x
 	inx
 	cpx #40
-	bne vbl_halfcopyloop175803
-	; LineNumber: 4140
-vbl_elsedoneblock175792
-vbl_elsedoneblock175758
-vbl_elsedoneblock175699
-	; LineNumber: 4141
-vbl_elsedoneblock175583
-	; LineNumber: 4142
+	bne vbl_halfcopyloop175841
+	; LineNumber: 4147
+vbl_elsedoneblock175830
+vbl_elsedoneblock175796
+vbl_elsedoneblock175737
+	; LineNumber: 4148
+vbl_elsedoneblock175621
+	; LineNumber: 4149
 	; Binary clause Simplified: EQUALS
 	lda time
 	; Compare with pure num / var optimization
 	cmp #$2;keep
-	bne vbl_elsedoneblock175808
-vbl_ConditionalTrueBlock175806: ;Main true block ;keep 
-	; LineNumber: 4142
-	; LineNumber: 4143
+	bne vbl_elsedoneblock175846
+vbl_ConditionalTrueBlock175844: ;Main true block ;keep 
+	; LineNumber: 4149
+	; LineNumber: 4150
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta frameStatus
-	; LineNumber: 4144
-vbl_elsedoneblock175808
-	; LineNumber: 4145
+	; LineNumber: 4151
+vbl_elsedoneblock175846
+	; LineNumber: 4152
 	; Binary clause Simplified: LESS
 	lda time
 	; Compare with pure num / var optimization
 	cmp #$4;keep
-	bcs vbl_elseblock175813
-vbl_ConditionalTrueBlock175812: ;Main true block ;keep 
-	; LineNumber: 4144
+	bcs vbl_elseblock175851
+vbl_ConditionalTrueBlock175850: ;Main true block ;keep 
+	; LineNumber: 4151
 	; Test Inc dec D
 	inc time
-	jmp vbl_elsedoneblock175814
-vbl_elseblock175813
-	; LineNumber: 4145
+	jmp vbl_elsedoneblock175852
+vbl_elseblock175851
+	; LineNumber: 4152
 	; Binary clause Simplified: EQUALS
 	lda frameStatus
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne vbl_elsedoneblock175828
-vbl_ConditionalTrueBlock175826: ;Main true block ;keep 
-	; LineNumber: 4145
-	; LineNumber: 4147
+	bne vbl_elsedoneblock175866
+vbl_ConditionalTrueBlock175864: ;Main true block ;keep 
+	; LineNumber: 4152
+	; LineNumber: 4154
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta time
-	; LineNumber: 4148
-vbl_elsedoneblock175828
-vbl_elsedoneblock175814
-	; LineNumber: 4149
+	; LineNumber: 4155
+vbl_elsedoneblock175866
+vbl_elsedoneblock175852
+	; LineNumber: 4156
 	; CloseIRQ
 	pla
 	tay
@@ -1431,86 +1431,86 @@ vbl_elsedoneblock175814
 	tax
 	pla
 	 jmp $eabf     ; return to normal IRQ	
-	; LineNumber: 4150
+	; LineNumber: 4157
 	rti
 end_procedure_vbl
 	; NodeProcedureDecl -1
 	; ***********  Defining procedure : InitScene
 	;    Procedure type : User-defined procedure
-	; LineNumber: 4154
+	; LineNumber: 4161
 InitScene
-	; LineNumber: 4156
+	; LineNumber: 4163
 	jsr InitMap
-	; LineNumber: 4157
+	; LineNumber: 4164
 	jsr InitActors
-	; LineNumber: 4157
+	; LineNumber: 4164
 	lda #$7f
 	sta $912e ; disable and acknowledge interrupts
 	sta $912d
-	; LineNumber: 4159
-	jsr ClearFullScreen
-	; LineNumber: 4160
-	
-; // clear screen
-	jsr PaintFull
-	; LineNumber: 4161
-	jsr PrintFrame
-	; LineNumber: 4162
-	jsr ClearText
-	; LineNumber: 4163
-	jsr SwitchBank
-	; LineNumber: 4164
-	jsr ClearFullScreen
-	; LineNumber: 4165
-	
-; // clear screen
-	jsr PaintFull
 	; LineNumber: 4166
-	jsr PrintFrame
+	jsr ClearFullScreen
 	; LineNumber: 4167
-	jsr ClearText
+	
+; // clear screen
+	jsr PaintFull
+	; LineNumber: 4168
+	jsr PrintFrame
 	; LineNumber: 4169
-	jsr InitAnimations
+	jsr ClearText
 	; LineNumber: 4170
+	jsr SwitchBank
+	; LineNumber: 4171
+	jsr ClearFullScreen
+	; LineNumber: 4172
+	
+; // clear screen
+	jsr PaintFull
+	; LineNumber: 4173
+	jsr PrintFrame
+	; LineNumber: 4174
+	jsr ClearText
+	; LineNumber: 4176
+	jsr InitAnimations
+	; LineNumber: 4177
 	lda #$3
 	; Calling storevariable on generic assign expression
 	sta state
-	; LineNumber: 4172
+	; LineNumber: 4179
 	lda #<sndSceneStart
 	ldy #>sndSceneStart
 	; Calling storevariable on generic assign expression
 	sta psnd+4
 	sty psnd+5
-	; LineNumber: 4172
+	; LineNumber: 4179
 	lda #$f0
 	; Calling storevariable on generic assign expression
 	sta vsnd+$2
-	; LineNumber: 4172
+	; LineNumber: 4179
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta vsndTime+$2
-	; LineNumber: 4174
+	; LineNumber: 4181
 	lda #<vbl
-	sta  $66
+	sta $66
 	lda #>vbl
-	sta  $67
+	sta $67
 	ldx raster ; optimized, look out for bugs
 	lda #$0
-	bne InitScene_viarasterirq_ntsc_timing175832
+	bne InitScene_viarasterirq_ntsc_timing175870
 	lda #$86
 	sta $64
 	lda #$56
-	sta  $65
+	sta $65
 	jsr A0_vic_raster
-	jmp InitScene_viarasterirq_end175833
-InitScene_viarasterirq_ntsc_timing175832
+	jmp InitScene_viarasterirq_end175871
+InitScene_viarasterirq_ntsc_timing175870
 	lda #$43
 	sta $64
 	lda #$42
-	sta  $65
+	sta $65
 	jsr A0_vic_raster
-InitScene_viarasterirq_end175833
-	; LineNumber: 4175
+InitScene_viarasterirq_end175871
+	; LineNumber: 4182
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_DispatchEvent_event
@@ -1522,41 +1522,41 @@ InitScene_viarasterirq_end175833
 	; Calling storevariable on generic assign expression
 	sta localVariable_DispatchEvent_p2
 	jsr DispatchEvent
-	; LineNumber: 4176
+	; LineNumber: 4183
 	rts
 end_procedure_InitScene
 block1
 main_block_begin_
-	; LineNumber: 4179
+	; LineNumber: 4186
 	; Binary clause Simplified: EQUALS
 	lda $9000
 	; Compare with pure num / var optimization
 	cmp #$c;keep
-	bne MainProgram_elseblock175836
-MainProgram_ConditionalTrueBlock175835: ;Main true block ;keep 
-	; LineNumber: 4178
+	bne MainProgram_elseblock175874
+MainProgram_ConditionalTrueBlock175873: ;Main true block ;keep 
+	; LineNumber: 4185
 	lda #$79
 	; Calling storevariable on generic assign expression
 	sta raster
-	jmp MainProgram_elsedoneblock175837
-MainProgram_elseblock175836
-	; LineNumber: 4178
+	jmp MainProgram_elsedoneblock175875
+MainProgram_elseblock175874
+	; LineNumber: 4185
 	lda #$6b
 	; Calling storevariable on generic assign expression
 	sta raster
-MainProgram_elsedoneblock175837
-	; LineNumber: 4180
+MainProgram_elsedoneblock175875
+	; LineNumber: 4187
 	jsr ClearFullScreen
-	; LineNumber: 4181
+	; LineNumber: 4188
 	
 ; // clear screen
 	; Assigning a string : fileName
 	;has array index
-	lda #<MainProgram_stringassignstr175843
-	ldy #>MainProgram_stringassignstr175843
+	lda #<MainProgram_stringassignstr175881
+	ldy #>MainProgram_stringassignstr175881
 	sta fileName
 	sty fileName+1
-	; LineNumber: 4182
+	; LineNumber: 4189
 	; Integer constant assigning
 	; Load16bitvariable : #$400
 	ldy #$04
@@ -1565,14 +1565,14 @@ MainProgram_elsedoneblock175837
 	sta localVariable_LoadFile_addr
 	sty localVariable_LoadFile_addr+1
 	jsr LoadFile
-	; LineNumber: 4183
+	; LineNumber: 4190
 	; Assigning a string : fileName
 	;has array index
-	lda #<MainProgram_stringassignstr175845
-	ldy #>MainProgram_stringassignstr175845
+	lda #<MainProgram_stringassignstr175883
+	ldy #>MainProgram_stringassignstr175883
 	sta fileName
 	sty fileName+1
-	; LineNumber: 4184
+	; LineNumber: 4191
 	; Integer constant assigning
 	; Load16bitvariable : #$a000
 	ldy #$a0
@@ -1581,27 +1581,27 @@ MainProgram_elsedoneblock175837
 	sta localVariable_LoadFile_addr
 	sty localVariable_LoadFile_addr+1
 	jsr LoadFile
-	; LineNumber: 4185
+	; LineNumber: 4192
 	lda #$7f
 	sta $912e ; disable and acknowledge interrupts
 	sta $912d
-	; LineNumber: 4186
+	; LineNumber: 4193
 	jsr InitScreen
-	; LineNumber: 4187
+	; LineNumber: 4194
 	jsr SetupSound
-	; LineNumber: 4189
+	; LineNumber: 4196
 	jsr ClearFullScreen
-	; LineNumber: 4191
+	; LineNumber: 4198
 	
 ; // clear screen
 	lda #$30
 	; Calling storevariable on generic assign expression
 	sta maxSingleLevels
-	; LineNumber: 4192
+	; LineNumber: 4199
 	lda #$1e
 	; Calling storevariable on generic assign expression
 	sta maxMultiLevels
-	; LineNumber: 4193
+	; LineNumber: 4200
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitGame_levSingle
@@ -1611,32 +1611,32 @@ MainProgram_elsedoneblock175837
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitGame_mode
 	jsr InitGame
-	; LineNumber: 4194
+	; LineNumber: 4201
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta state
-	; LineNumber: 4196
+	; LineNumber: 4203
 	lda #<vbl
-	sta  $66
+	sta $66
 	lda #>vbl
-	sta  $67
+	sta $67
 	ldx raster ; optimized, look out for bugs
 	lda #$0
-	bne MainProgram_viarasterirq_ntsc_timing175846
+	bne MainProgram_viarasterirq_ntsc_timing175884
 	lda #$86
 	sta $64
 	lda #$56
-	sta  $65
+	sta $65
 	jsr A0_vic_raster
-	jmp MainProgram_viarasterirq_end175847
-MainProgram_viarasterirq_ntsc_timing175846
+	jmp MainProgram_viarasterirq_end175885
+MainProgram_viarasterirq_ntsc_timing175884
 	lda #$43
 	sta $64
 	lda #$42
-	sta  $65
+	sta $65
 	jsr A0_vic_raster
-MainProgram_viarasterirq_end175847
-	; LineNumber: 4264
+MainProgram_viarasterirq_end175885
+	; LineNumber: 4271
 	
 ; //	@define SOUND_TRANSPORT 18 
 ; //x	 
@@ -1725,19 +1725,19 @@ MainProgram_viarasterirq_end175847
 ; //	end;
 ; //	
 	jsr GameLoop
-	; LineNumber: 4265
+	; LineNumber: 4272
 	jmp * ; loop like (�/%
-	; LineNumber: 4266
+	; LineNumber: 4273
 main_block_end_
 	; End of program
 	; Ending memory block at $1210
-UpdateMain_stringassignstr174579		dc.b	"00"
+UpdateMain_stringassignstr174617		dc.b	"00"
 	dc.b	0
-UpdateMain_stringassignstr174581		dc.b	"00"
+UpdateMain_stringassignstr174619		dc.b	"00"
 	dc.b	0
-MainProgram_stringassignstr175843		dc.b	"VAR"
+MainProgram_stringassignstr175881		dc.b	"VAR"
 	dc.b	0
-MainProgram_stringassignstr175845		dc.b	"COD"
+MainProgram_stringassignstr175883		dc.b	"COD"
 	dc.b	0
 EndBlock1210:
 	org $1800
@@ -1927,7 +1927,7 @@ end_procedure_ColorLine
 	; LineNumber: 584
 localVariable_PrintStringColor_len	dc.b	0
 	; LineNumber: 582
-localVariable_PrintStringColor_p1	=  $72
+localVariable_PrintStringColor_p1	= $72
 	; LineNumber: 582
 localVariable_PrintStringColor_x	dc.b	0
 	; LineNumber: 582
@@ -2048,7 +2048,7 @@ localVariable_PrintCenterStringColor_len	dc.b	0
 	; LineNumber: 602
 localVariable_PrintCenterStringColor_x	dc.b	0
 	; LineNumber: 600
-localVariable_PrintCenterStringColor_p1	=  $72
+localVariable_PrintCenterStringColor_p1	= $72
 	; LineNumber: 600
 localVariable_PrintCenterStringColor_y	dc.b	0
 	; LineNumber: 600
@@ -2703,23 +2703,23 @@ InitLevel_elsedoneblock230
 InitLevel_elsedoneblock211
 	; LineNumber: 753
 	lda #<vbl
-	sta  $66
+	sta $66
 	lda #>vbl
-	sta  $67
+	sta $67
 	ldx raster ; optimized, look out for bugs
 	lda #$0
 	bne InitLevel_viarasterirq_ntsc_timing235
 	lda #$86
 	sta $64
 	lda #$56
-	sta  $65
+	sta $65
 	jsr A0_vic_raster
 	jmp InitLevel_viarasterirq_end236
 InitLevel_viarasterirq_ntsc_timing235
 	lda #$43
 	sta $64
 	lda #$42
-	sta  $65
+	sta $65
 	jsr A0_vic_raster
 InitLevel_viarasterirq_end236
 	; LineNumber: 754
@@ -3219,7 +3219,7 @@ localVariable_PaintPosAnim_animId	dc.b	0
 	; LineNumber: 894
 localVariable_PaintPosAnim_hideSprite	dc.b	0
 	; LineNumber: 895
-localVariable_PaintPosAnim_pa	=  $72
+localVariable_PaintPosAnim_pa	= $72
 	; LineNumber: 896
 localVariable_PaintPosAnim_currentTile	dc.b	0
 	; LineNumber: 897
@@ -3478,7 +3478,7 @@ PaintPosAnim_binary_clause_temp_var1981 = $88
 	sec
 	sbc #$1
 	 ; end add / sub var with constant
-PaintPosAnim_binary_clause_temp_2_var1982 =  $8A
+PaintPosAnim_binary_clause_temp_2_var1982 = $8A
 	sta PaintPosAnim_binary_clause_temp_2_var1982
 	lda PaintPosAnim_binary_clause_temp_var1981
 	cmp PaintPosAnim_binary_clause_temp_2_var1982;keep
@@ -3558,7 +3558,7 @@ PaintPosAnim_binary_clause_temp_var2040 = $88
 	sec
 	sbc #$1
 	 ; end add / sub var with constant
-PaintPosAnim_binary_clause_temp_2_var2041 =  $8A
+PaintPosAnim_binary_clause_temp_2_var2041 = $8A
 	sta PaintPosAnim_binary_clause_temp_2_var2041
 	lda PaintPosAnim_binary_clause_temp_var2040
 	cmp PaintPosAnim_binary_clause_temp_2_var2041;keep
@@ -3638,7 +3638,7 @@ localVariable_PaintPos_animId	dc.b	0
 	; LineNumber: 941
 localVariable_PaintPos_hideSprite	dc.b	0
 	; LineNumber: 942
-localVariable_PaintPos_pa	=  $72
+localVariable_PaintPos_pa	= $72
 	; LineNumber: 943
 localVariable_PaintPos_currentTile	dc.b	0
 	; LineNumber: 944
@@ -5794,7 +5794,7 @@ end_procedure_SwitchBank
 	; LineNumber: 1353
 localVariable_CycleAnimation_animId	dc.b	0
 	; LineNumber: 1354
-localVariable_CycleAnimation_pa	=  $72
+localVariable_CycleAnimation_pa	= $72
 	; LineNumber: 1351
 localVariable_CycleAnimation_id	dc.b	0
 CycleAnimation_block2879
@@ -5852,7 +5852,7 @@ CycleAnimation_binary_clause_temp_var2897 = $88
 	sec
 	sbc #$1
 	 ; end add / sub var with constant
-CycleAnimation_binary_clause_temp_2_var2898 =  $8A
+CycleAnimation_binary_clause_temp_2_var2898 = $8A
 	sta CycleAnimation_binary_clause_temp_2_var2898
 	lda CycleAnimation_binary_clause_temp_var2897
 	cmp CycleAnimation_binary_clause_temp_2_var2898;keep
@@ -9012,7 +9012,7 @@ end_procedure_InitBrick
 	;    Procedure type : User-defined procedure
 	; LineNumber: 1951
 	; LineNumber: 1949
-localVariable_InitStone_pg	=  $72
+localVariable_InitStone_pg	= $72
 	; LineNumber: 1950
 localVariable_InitStone_id	dc.b	0
 	; LineNumber: 1947
@@ -11122,7 +11122,7 @@ ProcessBackObj_binary_clause_temp_var11225 = $88
 	; CAST type NADA
 	ldx localVariable_ProcessBackObj_id
 	lda objectList_gobject_gobject_physGravity,x 
-ProcessBackObj_binary_clause_temp_2_var11226 =  $8A
+ProcessBackObj_binary_clause_temp_2_var11226 = $8A
 	sta ProcessBackObj_binary_clause_temp_2_var11226
 	lda ProcessBackObj_binary_clause_temp_var11225
 	cmp ProcessBackObj_binary_clause_temp_2_var11226;keep
@@ -11544,7 +11544,7 @@ ProcessBackObj_binary_clause_temp_var11620 = $88
 	; CAST type NADA
 	ldx localVariable_ProcessBackObj_gravPadId
 	lda objectList_gobject_gobject_physGravity,x 
-ProcessBackObj_binary_clause_temp_2_var11621 =  $8A
+ProcessBackObj_binary_clause_temp_2_var11621 = $8A
 	sta ProcessBackObj_binary_clause_temp_2_var11621
 	lda ProcessBackObj_binary_clause_temp_var11620
 	cmp ProcessBackObj_binary_clause_temp_2_var11621;keep
@@ -11754,7 +11754,7 @@ ProcessBackObj_binary_clause_temp_var11797 = $88
 	; CAST type NADA
 	ldx localVariable_ProcessBackObj_controlId
 	lda controlList_controlObject_controlObject_waypointId,x 
-ProcessBackObj_binary_clause_temp_2_var11798 =  $8A
+ProcessBackObj_binary_clause_temp_2_var11798 = $8A
 	sta ProcessBackObj_binary_clause_temp_2_var11798
 	lda ProcessBackObj_binary_clause_temp_var11797
 	cmp ProcessBackObj_binary_clause_temp_2_var11798;keep
@@ -11846,9 +11846,9 @@ ProcessBackObj_elsedoneblock8156
 	lda localVariable_ProcessBackObj_controlId
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq ProcessBackObj_localfailed12948
+	beq ProcessBackObj_localfailed12964
 	jmp ProcessBackObj_ConditionalTrueBlock11809
-ProcessBackObj_localfailed12948
+ProcessBackObj_localfailed12964
 	jmp ProcessBackObj_elsedoneblock11811
 ProcessBackObj_ConditionalTrueBlock11809: ;Main true block ;keep 
 	; LineNumber: 2498
@@ -11905,11 +11905,11 @@ ProcessBackObj_ConditionalTrueBlock11809: ;Main true block ;keep
 	lda localVariable_ProcessBackObj_switchId
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq ProcessBackObj_localfailed13519
-	jmp ProcessBackObj_ConditionalTrueBlock12951
-ProcessBackObj_localfailed13519
-	jmp ProcessBackObj_elseblock12952
-ProcessBackObj_ConditionalTrueBlock12951: ;Main true block ;keep 
+	beq ProcessBackObj_localfailed13543
+	jmp ProcessBackObj_ConditionalTrueBlock12967
+ProcessBackObj_localfailed13543
+	jmp ProcessBackObj_elseblock12968
+ProcessBackObj_ConditionalTrueBlock12967: ;Main true block ;keep 
 	; LineNumber: 2501
 	; LineNumber: 2502
 	; Binary clause Simplified: NOTEQUALS
@@ -11919,11 +11919,11 @@ ProcessBackObj_ConditionalTrueBlock12951: ;Main true block ;keep
 	ldx localVariable_ProcessBackObj_controlId
 	lda controlList_controlObject_controlObject_b_controlPressAction,x 
 	; cmp #$00 ignored
-	beq ProcessBackObj_localfailed13535
-	jmp ProcessBackObj_ConditionalTrueBlock13522
-ProcessBackObj_localfailed13535
-	jmp ProcessBackObj_elsedoneblock13524
-ProcessBackObj_ConditionalTrueBlock13522: ;Main true block ;keep 
+	beq ProcessBackObj_localfailed13559
+	jmp ProcessBackObj_ConditionalTrueBlock13546
+ProcessBackObj_localfailed13559
+	jmp ProcessBackObj_elsedoneblock13548
+ProcessBackObj_ConditionalTrueBlock13546: ;Main true block ;keep 
 	; LineNumber: 2502
 	; LineNumber: 2503
 	lda #$14
@@ -11937,11 +11937,11 @@ ProcessBackObj_ConditionalTrueBlock13522: ;Main true block ;keep
 	lda objectList_gobject_gobject_onOff,x 
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne ProcessBackObj_localfailed13543
-	jmp ProcessBackObj_ConditionalTrueBlock13538
-ProcessBackObj_localfailed13543
-	jmp ProcessBackObj_elseblock13539
-ProcessBackObj_ConditionalTrueBlock13538: ;Main true block ;keep 
+	bne ProcessBackObj_localfailed13567
+	jmp ProcessBackObj_ConditionalTrueBlock13562
+ProcessBackObj_localfailed13567
+	jmp ProcessBackObj_elseblock13563
+ProcessBackObj_ConditionalTrueBlock13562: ;Main true block ;keep 
 	; LineNumber: 2504
 	; LineNumber: 2505
 	lda #<txtDeactiveSwitch
@@ -11999,8 +11999,8 @@ ProcessBackObj_ConditionalTrueBlock13538: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta vsndTime+$0
 	; LineNumber: 2514
-	jmp ProcessBackObj_elsedoneblock13540
-ProcessBackObj_elseblock13539
+	jmp ProcessBackObj_elsedoneblock13564
+ProcessBackObj_elseblock13563
 	; LineNumber: 2514
 	; LineNumber: 2515
 	lda #<txtActiveSwitch
@@ -12058,28 +12058,28 @@ ProcessBackObj_elseblock13539
 	; Calling storevariable on generic assign expression
 	sta vsndTime+$0
 	; LineNumber: 2523
-ProcessBackObj_elsedoneblock13540
+ProcessBackObj_elsedoneblock13564
 	; LineNumber: 2525
-ProcessBackObj_elsedoneblock13524
-	jmp ProcessBackObj_elsedoneblock12953
-ProcessBackObj_elseblock12952
+ProcessBackObj_elsedoneblock13548
+	jmp ProcessBackObj_elsedoneblock12969
+ProcessBackObj_elseblock12968
 	; LineNumber: 2525
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_ProcessBackObj_exitId
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq ProcessBackObj_localfailed13817
-ProcessBackObj_localsuccess13818: ;keep
+	beq ProcessBackObj_localfailed13845
+ProcessBackObj_localsuccess13846: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_ProcessBackObj_controlId
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq ProcessBackObj_localfailed13817
-	jmp ProcessBackObj_ConditionalTrueBlock13548
-ProcessBackObj_localfailed13817
-	jmp ProcessBackObj_elsedoneblock13550
-ProcessBackObj_ConditionalTrueBlock13548: ;Main true block ;keep 
+	beq ProcessBackObj_localfailed13845
+	jmp ProcessBackObj_ConditionalTrueBlock13572
+ProcessBackObj_localfailed13845
+	jmp ProcessBackObj_elsedoneblock13574
+ProcessBackObj_ConditionalTrueBlock13572: ;Main true block ;keep 
 	; LineNumber: 2526
 	; LineNumber: 2527
 	; Binary clause Simplified: NOTEQUALS
@@ -12089,11 +12089,11 @@ ProcessBackObj_ConditionalTrueBlock13548: ;Main true block ;keep
 	ldx localVariable_ProcessBackObj_controlId
 	lda controlList_controlObject_controlObject_b_controlPressAction,x 
 	; cmp #$00 ignored
-	beq ProcessBackObj_localfailed13954
-	jmp ProcessBackObj_ConditionalTrueBlock13821
-ProcessBackObj_localfailed13954
-	jmp ProcessBackObj_elsedoneblock13823
-ProcessBackObj_ConditionalTrueBlock13821: ;Main true block ;keep 
+	beq ProcessBackObj_localfailed13984
+	jmp ProcessBackObj_ConditionalTrueBlock13849
+ProcessBackObj_localfailed13984
+	jmp ProcessBackObj_elsedoneblock13851
+ProcessBackObj_ConditionalTrueBlock13849: ;Main true block ;keep 
 	; LineNumber: 2527
 	; LineNumber: 2528
 	; Binary clause Simplified: EQUALS
@@ -12103,11 +12103,11 @@ ProcessBackObj_ConditionalTrueBlock13821: ;Main true block ;keep
 	lda objectList_gobject_gobject_onOff,x 
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne ProcessBackObj_localfailed14022
-	jmp ProcessBackObj_ConditionalTrueBlock13957
-ProcessBackObj_localfailed14022
-	jmp ProcessBackObj_elseblock13958
-ProcessBackObj_ConditionalTrueBlock13957: ;Main true block ;keep 
+	bne ProcessBackObj_localfailed14053
+	jmp ProcessBackObj_ConditionalTrueBlock13987
+ProcessBackObj_localfailed14053
+	jmp ProcessBackObj_elseblock13988
+ProcessBackObj_ConditionalTrueBlock13987: ;Main true block ;keep 
 	; LineNumber: 2528
 	; LineNumber: 2529
 	lda #$7
@@ -12133,8 +12133,11 @@ ProcessBackObj_ConditionalTrueBlock13957: ;Main true block ;keep
 	clc
 	lda gameMode
 	; cmp #$00 ignored
-	bne ProcessBackObj_elseblock14026
-ProcessBackObj_ConditionalTrueBlock14025: ;Main true block ;keep 
+	bne ProcessBackObj_localfailed14087
+	jmp ProcessBackObj_ConditionalTrueBlock14056
+ProcessBackObj_localfailed14087
+	jmp ProcessBackObj_elseblock14057
+ProcessBackObj_ConditionalTrueBlock14056: ;Main true block ;keep 
 	; LineNumber: 2531
 	; LineNumber: 2533
 	lda #$2
@@ -12143,16 +12146,16 @@ ProcessBackObj_ConditionalTrueBlock14025: ;Main true block ;keep
 	; LineNumber: 2534
 	jsr SetNextLevel
 	; LineNumber: 2535
-	jmp ProcessBackObj_elsedoneblock14027
-ProcessBackObj_elseblock14026
+	jmp ProcessBackObj_elsedoneblock14058
+ProcessBackObj_elseblock14057
 	; LineNumber: 2536
 	; LineNumber: 2537
 	; Binary clause Simplified: EQUALS
 	clc
 	lda levBothMustComplete
 	; cmp #$00 ignored
-	bne ProcessBackObj_elseblock14060
-ProcessBackObj_ConditionalTrueBlock14059: ;Main true block ;keep 
+	bne ProcessBackObj_elseblock14092
+ProcessBackObj_ConditionalTrueBlock14091: ;Main true block ;keep 
 	; LineNumber: 2536
 	; LineNumber: 2538
 	lda #$2
@@ -12161,8 +12164,8 @@ ProcessBackObj_ConditionalTrueBlock14059: ;Main true block ;keep
 	; LineNumber: 2539
 	jsr SetNextLevel
 	; LineNumber: 2541
-	jmp ProcessBackObj_elsedoneblock14061
-ProcessBackObj_elseblock14060
+	jmp ProcessBackObj_elsedoneblock14093
+ProcessBackObj_elseblock14092
 	; LineNumber: 2541
 	; LineNumber: 2542
 	; Binary clause Simplified: EQUALS
@@ -12171,8 +12174,8 @@ ProcessBackObj_elseblock14060
 	lda controlList_controlObject_controlObject_controlState +$0 ; array with const index optimization 
 	; Compare with pure num / var optimization
 	cmp #$7;keep
-	bne ProcessBackObj_elseblock14077
-ProcessBackObj_localsuccess14081: ;keep
+	bne ProcessBackObj_elseblock14109
+ProcessBackObj_localsuccess14113: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
@@ -12180,8 +12183,8 @@ ProcessBackObj_localsuccess14081: ;keep
 	lda controlList_controlObject_controlObject_controlState +$1 ; array with const index optimization 
 	; Compare with pure num / var optimization
 	cmp #$7;keep
-	bne ProcessBackObj_elseblock14077
-ProcessBackObj_ConditionalTrueBlock14076: ;Main true block ;keep 
+	bne ProcessBackObj_elseblock14109
+ProcessBackObj_ConditionalTrueBlock14108: ;Main true block ;keep 
 	; LineNumber: 2542
 	; LineNumber: 2543
 	lda #$2
@@ -12190,8 +12193,8 @@ ProcessBackObj_ConditionalTrueBlock14076: ;Main true block ;keep
 	; LineNumber: 2544
 	jsr SetNextLevel
 	; LineNumber: 2546
-	jmp ProcessBackObj_elsedoneblock14078
-ProcessBackObj_elseblock14077
+	jmp ProcessBackObj_elsedoneblock14110
+ProcessBackObj_elseblock14109
 	; LineNumber: 2546
 	; LineNumber: 2547
 	lda localVariable_ProcessBackObj_controlId
@@ -12200,165 +12203,192 @@ ProcessBackObj_elseblock14077
 	; LineNumber: 2548
 	jsr SwapActiveChar
 	; LineNumber: 2549
+	lda #$0
+	; Calling storevariable on generic assign expression
+	ldx localVariable_ProcessBackObj_id ; optimized, look out for bugs
+	sta objectList_gobject_gobject_component0,x
+	; LineNumber: 2550
+	; Calling storevariable on generic assign expression
+	sta objectList_gobject_gobject_component1,x
+	; LineNumber: 2551
+	; Calling storevariable on generic assign expression
+	sta objectList_gobject_gobject_component2,x
+	; LineNumber: 2552
 	lda localVariable_ProcessBackObj_id
 	; Calling storevariable on generic assign expression
-	sta localVariable_DeletePos_id
+	sta localVariable_SetZLayer_id
 	lda #$1
 	; Calling storevariable on generic assign expression
-	sta localVariable_DeletePos_isDyn
+	sta localVariable_SetZLayer_oldz
+	lda #$3
 	; Calling storevariable on generic assign expression
-	sta localVariable_DeletePos_isAnim
-	jsr DeletePos
-	; LineNumber: 2550
+	sta localVariable_SetZLayer_newz
+	jsr SetZLayer
+	; LineNumber: 2554
+	
+; //								DeletePos(id, true, true);
 	lda #<txtPlayerExit
 	ldx #>txtPlayerExit
 	sta sp
 	stx sp+1
-	; LineNumber: 2551
+	; LineNumber: 2555
 	lda #$3
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintText_x
 	jsr PrintText
-	; LineNumber: 2552
-ProcessBackObj_elsedoneblock14078
-	; LineNumber: 2553
-ProcessBackObj_elsedoneblock14061
-	; LineNumber: 2554
-ProcessBackObj_elsedoneblock14027
 	; LineNumber: 2556
-	jmp ProcessBackObj_elsedoneblock13959
-ProcessBackObj_elseblock13958
-	; LineNumber: 2556
+ProcessBackObj_elsedoneblock14110
+	; LineNumber: 2557
+ProcessBackObj_elsedoneblock14093
 	; LineNumber: 2558
+ProcessBackObj_elsedoneblock14058
+	; LineNumber: 2560
+	jmp ProcessBackObj_elsedoneblock13989
+ProcessBackObj_elseblock13988
+	; LineNumber: 2560
+	; LineNumber: 2562
 	lda #<sndExitClose
 	ldy #>sndExitClose
 	; Calling storevariable on generic assign expression
 	sta psnd+4
 	sty psnd+5
-	; LineNumber: 2558
+	; LineNumber: 2562
 	lda #$80
 	; Calling storevariable on generic assign expression
 	sta vsnd+$2
-	; LineNumber: 2558
+	; LineNumber: 2562
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta vsndTime+$2
-	; LineNumber: 2559
+	; LineNumber: 2563
 	lda #<txtExitClosed
 	ldx #>txtExitClosed
 	sta sp
 	stx sp+1
-	; LineNumber: 2560
+	; LineNumber: 2564
 	lda #$4
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintText_x
 	jsr PrintText
-	; LineNumber: 2561
+	; LineNumber: 2565
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_ProcessBackObj_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_controlPressAction,x
-	; LineNumber: 2562
-ProcessBackObj_elsedoneblock13959
-	; LineNumber: 2564
-ProcessBackObj_elsedoneblock13823
-	; LineNumber: 2565
-ProcessBackObj_elsedoneblock13550
-ProcessBackObj_elsedoneblock12953
 	; LineNumber: 2566
-ProcessBackObj_elsedoneblock11811
+ProcessBackObj_elsedoneblock13989
 	; LineNumber: 2568
+ProcessBackObj_elsedoneblock13851
+	; LineNumber: 2569
+ProcessBackObj_elsedoneblock13574
+ProcessBackObj_elsedoneblock12969
+	; LineNumber: 2570
+ProcessBackObj_elsedoneblock11811
+	; LineNumber: 2572
 	rts
 end_procedure_ProcessBackObj
 	; NodeProcedureDecl 3
 	; ***********  Defining procedure : InputControl
 	;    Procedure type : User-defined procedure
-	; LineNumber: 2575
-	; LineNumber: 2572
-localVariable_InputControl_controlId	dc.b	0
-	; LineNumber: 2572
-localVariable_InputControl_joyShift	dc.b	0
-	; LineNumber: 2573
-localVariable_InputControl_gravity	dc.b	0
-	; LineNumber: 2574
-localVariable_InputControl_joy	dc.b	0
-	; LineNumber: 2570
-localVariable_InputControl_id	dc.b	0
-InputControl_block14085
-InputControl
+	; LineNumber: 2579
 	; LineNumber: 2576
+localVariable_InputControl_controlId	dc.b	0
+	; LineNumber: 2576
+localVariable_InputControl_joyShift	dc.b	0
+	; LineNumber: 2577
+localVariable_InputControl_gravity	dc.b	0
+	; LineNumber: 2578
+localVariable_InputControl_joy	dc.b	0
+	; LineNumber: 2574
+localVariable_InputControl_id	dc.b	0
+InputControl_block14117
+InputControl
+	; LineNumber: 2580
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_InputControl_id
 	lda objectList_gobject_gobject_controlId,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_InputControl_controlId
-	; LineNumber: 2578
+	; LineNumber: 2582
+	; Binary clause Simplified: EQUALS
+	; Load Byte array
+	; CAST type NADA
+	tax ; optimized x, look out for bugs L22 ORG 	ldx localVariable_InputControl_controlId
+	lda controlList_controlObject_controlObject_controlState,x 
+	; Compare with pure num / var optimization
+	cmp #$7;keep
+	bne InputControl_elsedoneblock14121
+InputControl_ConditionalTrueBlock14119: ;Main true block ;keep 
+	; LineNumber: 2582
+	rts
+InputControl_elsedoneblock14121
+	; LineNumber: 2585
 	lda localVariable_InputControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_ReleaseKeys_id
 	jsr ReleaseKeys
-	; LineNumber: 2579
+	; LineNumber: 2586
 	; Binary clause Simplified: EQUALS
 	lda gameMode
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne InputControl_localfailed15030
-InputControl_localsuccess15031: ;keep
+	bne InputControl_localfailed15068
+InputControl_localsuccess15069: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	lda activeChar
 	; Compare with pure num / var optimization
 	cmp localVariable_InputControl_controlId;keep
-	beq InputControl_localfailed15030
-	jmp InputControl_ConditionalTrueBlock14087
-InputControl_localfailed15030
-	jmp InputControl_elseblock14088
-InputControl_ConditionalTrueBlock14087: ;Main true block ;keep 
-	; LineNumber: 2580
-	jmp InputControl_elsedoneblock14089
-InputControl_elseblock14088
-	; LineNumber: 2581
-	; LineNumber: 2582
+	beq InputControl_localfailed15068
+	jmp InputControl_ConditionalTrueBlock14125
+InputControl_localfailed15068
+	jmp InputControl_elseblock14126
+InputControl_ConditionalTrueBlock14125: ;Main true block ;keep 
+	; LineNumber: 2587
+	jmp InputControl_elsedoneblock14127
+InputControl_elseblock14126
+	; LineNumber: 2588
+	; LineNumber: 2589
 	; Binary clause Simplified: EQUALS
 	lda gameMode
 	; Compare with pure num / var optimization
 	cmp #$2;keep
-	bne InputControl_elseblock15036
-InputControl_localsuccess15040: ;keep
+	bne InputControl_elseblock15074
+InputControl_localsuccess15078: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	lda localVariable_InputControl_controlId
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne InputControl_elseblock15036
-InputControl_ConditionalTrueBlock15035: ;Main true block ;keep 
-	; LineNumber: 2581
-	; LineNumber: 2583
+	bne InputControl_elseblock15074
+InputControl_ConditionalTrueBlock15073: ;Main true block ;keep 
+	; LineNumber: 2588
+	; LineNumber: 2590
 	
 ; // do nothin
 	lda simJoy
 	; Calling storevariable on generic assign expression
 	sta localVariable_InputControl_joy
-	; LineNumber: 2584
+	; LineNumber: 2591
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_InputControl_joyShift
-	; LineNumber: 2586
-	jmp InputControl_elsedoneblock15037
-InputControl_elseblock15036
-	; LineNumber: 2585
-	; LineNumber: 2587
+	; LineNumber: 2593
+	jmp InputControl_elsedoneblock15075
+InputControl_elseblock15074
+	; LineNumber: 2592
+	; LineNumber: 2594
 	lda joy1
 	; Calling storevariable on generic assign expression
 	sta localVariable_InputControl_joy
-	; LineNumber: 2588
+	; LineNumber: 2595
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_InputControl_joyShift
-	; LineNumber: 2589
-InputControl_elsedoneblock15037
-	; LineNumber: 2590
+	; LineNumber: 2596
+InputControl_elsedoneblock15075
+	; LineNumber: 2597
 	; Binary clause Simplified: EQUALS
 	; 8 bit binop
 	; Add/sub where right value is constant number
@@ -12370,23 +12400,23 @@ InputControl_elsedoneblock15037
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne InputControl_elseblock15045
-InputControl_ConditionalTrueBlock15044: ;Main true block ;keep 
-	; LineNumber: 2589
+	bne InputControl_elseblock15083
+InputControl_ConditionalTrueBlock15082: ;Main true block ;keep 
+	; LineNumber: 2596
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_InputControl_id
 	lda objectList_gobject_gobject_physGravity,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_InputControl_gravity
-	jmp InputControl_elsedoneblock15046
-InputControl_elseblock15045
-	; LineNumber: 2589
+	jmp InputControl_elsedoneblock15084
+InputControl_elseblock15083
+	; LineNumber: 2596
 	lda #$7
 	; Calling storevariable on generic assign expression
 	sta localVariable_InputControl_gravity
-InputControl_elsedoneblock15046
-	; LineNumber: 2591
+InputControl_elsedoneblock15084
+	; LineNumber: 2598
 	; Binary clause Simplified: EQUALS
 	lda localVariable_InputControl_joyShift
 	asl
@@ -12398,10 +12428,10 @@ InputControl_elsedoneblock15046
 	asl
 	; Compare with pure num / var optimization
 	cmp localVariable_InputControl_joy;keep
-	bne InputControl_elsedoneblock15054
-InputControl_ConditionalTrueBlock15052: ;Main true block ;keep 
-	; LineNumber: 2591
-	; LineNumber: 2592
+	bne InputControl_elsedoneblock15092
+InputControl_ConditionalTrueBlock15090: ;Main true block ;keep 
+	; LineNumber: 2598
+	; LineNumber: 2599
 	; Binary clause Simplified: GREATEREQUAL
 	; Load Byte array
 	; CAST type NADA
@@ -12409,22 +12439,22 @@ InputControl_ConditionalTrueBlock15052: ;Main true block ;keep
 	lda controlList_controlObject_controlObject_b_firePressed,x 
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bcc InputControl_elsedoneblock15066
-InputControl_ConditionalTrueBlock15064: ;Main true block ;keep 
-	; LineNumber: 2592
+	bcc InputControl_elsedoneblock15104
+InputControl_ConditionalTrueBlock15102: ;Main true block ;keep 
+	; LineNumber: 2599
 	lda #$1
 	; Calling storevariable on generic assign expression
 	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_controlPressAction,x
-InputControl_elsedoneblock15066
-	; LineNumber: 2594
+InputControl_elsedoneblock15104
+	; LineNumber: 2601
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_firePressed,x
-	; LineNumber: 2595
-InputControl_elsedoneblock15054
-	; LineNumber: 2597
+	; LineNumber: 2602
+InputControl_elsedoneblock15092
+	; LineNumber: 2604
 	; Binary clause Simplified: EQUALS
 	; 8 bit binop
 	; Add/sub where right value is constant number
@@ -12440,10 +12470,10 @@ InputControl_elsedoneblock15054
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp localVariable_InputControl_joy;keep
-	bne InputControl_elsedoneblock15072
-InputControl_ConditionalTrueBlock15070: ;Main true block ;keep 
-	; LineNumber: 2597
-	; LineNumber: 2598
+	bne InputControl_elsedoneblock15110
+InputControl_ConditionalTrueBlock15108: ;Main true block ;keep 
+	; LineNumber: 2604
+	; LineNumber: 2605
 	; Binary clause Simplified: EQUALS
 	clc
 	; Load Byte array
@@ -12451,42 +12481,42 @@ InputControl_ConditionalTrueBlock15070: ;Main true block ;keep
 	ldx localVariable_InputControl_controlId
 	lda controlList_controlObject_controlObject_b_firePressed,x 
 	; cmp #$00 ignored
-	bne InputControl_elsedoneblock15090
-InputControl_ConditionalTrueBlock15088: ;Main true block ;keep 
-	; LineNumber: 2598
+	bne InputControl_elsedoneblock15128
+InputControl_ConditionalTrueBlock15126: ;Main true block ;keep 
+	; LineNumber: 2605
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_controlPressAction,x
-InputControl_elsedoneblock15090
-	; LineNumber: 2600
+InputControl_elsedoneblock15128
+	; LineNumber: 2607
 	; Test Inc dec D
 	ldx localVariable_InputControl_controlId
 	; Optimize byte array inc 
 	inc controlList_controlObject_controlObject_b_firePressed,x
-	; LineNumber: 2601
+	; LineNumber: 2608
 	; Binary clause Simplified: GREATEREQUAL
 	; Load Byte array
 	; CAST type NADA
 	lda controlList_controlObject_controlObject_b_firePressed,x 
 	; Compare with pure num / var optimization
 	cmp #$7;keep
-	bcc InputControl_elsedoneblock15096
-InputControl_ConditionalTrueBlock15094: ;Main true block ;keep 
-	; LineNumber: 2601
-	; LineNumber: 2602
+	bcc InputControl_elsedoneblock15134
+InputControl_ConditionalTrueBlock15132: ;Main true block ;keep 
+	; LineNumber: 2608
+	; LineNumber: 2609
 	lda #$1
 	; Calling storevariable on generic assign expression
 	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_controlPressAction,x
-	; LineNumber: 2603
+	; LineNumber: 2610
 	; Calling storevariable on generic assign expression
 	sta controlList_controlObject_controlObject_b_firePressed,x
-	; LineNumber: 2604
-InputControl_elsedoneblock15096
-	; LineNumber: 2605
-InputControl_elsedoneblock15072
-	; LineNumber: 2607
+	; LineNumber: 2611
+InputControl_elsedoneblock15134
+	; LineNumber: 2612
+InputControl_elsedoneblock15110
+	; LineNumber: 2614
 	; Binary clause Simplified: EQUALS
 	; 8 bit binop
 	; Add/sub where right value is constant number
@@ -12495,16 +12525,16 @@ InputControl_elsedoneblock15072
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$10;keep
-	bne InputControl_localfailed15537
-	jmp InputControl_ConditionalTrueBlock15100
-InputControl_localfailed15537
-	jmp InputControl_elseblock15101
-InputControl_ConditionalTrueBlock15100: ;Main true block ;keep 
-	; LineNumber: 2608
-	jmp InputControl_elsedoneblock15102
-InputControl_elseblock15101
-	; LineNumber: 2609
-	; LineNumber: 2610
+	bne InputControl_localfailed15575
+	jmp InputControl_ConditionalTrueBlock15138
+InputControl_localfailed15575
+	jmp InputControl_elseblock15139
+InputControl_ConditionalTrueBlock15138: ;Main true block ;keep 
+	; LineNumber: 2615
+	jmp InputControl_elsedoneblock15140
+InputControl_elseblock15139
+	; LineNumber: 2616
+	; LineNumber: 2617
 	; Binary clause Simplified: EQUALS
 	; 8 bit binop
 	; Add/sub where right value is constant number
@@ -12513,66 +12543,66 @@ InputControl_elseblock15101
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$8;keep
-	bne InputControl_elsedoneblock15543
-InputControl_ConditionalTrueBlock15541: ;Main true block ;keep 
-	; LineNumber: 2610
-	; LineNumber: 2611
+	bne InputControl_elsedoneblock15581
+InputControl_ConditionalTrueBlock15579: ;Main true block ;keep 
+	; LineNumber: 2617
+	; LineNumber: 2618
 	; Binary clause Simplified: EQUALS
 	lda localVariable_InputControl_gravity
 	; Compare with pure num / var optimization
 	cmp #$7;keep
-	bne InputControl_elsedoneblock15573
-InputControl_ConditionalTrueBlock15571: ;Main true block ;keep 
-	; LineNumber: 2610
+	bne InputControl_elsedoneblock15611
+InputControl_ConditionalTrueBlock15609: ;Main true block ;keep 
+	; LineNumber: 2617
 	
 ; // ignore		
 	lda #$1
 	; Calling storevariable on generic assign expression
 	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_controlPressLeft,x
-InputControl_elsedoneblock15573
-	; LineNumber: 2612
+InputControl_elsedoneblock15611
+	; LineNumber: 2619
 	; Binary clause Simplified: EQUALS
 	lda localVariable_InputControl_gravity
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne InputControl_elsedoneblock15579
-InputControl_ConditionalTrueBlock15577: ;Main true block ;keep 
-	; LineNumber: 2611
+	bne InputControl_elsedoneblock15617
+InputControl_ConditionalTrueBlock15615: ;Main true block ;keep 
+	; LineNumber: 2618
 	lda #$1
 	; Calling storevariable on generic assign expression
 	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_controlPressRight,x
-InputControl_elsedoneblock15579
-	; LineNumber: 2613
+InputControl_elsedoneblock15617
+	; LineNumber: 2620
 	; Binary clause Simplified: EQUALS
 	lda localVariable_InputControl_gravity
 	; Compare with pure num / var optimization
 	cmp #$3;keep
-	bne InputControl_elsedoneblock15585
-InputControl_ConditionalTrueBlock15583: ;Main true block ;keep 
-	; LineNumber: 2612
+	bne InputControl_elsedoneblock15623
+InputControl_ConditionalTrueBlock15621: ;Main true block ;keep 
+	; LineNumber: 2619
 	lda #$1
 	; Calling storevariable on generic assign expression
 	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_controlPressDown,x
-InputControl_elsedoneblock15585
-	; LineNumber: 2614
+InputControl_elsedoneblock15623
+	; LineNumber: 2621
 	; Binary clause Simplified: EQUALS
 	lda localVariable_InputControl_gravity
 	; Compare with pure num / var optimization
 	cmp #$5;keep
-	bne InputControl_elsedoneblock15591
-InputControl_ConditionalTrueBlock15589: ;Main true block ;keep 
-	; LineNumber: 2613
+	bne InputControl_elsedoneblock15629
+InputControl_ConditionalTrueBlock15627: ;Main true block ;keep 
+	; LineNumber: 2620
 	lda #$1
 	; Calling storevariable on generic assign expression
 	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_controlPressUp,x
-InputControl_elsedoneblock15591
-	; LineNumber: 2615
-InputControl_elsedoneblock15543
-	; LineNumber: 2616
+InputControl_elsedoneblock15629
+	; LineNumber: 2622
+InputControl_elsedoneblock15581
+	; LineNumber: 2623
 	; Binary clause Simplified: NOTEQUALS
 	; 8 bit binop
 	; Add/sub where right value is constant number
@@ -12581,64 +12611,64 @@ InputControl_elsedoneblock15543
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$8;keep
-	beq InputControl_elsedoneblock15597
-InputControl_ConditionalTrueBlock15595: ;Main true block ;keep 
-	; LineNumber: 2616
-	; LineNumber: 2617
+	beq InputControl_elsedoneblock15635
+InputControl_ConditionalTrueBlock15633: ;Main true block ;keep 
+	; LineNumber: 2623
+	; LineNumber: 2624
 	; Binary clause Simplified: EQUALS
 	lda localVariable_InputControl_gravity
 	; Compare with pure num / var optimization
 	cmp #$7;keep
-	bne InputControl_elsedoneblock15627
-InputControl_ConditionalTrueBlock15625: ;Main true block ;keep 
-	; LineNumber: 2616
+	bne InputControl_elsedoneblock15665
+InputControl_ConditionalTrueBlock15663: ;Main true block ;keep 
+	; LineNumber: 2623
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_controlPressLeft,x
-InputControl_elsedoneblock15627
-	; LineNumber: 2618
+InputControl_elsedoneblock15665
+	; LineNumber: 2625
 	; Binary clause Simplified: EQUALS
 	lda localVariable_InputControl_gravity
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne InputControl_elsedoneblock15633
-InputControl_ConditionalTrueBlock15631: ;Main true block ;keep 
-	; LineNumber: 2617
+	bne InputControl_elsedoneblock15671
+InputControl_ConditionalTrueBlock15669: ;Main true block ;keep 
+	; LineNumber: 2624
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_controlPressRight,x
-InputControl_elsedoneblock15633
-	; LineNumber: 2619
+InputControl_elsedoneblock15671
+	; LineNumber: 2626
 	; Binary clause Simplified: EQUALS
 	lda localVariable_InputControl_gravity
 	; Compare with pure num / var optimization
 	cmp #$3;keep
-	bne InputControl_elsedoneblock15639
-InputControl_ConditionalTrueBlock15637: ;Main true block ;keep 
-	; LineNumber: 2618
+	bne InputControl_elsedoneblock15677
+InputControl_ConditionalTrueBlock15675: ;Main true block ;keep 
+	; LineNumber: 2625
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_controlPressDown,x
-InputControl_elsedoneblock15639
-	; LineNumber: 2620
+InputControl_elsedoneblock15677
+	; LineNumber: 2627
 	; Binary clause Simplified: EQUALS
 	lda localVariable_InputControl_gravity
 	; Compare with pure num / var optimization
 	cmp #$5;keep
-	bne InputControl_elsedoneblock15645
-InputControl_ConditionalTrueBlock15643: ;Main true block ;keep 
-	; LineNumber: 2619
+	bne InputControl_elsedoneblock15683
+InputControl_ConditionalTrueBlock15681: ;Main true block ;keep 
+	; LineNumber: 2626
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_controlPressUp,x
-InputControl_elsedoneblock15645
-	; LineNumber: 2621
-InputControl_elsedoneblock15597
-	; LineNumber: 2622
+InputControl_elsedoneblock15683
+	; LineNumber: 2628
+InputControl_elsedoneblock15635
+	; LineNumber: 2629
 	; Binary clause Simplified: NOTEQUALS
 	clc
 	; 8 bit binop
@@ -12647,64 +12677,64 @@ InputControl_elsedoneblock15597
 	and #$1
 	 ; end add / sub var with constant
 	; cmp #$00 ignored
-	beq InputControl_elsedoneblock15651
-InputControl_ConditionalTrueBlock15649: ;Main true block ;keep 
-	; LineNumber: 2622
-	; LineNumber: 2623
+	beq InputControl_elsedoneblock15689
+InputControl_ConditionalTrueBlock15687: ;Main true block ;keep 
+	; LineNumber: 2629
+	; LineNumber: 2630
 	; Binary clause Simplified: EQUALS
 	lda localVariable_InputControl_gravity
 	; Compare with pure num / var optimization
 	cmp #$7;keep
-	bne InputControl_elsedoneblock15681
-InputControl_ConditionalTrueBlock15679: ;Main true block ;keep 
-	; LineNumber: 2622
+	bne InputControl_elsedoneblock15719
+InputControl_ConditionalTrueBlock15717: ;Main true block ;keep 
+	; LineNumber: 2629
 	lda #$1
 	; Calling storevariable on generic assign expression
 	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_controlPressRight,x
-InputControl_elsedoneblock15681
-	; LineNumber: 2624
+InputControl_elsedoneblock15719
+	; LineNumber: 2631
 	; Binary clause Simplified: EQUALS
 	lda localVariable_InputControl_gravity
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne InputControl_elsedoneblock15687
-InputControl_ConditionalTrueBlock15685: ;Main true block ;keep 
-	; LineNumber: 2623
+	bne InputControl_elsedoneblock15725
+InputControl_ConditionalTrueBlock15723: ;Main true block ;keep 
+	; LineNumber: 2630
 	lda #$1
 	; Calling storevariable on generic assign expression
 	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_controlPressLeft,x
-InputControl_elsedoneblock15687
-	; LineNumber: 2625
+InputControl_elsedoneblock15725
+	; LineNumber: 2632
 	; Binary clause Simplified: EQUALS
 	lda localVariable_InputControl_gravity
 	; Compare with pure num / var optimization
 	cmp #$3;keep
-	bne InputControl_elsedoneblock15693
-InputControl_ConditionalTrueBlock15691: ;Main true block ;keep 
-	; LineNumber: 2624
+	bne InputControl_elsedoneblock15731
+InputControl_ConditionalTrueBlock15729: ;Main true block ;keep 
+	; LineNumber: 2631
 	lda #$1
 	; Calling storevariable on generic assign expression
 	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_controlPressUp,x
-InputControl_elsedoneblock15693
-	; LineNumber: 2626
+InputControl_elsedoneblock15731
+	; LineNumber: 2633
 	; Binary clause Simplified: EQUALS
 	lda localVariable_InputControl_gravity
 	; Compare with pure num / var optimization
 	cmp #$5;keep
-	bne InputControl_elsedoneblock15699
-InputControl_ConditionalTrueBlock15697: ;Main true block ;keep 
-	; LineNumber: 2625
+	bne InputControl_elsedoneblock15737
+InputControl_ConditionalTrueBlock15735: ;Main true block ;keep 
+	; LineNumber: 2632
 	lda #$1
 	; Calling storevariable on generic assign expression
 	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_controlPressDown,x
-InputControl_elsedoneblock15699
-	; LineNumber: 2627
-InputControl_elsedoneblock15651
-	; LineNumber: 2628
+InputControl_elsedoneblock15737
+	; LineNumber: 2634
+InputControl_elsedoneblock15689
+	; LineNumber: 2635
 	; Binary clause Simplified: NOTEQUALS
 	; 8 bit binop
 	; Add/sub where right value is constant number
@@ -12713,130 +12743,130 @@ InputControl_elsedoneblock15651
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	beq InputControl_elsedoneblock15705
-InputControl_ConditionalTrueBlock15703: ;Main true block ;keep 
-	; LineNumber: 2628
-	; LineNumber: 2629
+	beq InputControl_elsedoneblock15743
+InputControl_ConditionalTrueBlock15741: ;Main true block ;keep 
+	; LineNumber: 2635
+	; LineNumber: 2636
 	; Binary clause Simplified: EQUALS
 	lda localVariable_InputControl_gravity
 	; Compare with pure num / var optimization
 	cmp #$7;keep
-	bne InputControl_elsedoneblock15735
-InputControl_ConditionalTrueBlock15733: ;Main true block ;keep 
-	; LineNumber: 2628
+	bne InputControl_elsedoneblock15773
+InputControl_ConditionalTrueBlock15771: ;Main true block ;keep 
+	; LineNumber: 2635
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_controlPressRight,x
-InputControl_elsedoneblock15735
-	; LineNumber: 2630
-	; Binary clause Simplified: EQUALS
-	lda localVariable_InputControl_gravity
-	; Compare with pure num / var optimization
-	cmp #$1;keep
-	bne InputControl_elsedoneblock15741
-InputControl_ConditionalTrueBlock15739: ;Main true block ;keep 
-	; LineNumber: 2629
-	lda #$0
-	; Calling storevariable on generic assign expression
-	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
-	sta controlList_controlObject_controlObject_b_controlPressLeft,x
-InputControl_elsedoneblock15741
-	; LineNumber: 2631
-	; Binary clause Simplified: EQUALS
-	lda localVariable_InputControl_gravity
-	; Compare with pure num / var optimization
-	cmp #$3;keep
-	bne InputControl_elsedoneblock15747
-InputControl_ConditionalTrueBlock15745: ;Main true block ;keep 
-	; LineNumber: 2630
-	lda #$0
-	; Calling storevariable on generic assign expression
-	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
-	sta controlList_controlObject_controlObject_b_controlPressUp,x
-InputControl_elsedoneblock15747
-	; LineNumber: 2632
-	; Binary clause Simplified: EQUALS
-	lda localVariable_InputControl_gravity
-	; Compare with pure num / var optimization
-	cmp #$5;keep
-	bne InputControl_elsedoneblock15753
-InputControl_ConditionalTrueBlock15751: ;Main true block ;keep 
-	; LineNumber: 2631
-	lda #$0
-	; Calling storevariable on generic assign expression
-	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
-	sta controlList_controlObject_controlObject_b_controlPressDown,x
-InputControl_elsedoneblock15753
-	; LineNumber: 2633
-InputControl_elsedoneblock15705
-	; LineNumber: 2634
-	; Binary clause Simplified: EQUALS
-	; 8 bit binop
-	; Add/sub where right value is constant number
-	lda localVariable_InputControl_joy
-	and #$2
-	 ; end add / sub var with constant
-	; Compare with pure num / var optimization
-	cmp #$2;keep
-	bne InputControl_elsedoneblock15759
-InputControl_ConditionalTrueBlock15757: ;Main true block ;keep 
-	; LineNumber: 2634
-	; LineNumber: 2635
-	; Binary clause Simplified: EQUALS
-	lda localVariable_InputControl_gravity
-	; Compare with pure num / var optimization
-	cmp #$7;keep
-	bne InputControl_elsedoneblock15789
-InputControl_ConditionalTrueBlock15787: ;Main true block ;keep 
-	; LineNumber: 2634
-	lda #$1
-	; Calling storevariable on generic assign expression
-	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
-	sta controlList_controlObject_controlObject_b_controlPressUp,x
-InputControl_elsedoneblock15789
-	; LineNumber: 2636
-	; Binary clause Simplified: EQUALS
-	lda localVariable_InputControl_gravity
-	; Compare with pure num / var optimization
-	cmp #$1;keep
-	bne InputControl_elsedoneblock15795
-InputControl_ConditionalTrueBlock15793: ;Main true block ;keep 
-	; LineNumber: 2635
-	lda #$1
-	; Calling storevariable on generic assign expression
-	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
-	sta controlList_controlObject_controlObject_b_controlPressDown,x
-InputControl_elsedoneblock15795
+InputControl_elsedoneblock15773
 	; LineNumber: 2637
 	; Binary clause Simplified: EQUALS
 	lda localVariable_InputControl_gravity
 	; Compare with pure num / var optimization
-	cmp #$3;keep
-	bne InputControl_elsedoneblock15801
-InputControl_ConditionalTrueBlock15799: ;Main true block ;keep 
+	cmp #$1;keep
+	bne InputControl_elsedoneblock15779
+InputControl_ConditionalTrueBlock15777: ;Main true block ;keep 
 	; LineNumber: 2636
-	lda #$1
+	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_controlPressLeft,x
-InputControl_elsedoneblock15801
+InputControl_elsedoneblock15779
 	; LineNumber: 2638
 	; Binary clause Simplified: EQUALS
 	lda localVariable_InputControl_gravity
 	; Compare with pure num / var optimization
-	cmp #$5;keep
-	bne InputControl_elsedoneblock15807
-InputControl_ConditionalTrueBlock15805: ;Main true block ;keep 
+	cmp #$3;keep
+	bne InputControl_elsedoneblock15785
+InputControl_ConditionalTrueBlock15783: ;Main true block ;keep 
 	; LineNumber: 2637
+	lda #$0
+	; Calling storevariable on generic assign expression
+	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
+	sta controlList_controlObject_controlObject_b_controlPressUp,x
+InputControl_elsedoneblock15785
+	; LineNumber: 2639
+	; Binary clause Simplified: EQUALS
+	lda localVariable_InputControl_gravity
+	; Compare with pure num / var optimization
+	cmp #$5;keep
+	bne InputControl_elsedoneblock15791
+InputControl_ConditionalTrueBlock15789: ;Main true block ;keep 
+	; LineNumber: 2638
+	lda #$0
+	; Calling storevariable on generic assign expression
+	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
+	sta controlList_controlObject_controlObject_b_controlPressDown,x
+InputControl_elsedoneblock15791
+	; LineNumber: 2640
+InputControl_elsedoneblock15743
+	; LineNumber: 2641
+	; Binary clause Simplified: EQUALS
+	; 8 bit binop
+	; Add/sub where right value is constant number
+	lda localVariable_InputControl_joy
+	and #$2
+	 ; end add / sub var with constant
+	; Compare with pure num / var optimization
+	cmp #$2;keep
+	bne InputControl_elsedoneblock15797
+InputControl_ConditionalTrueBlock15795: ;Main true block ;keep 
+	; LineNumber: 2641
+	; LineNumber: 2642
+	; Binary clause Simplified: EQUALS
+	lda localVariable_InputControl_gravity
+	; Compare with pure num / var optimization
+	cmp #$7;keep
+	bne InputControl_elsedoneblock15827
+InputControl_ConditionalTrueBlock15825: ;Main true block ;keep 
+	; LineNumber: 2641
+	lda #$1
+	; Calling storevariable on generic assign expression
+	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
+	sta controlList_controlObject_controlObject_b_controlPressUp,x
+InputControl_elsedoneblock15827
+	; LineNumber: 2643
+	; Binary clause Simplified: EQUALS
+	lda localVariable_InputControl_gravity
+	; Compare with pure num / var optimization
+	cmp #$1;keep
+	bne InputControl_elsedoneblock15833
+InputControl_ConditionalTrueBlock15831: ;Main true block ;keep 
+	; LineNumber: 2642
+	lda #$1
+	; Calling storevariable on generic assign expression
+	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
+	sta controlList_controlObject_controlObject_b_controlPressDown,x
+InputControl_elsedoneblock15833
+	; LineNumber: 2644
+	; Binary clause Simplified: EQUALS
+	lda localVariable_InputControl_gravity
+	; Compare with pure num / var optimization
+	cmp #$3;keep
+	bne InputControl_elsedoneblock15839
+InputControl_ConditionalTrueBlock15837: ;Main true block ;keep 
+	; LineNumber: 2643
+	lda #$1
+	; Calling storevariable on generic assign expression
+	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
+	sta controlList_controlObject_controlObject_b_controlPressLeft,x
+InputControl_elsedoneblock15839
+	; LineNumber: 2645
+	; Binary clause Simplified: EQUALS
+	lda localVariable_InputControl_gravity
+	; Compare with pure num / var optimization
+	cmp #$5;keep
+	bne InputControl_elsedoneblock15845
+InputControl_ConditionalTrueBlock15843: ;Main true block ;keep 
+	; LineNumber: 2644
 	lda #$1
 	; Calling storevariable on generic assign expression
 	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_controlPressRight,x
-InputControl_elsedoneblock15807
-	; LineNumber: 2639
-InputControl_elsedoneblock15759
-	; LineNumber: 2640
+InputControl_elsedoneblock15845
+	; LineNumber: 2646
+InputControl_elsedoneblock15797
+	; LineNumber: 2647
 	; Binary clause Simplified: NOTEQUALS
 	; 8 bit binop
 	; Add/sub where right value is constant number
@@ -12845,64 +12875,64 @@ InputControl_elsedoneblock15759
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$2;keep
-	beq InputControl_elsedoneblock15813
-InputControl_ConditionalTrueBlock15811: ;Main true block ;keep 
-	; LineNumber: 2640
-	; LineNumber: 2641
+	beq InputControl_elsedoneblock15851
+InputControl_ConditionalTrueBlock15849: ;Main true block ;keep 
+	; LineNumber: 2647
+	; LineNumber: 2648
 	; Binary clause Simplified: EQUALS
 	lda localVariable_InputControl_gravity
 	; Compare with pure num / var optimization
 	cmp #$7;keep
-	bne InputControl_elsedoneblock15843
-InputControl_ConditionalTrueBlock15841: ;Main true block ;keep 
-	; LineNumber: 2640
+	bne InputControl_elsedoneblock15881
+InputControl_ConditionalTrueBlock15879: ;Main true block ;keep 
+	; LineNumber: 2647
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_controlPressUp,x
-InputControl_elsedoneblock15843
-	; LineNumber: 2642
+InputControl_elsedoneblock15881
+	; LineNumber: 2649
 	; Binary clause Simplified: EQUALS
 	lda localVariable_InputControl_gravity
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne InputControl_elsedoneblock15849
-InputControl_ConditionalTrueBlock15847: ;Main true block ;keep 
-	; LineNumber: 2641
+	bne InputControl_elsedoneblock15887
+InputControl_ConditionalTrueBlock15885: ;Main true block ;keep 
+	; LineNumber: 2648
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_controlPressDown,x
-InputControl_elsedoneblock15849
-	; LineNumber: 2643
+InputControl_elsedoneblock15887
+	; LineNumber: 2650
 	; Binary clause Simplified: EQUALS
 	lda localVariable_InputControl_gravity
 	; Compare with pure num / var optimization
 	cmp #$3;keep
-	bne InputControl_elsedoneblock15855
-InputControl_ConditionalTrueBlock15853: ;Main true block ;keep 
-	; LineNumber: 2642
+	bne InputControl_elsedoneblock15893
+InputControl_ConditionalTrueBlock15891: ;Main true block ;keep 
+	; LineNumber: 2649
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_controlPressLeft,x
-InputControl_elsedoneblock15855
-	; LineNumber: 2644
+InputControl_elsedoneblock15893
+	; LineNumber: 2651
 	; Binary clause Simplified: EQUALS
 	lda localVariable_InputControl_gravity
 	; Compare with pure num / var optimization
 	cmp #$5;keep
-	bne InputControl_elsedoneblock15861
-InputControl_ConditionalTrueBlock15859: ;Main true block ;keep 
-	; LineNumber: 2643
+	bne InputControl_elsedoneblock15899
+InputControl_ConditionalTrueBlock15897: ;Main true block ;keep 
+	; LineNumber: 2650
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_controlPressRight,x
-InputControl_elsedoneblock15861
-	; LineNumber: 2645
-InputControl_elsedoneblock15813
-	; LineNumber: 2646
+InputControl_elsedoneblock15899
+	; LineNumber: 2652
+InputControl_elsedoneblock15851
+	; LineNumber: 2653
 	; Binary clause Simplified: EQUALS
 	; 8 bit binop
 	; Add/sub where right value is constant number
@@ -12911,64 +12941,64 @@ InputControl_elsedoneblock15813
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$4;keep
-	bne InputControl_elsedoneblock15867
-InputControl_ConditionalTrueBlock15865: ;Main true block ;keep 
-	; LineNumber: 2646
-	; LineNumber: 2647
+	bne InputControl_elsedoneblock15905
+InputControl_ConditionalTrueBlock15903: ;Main true block ;keep 
+	; LineNumber: 2653
+	; LineNumber: 2654
 	; Binary clause Simplified: EQUALS
 	lda localVariable_InputControl_gravity
 	; Compare with pure num / var optimization
 	cmp #$7;keep
-	bne InputControl_elsedoneblock15897
-InputControl_ConditionalTrueBlock15895: ;Main true block ;keep 
-	; LineNumber: 2646
+	bne InputControl_elsedoneblock15935
+InputControl_ConditionalTrueBlock15933: ;Main true block ;keep 
+	; LineNumber: 2653
 	lda #$1
 	; Calling storevariable on generic assign expression
 	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_controlPressDown,x
-InputControl_elsedoneblock15897
-	; LineNumber: 2648
+InputControl_elsedoneblock15935
+	; LineNumber: 2655
 	; Binary clause Simplified: EQUALS
 	lda localVariable_InputControl_gravity
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne InputControl_elsedoneblock15903
-InputControl_ConditionalTrueBlock15901: ;Main true block ;keep 
-	; LineNumber: 2647
+	bne InputControl_elsedoneblock15941
+InputControl_ConditionalTrueBlock15939: ;Main true block ;keep 
+	; LineNumber: 2654
 	lda #$1
 	; Calling storevariable on generic assign expression
 	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_controlPressUp,x
-InputControl_elsedoneblock15903
-	; LineNumber: 2649
+InputControl_elsedoneblock15941
+	; LineNumber: 2656
 	; Binary clause Simplified: EQUALS
 	lda localVariable_InputControl_gravity
 	; Compare with pure num / var optimization
 	cmp #$3;keep
-	bne InputControl_elsedoneblock15909
-InputControl_ConditionalTrueBlock15907: ;Main true block ;keep 
-	; LineNumber: 2648
+	bne InputControl_elsedoneblock15947
+InputControl_ConditionalTrueBlock15945: ;Main true block ;keep 
+	; LineNumber: 2655
 	lda #$1
 	; Calling storevariable on generic assign expression
 	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_controlPressRight,x
-InputControl_elsedoneblock15909
-	; LineNumber: 2650
+InputControl_elsedoneblock15947
+	; LineNumber: 2657
 	; Binary clause Simplified: EQUALS
 	lda localVariable_InputControl_gravity
 	; Compare with pure num / var optimization
 	cmp #$5;keep
-	bne InputControl_elsedoneblock15915
-InputControl_ConditionalTrueBlock15913: ;Main true block ;keep 
-	; LineNumber: 2649
+	bne InputControl_elsedoneblock15953
+InputControl_ConditionalTrueBlock15951: ;Main true block ;keep 
+	; LineNumber: 2656
 	lda #$1
 	; Calling storevariable on generic assign expression
 	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_controlPressLeft,x
-InputControl_elsedoneblock15915
-	; LineNumber: 2651
-InputControl_elsedoneblock15867
-	; LineNumber: 2652
+InputControl_elsedoneblock15953
+	; LineNumber: 2658
+InputControl_elsedoneblock15905
+	; LineNumber: 2659
 	; Binary clause Simplified: NOTEQUALS
 	; 8 bit binop
 	; Add/sub where right value is constant number
@@ -12977,151 +13007,151 @@ InputControl_elsedoneblock15867
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$4;keep
-	beq InputControl_elsedoneblock15921
-InputControl_ConditionalTrueBlock15919: ;Main true block ;keep 
-	; LineNumber: 2652
-	; LineNumber: 2653
+	beq InputControl_elsedoneblock15959
+InputControl_ConditionalTrueBlock15957: ;Main true block ;keep 
+	; LineNumber: 2659
+	; LineNumber: 2660
 	; Binary clause Simplified: EQUALS
 	lda localVariable_InputControl_gravity
 	; Compare with pure num / var optimization
 	cmp #$7;keep
-	bne InputControl_elsedoneblock15951
-InputControl_ConditionalTrueBlock15949: ;Main true block ;keep 
-	; LineNumber: 2652
+	bne InputControl_elsedoneblock15989
+InputControl_ConditionalTrueBlock15987: ;Main true block ;keep 
+	; LineNumber: 2659
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_controlPressDown,x
-InputControl_elsedoneblock15951
-	; LineNumber: 2654
+InputControl_elsedoneblock15989
+	; LineNumber: 2661
 	; Binary clause Simplified: EQUALS
 	lda localVariable_InputControl_gravity
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne InputControl_elsedoneblock15957
-InputControl_ConditionalTrueBlock15955: ;Main true block ;keep 
-	; LineNumber: 2653
+	bne InputControl_elsedoneblock15995
+InputControl_ConditionalTrueBlock15993: ;Main true block ;keep 
+	; LineNumber: 2660
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_controlPressUp,x
-InputControl_elsedoneblock15957
-	; LineNumber: 2655
+InputControl_elsedoneblock15995
+	; LineNumber: 2662
 	; Binary clause Simplified: EQUALS
 	lda localVariable_InputControl_gravity
 	; Compare with pure num / var optimization
 	cmp #$3;keep
-	bne InputControl_elsedoneblock15963
-InputControl_ConditionalTrueBlock15961: ;Main true block ;keep 
-	; LineNumber: 2654
+	bne InputControl_elsedoneblock16001
+InputControl_ConditionalTrueBlock15999: ;Main true block ;keep 
+	; LineNumber: 2661
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_controlPressRight,x
-InputControl_elsedoneblock15963
-	; LineNumber: 2656
+InputControl_elsedoneblock16001
+	; LineNumber: 2663
 	; Binary clause Simplified: EQUALS
 	lda localVariable_InputControl_gravity
 	; Compare with pure num / var optimization
 	cmp #$5;keep
-	bne InputControl_elsedoneblock15969
-InputControl_ConditionalTrueBlock15967: ;Main true block ;keep 
-	; LineNumber: 2655
+	bne InputControl_elsedoneblock16007
+InputControl_ConditionalTrueBlock16005: ;Main true block ;keep 
+	; LineNumber: 2662
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_InputControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_controlPressLeft,x
-InputControl_elsedoneblock15969
-	; LineNumber: 2657
-InputControl_elsedoneblock15921
-	; LineNumber: 2658
-InputControl_elsedoneblock15102
-	; LineNumber: 2659
-InputControl_elsedoneblock14089
-	; LineNumber: 2660
+InputControl_elsedoneblock16007
+	; LineNumber: 2664
+InputControl_elsedoneblock15959
+	; LineNumber: 2665
+InputControl_elsedoneblock15140
+	; LineNumber: 2666
+InputControl_elsedoneblock14127
+	; LineNumber: 2667
 	rts
 end_procedure_InputControl
 	; NodeProcedureDecl 3
 	; ***********  Defining procedure : UpdateControl
 	;    Procedure type : User-defined procedure
-	; LineNumber: 2675
-	; LineNumber: 2664
-localVariable_UpdateControl_controlId	dc.b	0
-	; LineNumber: 2665
-localVariable_UpdateControl_grounded	dc.b	0
-	; LineNumber: 2666
-localVariable_UpdateControl_isShift	dc.b	0
-	; LineNumber: 2667
-localVariable_UpdateControl_gravity	dc.b	0
-	; LineNumber: 2668
-localVariable_UpdateControl_oldx	dc.b	0
-	; LineNumber: 2668
-localVariable_UpdateControl_oldy	dc.b	0
-	; LineNumber: 2668
-localVariable_UpdateControl_newx	dc.b	0
-	; LineNumber: 2668
-localVariable_UpdateControl_newy	dc.b	0
-	; LineNumber: 2668
-localVariable_UpdateControl_moveDir	dc.b	0
-	; LineNumber: 2670
-localVariable_UpdateControl_shift	dc.w	0
+	; LineNumber: 2682
 	; LineNumber: 2671
-localVariable_UpdateControl_laserEmitId	dc.b	0
+localVariable_UpdateControl_controlId	dc.b	0
+	; LineNumber: 2672
+localVariable_UpdateControl_grounded	dc.b	0
 	; LineNumber: 2673
-localVariable_UpdateControl_colObj	dc.b	0
-	; LineNumber: 2673
-localVariable_UpdateControl_eraseObj	dc.b	0
-	; LineNumber: 2673
-localVariable_UpdateControl_colObj2	dc.b	0
-	; LineNumber: 2673
-localVariable_UpdateControl_eraseObj2	dc.b	0
-	; LineNumber: 2673
-localVariable_UpdateControl_colObj3	dc.b	0
-	; LineNumber: 2673
-localVariable_UpdateControl_laserId	dc.b	0
+localVariable_UpdateControl_isShift	dc.b	0
 	; LineNumber: 2674
+localVariable_UpdateControl_gravity	dc.b	0
+	; LineNumber: 2675
+localVariable_UpdateControl_oldx	dc.b	0
+	; LineNumber: 2675
+localVariable_UpdateControl_oldy	dc.b	0
+	; LineNumber: 2675
+localVariable_UpdateControl_newx	dc.b	0
+	; LineNumber: 2675
+localVariable_UpdateControl_newy	dc.b	0
+	; LineNumber: 2675
+localVariable_UpdateControl_moveDir	dc.b	0
+	; LineNumber: 2677
+localVariable_UpdateControl_shift	dc.w	0
+	; LineNumber: 2678
+localVariable_UpdateControl_laserEmitId	dc.b	0
+	; LineNumber: 2680
+localVariable_UpdateControl_colObj	dc.b	0
+	; LineNumber: 2680
+localVariable_UpdateControl_eraseObj	dc.b	0
+	; LineNumber: 2680
+localVariable_UpdateControl_colObj2	dc.b	0
+	; LineNumber: 2680
+localVariable_UpdateControl_eraseObj2	dc.b	0
+	; LineNumber: 2680
+localVariable_UpdateControl_colObj3	dc.b	0
+	; LineNumber: 2680
+localVariable_UpdateControl_laserId	dc.b	0
+	; LineNumber: 2681
 localVariable_UpdateControl_shiftDir	dc.b	0
-	; LineNumber: 2662
+	; LineNumber: 2669
 localVariable_UpdateControl_id	dc.b	0
-UpdateControl_block15972
+UpdateControl_block16010
 UpdateControl
-	; LineNumber: 2676
+	; LineNumber: 2683
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_UpdateControl_id
 	lda objectList_gobject_gobject_controlId,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_controlId
-	; LineNumber: 2677
+	; LineNumber: 2684
 	lda #$ff
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_moveDir
-	; LineNumber: 2678
+	; LineNumber: 2685
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_grounded
-	; LineNumber: 2679
+	; LineNumber: 2686
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_isShift
-	; LineNumber: 2680
+	; LineNumber: 2687
 	ldy #0   ; Force integer assignment, set y = 0 for values lower than 255
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_shift
 	sty localVariable_UpdateControl_shift+1
-	; LineNumber: 2681
+	; LineNumber: 2688
 	lda #$ff
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_shiftDir
-	; LineNumber: 2682
+	; LineNumber: 2689
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_gravity
-	; LineNumber: 2683
+	; LineNumber: 2690
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_newx
-	; LineNumber: 2684
+	; LineNumber: 2691
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_newy
-	; LineNumber: 2686
+	; LineNumber: 2693
 	; Binary clause Simplified: NOTEQUALS
 	; 8 bit binop
 	; Add/sub where right value is constant number
@@ -13132,36 +13162,36 @@ UpdateControl
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	beq UpdateControl_localfailed16058
-	jmp UpdateControl_ConditionalTrueBlock15974
-UpdateControl_localfailed16058
-	jmp UpdateControl_elseblock15975
-UpdateControl_ConditionalTrueBlock15974: ;Main true block ;keep 
-	; LineNumber: 2686
-	; LineNumber: 2687
+	beq UpdateControl_localfailed16096
+	jmp UpdateControl_ConditionalTrueBlock16012
+UpdateControl_localfailed16096
+	jmp UpdateControl_elseblock16013
+UpdateControl_ConditionalTrueBlock16012: ;Main true block ;keep 
+	; LineNumber: 2693
+	; LineNumber: 2694
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_grounded
-	; LineNumber: 2688
+	; LineNumber: 2695
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_isShift
-	; LineNumber: 2689
+	; LineNumber: 2696
 	lda #$7
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_gravity
-	; LineNumber: 2691
-	jmp UpdateControl_elsedoneblock15976
-UpdateControl_elseblock15975
-	; LineNumber: 2691
-	; LineNumber: 2692
+	; LineNumber: 2698
+	jmp UpdateControl_elsedoneblock16014
+UpdateControl_elseblock16013
+	; LineNumber: 2698
+	; LineNumber: 2699
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_UpdateControl_id
 	lda objectList_gobject_gobject_physGravity,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_gravity
-	; LineNumber: 2693
+	; LineNumber: 2700
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -13184,168 +13214,168 @@ UpdateControl_elseblock15975
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_colObj
-	; LineNumber: 2694
+	; LineNumber: 2701
 	; Binary clause Simplified: NOTEQUALS
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateControl_localfailed16102
-	jmp UpdateControl_ConditionalTrueBlock16062
-UpdateControl_localfailed16102
-	jmp UpdateControl_elsedoneblock16064
-UpdateControl_ConditionalTrueBlock16062: ;Main true block ;keep 
-	; LineNumber: 2693
-	; LineNumber: 2695
+	beq UpdateControl_localfailed16140
+	jmp UpdateControl_ConditionalTrueBlock16100
+UpdateControl_localfailed16140
+	jmp UpdateControl_elsedoneblock16102
+UpdateControl_ConditionalTrueBlock16100: ;Main true block ;keep 
+	; LineNumber: 2700
+	; LineNumber: 2702
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_grounded
-	; LineNumber: 2696
+	; LineNumber: 2703
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_UpdateControl_colObj
 	lda objectList_gobject_gobject_shiftDir,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_shiftDir
-	; LineNumber: 2697
+	; LineNumber: 2704
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_gravity
 	; Compare with pure num / var optimization
 	cmp #$7;keep
-	bne UpdateControl_localfailed16109
-UpdateControl_localsuccess16110: ;keep
+	bne UpdateControl_localfailed16147
+UpdateControl_localsuccess16148: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_shiftDir
 	; Compare with pure num / var optimization
 	cmp #$3;keep
-	bne UpdateControl_localfailed16109
-	jmp UpdateControl_ConditionalTrueBlock16105
-UpdateControl_localfailed16109: ;keep
+	bne UpdateControl_localfailed16147
+	jmp UpdateControl_ConditionalTrueBlock16143
+UpdateControl_localfailed16147: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_gravity
 	; Compare with pure num / var optimization
 	cmp #$7;keep
-	bne UpdateControl_elsedoneblock16107
-UpdateControl_localsuccess16111: ;keep
+	bne UpdateControl_elsedoneblock16145
+UpdateControl_localsuccess16149: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_shiftDir
 	; Compare with pure num / var optimization
 	cmp #$5;keep
-	bne UpdateControl_elsedoneblock16107
-UpdateControl_ConditionalTrueBlock16105: ;Main true block ;keep 
-	; LineNumber: 2696
-	lda #$1
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdateControl_isShift
-UpdateControl_elsedoneblock16107
-	; LineNumber: 2698
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdateControl_gravity
-	; Compare with pure num / var optimization
-	cmp #$3;keep
-	bne UpdateControl_localfailed16118
-UpdateControl_localsuccess16119: ;keep
-	; ; logical AND, second requirement
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdateControl_shiftDir
-	; Compare with pure num / var optimization
-	cmp #$3;keep
-	bne UpdateControl_localfailed16118
-	jmp UpdateControl_ConditionalTrueBlock16114
-UpdateControl_localfailed16118: ;keep
-	; ; logical OR, second chance
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdateControl_gravity
-	; Compare with pure num / var optimization
-	cmp #$3;keep
-	bne UpdateControl_elsedoneblock16116
-UpdateControl_localsuccess16120: ;keep
-	; ; logical AND, second requirement
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdateControl_shiftDir
-	; Compare with pure num / var optimization
-	cmp #$5;keep
-	bne UpdateControl_elsedoneblock16116
-UpdateControl_ConditionalTrueBlock16114: ;Main true block ;keep 
-	; LineNumber: 2697
-	lda #$1
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdateControl_isShift
-UpdateControl_elsedoneblock16116
-	; LineNumber: 2699
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdateControl_gravity
-	; Compare with pure num / var optimization
-	cmp #$1;keep
-	bne UpdateControl_localfailed16127
-UpdateControl_localsuccess16128: ;keep
-	; ; logical AND, second requirement
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdateControl_shiftDir
-	; Compare with pure num / var optimization
-	cmp #$3;keep
-	bne UpdateControl_localfailed16127
-	jmp UpdateControl_ConditionalTrueBlock16123
-UpdateControl_localfailed16127: ;keep
-	; ; logical OR, second chance
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdateControl_gravity
-	; Compare with pure num / var optimization
-	cmp #$1;keep
-	bne UpdateControl_elsedoneblock16125
-UpdateControl_localsuccess16129: ;keep
-	; ; logical AND, second requirement
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdateControl_shiftDir
-	; Compare with pure num / var optimization
-	cmp #$5;keep
-	bne UpdateControl_elsedoneblock16125
-UpdateControl_ConditionalTrueBlock16123: ;Main true block ;keep 
-	; LineNumber: 2698
-	lda #$1
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdateControl_isShift
-UpdateControl_elsedoneblock16125
-	; LineNumber: 2700
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdateControl_gravity
-	; Compare with pure num / var optimization
-	cmp #$5;keep
-	bne UpdateControl_localfailed16136
-UpdateControl_localsuccess16137: ;keep
-	; ; logical AND, second requirement
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdateControl_shiftDir
-	; Compare with pure num / var optimization
-	cmp #$3;keep
-	bne UpdateControl_localfailed16136
-	jmp UpdateControl_ConditionalTrueBlock16132
-UpdateControl_localfailed16136: ;keep
-	; ; logical OR, second chance
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdateControl_gravity
-	; Compare with pure num / var optimization
-	cmp #$5;keep
-	bne UpdateControl_elsedoneblock16134
-UpdateControl_localsuccess16138: ;keep
-	; ; logical AND, second requirement
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdateControl_shiftDir
-	; Compare with pure num / var optimization
-	cmp #$5;keep
-	bne UpdateControl_elsedoneblock16134
-UpdateControl_ConditionalTrueBlock16132: ;Main true block ;keep 
-	; LineNumber: 2699
-	lda #$1
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdateControl_isShift
-UpdateControl_elsedoneblock16134
-	; LineNumber: 2701
-UpdateControl_elsedoneblock16064
-	; LineNumber: 2702
-UpdateControl_elsedoneblock15976
+	bne UpdateControl_elsedoneblock16145
+UpdateControl_ConditionalTrueBlock16143: ;Main true block ;keep 
 	; LineNumber: 2703
+	lda #$1
+	; Calling storevariable on generic assign expression
+	sta localVariable_UpdateControl_isShift
+UpdateControl_elsedoneblock16145
+	; LineNumber: 2705
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdateControl_gravity
+	; Compare with pure num / var optimization
+	cmp #$3;keep
+	bne UpdateControl_localfailed16156
+UpdateControl_localsuccess16157: ;keep
+	; ; logical AND, second requirement
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdateControl_shiftDir
+	; Compare with pure num / var optimization
+	cmp #$3;keep
+	bne UpdateControl_localfailed16156
+	jmp UpdateControl_ConditionalTrueBlock16152
+UpdateControl_localfailed16156: ;keep
+	; ; logical OR, second chance
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdateControl_gravity
+	; Compare with pure num / var optimization
+	cmp #$3;keep
+	bne UpdateControl_elsedoneblock16154
+UpdateControl_localsuccess16158: ;keep
+	; ; logical AND, second requirement
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdateControl_shiftDir
+	; Compare with pure num / var optimization
+	cmp #$5;keep
+	bne UpdateControl_elsedoneblock16154
+UpdateControl_ConditionalTrueBlock16152: ;Main true block ;keep 
+	; LineNumber: 2704
+	lda #$1
+	; Calling storevariable on generic assign expression
+	sta localVariable_UpdateControl_isShift
+UpdateControl_elsedoneblock16154
+	; LineNumber: 2706
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdateControl_gravity
+	; Compare with pure num / var optimization
+	cmp #$1;keep
+	bne UpdateControl_localfailed16165
+UpdateControl_localsuccess16166: ;keep
+	; ; logical AND, second requirement
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdateControl_shiftDir
+	; Compare with pure num / var optimization
+	cmp #$3;keep
+	bne UpdateControl_localfailed16165
+	jmp UpdateControl_ConditionalTrueBlock16161
+UpdateControl_localfailed16165: ;keep
+	; ; logical OR, second chance
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdateControl_gravity
+	; Compare with pure num / var optimization
+	cmp #$1;keep
+	bne UpdateControl_elsedoneblock16163
+UpdateControl_localsuccess16167: ;keep
+	; ; logical AND, second requirement
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdateControl_shiftDir
+	; Compare with pure num / var optimization
+	cmp #$5;keep
+	bne UpdateControl_elsedoneblock16163
+UpdateControl_ConditionalTrueBlock16161: ;Main true block ;keep 
+	; LineNumber: 2705
+	lda #$1
+	; Calling storevariable on generic assign expression
+	sta localVariable_UpdateControl_isShift
+UpdateControl_elsedoneblock16163
+	; LineNumber: 2707
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdateControl_gravity
+	; Compare with pure num / var optimization
+	cmp #$5;keep
+	bne UpdateControl_localfailed16174
+UpdateControl_localsuccess16175: ;keep
+	; ; logical AND, second requirement
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdateControl_shiftDir
+	; Compare with pure num / var optimization
+	cmp #$3;keep
+	bne UpdateControl_localfailed16174
+	jmp UpdateControl_ConditionalTrueBlock16170
+UpdateControl_localfailed16174: ;keep
+	; ; logical OR, second chance
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdateControl_gravity
+	; Compare with pure num / var optimization
+	cmp #$5;keep
+	bne UpdateControl_elsedoneblock16172
+UpdateControl_localsuccess16176: ;keep
+	; ; logical AND, second requirement
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdateControl_shiftDir
+	; Compare with pure num / var optimization
+	cmp #$5;keep
+	bne UpdateControl_elsedoneblock16172
+UpdateControl_ConditionalTrueBlock16170: ;Main true block ;keep 
+	; LineNumber: 2706
+	lda #$1
+	; Calling storevariable on generic assign expression
+	sta localVariable_UpdateControl_isShift
+UpdateControl_elsedoneblock16172
+	; LineNumber: 2708
+UpdateControl_elsedoneblock16102
+	; LineNumber: 2709
+UpdateControl_elsedoneblock16014
+	; LineNumber: 2710
 	; Binary clause Simplified: EQUALS
 	clc
 	; Load Byte array
@@ -13353,24 +13383,24 @@ UpdateControl_elsedoneblock15976
 	ldx localVariable_UpdateControl_controlId
 	lda controlList_controlObject_controlObject_controlState,x 
 	; cmp #$00 ignored
-	bne UpdateControl_localfailed21373
-	jmp UpdateControl_ConditionalTrueBlock16141
-UpdateControl_localfailed21373
-	jmp UpdateControl_elseblock16142
-UpdateControl_ConditionalTrueBlock16141: ;Main true block ;keep 
-	; LineNumber: 2703
-	; LineNumber: 2704
+	bne UpdateControl_localfailed21411
+	jmp UpdateControl_ConditionalTrueBlock16179
+UpdateControl_localfailed21411
+	jmp UpdateControl_elseblock16180
+UpdateControl_ConditionalTrueBlock16179: ;Main true block ;keep 
+	; LineNumber: 2710
+	; LineNumber: 2711
 	; Binary clause Simplified: EQUALS
 	clc
 	lda localVariable_UpdateControl_isShift
 	; cmp #$00 ignored
-	bne UpdateControl_localfailed21647
-	jmp UpdateControl_ConditionalTrueBlock21376
-UpdateControl_localfailed21647
-	jmp UpdateControl_elseblock21377
-UpdateControl_ConditionalTrueBlock21376: ;Main true block ;keep 
-	; LineNumber: 2704
-	; LineNumber: 2705
+	bne UpdateControl_localfailed21685
+	jmp UpdateControl_ConditionalTrueBlock21414
+UpdateControl_localfailed21685
+	jmp UpdateControl_elseblock21415
+UpdateControl_ConditionalTrueBlock21414: ;Main true block ;keep 
+	; LineNumber: 2711
+	; LineNumber: 2712
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -13394,7 +13424,7 @@ UpdateControl_ConditionalTrueBlock21376: ;Main true block ;keep
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_colObj
-	; LineNumber: 2706
+	; LineNumber: 2713
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -13418,21 +13448,21 @@ UpdateControl_ConditionalTrueBlock21376: ;Main true block ;keep
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_eraseObj
-	; LineNumber: 2707
+	; LineNumber: 2714
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_colObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne UpdateControl_localfailed21655
-	jmp UpdateControl_localsuccess21654
-UpdateControl_localfailed21655: ;keep
+	bne UpdateControl_localfailed21693
+	jmp UpdateControl_localsuccess21692
+UpdateControl_localfailed21693: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateControl_eraseObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock21652
-UpdateControl_localsuccess21654: ;keep
+	beq UpdateControl_elsedoneblock21690
+UpdateControl_localsuccess21692: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	clc
@@ -13441,8 +13471,8 @@ UpdateControl_localsuccess21654: ;keep
 	ldx localVariable_UpdateControl_controlId
 	lda controlList_controlObject_controlObject_b_controlPressUp,x 
 	; cmp #$00 ignored
-	bne UpdateControl_elsedoneblock21652
-UpdateControl_localsuccess21657: ;keep
+	bne UpdateControl_elsedoneblock21690
+UpdateControl_localsuccess21695: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	clc
@@ -13451,21 +13481,21 @@ UpdateControl_localsuccess21657: ;keep
 	ldx localVariable_UpdateControl_controlId
 	lda controlList_controlObject_controlObject_b_controlPressLeft,x 
 	; cmp #$00 ignored
-	beq UpdateControl_elsedoneblock21652
-UpdateControl_localsuccess21656: ;keep
+	beq UpdateControl_elsedoneblock21690
+UpdateControl_localsuccess21694: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	clc
 	lda localVariable_UpdateControl_grounded
 	; cmp #$00 ignored
-	beq UpdateControl_elsedoneblock21652
-UpdateControl_ConditionalTrueBlock21650: ;Main true block ;keep 
-	; LineNumber: 2706
+	beq UpdateControl_elsedoneblock21690
+UpdateControl_ConditionalTrueBlock21688: ;Main true block ;keep 
+	; LineNumber: 2713
 	lda #$3
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_moveDir
-UpdateControl_elsedoneblock21652
-	; LineNumber: 2709
+UpdateControl_elsedoneblock21690
+	; LineNumber: 2716
 	
 ; //TODO: AnimationWalkL
 	lda localVariable_UpdateControl_id
@@ -13491,150 +13521,6 @@ UpdateControl_elsedoneblock21652
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_colObj
-	; LineNumber: 2710
-	lda localVariable_UpdateControl_id
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_id
-	; Load Byte array
-	; CAST type NADA
-	ldx localVariable_UpdateControl_id
-	lda objectList_gobject_gobject_transZ,x 
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_z
-	lda #$5
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_pos
-	lda #$10
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_comp
-	lda #$0
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_compIdx
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_b_norm
-	jsr GetObjArea
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdateControl_eraseObj
-	; LineNumber: 2711
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdateControl_colObj
-	; Compare with pure num / var optimization
-	cmp #$ff;keep
-	bne UpdateControl_localfailed21665
-	jmp UpdateControl_localsuccess21664
-UpdateControl_localfailed21665: ;keep
-	; ; logical OR, second chance
-	; Binary clause Simplified: NOTEQUALS
-	lda localVariable_UpdateControl_eraseObj
-	; Compare with pure num / var optimization
-	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock21662
-UpdateControl_localsuccess21664: ;keep
-	; ; logical AND, second requirement
-	; Binary clause Simplified: NOTEQUALS
-	clc
-	; Load Byte array
-	; CAST type NADA
-	ldx localVariable_UpdateControl_controlId
-	lda controlList_controlObject_controlObject_b_controlPressRight,x 
-	; cmp #$00 ignored
-	beq UpdateControl_elsedoneblock21662
-UpdateControl_localsuccess21666: ;keep
-	; ; logical AND, second requirement
-	; Binary clause Simplified: NOTEQUALS
-	clc
-	lda localVariable_UpdateControl_grounded
-	; cmp #$00 ignored
-	beq UpdateControl_elsedoneblock21662
-UpdateControl_ConditionalTrueBlock21660: ;Main true block ;keep 
-	; LineNumber: 2710
-	lda #$5
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdateControl_moveDir
-UpdateControl_elsedoneblock21662
-	; LineNumber: 2713
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdateControl_moveDir
-	; Compare with pure num / var optimization
-	cmp #$ff;keep
-	bne UpdateControl_localfailed21767
-	jmp UpdateControl_ConditionalTrueBlock21669
-UpdateControl_localfailed21767
-	jmp UpdateControl_elsedoneblock21671
-UpdateControl_ConditionalTrueBlock21669: ;Main true block ;keep 
-	; LineNumber: 2713
-	; LineNumber: 2714
-	lda localVariable_UpdateControl_id
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_id
-	; Load Byte array
-	; CAST type NADA
-	ldx localVariable_UpdateControl_id
-	lda objectList_gobject_gobject_transZ,x 
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_z
-	lda #$1
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_pos
-	lda #$2
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_comp
-	lda #$0
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_compIdx
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_b_norm
-	jsr GetObjArea
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdateControl_colObj
-	; LineNumber: 2715
-	lda localVariable_UpdateControl_id
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_id
-	; Load Byte array
-	; CAST type NADA
-	ldx localVariable_UpdateControl_id
-	lda objectList_gobject_gobject_transZ,x 
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_z
-	lda #$1
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_pos
-	lda #$10
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_comp
-	lda #$0
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_compIdx
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_b_norm
-	jsr GetObjArea
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdateControl_eraseObj
-	; LineNumber: 2716
-	lda localVariable_UpdateControl_id
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_id
-	; Load Byte array
-	; CAST type NADA
-	ldx localVariable_UpdateControl_id
-	lda objectList_gobject_gobject_transZ,x 
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_z
-	lda #$0
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_pos
-	lda #$2
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_comp
-	lda #$0
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_compIdx
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_b_norm
-	jsr GetObjArea
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdateControl_colObj2
 	; LineNumber: 2717
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
@@ -13645,7 +13531,7 @@ UpdateControl_ConditionalTrueBlock21669: ;Main true block ;keep
 	lda objectList_gobject_gobject_transZ,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_z
-	lda #$0
+	lda #$5
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_pos
 	lda #$10
@@ -13658,83 +13544,56 @@ UpdateControl_ConditionalTrueBlock21669: ;Main true block ;keep
 	sta localVariable_GetObjArea_b_norm
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
-	sta localVariable_UpdateControl_eraseObj2
+	sta localVariable_UpdateControl_eraseObj
 	; LineNumber: 2718
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_colObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne UpdateControl_localfailed21794
-	jmp UpdateControl_localsuccess21793
-UpdateControl_localfailed21794: ;keep
+	bne UpdateControl_localfailed21703
+	jmp UpdateControl_localsuccess21702
+UpdateControl_localfailed21703: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateControl_eraseObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock21772
-UpdateControl_localsuccess21793: ;keep
+	beq UpdateControl_elsedoneblock21700
+UpdateControl_localsuccess21702: ;keep
 	; ; logical AND, second requirement
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdateControl_colObj2
-	; Compare with pure num / var optimization
-	cmp #$ff;keep
-	bne UpdateControl_localfailed21795
-	jmp UpdateControl_ConditionalTrueBlock21770
-UpdateControl_localfailed21795: ;keep
-	; ; logical OR, second chance
-	; Binary clause Simplified: NOTEQUALS
-	lda localVariable_UpdateControl_eraseObj2
-	; Compare with pure num / var optimization
-	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock21772
-UpdateControl_ConditionalTrueBlock21770: ;Main true block ;keep 
-	; LineNumber: 2718
-	; LineNumber: 2719
 	; Binary clause Simplified: NOTEQUALS
 	clc
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_UpdateControl_controlId
-	lda controlList_controlObject_controlObject_b_controlPressLeft,x 
+	lda controlList_controlObject_controlObject_b_controlPressRight,x 
 	; cmp #$00 ignored
-	beq UpdateControl_localfailed21808
-	jmp UpdateControl_ConditionalTrueBlock21798
-UpdateControl_localfailed21808: ;keep
-	; ; logical OR, second chance
-	; Binary clause Simplified: NOTEQUALS
-	clc
-	; Load Byte array
-	; CAST type NADA
-	ldx localVariable_UpdateControl_controlId
-	lda controlList_controlObject_controlObject_controlFollowKeyLeft,x 
-	; cmp #$00 ignored
-	beq UpdateControl_elsedoneblock21800
-UpdateControl_ConditionalTrueBlock21798: ;Main true block ;keep 
-	; LineNumber: 2719
-	; LineNumber: 2720
+	beq UpdateControl_elsedoneblock21700
+UpdateControl_localsuccess21704: ;keep
+	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	clc
 	lda localVariable_UpdateControl_grounded
 	; cmp #$00 ignored
-	beq UpdateControl_elsedoneblock21813
-UpdateControl_ConditionalTrueBlock21811: ;Main true block ;keep 
-	; LineNumber: 2719
-	; LineNumber: 2721
-	lda #$0
+	beq UpdateControl_elsedoneblock21700
+UpdateControl_ConditionalTrueBlock21698: ;Main true block ;keep 
+	; LineNumber: 2717
+	lda #$5
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_moveDir
-	; LineNumber: 2722
-	; Calling storevariable on generic assign expression
-	ldx localVariable_UpdateControl_controlId ; optimized, look out for bugs
-	sta controlList_controlObject_controlObject_controlFollowKeyLeft,x
-	; LineNumber: 2723
-UpdateControl_elsedoneblock21813
-	; LineNumber: 2724
-UpdateControl_elsedoneblock21800
-	; LineNumber: 2725
-UpdateControl_elsedoneblock21772
-	; LineNumber: 2726
+UpdateControl_elsedoneblock21700
+	; LineNumber: 2720
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdateControl_moveDir
+	; Compare with pure num / var optimization
+	cmp #$ff;keep
+	bne UpdateControl_localfailed21805
+	jmp UpdateControl_ConditionalTrueBlock21707
+UpdateControl_localfailed21805
+	jmp UpdateControl_elsedoneblock21709
+UpdateControl_ConditionalTrueBlock21707: ;Main true block ;keep 
+	; LineNumber: 2720
+	; LineNumber: 2721
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -13758,7 +13617,7 @@ UpdateControl_elsedoneblock21772
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_colObj
-	; LineNumber: 2727
+	; LineNumber: 2722
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -13782,7 +13641,178 @@ UpdateControl_elsedoneblock21772
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_eraseObj
+	; LineNumber: 2723
+	lda localVariable_UpdateControl_id
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_id
+	; Load Byte array
+	; CAST type NADA
+	ldx localVariable_UpdateControl_id
+	lda objectList_gobject_gobject_transZ,x 
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_z
+	lda #$0
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_pos
+	lda #$2
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_comp
+	lda #$0
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_compIdx
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_b_norm
+	jsr GetObjArea
+	; Calling storevariable on generic assign expression
+	sta localVariable_UpdateControl_colObj2
+	; LineNumber: 2724
+	lda localVariable_UpdateControl_id
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_id
+	; Load Byte array
+	; CAST type NADA
+	ldx localVariable_UpdateControl_id
+	lda objectList_gobject_gobject_transZ,x 
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_z
+	lda #$0
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_pos
+	lda #$10
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_comp
+	lda #$0
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_compIdx
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_b_norm
+	jsr GetObjArea
+	; Calling storevariable on generic assign expression
+	sta localVariable_UpdateControl_eraseObj2
+	; LineNumber: 2725
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdateControl_colObj
+	; Compare with pure num / var optimization
+	cmp #$ff;keep
+	bne UpdateControl_localfailed21832
+	jmp UpdateControl_localsuccess21831
+UpdateControl_localfailed21832: ;keep
+	; ; logical OR, second chance
+	; Binary clause Simplified: NOTEQUALS
+	lda localVariable_UpdateControl_eraseObj
+	; Compare with pure num / var optimization
+	cmp #$ff;keep
+	beq UpdateControl_elsedoneblock21810
+UpdateControl_localsuccess21831: ;keep
+	; ; logical AND, second requirement
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdateControl_colObj2
+	; Compare with pure num / var optimization
+	cmp #$ff;keep
+	bne UpdateControl_localfailed21833
+	jmp UpdateControl_ConditionalTrueBlock21808
+UpdateControl_localfailed21833: ;keep
+	; ; logical OR, second chance
+	; Binary clause Simplified: NOTEQUALS
+	lda localVariable_UpdateControl_eraseObj2
+	; Compare with pure num / var optimization
+	cmp #$ff;keep
+	beq UpdateControl_elsedoneblock21810
+UpdateControl_ConditionalTrueBlock21808: ;Main true block ;keep 
+	; LineNumber: 2725
+	; LineNumber: 2726
+	; Binary clause Simplified: NOTEQUALS
+	clc
+	; Load Byte array
+	; CAST type NADA
+	ldx localVariable_UpdateControl_controlId
+	lda controlList_controlObject_controlObject_b_controlPressLeft,x 
+	; cmp #$00 ignored
+	beq UpdateControl_localfailed21846
+	jmp UpdateControl_ConditionalTrueBlock21836
+UpdateControl_localfailed21846: ;keep
+	; ; logical OR, second chance
+	; Binary clause Simplified: NOTEQUALS
+	clc
+	; Load Byte array
+	; CAST type NADA
+	ldx localVariable_UpdateControl_controlId
+	lda controlList_controlObject_controlObject_controlFollowKeyLeft,x 
+	; cmp #$00 ignored
+	beq UpdateControl_elsedoneblock21838
+UpdateControl_ConditionalTrueBlock21836: ;Main true block ;keep 
+	; LineNumber: 2726
+	; LineNumber: 2727
+	; Binary clause Simplified: NOTEQUALS
+	clc
+	lda localVariable_UpdateControl_grounded
+	; cmp #$00 ignored
+	beq UpdateControl_elsedoneblock21851
+UpdateControl_ConditionalTrueBlock21849: ;Main true block ;keep 
+	; LineNumber: 2726
 	; LineNumber: 2728
+	lda #$0
+	; Calling storevariable on generic assign expression
+	sta localVariable_UpdateControl_moveDir
+	; LineNumber: 2729
+	; Calling storevariable on generic assign expression
+	ldx localVariable_UpdateControl_controlId ; optimized, look out for bugs
+	sta controlList_controlObject_controlObject_controlFollowKeyLeft,x
+	; LineNumber: 2730
+UpdateControl_elsedoneblock21851
+	; LineNumber: 2731
+UpdateControl_elsedoneblock21838
+	; LineNumber: 2732
+UpdateControl_elsedoneblock21810
+	; LineNumber: 2733
+	lda localVariable_UpdateControl_id
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_id
+	; Load Byte array
+	; CAST type NADA
+	ldx localVariable_UpdateControl_id
+	lda objectList_gobject_gobject_transZ,x 
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_z
+	lda #$1
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_pos
+	lda #$2
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_comp
+	lda #$0
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_compIdx
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_b_norm
+	jsr GetObjArea
+	; Calling storevariable on generic assign expression
+	sta localVariable_UpdateControl_colObj
+	; LineNumber: 2734
+	lda localVariable_UpdateControl_id
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_id
+	; Load Byte array
+	; CAST type NADA
+	ldx localVariable_UpdateControl_id
+	lda objectList_gobject_gobject_transZ,x 
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_z
+	lda #$1
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_pos
+	lda #$10
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_comp
+	lda #$0
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_compIdx
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_b_norm
+	jsr GetObjArea
+	; Calling storevariable on generic assign expression
+	sta localVariable_UpdateControl_eraseObj
+	; LineNumber: 2735
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -13805,7 +13835,7 @@ UpdateControl_elsedoneblock21772
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_colObj2
-	; LineNumber: 2729
+	; LineNumber: 2736
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -13829,38 +13859,38 @@ UpdateControl_elsedoneblock21772
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_eraseObj2
-	; LineNumber: 2730
+	; LineNumber: 2737
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_colObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne UpdateControl_localfailed21841
-	jmp UpdateControl_localsuccess21840
-UpdateControl_localfailed21841: ;keep
+	bne UpdateControl_localfailed21879
+	jmp UpdateControl_localsuccess21878
+UpdateControl_localfailed21879: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateControl_eraseObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock21819
-UpdateControl_localsuccess21840: ;keep
+	beq UpdateControl_elsedoneblock21857
+UpdateControl_localsuccess21878: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_colObj2
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne UpdateControl_localfailed21842
-	jmp UpdateControl_ConditionalTrueBlock21817
-UpdateControl_localfailed21842: ;keep
+	bne UpdateControl_localfailed21880
+	jmp UpdateControl_ConditionalTrueBlock21855
+UpdateControl_localfailed21880: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateControl_eraseObj2
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock21819
-UpdateControl_ConditionalTrueBlock21817: ;Main true block ;keep 
-	; LineNumber: 2730
-	; LineNumber: 2731
+	beq UpdateControl_elsedoneblock21857
+UpdateControl_ConditionalTrueBlock21855: ;Main true block ;keep 
+	; LineNumber: 2737
+	; LineNumber: 2738
 	; Binary clause Simplified: NOTEQUALS
 	clc
 	; Load Byte array
@@ -13868,9 +13898,9 @@ UpdateControl_ConditionalTrueBlock21817: ;Main true block ;keep
 	ldx localVariable_UpdateControl_controlId
 	lda controlList_controlObject_controlObject_b_controlPressRight,x 
 	; cmp #$00 ignored
-	beq UpdateControl_localfailed21855
-	jmp UpdateControl_ConditionalTrueBlock21845
-UpdateControl_localfailed21855: ;keep
+	beq UpdateControl_localfailed21893
+	jmp UpdateControl_ConditionalTrueBlock21883
+UpdateControl_localfailed21893: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: NOTEQUALS
 	clc
@@ -13879,46 +13909,46 @@ UpdateControl_localfailed21855: ;keep
 	ldx localVariable_UpdateControl_controlId
 	lda controlList_controlObject_controlObject_controlFollowKeyRight,x 
 	; cmp #$00 ignored
-	beq UpdateControl_elsedoneblock21847
-UpdateControl_ConditionalTrueBlock21845: ;Main true block ;keep 
-	; LineNumber: 2731
-	; LineNumber: 2732
+	beq UpdateControl_elsedoneblock21885
+UpdateControl_ConditionalTrueBlock21883: ;Main true block ;keep 
+	; LineNumber: 2738
+	; LineNumber: 2739
 	; Binary clause Simplified: NOTEQUALS
 	clc
 	lda localVariable_UpdateControl_grounded
 	; cmp #$00 ignored
-	beq UpdateControl_elsedoneblock21860
-UpdateControl_ConditionalTrueBlock21858: ;Main true block ;keep 
-	; LineNumber: 2731
-	; LineNumber: 2733
+	beq UpdateControl_elsedoneblock21898
+UpdateControl_ConditionalTrueBlock21896: ;Main true block ;keep 
+	; LineNumber: 2738
+	; LineNumber: 2740
 	lda #$2
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_moveDir
-	; LineNumber: 2734
+	; LineNumber: 2741
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_controlFollowKeyRight,x
-	; LineNumber: 2735
-UpdateControl_elsedoneblock21860
-	; LineNumber: 2736
-UpdateControl_elsedoneblock21847
-	; LineNumber: 2737
-UpdateControl_elsedoneblock21819
-	; LineNumber: 2738
-UpdateControl_elsedoneblock21671
-	; LineNumber: 2740
+	; LineNumber: 2742
+UpdateControl_elsedoneblock21898
+	; LineNumber: 2743
+UpdateControl_elsedoneblock21885
+	; LineNumber: 2744
+UpdateControl_elsedoneblock21857
+	; LineNumber: 2745
+UpdateControl_elsedoneblock21709
+	; LineNumber: 2747
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_moveDir
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne UpdateControl_localfailed21886
-	jmp UpdateControl_ConditionalTrueBlock21864
-UpdateControl_localfailed21886
-	jmp UpdateControl_elsedoneblock21866
-UpdateControl_ConditionalTrueBlock21864: ;Main true block ;keep 
-	; LineNumber: 2740
-	; LineNumber: 2741
+	bne UpdateControl_localfailed21924
+	jmp UpdateControl_ConditionalTrueBlock21902
+UpdateControl_localfailed21924
+	jmp UpdateControl_elsedoneblock21904
+UpdateControl_ConditionalTrueBlock21902: ;Main true block ;keep 
+	; LineNumber: 2747
+	; LineNumber: 2748
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -13942,7 +13972,7 @@ UpdateControl_ConditionalTrueBlock21864: ;Main true block ;keep
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_colObj
-	; LineNumber: 2742
+	; LineNumber: 2749
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -13966,21 +13996,21 @@ UpdateControl_ConditionalTrueBlock21864: ;Main true block ;keep
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_eraseObj
-	; LineNumber: 2744
+	; LineNumber: 2751
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_colObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne UpdateControl_localfailed21894
-	jmp UpdateControl_localsuccess21893
-UpdateControl_localfailed21894: ;keep
+	bne UpdateControl_localfailed21932
+	jmp UpdateControl_localsuccess21931
+UpdateControl_localfailed21932: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateControl_eraseObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock21891
-UpdateControl_localsuccess21893: ;keep
+	beq UpdateControl_elsedoneblock21929
+UpdateControl_localsuccess21931: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	clc
@@ -13989,32 +14019,32 @@ UpdateControl_localsuccess21893: ;keep
 	ldx localVariable_UpdateControl_controlId
 	lda controlList_controlObject_controlObject_b_controlPressUp,x 
 	; cmp #$00 ignored
-	beq UpdateControl_elsedoneblock21891
-UpdateControl_localsuccess21895: ;keep
+	beq UpdateControl_elsedoneblock21929
+UpdateControl_localsuccess21933: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	clc
 	lda localVariable_UpdateControl_grounded
 	; cmp #$00 ignored
-	beq UpdateControl_elsedoneblock21891
-UpdateControl_ConditionalTrueBlock21889: ;Main true block ;keep 
-	; LineNumber: 2743
-	; LineNumber: 2745
+	beq UpdateControl_elsedoneblock21929
+UpdateControl_ConditionalTrueBlock21927: ;Main true block ;keep 
+	; LineNumber: 2750
+	; LineNumber: 2752
 	lda #$4
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_controlState,x
-	; LineNumber: 2746
+	; LineNumber: 2753
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta controlList_controlObject_controlObject_controlJumpStep,x
-	; LineNumber: 2747
+	; LineNumber: 2754
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateControl_id ; optimized, look out for bugs
 	sta objectList_gobject_gobject_b_physFallDown,x
-	; LineNumber: 2748
-UpdateControl_elsedoneblock21891
-	; LineNumber: 2750
+	; LineNumber: 2755
+UpdateControl_elsedoneblock21929
+	; LineNumber: 2757
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -14038,75 +14068,6 @@ UpdateControl_elsedoneblock21891
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_colObj
-	; LineNumber: 2751
-	lda localVariable_UpdateControl_id
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_id
-	; Load Byte array
-	; CAST type NADA
-	ldx localVariable_UpdateControl_id
-	lda objectList_gobject_gobject_transZ,x 
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_z
-	lda #$7
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_pos
-	lda #$10
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_comp
-	lda #$0
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_compIdx
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_b_norm
-	jsr GetObjArea
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdateControl_eraseObj
-	; LineNumber: 2752
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdateControl_colObj
-	; Compare with pure num / var optimization
-	cmp #$ff;keep
-	bne UpdateControl_localfailed21903
-	jmp UpdateControl_localsuccess21902
-UpdateControl_localfailed21903: ;keep
-	; ; logical OR, second chance
-	; Binary clause Simplified: NOTEQUALS
-	lda localVariable_UpdateControl_eraseObj
-	; Compare with pure num / var optimization
-	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock21900
-UpdateControl_localsuccess21902: ;keep
-	; ; logical AND, second requirement
-	; Binary clause Simplified: NOTEQUALS
-	clc
-	; Load Byte array
-	; CAST type NADA
-	ldx localVariable_UpdateControl_controlId
-	lda controlList_controlObject_controlObject_b_controlPressDown,x 
-	; cmp #$00 ignored
-	beq UpdateControl_elsedoneblock21900
-UpdateControl_localsuccess21904: ;keep
-	; ; logical AND, second requirement
-	; Binary clause Simplified: NOTEQUALS
-	clc
-	lda localVariable_UpdateControl_grounded
-	; cmp #$00 ignored
-	beq UpdateControl_elsedoneblock21900
-UpdateControl_ConditionalTrueBlock21898: ;Main true block ;keep 
-	; LineNumber: 2751
-	; LineNumber: 2753
-	lda #$7
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdateControl_moveDir
-	; LineNumber: 2754
-UpdateControl_elsedoneblock21900
-	; LineNumber: 2755
-UpdateControl_elsedoneblock21866
-	; LineNumber: 2757
-	jmp UpdateControl_elsedoneblock21378
-UpdateControl_elseblock21377
-	; LineNumber: 2757
 	; LineNumber: 2758
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
@@ -14117,6 +14078,75 @@ UpdateControl_elseblock21377
 	lda objectList_gobject_gobject_transZ,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_z
+	lda #$7
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_pos
+	lda #$10
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_comp
+	lda #$0
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_compIdx
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_b_norm
+	jsr GetObjArea
+	; Calling storevariable on generic assign expression
+	sta localVariable_UpdateControl_eraseObj
+	; LineNumber: 2759
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdateControl_colObj
+	; Compare with pure num / var optimization
+	cmp #$ff;keep
+	bne UpdateControl_localfailed21941
+	jmp UpdateControl_localsuccess21940
+UpdateControl_localfailed21941: ;keep
+	; ; logical OR, second chance
+	; Binary clause Simplified: NOTEQUALS
+	lda localVariable_UpdateControl_eraseObj
+	; Compare with pure num / var optimization
+	cmp #$ff;keep
+	beq UpdateControl_elsedoneblock21938
+UpdateControl_localsuccess21940: ;keep
+	; ; logical AND, second requirement
+	; Binary clause Simplified: NOTEQUALS
+	clc
+	; Load Byte array
+	; CAST type NADA
+	ldx localVariable_UpdateControl_controlId
+	lda controlList_controlObject_controlObject_b_controlPressDown,x 
+	; cmp #$00 ignored
+	beq UpdateControl_elsedoneblock21938
+UpdateControl_localsuccess21942: ;keep
+	; ; logical AND, second requirement
+	; Binary clause Simplified: NOTEQUALS
+	clc
+	lda localVariable_UpdateControl_grounded
+	; cmp #$00 ignored
+	beq UpdateControl_elsedoneblock21938
+UpdateControl_ConditionalTrueBlock21936: ;Main true block ;keep 
+	; LineNumber: 2758
+	; LineNumber: 2760
+	lda #$7
+	; Calling storevariable on generic assign expression
+	sta localVariable_UpdateControl_moveDir
+	; LineNumber: 2761
+UpdateControl_elsedoneblock21938
+	; LineNumber: 2762
+UpdateControl_elsedoneblock21904
+	; LineNumber: 2764
+	jmp UpdateControl_elsedoneblock21416
+UpdateControl_elseblock21415
+	; LineNumber: 2764
+	; LineNumber: 2765
+	lda localVariable_UpdateControl_id
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_id
+	; Load Byte array
+	; CAST type NADA
+	ldx localVariable_UpdateControl_id
+	lda objectList_gobject_gobject_transZ,x 
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_z
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_pos
@@ -14131,7 +14161,7 @@ UpdateControl_elseblock21377
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_colObj
-	; LineNumber: 2759
+	; LineNumber: 2766
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -14155,21 +14185,21 @@ UpdateControl_elseblock21377
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_eraseObj
-	; LineNumber: 2761
+	; LineNumber: 2768
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_colObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne UpdateControl_localfailed21913
-	jmp UpdateControl_localsuccess21912
-UpdateControl_localfailed21913: ;keep
+	bne UpdateControl_localfailed21951
+	jmp UpdateControl_localsuccess21950
+UpdateControl_localfailed21951: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateControl_eraseObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock21910
-UpdateControl_localsuccess21912: ;keep
+	beq UpdateControl_elsedoneblock21948
+UpdateControl_localsuccess21950: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	clc
@@ -14178,49 +14208,49 @@ UpdateControl_localsuccess21912: ;keep
 	ldx localVariable_UpdateControl_controlId
 	lda controlList_controlObject_controlObject_b_controlPressUp,x 
 	; cmp #$00 ignored
-	beq UpdateControl_elsedoneblock21910
-UpdateControl_localsuccess21914: ;keep
+	beq UpdateControl_elsedoneblock21948
+UpdateControl_localsuccess21952: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	clc
 	lda localVariable_UpdateControl_grounded
 	; cmp #$00 ignored
-	beq UpdateControl_elsedoneblock21910
-UpdateControl_ConditionalTrueBlock21908: ;Main true block ;keep 
-	; LineNumber: 2760
-	; LineNumber: 2762
+	beq UpdateControl_elsedoneblock21948
+UpdateControl_ConditionalTrueBlock21946: ;Main true block ;keep 
+	; LineNumber: 2767
+	; LineNumber: 2769
 	lda #$4
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_controlState,x
-	; LineNumber: 2763
+	; LineNumber: 2770
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta controlList_controlObject_controlObject_controlJumpStep,x
-	; LineNumber: 2764
+	; LineNumber: 2771
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateControl_id ; optimized, look out for bugs
 	sta objectList_gobject_gobject_b_physFallDown,x
-	; LineNumber: 2765
-UpdateControl_elsedoneblock21910
-	; LineNumber: 2766
-UpdateControl_elsedoneblock21378
-	; LineNumber: 2767
+	; LineNumber: 2772
+UpdateControl_elsedoneblock21948
+	; LineNumber: 2773
+UpdateControl_elsedoneblock21416
+	; LineNumber: 2774
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_moveDir
 	; Compare with pure num / var optimization
 	cmp #$3;keep
-	bne UpdateControl_localfailed21929
-	jmp UpdateControl_ConditionalTrueBlock21917
-UpdateControl_localfailed21929: ;keep
+	bne UpdateControl_localfailed21967
+	jmp UpdateControl_ConditionalTrueBlock21955
+UpdateControl_localfailed21967: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: EQUALS
 	clc
 	lda localVariable_UpdateControl_moveDir
 	; cmp #$00 ignored
-	bne UpdateControl_elseblock21918
-UpdateControl_ConditionalTrueBlock21917: ;Main true block ;keep 
-	; LineNumber: 2766
+	bne UpdateControl_elseblock21956
+UpdateControl_ConditionalTrueBlock21955: ;Main true block ;keep 
+	; LineNumber: 2773
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_SwitchAnimation_id
@@ -14228,24 +14258,24 @@ UpdateControl_ConditionalTrueBlock21917: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_SwitchAnimation_anim
 	jsr SwitchAnimation
-	jmp UpdateControl_elsedoneblock21919
-UpdateControl_elseblock21918
-	; LineNumber: 2767
+	jmp UpdateControl_elsedoneblock21957
+UpdateControl_elseblock21956
+	; LineNumber: 2774
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_moveDir
 	; Compare with pure num / var optimization
 	cmp #$5;keep
-	bne UpdateControl_localfailed21937
-	jmp UpdateControl_ConditionalTrueBlock21933
-UpdateControl_localfailed21937: ;keep
+	bne UpdateControl_localfailed21975
+	jmp UpdateControl_ConditionalTrueBlock21971
+UpdateControl_localfailed21975: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_moveDir
 	; Compare with pure num / var optimization
 	cmp #$2;keep
-	bne UpdateControl_elsedoneblock21935
-UpdateControl_ConditionalTrueBlock21933: ;Main true block ;keep 
-	; LineNumber: 2767
+	bne UpdateControl_elsedoneblock21973
+UpdateControl_ConditionalTrueBlock21971: ;Main true block ;keep 
+	; LineNumber: 2774
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_SwitchAnimation_id
@@ -14253,12 +14283,12 @@ UpdateControl_ConditionalTrueBlock21933: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_SwitchAnimation_anim
 	jsr SwitchAnimation
-UpdateControl_elsedoneblock21935
-UpdateControl_elsedoneblock21919
-	; LineNumber: 2770
-	jmp UpdateControl_elsedoneblock16143
-UpdateControl_elseblock16142
-	; LineNumber: 2769
+UpdateControl_elsedoneblock21973
+UpdateControl_elsedoneblock21957
+	; LineNumber: 2777
+	jmp UpdateControl_elsedoneblock16181
+UpdateControl_elseblock16180
+	; LineNumber: 2776
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
 	; CAST type NADA
@@ -14266,13 +14296,13 @@ UpdateControl_elseblock16142
 	lda controlList_controlObject_controlObject_controlState,x 
 	; Compare with pure num / var optimization
 	cmp #$4;keep
-	bne UpdateControl_localfailed24273
-	jmp UpdateControl_ConditionalTrueBlock21941
-UpdateControl_localfailed24273
-	jmp UpdateControl_elseblock21942
-UpdateControl_ConditionalTrueBlock21941: ;Main true block ;keep 
-	; LineNumber: 2770
-	; LineNumber: 2771
+	bne UpdateControl_localfailed24311
+	jmp UpdateControl_ConditionalTrueBlock21979
+UpdateControl_localfailed24311
+	jmp UpdateControl_elseblock21980
+UpdateControl_ConditionalTrueBlock21979: ;Main true block ;keep 
+	; LineNumber: 2777
+	; LineNumber: 2778
 	; Binary clause Simplified: EQUALS
 	clc
 	; Load Byte array
@@ -14280,20 +14310,20 @@ UpdateControl_ConditionalTrueBlock21941: ;Main true block ;keep
 	ldx localVariable_UpdateControl_controlId
 	lda controlList_controlObject_controlObject_controlJumpStep,x 
 	; cmp #$00 ignored
-	bne UpdateControl_localfailed24515
-	jmp UpdateControl_ConditionalTrueBlock24276
-UpdateControl_localfailed24515
-	jmp UpdateControl_elseblock24277
-UpdateControl_ConditionalTrueBlock24276: ;Main true block ;keep 
-	; LineNumber: 2770
+	bne UpdateControl_localfailed24553
+	jmp UpdateControl_ConditionalTrueBlock24314
+UpdateControl_localfailed24553
+	jmp UpdateControl_elseblock24315
+UpdateControl_ConditionalTrueBlock24314: ;Main true block ;keep 
+	; LineNumber: 2777
 	
 ; // TODO: check for collideable?
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_moveDir
-	jmp UpdateControl_elsedoneblock24278
-UpdateControl_elseblock24277
-	; LineNumber: 2771
+	jmp UpdateControl_elsedoneblock24316
+UpdateControl_elseblock24315
+	; LineNumber: 2778
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
 	; CAST type NADA
@@ -14301,9 +14331,9 @@ UpdateControl_elseblock24277
 	lda controlList_controlObject_controlObject_controlJumpStep,x 
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne UpdateControl_localfailed24637
-	jmp UpdateControl_ConditionalTrueBlock24519
-UpdateControl_localfailed24637: ;keep
+	bne UpdateControl_localfailed24675
+	jmp UpdateControl_ConditionalTrueBlock24557
+UpdateControl_localfailed24675: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
@@ -14312,13 +14342,13 @@ UpdateControl_localfailed24637: ;keep
 	lda controlList_controlObject_controlObject_controlJumpStep,x 
 	; Compare with pure num / var optimization
 	cmp #$2;keep
-	bne UpdateControl_localfailed24636
-	jmp UpdateControl_ConditionalTrueBlock24519
-UpdateControl_localfailed24636
-	jmp UpdateControl_elsedoneblock24521
-UpdateControl_ConditionalTrueBlock24519: ;Main true block ;keep 
-	; LineNumber: 2772
-	; LineNumber: 2773
+	bne UpdateControl_localfailed24674
+	jmp UpdateControl_ConditionalTrueBlock24557
+UpdateControl_localfailed24674
+	jmp UpdateControl_elsedoneblock24559
+UpdateControl_ConditionalTrueBlock24557: ;Main true block ;keep 
+	; LineNumber: 2779
+	; LineNumber: 2780
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -14342,7 +14372,7 @@ UpdateControl_ConditionalTrueBlock24519: ;Main true block ;keep
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_colObj
-	; LineNumber: 2774
+	; LineNumber: 2781
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -14366,7 +14396,7 @@ UpdateControl_ConditionalTrueBlock24519: ;Main true block ;keep
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_colObj2
-	; LineNumber: 2775
+	; LineNumber: 2782
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -14390,28 +14420,28 @@ UpdateControl_ConditionalTrueBlock24519: ;Main true block ;keep
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_eraseObj
-	; LineNumber: 2776
+	; LineNumber: 2783
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateControl_colObj2
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock24642
-UpdateControl_localsuccess24645: ;keep
+	beq UpdateControl_elsedoneblock24680
+UpdateControl_localsuccess24683: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_colObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne UpdateControl_localfailed24646
-	jmp UpdateControl_localsuccess24644
-UpdateControl_localfailed24646: ;keep
+	bne UpdateControl_localfailed24684
+	jmp UpdateControl_localsuccess24682
+UpdateControl_localfailed24684: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateControl_eraseObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock24642
-UpdateControl_localsuccess24644: ;keep
+	beq UpdateControl_elsedoneblock24680
+UpdateControl_localsuccess24682: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	clc
@@ -14420,14 +14450,14 @@ UpdateControl_localsuccess24644: ;keep
 	ldx localVariable_UpdateControl_controlId
 	lda controlList_controlObject_controlObject_b_controlPressLeft,x 
 	; cmp #$00 ignored
-	beq UpdateControl_elsedoneblock24642
-UpdateControl_ConditionalTrueBlock24640: ;Main true block ;keep 
-	; LineNumber: 2775
+	beq UpdateControl_elsedoneblock24680
+UpdateControl_ConditionalTrueBlock24678: ;Main true block ;keep 
+	; LineNumber: 2782
 	lda #$3
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_moveDir
-UpdateControl_elsedoneblock24642
-	; LineNumber: 2778
+UpdateControl_elsedoneblock24680
+	; LineNumber: 2785
 	
 ; //TODO: AnimationWalkL
 	lda localVariable_UpdateControl_id
@@ -14453,7 +14483,7 @@ UpdateControl_elsedoneblock24642
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_colObj
-	; LineNumber: 2779
+	; LineNumber: 2786
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -14477,7 +14507,7 @@ UpdateControl_elsedoneblock24642
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_colObj2
-	; LineNumber: 2780
+	; LineNumber: 2787
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -14501,28 +14531,28 @@ UpdateControl_elsedoneblock24642
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_eraseObj
-	; LineNumber: 2781
+	; LineNumber: 2788
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateControl_colObj2
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock24651
-UpdateControl_localsuccess24654: ;keep
+	beq UpdateControl_elsedoneblock24689
+UpdateControl_localsuccess24692: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_colObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne UpdateControl_localfailed24655
-	jmp UpdateControl_localsuccess24653
-UpdateControl_localfailed24655: ;keep
+	bne UpdateControl_localfailed24693
+	jmp UpdateControl_localsuccess24691
+UpdateControl_localfailed24693: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateControl_eraseObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock24651
-UpdateControl_localsuccess24653: ;keep
+	beq UpdateControl_elsedoneblock24689
+UpdateControl_localsuccess24691: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	clc
@@ -14531,25 +14561,25 @@ UpdateControl_localsuccess24653: ;keep
 	ldx localVariable_UpdateControl_controlId
 	lda controlList_controlObject_controlObject_b_controlPressRight,x 
 	; cmp #$00 ignored
-	beq UpdateControl_elsedoneblock24651
-UpdateControl_ConditionalTrueBlock24649: ;Main true block ;keep 
-	; LineNumber: 2780
+	beq UpdateControl_elsedoneblock24689
+UpdateControl_ConditionalTrueBlock24687: ;Main true block ;keep 
+	; LineNumber: 2787
 	lda #$5
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_moveDir
-UpdateControl_elsedoneblock24651
-	; LineNumber: 2783
+UpdateControl_elsedoneblock24689
+	; LineNumber: 2790
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_moveDir
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne UpdateControl_localfailed24706
-	jmp UpdateControl_ConditionalTrueBlock24658
-UpdateControl_localfailed24706
-	jmp UpdateControl_elsedoneblock24660
-UpdateControl_ConditionalTrueBlock24658: ;Main true block ;keep 
-	; LineNumber: 2783
-	; LineNumber: 2784
+	bne UpdateControl_localfailed24744
+	jmp UpdateControl_ConditionalTrueBlock24696
+UpdateControl_localfailed24744
+	jmp UpdateControl_elsedoneblock24698
+UpdateControl_ConditionalTrueBlock24696: ;Main true block ;keep 
+	; LineNumber: 2790
+	; LineNumber: 2791
 	
 ; //TODO: AnimationWalkR
 	lda localVariable_UpdateControl_id
@@ -14575,7 +14605,7 @@ UpdateControl_ConditionalTrueBlock24658: ;Main true block ;keep
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_colObj
-	; LineNumber: 2785
+	; LineNumber: 2792
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -14599,7 +14629,7 @@ UpdateControl_ConditionalTrueBlock24658: ;Main true block ;keep
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_eraseObj
-	; LineNumber: 2786
+	; LineNumber: 2793
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -14623,7 +14653,7 @@ UpdateControl_ConditionalTrueBlock24658: ;Main true block ;keep
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_colObj2
-	; LineNumber: 2787
+	; LineNumber: 2794
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -14647,7 +14677,7 @@ UpdateControl_ConditionalTrueBlock24658: ;Main true block ;keep
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_eraseObj2
-	; LineNumber: 2788
+	; LineNumber: 2795
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -14671,45 +14701,45 @@ UpdateControl_ConditionalTrueBlock24658: ;Main true block ;keep
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_colObj3
-	; LineNumber: 2789
+	; LineNumber: 2796
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_colObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne UpdateControl_localfailed24720
-	jmp UpdateControl_localsuccess24719
-UpdateControl_localfailed24720: ;keep
+	bne UpdateControl_localfailed24758
+	jmp UpdateControl_localsuccess24757
+UpdateControl_localfailed24758: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateControl_eraseObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock24711
-UpdateControl_localsuccess24719: ;keep
+	beq UpdateControl_elsedoneblock24749
+UpdateControl_localsuccess24757: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_colObj2
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne UpdateControl_localfailed24722
-	jmp UpdateControl_localsuccess24721
-UpdateControl_localfailed24722: ;keep
+	bne UpdateControl_localfailed24760
+	jmp UpdateControl_localsuccess24759
+UpdateControl_localfailed24760: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateControl_eraseObj2
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock24711
-UpdateControl_localsuccess24721: ;keep
+	beq UpdateControl_elsedoneblock24749
+UpdateControl_localsuccess24759: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateControl_colObj3
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock24711
-UpdateControl_ConditionalTrueBlock24709: ;Main true block ;keep 
-	; LineNumber: 2789
-	; LineNumber: 2790
+	beq UpdateControl_elsedoneblock24749
+UpdateControl_ConditionalTrueBlock24747: ;Main true block ;keep 
+	; LineNumber: 2796
+	; LineNumber: 2797
 	; Binary clause Simplified: NOTEQUALS
 	clc
 	; Load Byte array
@@ -14717,18 +14747,18 @@ UpdateControl_ConditionalTrueBlock24709: ;Main true block ;keep
 	ldx localVariable_UpdateControl_controlId
 	lda controlList_controlObject_controlObject_b_controlPressLeft,x 
 	; cmp #$00 ignored
-	beq UpdateControl_elsedoneblock24727
-UpdateControl_ConditionalTrueBlock24725: ;Main true block ;keep 
-	; LineNumber: 2790
-	; LineNumber: 2791
+	beq UpdateControl_elsedoneblock24765
+UpdateControl_ConditionalTrueBlock24763: ;Main true block ;keep 
+	; LineNumber: 2797
+	; LineNumber: 2798
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_moveDir
-	; LineNumber: 2792
-UpdateControl_elsedoneblock24727
-	; LineNumber: 2793
-UpdateControl_elsedoneblock24711
-	; LineNumber: 2794
+	; LineNumber: 2799
+UpdateControl_elsedoneblock24765
+	; LineNumber: 2800
+UpdateControl_elsedoneblock24749
+	; LineNumber: 2801
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -14752,7 +14782,7 @@ UpdateControl_elsedoneblock24711
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_colObj
-	; LineNumber: 2795
+	; LineNumber: 2802
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -14776,7 +14806,7 @@ UpdateControl_elsedoneblock24711
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_eraseObj
-	; LineNumber: 2796
+	; LineNumber: 2803
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -14799,7 +14829,7 @@ UpdateControl_elsedoneblock24711
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_colObj2
-	; LineNumber: 2797
+	; LineNumber: 2804
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -14823,7 +14853,7 @@ UpdateControl_elsedoneblock24711
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_eraseObj2
-	; LineNumber: 2798
+	; LineNumber: 2805
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -14847,45 +14877,45 @@ UpdateControl_elsedoneblock24711
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_colObj3
-	; LineNumber: 2799
+	; LineNumber: 2806
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_colObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne UpdateControl_localfailed24742
-	jmp UpdateControl_localsuccess24741
-UpdateControl_localfailed24742: ;keep
+	bne UpdateControl_localfailed24780
+	jmp UpdateControl_localsuccess24779
+UpdateControl_localfailed24780: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateControl_eraseObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock24733
-UpdateControl_localsuccess24741: ;keep
+	beq UpdateControl_elsedoneblock24771
+UpdateControl_localsuccess24779: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_colObj2
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne UpdateControl_localfailed24744
-	jmp UpdateControl_localsuccess24743
-UpdateControl_localfailed24744: ;keep
+	bne UpdateControl_localfailed24782
+	jmp UpdateControl_localsuccess24781
+UpdateControl_localfailed24782: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateControl_eraseObj2
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock24733
-UpdateControl_localsuccess24743: ;keep
+	beq UpdateControl_elsedoneblock24771
+UpdateControl_localsuccess24781: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateControl_colObj3
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock24733
-UpdateControl_ConditionalTrueBlock24731: ;Main true block ;keep 
-	; LineNumber: 2799
-	; LineNumber: 2800
+	beq UpdateControl_elsedoneblock24771
+UpdateControl_ConditionalTrueBlock24769: ;Main true block ;keep 
+	; LineNumber: 2806
+	; LineNumber: 2807
 	; Binary clause Simplified: NOTEQUALS
 	clc
 	; Load Byte array
@@ -14893,65 +14923,65 @@ UpdateControl_ConditionalTrueBlock24731: ;Main true block ;keep
 	ldx localVariable_UpdateControl_controlId
 	lda controlList_controlObject_controlObject_b_controlPressRight,x 
 	; cmp #$00 ignored
-	beq UpdateControl_elsedoneblock24749
-UpdateControl_ConditionalTrueBlock24747: ;Main true block ;keep 
-	; LineNumber: 2800
-	; LineNumber: 2801
+	beq UpdateControl_elsedoneblock24787
+UpdateControl_ConditionalTrueBlock24785: ;Main true block ;keep 
+	; LineNumber: 2807
+	; LineNumber: 2808
 	lda #$2
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_moveDir
-	; LineNumber: 2802
-UpdateControl_elsedoneblock24749
-	; LineNumber: 2803
-UpdateControl_elsedoneblock24733
-	; LineNumber: 2804
-UpdateControl_elsedoneblock24660
-	; LineNumber: 2805
-UpdateControl_elsedoneblock24521
-UpdateControl_elsedoneblock24278
-	; LineNumber: 2806
+	; LineNumber: 2809
+UpdateControl_elsedoneblock24787
+	; LineNumber: 2810
+UpdateControl_elsedoneblock24771
+	; LineNumber: 2811
+UpdateControl_elsedoneblock24698
+	; LineNumber: 2812
+UpdateControl_elsedoneblock24559
+UpdateControl_elsedoneblock24316
+	; LineNumber: 2813
 	; Test Inc dec D
 	ldx localVariable_UpdateControl_controlId
 	; Optimize byte array inc 
 	inc controlList_controlObject_controlObject_controlJumpStep,x
-	; LineNumber: 2807
+	; LineNumber: 2814
 	; Binary clause Simplified: GREATEREQUAL
 	; Load Byte array
 	; CAST type NADA
 	lda controlList_controlObject_controlObject_controlJumpStep,x 
 	; Compare with pure num / var optimization
 	cmp #$3;keep
-	bcc UpdateControl_elsedoneblock24755
-UpdateControl_ConditionalTrueBlock24753: ;Main true block ;keep 
-	; LineNumber: 2806
-	; LineNumber: 2808
+	bcc UpdateControl_elsedoneblock24793
+UpdateControl_ConditionalTrueBlock24791: ;Main true block ;keep 
+	; LineNumber: 2813
+	; LineNumber: 2815
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_controlState,x
-	; LineNumber: 2809
+	; LineNumber: 2816
 	lda #$1
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateControl_id ; optimized, look out for bugs
 	sta objectList_gobject_gobject_b_physFallDown,x
-	; LineNumber: 2810
-UpdateControl_elsedoneblock24755
-	; LineNumber: 2811
+	; LineNumber: 2817
+UpdateControl_elsedoneblock24793
+	; LineNumber: 2818
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_moveDir
 	; Compare with pure num / var optimization
 	cmp #$3;keep
-	bne UpdateControl_localfailed24785
-	jmp UpdateControl_ConditionalTrueBlock24759
-UpdateControl_localfailed24785: ;keep
+	bne UpdateControl_localfailed24823
+	jmp UpdateControl_ConditionalTrueBlock24797
+UpdateControl_localfailed24823: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: EQUALS
 	clc
 	lda localVariable_UpdateControl_moveDir
 	; cmp #$00 ignored
-	bne UpdateControl_elseblock24760
-UpdateControl_ConditionalTrueBlock24759: ;Main true block ;keep 
-	; LineNumber: 2810
+	bne UpdateControl_elseblock24798
+UpdateControl_ConditionalTrueBlock24797: ;Main true block ;keep 
+	; LineNumber: 2817
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_SwitchAnimation_id
@@ -14959,24 +14989,24 @@ UpdateControl_ConditionalTrueBlock24759: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_SwitchAnimation_anim
 	jsr SwitchAnimation
-	jmp UpdateControl_elsedoneblock24761
-UpdateControl_elseblock24760
-	; LineNumber: 2811
+	jmp UpdateControl_elsedoneblock24799
+UpdateControl_elseblock24798
+	; LineNumber: 2818
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_moveDir
 	; Compare with pure num / var optimization
 	cmp #$5;keep
-	bne UpdateControl_localfailed24800
-	jmp UpdateControl_ConditionalTrueBlock24789
-UpdateControl_localfailed24800: ;keep
+	bne UpdateControl_localfailed24838
+	jmp UpdateControl_ConditionalTrueBlock24827
+UpdateControl_localfailed24838: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_moveDir
 	; Compare with pure num / var optimization
 	cmp #$2;keep
-	bne UpdateControl_elseblock24790
-UpdateControl_ConditionalTrueBlock24789: ;Main true block ;keep 
-	; LineNumber: 2811
+	bne UpdateControl_elseblock24828
+UpdateControl_ConditionalTrueBlock24827: ;Main true block ;keep 
+	; LineNumber: 2818
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_SwitchAnimation_id
@@ -14984,16 +15014,16 @@ UpdateControl_ConditionalTrueBlock24789: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_SwitchAnimation_anim
 	jsr SwitchAnimation
-	jmp UpdateControl_elsedoneblock24791
-UpdateControl_elseblock24790
-	; LineNumber: 2812
+	jmp UpdateControl_elsedoneblock24829
+UpdateControl_elseblock24828
+	; LineNumber: 2819
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_moveDir
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne UpdateControl_elsedoneblock24806
-UpdateControl_ConditionalTrueBlock24804: ;Main true block ;keep 
-	; LineNumber: 2812
+	bne UpdateControl_elsedoneblock24844
+UpdateControl_ConditionalTrueBlock24842: ;Main true block ;keep 
+	; LineNumber: 2819
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_SwitchAnimation_id
@@ -15001,13 +15031,13 @@ UpdateControl_ConditionalTrueBlock24804: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_SwitchAnimation_anim
 	jsr SwitchAnimation
-UpdateControl_elsedoneblock24806
-UpdateControl_elsedoneblock24791
-UpdateControl_elsedoneblock24761
-	; LineNumber: 2814
-	jmp UpdateControl_elsedoneblock21943
-UpdateControl_elseblock21942
-	; LineNumber: 2814
+UpdateControl_elsedoneblock24844
+UpdateControl_elsedoneblock24829
+UpdateControl_elsedoneblock24799
+	; LineNumber: 2821
+	jmp UpdateControl_elsedoneblock21981
+UpdateControl_elseblock21980
+	; LineNumber: 2821
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
 	; CAST type NADA
@@ -15015,9 +15045,9 @@ UpdateControl_elseblock21942
 	lda controlList_controlObject_controlObject_controlState,x 
 	; Compare with pure num / var optimization
 	cmp #$3;keep
-	bne UpdateControl_localfailed25709
-	jmp UpdateControl_ConditionalTrueBlock24811
-UpdateControl_localfailed25709: ;keep
+	bne UpdateControl_localfailed25747
+	jmp UpdateControl_ConditionalTrueBlock24849
+UpdateControl_localfailed25747: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
@@ -15026,9 +15056,9 @@ UpdateControl_localfailed25709: ;keep
 	lda controlList_controlObject_controlObject_controlState,x 
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne UpdateControl_localfailed25708
-	jmp UpdateControl_ConditionalTrueBlock24811
-UpdateControl_localfailed25708: ;keep
+	bne UpdateControl_localfailed25746
+	jmp UpdateControl_ConditionalTrueBlock24849
+UpdateControl_localfailed25746: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
@@ -15037,13 +15067,13 @@ UpdateControl_localfailed25708: ;keep
 	lda controlList_controlObject_controlObject_controlState,x 
 	; Compare with pure num / var optimization
 	cmp #$2;keep
-	bne UpdateControl_localfailed25707
-	jmp UpdateControl_ConditionalTrueBlock24811
-UpdateControl_localfailed25707
-	jmp UpdateControl_elseblock24812
-UpdateControl_ConditionalTrueBlock24811: ;Main true block ;keep 
-	; LineNumber: 2815
-	; LineNumber: 2816
+	bne UpdateControl_localfailed25745
+	jmp UpdateControl_ConditionalTrueBlock24849
+UpdateControl_localfailed25745
+	jmp UpdateControl_elseblock24850
+UpdateControl_ConditionalTrueBlock24849: ;Main true block ;keep 
+	; LineNumber: 2822
+	; LineNumber: 2823
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -15067,7 +15097,7 @@ UpdateControl_ConditionalTrueBlock24811: ;Main true block ;keep
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_colObj
-	; LineNumber: 2817
+	; LineNumber: 2824
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -15091,21 +15121,21 @@ UpdateControl_ConditionalTrueBlock24811: ;Main true block ;keep
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_eraseObj
-	; LineNumber: 2818
+	; LineNumber: 2825
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_colObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne UpdateControl_localfailed25717
-	jmp UpdateControl_localsuccess25716
-UpdateControl_localfailed25717: ;keep
+	bne UpdateControl_localfailed25755
+	jmp UpdateControl_localsuccess25754
+UpdateControl_localfailed25755: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateControl_eraseObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock25714
-UpdateControl_localsuccess25716: ;keep
+	beq UpdateControl_elsedoneblock25752
+UpdateControl_localsuccess25754: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	clc
@@ -15114,14 +15144,14 @@ UpdateControl_localsuccess25716: ;keep
 	ldx localVariable_UpdateControl_controlId
 	lda controlList_controlObject_controlObject_b_controlPressLeft,x 
 	; cmp #$00 ignored
-	beq UpdateControl_elsedoneblock25714
-UpdateControl_ConditionalTrueBlock25712: ;Main true block ;keep 
-	; LineNumber: 2817
+	beq UpdateControl_elsedoneblock25752
+UpdateControl_ConditionalTrueBlock25750: ;Main true block ;keep 
+	; LineNumber: 2824
 	lda #$3
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_moveDir
-UpdateControl_elsedoneblock25714
-	; LineNumber: 2820
+UpdateControl_elsedoneblock25752
+	; LineNumber: 2827
 	
 ; //TODO: AnimationSwimL
 	lda localVariable_UpdateControl_id
@@ -15147,7 +15177,7 @@ UpdateControl_elsedoneblock25714
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_colObj
-	; LineNumber: 2821
+	; LineNumber: 2828
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -15171,21 +15201,21 @@ UpdateControl_elsedoneblock25714
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_eraseObj
-	; LineNumber: 2822
+	; LineNumber: 2829
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_colObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne UpdateControl_localfailed25725
-	jmp UpdateControl_localsuccess25724
-UpdateControl_localfailed25725: ;keep
+	bne UpdateControl_localfailed25763
+	jmp UpdateControl_localsuccess25762
+UpdateControl_localfailed25763: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateControl_eraseObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock25722
-UpdateControl_localsuccess25724: ;keep
+	beq UpdateControl_elsedoneblock25760
+UpdateControl_localsuccess25762: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	clc
@@ -15194,14 +15224,14 @@ UpdateControl_localsuccess25724: ;keep
 	ldx localVariable_UpdateControl_controlId
 	lda controlList_controlObject_controlObject_b_controlPressRight,x 
 	; cmp #$00 ignored
-	beq UpdateControl_elsedoneblock25722
-UpdateControl_ConditionalTrueBlock25720: ;Main true block ;keep 
-	; LineNumber: 2821
+	beq UpdateControl_elsedoneblock25760
+UpdateControl_ConditionalTrueBlock25758: ;Main true block ;keep 
+	; LineNumber: 2828
 	lda #$5
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_moveDir
-UpdateControl_elsedoneblock25722
-	; LineNumber: 2824
+UpdateControl_elsedoneblock25760
+	; LineNumber: 2831
 	
 ; //TODO: AnimationSwimR
 	lda localVariable_UpdateControl_id
@@ -15227,7 +15257,7 @@ UpdateControl_elsedoneblock25722
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_colObj
-	; LineNumber: 2825
+	; LineNumber: 2832
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -15251,21 +15281,21 @@ UpdateControl_elsedoneblock25722
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_eraseObj
-	; LineNumber: 2826
+	; LineNumber: 2833
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_colObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne UpdateControl_localfailed25733
-	jmp UpdateControl_localsuccess25732
-UpdateControl_localfailed25733: ;keep
+	bne UpdateControl_localfailed25771
+	jmp UpdateControl_localsuccess25770
+UpdateControl_localfailed25771: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateControl_eraseObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock25730
-UpdateControl_localsuccess25732: ;keep
+	beq UpdateControl_elsedoneblock25768
+UpdateControl_localsuccess25770: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	clc
@@ -15274,8 +15304,8 @@ UpdateControl_localsuccess25732: ;keep
 	ldx localVariable_UpdateControl_controlId
 	lda controlList_controlObject_controlObject_b_controlPressUp,x 
 	; cmp #$00 ignored
-	beq UpdateControl_elsedoneblock25730
-UpdateControl_localsuccess25734: ;keep
+	beq UpdateControl_elsedoneblock25768
+UpdateControl_localsuccess25772: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	; Load Byte array
@@ -15284,14 +15314,14 @@ UpdateControl_localsuccess25734: ;keep
 	lda controlList_controlObject_controlObject_controlState,x 
 	; Compare with pure num / var optimization
 	cmp #$2;keep
-	beq UpdateControl_elsedoneblock25730
-UpdateControl_ConditionalTrueBlock25728: ;Main true block ;keep 
-	; LineNumber: 2825
+	beq UpdateControl_elsedoneblock25768
+UpdateControl_ConditionalTrueBlock25766: ;Main true block ;keep 
+	; LineNumber: 2832
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_moveDir
-UpdateControl_elsedoneblock25730
-	; LineNumber: 2828
+UpdateControl_elsedoneblock25768
+	; LineNumber: 2835
 	
 ; //TODO: AnimationSwimR
 	lda localVariable_UpdateControl_id
@@ -15317,7 +15347,7 @@ UpdateControl_elsedoneblock25730
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_colObj
-	; LineNumber: 2829
+	; LineNumber: 2836
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -15341,21 +15371,21 @@ UpdateControl_elsedoneblock25730
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_eraseObj
-	; LineNumber: 2830
+	; LineNumber: 2837
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_colObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne UpdateControl_localfailed25742
-	jmp UpdateControl_localsuccess25741
-UpdateControl_localfailed25742: ;keep
+	bne UpdateControl_localfailed25780
+	jmp UpdateControl_localsuccess25779
+UpdateControl_localfailed25780: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateControl_eraseObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock25739
-UpdateControl_localsuccess25741: ;keep
+	beq UpdateControl_elsedoneblock25777
+UpdateControl_localsuccess25779: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	clc
@@ -15364,14 +15394,14 @@ UpdateControl_localsuccess25741: ;keep
 	ldx localVariable_UpdateControl_controlId
 	lda controlList_controlObject_controlObject_b_controlPressDown,x 
 	; cmp #$00 ignored
-	beq UpdateControl_elsedoneblock25739
-UpdateControl_ConditionalTrueBlock25737: ;Main true block ;keep 
-	; LineNumber: 2829
+	beq UpdateControl_elsedoneblock25777
+UpdateControl_ConditionalTrueBlock25775: ;Main true block ;keep 
+	; LineNumber: 2836
 	lda #$7
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_moveDir
-UpdateControl_elsedoneblock25739
-	; LineNumber: 2832
+UpdateControl_elsedoneblock25777
+	; LineNumber: 2839
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
 	; CAST type NADA
@@ -15379,28 +15409,28 @@ UpdateControl_elsedoneblock25739
 	lda controlList_controlObject_controlObject_controlState,x 
 	; Compare with pure num / var optimization
 	cmp #$3;keep
-	bne UpdateControl_localfailed25829
-	jmp UpdateControl_ConditionalTrueBlock25745
-UpdateControl_localfailed25829
-	jmp UpdateControl_elseblock25746
-UpdateControl_ConditionalTrueBlock25745: ;Main true block ;keep 
-	; LineNumber: 2832
-	; LineNumber: 2833
+	bne UpdateControl_localfailed25867
+	jmp UpdateControl_ConditionalTrueBlock25783
+UpdateControl_localfailed25867
+	jmp UpdateControl_elseblock25784
+UpdateControl_ConditionalTrueBlock25783: ;Main true block ;keep 
+	; LineNumber: 2839
+	; LineNumber: 2840
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_moveDir
 	; Compare with pure num / var optimization
 	cmp #$3;keep
-	bne UpdateControl_localfailed25844
-	jmp UpdateControl_ConditionalTrueBlock25832
-UpdateControl_localfailed25844: ;keep
+	bne UpdateControl_localfailed25882
+	jmp UpdateControl_ConditionalTrueBlock25870
+UpdateControl_localfailed25882: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_moveDir
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne UpdateControl_elseblock25833
-UpdateControl_ConditionalTrueBlock25832: ;Main true block ;keep 
-	; LineNumber: 2832
+	bne UpdateControl_elseblock25871
+UpdateControl_ConditionalTrueBlock25870: ;Main true block ;keep 
+	; LineNumber: 2839
 	
 ; //TODO: AnimationSwimR
 	lda localVariable_UpdateControl_id
@@ -15410,24 +15440,24 @@ UpdateControl_ConditionalTrueBlock25832: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_SwitchAnimation_anim
 	jsr SwitchAnimation
-	jmp UpdateControl_elsedoneblock25834
-UpdateControl_elseblock25833
-	; LineNumber: 2833
+	jmp UpdateControl_elsedoneblock25872
+UpdateControl_elseblock25871
+	; LineNumber: 2840
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_moveDir
 	; Compare with pure num / var optimization
 	cmp #$5;keep
-	bne UpdateControl_localfailed25852
-	jmp UpdateControl_ConditionalTrueBlock25848
-UpdateControl_localfailed25852: ;keep
+	bne UpdateControl_localfailed25890
+	jmp UpdateControl_ConditionalTrueBlock25886
+UpdateControl_localfailed25890: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_moveDir
 	; Compare with pure num / var optimization
 	cmp #$7;keep
-	bne UpdateControl_elsedoneblock25850
-UpdateControl_ConditionalTrueBlock25848: ;Main true block ;keep 
-	; LineNumber: 2833
+	bne UpdateControl_elsedoneblock25888
+UpdateControl_ConditionalTrueBlock25886: ;Main true block ;keep 
+	; LineNumber: 2840
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_SwitchAnimation_id
@@ -15435,12 +15465,12 @@ UpdateControl_ConditionalTrueBlock25848: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_SwitchAnimation_anim
 	jsr SwitchAnimation
-UpdateControl_elsedoneblock25850
-UpdateControl_elsedoneblock25834
-	; LineNumber: 2836
-	jmp UpdateControl_elsedoneblock25747
-UpdateControl_elseblock25746
-	; LineNumber: 2835
+UpdateControl_elsedoneblock25888
+UpdateControl_elsedoneblock25872
+	; LineNumber: 2843
+	jmp UpdateControl_elsedoneblock25785
+UpdateControl_elseblock25784
+	; LineNumber: 2842
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
 	; CAST type NADA
@@ -15448,17 +15478,17 @@ UpdateControl_elseblock25746
 	lda controlList_controlObject_controlObject_controlState,x 
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne UpdateControl_elseblock25857
-UpdateControl_ConditionalTrueBlock25856: ;Main true block ;keep 
-	; LineNumber: 2836
-	; LineNumber: 2837
+	bne UpdateControl_elseblock25895
+UpdateControl_ConditionalTrueBlock25894: ;Main true block ;keep 
+	; LineNumber: 2843
+	; LineNumber: 2844
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateControl_moveDir
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock25889
-UpdateControl_ConditionalTrueBlock25887: ;Main true block ;keep 
-	; LineNumber: 2836
+	beq UpdateControl_elsedoneblock25927
+UpdateControl_ConditionalTrueBlock25925: ;Main true block ;keep 
+	; LineNumber: 2843
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_SwitchAnimation_id
@@ -15466,11 +15496,11 @@ UpdateControl_ConditionalTrueBlock25887: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_SwitchAnimation_anim
 	jsr SwitchAnimation
-UpdateControl_elsedoneblock25889
-	; LineNumber: 2839
-	jmp UpdateControl_elsedoneblock25858
-UpdateControl_elseblock25857
-	; LineNumber: 2838
+UpdateControl_elsedoneblock25927
+	; LineNumber: 2846
+	jmp UpdateControl_elsedoneblock25896
+UpdateControl_elseblock25895
+	; LineNumber: 2845
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
 	; CAST type NADA
@@ -15478,17 +15508,17 @@ UpdateControl_elseblock25857
 	lda controlList_controlObject_controlObject_controlState,x 
 	; Compare with pure num / var optimization
 	cmp #$2;keep
-	bne UpdateControl_elsedoneblock25896
-UpdateControl_ConditionalTrueBlock25894: ;Main true block ;keep 
-	; LineNumber: 2839
-	; LineNumber: 2840
+	bne UpdateControl_elsedoneblock25934
+UpdateControl_ConditionalTrueBlock25932: ;Main true block ;keep 
+	; LineNumber: 2846
+	; LineNumber: 2847
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateControl_moveDir
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock25908
-UpdateControl_ConditionalTrueBlock25906: ;Main true block ;keep 
-	; LineNumber: 2839
+	beq UpdateControl_elsedoneblock25946
+UpdateControl_ConditionalTrueBlock25944: ;Main true block ;keep 
+	; LineNumber: 2846
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_SwitchAnimation_id
@@ -15496,14 +15526,14 @@ UpdateControl_ConditionalTrueBlock25906: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_SwitchAnimation_anim
 	jsr SwitchAnimation
-UpdateControl_elsedoneblock25908
-	; LineNumber: 2842
+UpdateControl_elsedoneblock25946
+	; LineNumber: 2849
+UpdateControl_elsedoneblock25934
 UpdateControl_elsedoneblock25896
-UpdateControl_elsedoneblock25858
-UpdateControl_elsedoneblock25747
-	jmp UpdateControl_elsedoneblock24813
-UpdateControl_elseblock24812
-	; LineNumber: 2842
+UpdateControl_elsedoneblock25785
+	jmp UpdateControl_elsedoneblock24851
+UpdateControl_elseblock24850
+	; LineNumber: 2849
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
 	; CAST type NADA
@@ -15511,25 +15541,25 @@ UpdateControl_elseblock24812
 	lda controlList_controlObject_controlObject_controlState,x 
 	; Compare with pure num / var optimization
 	cmp #$5;keep
-	bne UpdateControl_localfailed26259
-	jmp UpdateControl_ConditionalTrueBlock25913
-UpdateControl_localfailed26259
-	jmp UpdateControl_elsedoneblock25915
-UpdateControl_ConditionalTrueBlock25913: ;Main true block ;keep 
-	; LineNumber: 2843
-	; LineNumber: 2844
+	bne UpdateControl_localfailed26297
+	jmp UpdateControl_ConditionalTrueBlock25951
+UpdateControl_localfailed26297
+	jmp UpdateControl_elsedoneblock25953
+UpdateControl_ConditionalTrueBlock25951: ;Main true block ;keep 
+	; LineNumber: 2850
+	; LineNumber: 2851
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_ClearLaserWithTag_tag
 	jsr ClearLaserWithTag
-	; LineNumber: 2845
+	; LineNumber: 2852
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_UpdateControl_id
 	lda objectList_gobject_gobject_laserEmitId,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_laserEmitId
-	; LineNumber: 2846
+	; LineNumber: 2853
 	; Binary clause Simplified: EQUALS
 	clc
 	; Load Byte array
@@ -15537,27 +15567,27 @@ UpdateControl_ConditionalTrueBlock25913: ;Main true block ;keep
 	ldx localVariable_UpdateControl_controlId
 	lda controlList_controlObject_controlObject_controlJumpStep,x 
 	; cmp #$00 ignored
-	bne UpdateControl_localfailed26378
-	jmp UpdateControl_ConditionalTrueBlock26262
-UpdateControl_localfailed26378
-	jmp UpdateControl_elseblock26263
-UpdateControl_ConditionalTrueBlock26262: ;Main true block ;keep 
-	; LineNumber: 2845
-	; LineNumber: 2847
+	bne UpdateControl_localfailed26416
+	jmp UpdateControl_ConditionalTrueBlock26300
+UpdateControl_localfailed26416
+	jmp UpdateControl_elseblock26301
+UpdateControl_ConditionalTrueBlock26300: ;Main true block ;keep 
+	; LineNumber: 2852
+	; LineNumber: 2854
 	lda #$4
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateControl_laserEmitId ; optimized, look out for bugs
 	sta laserList_laserObject_laserObject_currentLaser,x
-	; LineNumber: 2848
+	; LineNumber: 2855
 	lda #$ff
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_moveDir
-	; LineNumber: 2849
+	; LineNumber: 2856
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateControl_id ; optimized, look out for bugs
 	sta objectList_gobject_gobject_b_physFallDown,x
-	; LineNumber: 2850
+	; LineNumber: 2857
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_UpdateControl_controlId
@@ -15565,40 +15595,40 @@ UpdateControl_ConditionalTrueBlock26262: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_ClearLaserWithTag_tag
 	jsr ClearLaserWithTag
-	; LineNumber: 2851
+	; LineNumber: 2858
 	jsr GetId
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_laserId
-	; LineNumber: 2852
+	; LineNumber: 2859
 	; Binary clause Simplified: NOTEQUALS
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateControl_localfailed26385
-	jmp UpdateControl_ConditionalTrueBlock26381
-UpdateControl_localfailed26385
-	jmp UpdateControl_elsedoneblock26383
-UpdateControl_ConditionalTrueBlock26381: ;Main true block ;keep 
-	; LineNumber: 2851
-	; LineNumber: 2853
+	beq UpdateControl_localfailed26423
+	jmp UpdateControl_ConditionalTrueBlock26419
+UpdateControl_localfailed26423
+	jmp UpdateControl_elsedoneblock26421
+UpdateControl_ConditionalTrueBlock26419: ;Main true block ;keep 
+	; LineNumber: 2858
+	; LineNumber: 2860
 	lda #$5a
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateControl_laserId ; optimized, look out for bugs
 	sta objectList_gobject_gobject_rendTilePos,x
-	; LineNumber: 2854
+	; LineNumber: 2861
 	lda #$8
 	; Calling storevariable on generic assign expression
 	sta objectList_gobject_gobject_component0,x
-	; LineNumber: 2855
+	; LineNumber: 2862
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta objectList_gobject_gobject_component1,x
-	; LineNumber: 2856
+	; LineNumber: 2863
 	; Calling storevariable on generic assign expression
 	sta objectList_gobject_gobject_component2,x
-	; LineNumber: 2857
+	; LineNumber: 2864
 	; Calling storevariable on generic assign expression
 	sta objectList_gobject_gobject_component3,x
-	; LineNumber: 2858
+	; LineNumber: 2865
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_UpdateControl_id
@@ -15606,7 +15636,7 @@ UpdateControl_ConditionalTrueBlock26381: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateControl_laserId ; optimized, look out for bugs
 	sta objectList_gobject_gobject_transX,x
-	; LineNumber: 2859
+	; LineNumber: 2866
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_UpdateControl_id
@@ -15614,15 +15644,15 @@ UpdateControl_ConditionalTrueBlock26381: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateControl_laserId ; optimized, look out for bugs
 	sta objectList_gobject_gobject_transY,x
-	; LineNumber: 2860
+	; LineNumber: 2867
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta objectList_gobject_gobject_transZ,x
-	; LineNumber: 2861
+	; LineNumber: 2868
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta objectList_gobject_gobject_laserTag,x
-	; LineNumber: 2863
+	; LineNumber: 2870
 	lda localVariable_UpdateControl_laserId
 	; Calling storevariable on generic assign expression
 	sta localVariable_AddMapItem_Id
@@ -15641,7 +15671,7 @@ UpdateControl_ConditionalTrueBlock26381: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_AddMapItem_z
 	jsr AddMapItem
-	; LineNumber: 2864
+	; LineNumber: 2871
 	; 8 bit binop
 	; Add/sub where right value is constant number
 	; Load Byte array
@@ -15668,12 +15698,12 @@ UpdateControl_ConditionalTrueBlock26381: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_PaintPos_col
 	jsr PaintPos
-	; LineNumber: 2865
-UpdateControl_elsedoneblock26383
-	; LineNumber: 2867
-	jmp UpdateControl_elsedoneblock26264
-UpdateControl_elseblock26263
-	; LineNumber: 2866
+	; LineNumber: 2872
+UpdateControl_elsedoneblock26421
+	; LineNumber: 2874
+	jmp UpdateControl_elsedoneblock26302
+UpdateControl_elseblock26301
+	; LineNumber: 2873
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
 	; CAST type NADA
@@ -15681,16 +15711,16 @@ UpdateControl_elseblock26263
 	lda controlList_controlObject_controlObject_controlJumpStep,x 
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne UpdateControl_elseblock26390
-UpdateControl_ConditionalTrueBlock26389: ;Main true block ;keep 
-	; LineNumber: 2866
+	bne UpdateControl_elseblock26428
+UpdateControl_ConditionalTrueBlock26427: ;Main true block ;keep 
+	; LineNumber: 2873
 	lda #$5
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateControl_laserEmitId ; optimized, look out for bugs
 	sta laserList_laserObject_laserObject_currentLaser,x
-	jmp UpdateControl_elsedoneblock26391
-UpdateControl_elseblock26390
-	; LineNumber: 2867
+	jmp UpdateControl_elsedoneblock26429
+UpdateControl_elseblock26428
+	; LineNumber: 2874
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
 	; CAST type NADA
@@ -15698,16 +15728,16 @@ UpdateControl_elseblock26390
 	lda controlList_controlObject_controlObject_controlJumpStep,x 
 	; Compare with pure num / var optimization
 	cmp #$2;keep
-	bne UpdateControl_elseblock26446
-UpdateControl_ConditionalTrueBlock26445: ;Main true block ;keep 
-	; LineNumber: 2867
+	bne UpdateControl_elseblock26484
+UpdateControl_ConditionalTrueBlock26483: ;Main true block ;keep 
+	; LineNumber: 2874
 	lda #$5
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateControl_laserEmitId ; optimized, look out for bugs
 	sta laserList_laserObject_laserObject_currentLaser,x
-	jmp UpdateControl_elsedoneblock26447
-UpdateControl_elseblock26446
-	; LineNumber: 2868
+	jmp UpdateControl_elsedoneblock26485
+UpdateControl_elseblock26484
+	; LineNumber: 2875
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
 	; CAST type NADA
@@ -15715,16 +15745,16 @@ UpdateControl_elseblock26446
 	lda controlList_controlObject_controlObject_controlJumpStep,x 
 	; Compare with pure num / var optimization
 	cmp #$3;keep
-	bne UpdateControl_elseblock26474
-UpdateControl_ConditionalTrueBlock26473: ;Main true block ;keep 
-	; LineNumber: 2868
+	bne UpdateControl_elseblock26512
+UpdateControl_ConditionalTrueBlock26511: ;Main true block ;keep 
+	; LineNumber: 2875
 	lda #$2
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateControl_laserEmitId ; optimized, look out for bugs
 	sta laserList_laserObject_laserObject_currentLaser,x
-	jmp UpdateControl_elsedoneblock26475
-UpdateControl_elseblock26474
-	; LineNumber: 2869
+	jmp UpdateControl_elsedoneblock26513
+UpdateControl_elseblock26512
+	; LineNumber: 2876
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
 	; CAST type NADA
@@ -15732,19 +15762,19 @@ UpdateControl_elseblock26474
 	lda controlList_controlObject_controlObject_controlJumpStep,x 
 	; Compare with pure num / var optimization
 	cmp #$4;keep
-	bne UpdateControl_elsedoneblock26489
-UpdateControl_ConditionalTrueBlock26487: ;Main true block ;keep 
-	; LineNumber: 2869
+	bne UpdateControl_elsedoneblock26527
+UpdateControl_ConditionalTrueBlock26525: ;Main true block ;keep 
+	; LineNumber: 2876
 	lda #$1
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateControl_laserEmitId ; optimized, look out for bugs
 	sta laserList_laserObject_laserObject_currentLaser,x
-UpdateControl_elsedoneblock26489
-UpdateControl_elsedoneblock26475
-UpdateControl_elsedoneblock26447
-UpdateControl_elsedoneblock26391
-UpdateControl_elsedoneblock26264
-	; LineNumber: 2871
+UpdateControl_elsedoneblock26527
+UpdateControl_elsedoneblock26513
+UpdateControl_elsedoneblock26485
+UpdateControl_elsedoneblock26429
+UpdateControl_elsedoneblock26302
+	; LineNumber: 2878
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_DirectFire_id
@@ -15769,7 +15799,7 @@ UpdateControl_elsedoneblock26264
 	; Calling storevariable on generic assign expression
 	sta localVariable_DirectFire_bomb
 	jsr DirectFire
-	; LineNumber: 2872
+	; LineNumber: 2879
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_DirectFire_id
@@ -15794,7 +15824,7 @@ UpdateControl_elsedoneblock26264
 	; Calling storevariable on generic assign expression
 	sta localVariable_DirectFire_bomb
 	jsr DirectFire
-	; LineNumber: 2873
+	; LineNumber: 2880
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_DirectFire_id
@@ -15819,7 +15849,7 @@ UpdateControl_elsedoneblock26264
 	; Calling storevariable on generic assign expression
 	sta localVariable_DirectFire_bomb
 	jsr DirectFire
-	; LineNumber: 2874
+	; LineNumber: 2881
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_DirectFire_id
@@ -15843,30 +15873,30 @@ UpdateControl_elsedoneblock26264
 	; Calling storevariable on generic assign expression
 	sta localVariable_DirectFire_bomb
 	jsr DirectFire
-	; LineNumber: 2875
+	; LineNumber: 2882
 	; Test Inc dec D
 	ldx localVariable_UpdateControl_controlId
 	; Optimize byte array inc 
 	inc controlList_controlObject_controlObject_controlJumpStep,x
-	; LineNumber: 2876
+	; LineNumber: 2883
 	; Binary clause Simplified: GREATEREQUAL
 	; Load Byte array
 	; CAST type NADA
 	lda controlList_controlObject_controlObject_controlJumpStep,x 
 	; Compare with pure num / var optimization
 	cmp #$5;keep
-	bcc UpdateControl_localfailed26549
-	jmp UpdateControl_ConditionalTrueBlock26493
-UpdateControl_localfailed26549
-	jmp UpdateControl_elsedoneblock26495
-UpdateControl_ConditionalTrueBlock26493: ;Main true block ;keep 
-	; LineNumber: 2876
-	; LineNumber: 2877
+	bcc UpdateControl_localfailed26587
+	jmp UpdateControl_ConditionalTrueBlock26531
+UpdateControl_localfailed26587
+	jmp UpdateControl_elsedoneblock26533
+UpdateControl_ConditionalTrueBlock26531: ;Main true block ;keep 
+	; LineNumber: 2883
+	; LineNumber: 2884
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_ClearLaserWithTag_tag
 	jsr ClearLaserWithTag
-	; LineNumber: 2878
+	; LineNumber: 2885
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_UpdateControl_id
@@ -15890,7 +15920,7 @@ UpdateControl_ConditionalTrueBlock26493: ;Main true block ;keep
 	jsr GetObjectByPosFilterComp
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_laserId
-	; LineNumber: 2879
+	; LineNumber: 2886
 	; Calling storevariable on generic assign expression
 	sta localVariable_DeletePos_id
 	lda #$0
@@ -15899,7 +15929,7 @@ UpdateControl_ConditionalTrueBlock26493: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_DeletePos_isAnim
 	jsr DeletePos
-	; LineNumber: 2880
+	; LineNumber: 2887
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_DeletePos_id
@@ -15909,52 +15939,52 @@ UpdateControl_ConditionalTrueBlock26493: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_DeletePos_isAnim
 	jsr DeletePos
-	; LineNumber: 2881
+	; LineNumber: 2888
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateControl_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_controlJumpStep,x
-	; LineNumber: 2882
+	; LineNumber: 2889
 	lda #$8
 	; Calling storevariable on generic assign expression
 	sta controlList_controlObject_controlObject_controlState,x
-	; LineNumber: 2883
+	; LineNumber: 2890
 	; Binary clause Simplified: EQUALS
 	clc
 	lda gameMode
 	; cmp #$00 ignored
-	bne UpdateControl_elseblock26553
-UpdateControl_ConditionalTrueBlock26552: ;Main true block ;keep 
-	; LineNumber: 2882
+	bne UpdateControl_elseblock26591
+UpdateControl_ConditionalTrueBlock26590: ;Main true block ;keep 
+	; LineNumber: 2889
 	lda #$2
 	; Calling storevariable on generic assign expression
 	sta state
-	jmp UpdateControl_elsedoneblock26554
-UpdateControl_elseblock26553
-	; LineNumber: 2884
-	; LineNumber: 2885
+	jmp UpdateControl_elsedoneblock26592
+UpdateControl_elseblock26591
+	; LineNumber: 2891
+	; LineNumber: 2892
 	; Binary clause Simplified: NOTEQUALS
 	clc
 	lda levBothMustComplete
 	; cmp #$00 ignored
-	beq UpdateControl_elseblock26583
-UpdateControl_ConditionalTrueBlock26582: ;Main true block ;keep 
-	; LineNumber: 2884
+	beq UpdateControl_elseblock26621
+UpdateControl_ConditionalTrueBlock26620: ;Main true block ;keep 
+	; LineNumber: 2891
 	lda #$2
 	; Calling storevariable on generic assign expression
 	sta state
-	jmp UpdateControl_elsedoneblock26584
-UpdateControl_elseblock26583
-	; LineNumber: 2886
-	; LineNumber: 2887
+	jmp UpdateControl_elsedoneblock26622
+UpdateControl_elseblock26621
+	; LineNumber: 2893
+	; LineNumber: 2894
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
 	; CAST type NADA
 	lda controlList_controlObject_controlObject_controlState +$0 ; array with const index optimization 
 	; Compare with pure num / var optimization
 	cmp #$8;keep
-	bne UpdateControl_elsedoneblock26599
-UpdateControl_localsuccess26601: ;keep
+	bne UpdateControl_elsedoneblock26637
+UpdateControl_localsuccess26639: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
@@ -15962,25 +15992,25 @@ UpdateControl_localsuccess26601: ;keep
 	lda controlList_controlObject_controlObject_controlState +$1 ; array with const index optimization 
 	; Compare with pure num / var optimization
 	cmp #$8;keep
-	bne UpdateControl_elsedoneblock26599
-UpdateControl_ConditionalTrueBlock26597: ;Main true block ;keep 
-	; LineNumber: 2886
+	bne UpdateControl_elsedoneblock26637
+UpdateControl_ConditionalTrueBlock26635: ;Main true block ;keep 
+	; LineNumber: 2893
 	lda #$2
 	; Calling storevariable on generic assign expression
 	sta state
-UpdateControl_elsedoneblock26599
-	; LineNumber: 2888
-UpdateControl_elsedoneblock26584
-	; LineNumber: 2889
-UpdateControl_elsedoneblock26554
-	; LineNumber: 2890
-UpdateControl_elsedoneblock26495
-	; LineNumber: 2891
-UpdateControl_elsedoneblock25915
-UpdateControl_elsedoneblock24813
-UpdateControl_elsedoneblock21943
-UpdateControl_elsedoneblock16143
-	; LineNumber: 2894
+UpdateControl_elsedoneblock26637
+	; LineNumber: 2895
+UpdateControl_elsedoneblock26622
+	; LineNumber: 2896
+UpdateControl_elsedoneblock26592
+	; LineNumber: 2897
+UpdateControl_elsedoneblock26533
+	; LineNumber: 2898
+UpdateControl_elsedoneblock25953
+UpdateControl_elsedoneblock24851
+UpdateControl_elsedoneblock21981
+UpdateControl_elsedoneblock16181
+	; LineNumber: 2901
 	
 ; // Do Moves
 	; Load Byte array
@@ -15989,82 +16019,23 @@ UpdateControl_elsedoneblock16143
 	lda objectList_gobject_gobject_transX,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_oldx
-	; LineNumber: 2895
+	; LineNumber: 2902
 	; Load Byte array
 	; CAST type NADA
 	lda objectList_gobject_gobject_transY,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_oldy
-	; LineNumber: 2897
+	; LineNumber: 2904
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateControl_moveDir
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateControl_localfailed26669
-	jmp UpdateControl_ConditionalTrueBlock26604
-UpdateControl_localfailed26669
-	jmp UpdateControl_elsedoneblock26606
-UpdateControl_ConditionalTrueBlock26604: ;Main true block ;keep 
-	; LineNumber: 2897
-	; LineNumber: 2898
-	; Binary clause Simplified: EQUALS
-	; Load Byte array
-	; CAST type NADA
-	ldx localVariable_UpdateControl_controlId
-	lda controlList_controlObject_controlObject_controlState,x 
-	; Compare with pure num / var optimization
-	cmp #$3;keep
-	bne UpdateControl_localfailed26703
-	jmp UpdateControl_ConditionalTrueBlock26672
-UpdateControl_localfailed26703
-	jmp UpdateControl_elseblock26673
-UpdateControl_ConditionalTrueBlock26672: ;Main true block ;keep 
-	; LineNumber: 2897
-	; LineNumber: 2900
-	lda #<sndSwim
-	ldy #>sndSwim
-	; Calling storevariable on generic assign expression
-	sta psnd+2
-	sty psnd+3
-	; LineNumber: 2900
-	lda #$80
-	; Calling storevariable on generic assign expression
-	sta vsnd+$1
-	; LineNumber: 2900
-	lda #$0
-	; Calling storevariable on generic assign expression
-	sta vsndTime+$1
-	; LineNumber: 2902
-	jmp UpdateControl_elsedoneblock26674
-UpdateControl_elseblock26673
-	; LineNumber: 2901
-	; Binary clause Simplified: EQUALS
-	; Load Byte array
-	; CAST type NADA
-	ldx localVariable_UpdateControl_controlId
-	lda controlList_controlObject_controlObject_controlState,x 
-	; Compare with pure num / var optimization
-	cmp #$4;keep
-	bne UpdateControl_elseblock26708
-UpdateControl_ConditionalTrueBlock26707: ;Main true block ;keep 
-	; LineNumber: 2902
+	beq UpdateControl_localfailed26707
+	jmp UpdateControl_ConditionalTrueBlock26642
+UpdateControl_localfailed26707
+	jmp UpdateControl_elsedoneblock26644
+UpdateControl_ConditionalTrueBlock26642: ;Main true block ;keep 
 	; LineNumber: 2904
-	lda #<sndJump
-	ldy #>sndJump
-	; Calling storevariable on generic assign expression
-	sta psnd+2
-	sty psnd+3
-	; LineNumber: 2904
-	lda #$80
-	; Calling storevariable on generic assign expression
-	sta vsnd+$1
-	; LineNumber: 2904
-	lda #$0
-	; Calling storevariable on generic assign expression
-	sta vsndTime+$1
-	; LineNumber: 2906
-	jmp UpdateControl_elsedoneblock26709
-UpdateControl_elseblock26708
 	; LineNumber: 2905
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
@@ -16072,10 +16043,69 @@ UpdateControl_elseblock26708
 	ldx localVariable_UpdateControl_controlId
 	lda controlList_controlObject_controlObject_controlState,x 
 	; Compare with pure num / var optimization
+	cmp #$3;keep
+	bne UpdateControl_localfailed26741
+	jmp UpdateControl_ConditionalTrueBlock26710
+UpdateControl_localfailed26741
+	jmp UpdateControl_elseblock26711
+UpdateControl_ConditionalTrueBlock26710: ;Main true block ;keep 
+	; LineNumber: 2904
+	; LineNumber: 2907
+	lda #<sndSwim
+	ldy #>sndSwim
+	; Calling storevariable on generic assign expression
+	sta psnd+2
+	sty psnd+3
+	; LineNumber: 2907
+	lda #$80
+	; Calling storevariable on generic assign expression
+	sta vsnd+$1
+	; LineNumber: 2907
+	lda #$0
+	; Calling storevariable on generic assign expression
+	sta vsndTime+$1
+	; LineNumber: 2909
+	jmp UpdateControl_elsedoneblock26712
+UpdateControl_elseblock26711
+	; LineNumber: 2908
+	; Binary clause Simplified: EQUALS
+	; Load Byte array
+	; CAST type NADA
+	ldx localVariable_UpdateControl_controlId
+	lda controlList_controlObject_controlObject_controlState,x 
+	; Compare with pure num / var optimization
+	cmp #$4;keep
+	bne UpdateControl_elseblock26746
+UpdateControl_ConditionalTrueBlock26745: ;Main true block ;keep 
+	; LineNumber: 2909
+	; LineNumber: 2911
+	lda #<sndJump
+	ldy #>sndJump
+	; Calling storevariable on generic assign expression
+	sta psnd+2
+	sty psnd+3
+	; LineNumber: 2911
+	lda #$80
+	; Calling storevariable on generic assign expression
+	sta vsnd+$1
+	; LineNumber: 2911
+	lda #$0
+	; Calling storevariable on generic assign expression
+	sta vsndTime+$1
+	; LineNumber: 2913
+	jmp UpdateControl_elsedoneblock26747
+UpdateControl_elseblock26746
+	; LineNumber: 2912
+	; Binary clause Simplified: EQUALS
+	; Load Byte array
+	; CAST type NADA
+	ldx localVariable_UpdateControl_controlId
+	lda controlList_controlObject_controlObject_controlState,x 
+	; Compare with pure num / var optimization
 	cmp #$2;keep
-	bne UpdateControl_localfailed26729
-	jmp UpdateControl_ConditionalTrueBlock26724
-UpdateControl_localfailed26729: ;keep
+	bne UpdateControl_localfailed26767
+	jmp UpdateControl_ConditionalTrueBlock26762
+UpdateControl_localfailed26767: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
@@ -16084,143 +16114,57 @@ UpdateControl_localfailed26729: ;keep
 	lda controlList_controlObject_controlObject_controlState,x 
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne UpdateControl_elseblock26725
-UpdateControl_ConditionalTrueBlock26724: ;Main true block ;keep 
-	; LineNumber: 2905
-	; LineNumber: 2908
+	bne UpdateControl_elseblock26763
+UpdateControl_ConditionalTrueBlock26762: ;Main true block ;keep 
+	; LineNumber: 2912
+	; LineNumber: 2915
 	lda #<sndLadder
 	ldy #>sndLadder
 	; Calling storevariable on generic assign expression
 	sta psnd+2
 	sty psnd+3
-	; LineNumber: 2908
+	; LineNumber: 2915
 	lda #$80
 	; Calling storevariable on generic assign expression
 	sta vsnd+$1
-	; LineNumber: 2908
+	; LineNumber: 2915
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta vsndTime+$1
-	; LineNumber: 2910
-	jmp UpdateControl_elsedoneblock26726
-UpdateControl_elseblock26725
-	; LineNumber: 2909
-	; LineNumber: 2912
+	; LineNumber: 2917
+	jmp UpdateControl_elsedoneblock26764
+UpdateControl_elseblock26763
+	; LineNumber: 2916
+	; LineNumber: 2919
 	lda #<sndStep
 	ldy #>sndStep
 	; Calling storevariable on generic assign expression
 	sta psnd+8
 	sty psnd+9
-	; LineNumber: 2912
+	; LineNumber: 2919
 	lda #$14
 	; Calling storevariable on generic assign expression
 	sta vsnd+$4
-	; LineNumber: 2912
+	; LineNumber: 2919
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta vsndTime+$4
-	; LineNumber: 2913
-UpdateControl_elsedoneblock26726
-UpdateControl_elsedoneblock26709
-UpdateControl_elsedoneblock26674
-	; LineNumber: 2914
-UpdateControl_elsedoneblock26606
-	; LineNumber: 2917
+	; LineNumber: 2920
+UpdateControl_elsedoneblock26764
+UpdateControl_elsedoneblock26747
+UpdateControl_elsedoneblock26712
+	; LineNumber: 2921
+UpdateControl_elsedoneblock26644
+	; LineNumber: 2924
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_moveDir
 	; Compare with pure num / var optimization
 	cmp #$3;keep
-	bne UpdateControl_localfailed27435
-	jmp UpdateControl_ConditionalTrueBlock26733
-UpdateControl_localfailed27435
-	jmp UpdateControl_elseblock26734
-UpdateControl_ConditionalTrueBlock26733: ;Main true block ;keep 
-	; LineNumber: 2917
-	; LineNumber: 2918
-	lda localVariable_UpdateControl_id
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_id
-	; Load Byte array
-	; CAST type NADA
-	ldx localVariable_UpdateControl_id
-	lda objectList_gobject_gobject_transZ,x 
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_z
-	lda #$3
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_pos
-	lda #$10
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_comp
-	lda #$0
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_compIdx
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_b_norm
-	jsr GetObjArea
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdateControl_eraseObj
-	; LineNumber: 2919
-	; Binary clause Simplified: NOTEQUALS
-	; Compare with pure num / var optimization
-	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock27440
-UpdateControl_ConditionalTrueBlock27438: ;Main true block ;keep 
-	; LineNumber: 2918
-	lda localVariable_UpdateControl_eraseObj
-	; Calling storevariable on generic assign expression
-	sta localVariable_DeletePos_id
-	lda #$0
-	; Calling storevariable on generic assign expression
-	sta localVariable_DeletePos_isDyn
-	; Calling storevariable on generic assign expression
-	sta localVariable_DeletePos_isAnim
-	jsr DeletePos
-UpdateControl_elsedoneblock27440
-	; LineNumber: 2920
-	lda localVariable_UpdateControl_gravity
-	; Calling storevariable on generic assign expression
-	sta localVariable_ConvertShift_gravity
-	lda #$3
-	; Calling storevariable on generic assign expression
-	sta localVariable_ConvertShift_pos
-	jsr ConvertShift
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdateControl_shift
-	sty localVariable_UpdateControl_shift+1
-	; LineNumber: 2921
-	lda localVariable_UpdateControl_oldx
-	; Calling storevariable on generic assign expression
-	sta localVariable_CalcPositionX_startx
-	lda localVariable_UpdateControl_shift+1
-	; Calling storevariable on generic assign expression
-	sta localVariable_CalcPositionX_offsetx
-	jsr CalcPositionX
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdateControl_newx
-	; LineNumber: 2922
-	lda localVariable_UpdateControl_oldy
-	; Calling storevariable on generic assign expression
-	sta localVariable_CalcPositionY_starty
-	lda localVariable_UpdateControl_shift
-	; Calling storevariable on generic assign expression
-	sta localVariable_CalcPositionY_offsety
-	jsr CalcPositionY
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdateControl_newy
-	; LineNumber: 2924
-	jmp UpdateControl_elsedoneblock26735
-UpdateControl_elseblock26734
-	; LineNumber: 2923
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdateControl_moveDir
-	; Compare with pure num / var optimization
-	cmp #$5;keep
-	bne UpdateControl_localfailed27791
-	jmp UpdateControl_ConditionalTrueBlock27445
-UpdateControl_localfailed27791
-	jmp UpdateControl_elseblock27446
-UpdateControl_ConditionalTrueBlock27445: ;Main true block ;keep 
+	bne UpdateControl_localfailed27473
+	jmp UpdateControl_ConditionalTrueBlock26771
+UpdateControl_localfailed27473
+	jmp UpdateControl_elseblock26772
+UpdateControl_ConditionalTrueBlock26771: ;Main true block ;keep 
 	; LineNumber: 2924
 	; LineNumber: 2925
 	lda localVariable_UpdateControl_id
@@ -16232,7 +16176,7 @@ UpdateControl_ConditionalTrueBlock27445: ;Main true block ;keep
 	lda objectList_gobject_gobject_transZ,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_z
-	lda #$5
+	lda #$3
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_pos
 	lda #$10
@@ -16250,8 +16194,8 @@ UpdateControl_ConditionalTrueBlock27445: ;Main true block ;keep
 	; Binary clause Simplified: NOTEQUALS
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock27796
-UpdateControl_ConditionalTrueBlock27794: ;Main true block ;keep 
+	beq UpdateControl_elsedoneblock27478
+UpdateControl_ConditionalTrueBlock27476: ;Main true block ;keep 
 	; LineNumber: 2925
 	lda localVariable_UpdateControl_eraseObj
 	; Calling storevariable on generic assign expression
@@ -16262,12 +16206,12 @@ UpdateControl_ConditionalTrueBlock27794: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_DeletePos_isAnim
 	jsr DeletePos
-UpdateControl_elsedoneblock27796
+UpdateControl_elsedoneblock27478
 	; LineNumber: 2927
 	lda localVariable_UpdateControl_gravity
 	; Calling storevariable on generic assign expression
 	sta localVariable_ConvertShift_gravity
-	lda #$5
+	lda #$3
 	; Calling storevariable on generic assign expression
 	sta localVariable_ConvertShift_pos
 	jsr ConvertShift
@@ -16295,20 +16239,106 @@ UpdateControl_elsedoneblock27796
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_newy
 	; LineNumber: 2931
-	jmp UpdateControl_elsedoneblock27447
-UpdateControl_elseblock27446
+	jmp UpdateControl_elsedoneblock26773
+UpdateControl_elseblock26772
 	; LineNumber: 2930
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdateControl_moveDir
+	; Compare with pure num / var optimization
+	cmp #$5;keep
+	bne UpdateControl_localfailed27829
+	jmp UpdateControl_ConditionalTrueBlock27483
+UpdateControl_localfailed27829
+	jmp UpdateControl_elseblock27484
+UpdateControl_ConditionalTrueBlock27483: ;Main true block ;keep 
+	; LineNumber: 2931
+	; LineNumber: 2932
+	lda localVariable_UpdateControl_id
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_id
+	; Load Byte array
+	; CAST type NADA
+	ldx localVariable_UpdateControl_id
+	lda objectList_gobject_gobject_transZ,x 
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_z
+	lda #$5
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_pos
+	lda #$10
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_comp
+	lda #$0
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_compIdx
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_b_norm
+	jsr GetObjArea
+	; Calling storevariable on generic assign expression
+	sta localVariable_UpdateControl_eraseObj
+	; LineNumber: 2933
+	; Binary clause Simplified: NOTEQUALS
+	; Compare with pure num / var optimization
+	cmp #$ff;keep
+	beq UpdateControl_elsedoneblock27834
+UpdateControl_ConditionalTrueBlock27832: ;Main true block ;keep 
+	; LineNumber: 2932
+	lda localVariable_UpdateControl_eraseObj
+	; Calling storevariable on generic assign expression
+	sta localVariable_DeletePos_id
+	lda #$0
+	; Calling storevariable on generic assign expression
+	sta localVariable_DeletePos_isDyn
+	; Calling storevariable on generic assign expression
+	sta localVariable_DeletePos_isAnim
+	jsr DeletePos
+UpdateControl_elsedoneblock27834
+	; LineNumber: 2934
+	lda localVariable_UpdateControl_gravity
+	; Calling storevariable on generic assign expression
+	sta localVariable_ConvertShift_gravity
+	lda #$5
+	; Calling storevariable on generic assign expression
+	sta localVariable_ConvertShift_pos
+	jsr ConvertShift
+	; Calling storevariable on generic assign expression
+	sta localVariable_UpdateControl_shift
+	sty localVariable_UpdateControl_shift+1
+	; LineNumber: 2935
+	lda localVariable_UpdateControl_oldx
+	; Calling storevariable on generic assign expression
+	sta localVariable_CalcPositionX_startx
+	lda localVariable_UpdateControl_shift+1
+	; Calling storevariable on generic assign expression
+	sta localVariable_CalcPositionX_offsetx
+	jsr CalcPositionX
+	; Calling storevariable on generic assign expression
+	sta localVariable_UpdateControl_newx
+	; LineNumber: 2936
+	lda localVariable_UpdateControl_oldy
+	; Calling storevariable on generic assign expression
+	sta localVariable_CalcPositionY_starty
+	lda localVariable_UpdateControl_shift
+	; Calling storevariable on generic assign expression
+	sta localVariable_CalcPositionY_offsety
+	jsr CalcPositionY
+	; Calling storevariable on generic assign expression
+	sta localVariable_UpdateControl_newy
+	; LineNumber: 2938
+	jmp UpdateControl_elsedoneblock27485
+UpdateControl_elseblock27484
+	; LineNumber: 2937
 	; Binary clause Simplified: EQUALS
 	clc
 	lda localVariable_UpdateControl_moveDir
 	; cmp #$00 ignored
-	bne UpdateControl_localfailed27969
-	jmp UpdateControl_ConditionalTrueBlock27801
-UpdateControl_localfailed27969
-	jmp UpdateControl_elseblock27802
-UpdateControl_ConditionalTrueBlock27801: ;Main true block ;keep 
-	; LineNumber: 2931
-	; LineNumber: 2932
+	bne UpdateControl_localfailed28007
+	jmp UpdateControl_ConditionalTrueBlock27839
+UpdateControl_localfailed28007
+	jmp UpdateControl_elseblock27840
+UpdateControl_ConditionalTrueBlock27839: ;Main true block ;keep 
+	; LineNumber: 2938
+	; LineNumber: 2939
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -16332,7 +16362,7 @@ UpdateControl_ConditionalTrueBlock27801: ;Main true block ;keep
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_eraseObj
-	; LineNumber: 2933
+	; LineNumber: 2940
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -16356,14 +16386,14 @@ UpdateControl_ConditionalTrueBlock27801: ;Main true block ;keep
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_eraseObj2
-	; LineNumber: 2934
+	; LineNumber: 2941
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateControl_eraseObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock27974
-UpdateControl_ConditionalTrueBlock27972: ;Main true block ;keep 
-	; LineNumber: 2933
+	beq UpdateControl_elsedoneblock28012
+UpdateControl_ConditionalTrueBlock28010: ;Main true block ;keep 
+	; LineNumber: 2940
 	lda localVariable_UpdateControl_eraseObj
 	; Calling storevariable on generic assign expression
 	sta localVariable_DeletePos_id
@@ -16373,15 +16403,15 @@ UpdateControl_ConditionalTrueBlock27972: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_DeletePos_isAnim
 	jsr DeletePos
-UpdateControl_elsedoneblock27974
-	; LineNumber: 2935
+UpdateControl_elsedoneblock28012
+	; LineNumber: 2942
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateControl_eraseObj2
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock27980
-UpdateControl_ConditionalTrueBlock27978: ;Main true block ;keep 
-	; LineNumber: 2934
+	beq UpdateControl_elsedoneblock28018
+UpdateControl_ConditionalTrueBlock28016: ;Main true block ;keep 
+	; LineNumber: 2941
 	lda localVariable_UpdateControl_eraseObj2
 	; Calling storevariable on generic assign expression
 	sta localVariable_DeletePos_id
@@ -16391,8 +16421,8 @@ UpdateControl_ConditionalTrueBlock27978: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_DeletePos_isAnim
 	jsr DeletePos
-UpdateControl_elsedoneblock27980
-	; LineNumber: 2936
+UpdateControl_elsedoneblock28018
+	; LineNumber: 2943
 	lda localVariable_UpdateControl_gravity
 	; Calling storevariable on generic assign expression
 	sta localVariable_ConvertShift_gravity
@@ -16403,7 +16433,7 @@ UpdateControl_elsedoneblock27980
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_shift
 	sty localVariable_UpdateControl_shift+1
-	; LineNumber: 2937
+	; LineNumber: 2944
 	lda localVariable_UpdateControl_oldx
 	; Calling storevariable on generic assign expression
 	sta localVariable_CalcPositionX_startx
@@ -16413,7 +16443,7 @@ UpdateControl_elsedoneblock27980
 	jsr CalcPositionX
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_newx
-	; LineNumber: 2938
+	; LineNumber: 2945
 	lda localVariable_UpdateControl_oldy
 	; Calling storevariable on generic assign expression
 	sta localVariable_CalcPositionY_starty
@@ -16423,21 +16453,21 @@ UpdateControl_elsedoneblock27980
 	jsr CalcPositionY
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_newy
-	; LineNumber: 2940
-	jmp UpdateControl_elsedoneblock27803
-UpdateControl_elseblock27802
-	; LineNumber: 2939
+	; LineNumber: 2947
+	jmp UpdateControl_elsedoneblock27841
+UpdateControl_elseblock27840
+	; LineNumber: 2946
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_moveDir
 	; Compare with pure num / var optimization
 	cmp #$2;keep
-	bne UpdateControl_localfailed28061
-	jmp UpdateControl_ConditionalTrueBlock27985
-UpdateControl_localfailed28061
-	jmp UpdateControl_elseblock27986
-UpdateControl_ConditionalTrueBlock27985: ;Main true block ;keep 
-	; LineNumber: 2940
-	; LineNumber: 2941
+	bne UpdateControl_localfailed28099
+	jmp UpdateControl_ConditionalTrueBlock28023
+UpdateControl_localfailed28099
+	jmp UpdateControl_elseblock28024
+UpdateControl_ConditionalTrueBlock28023: ;Main true block ;keep 
+	; LineNumber: 2947
+	; LineNumber: 2948
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -16461,7 +16491,7 @@ UpdateControl_ConditionalTrueBlock27985: ;Main true block ;keep
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_eraseObj
-	; LineNumber: 2942
+	; LineNumber: 2949
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -16485,119 +16515,33 @@ UpdateControl_ConditionalTrueBlock27985: ;Main true block ;keep
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_eraseObj2
-	; LineNumber: 2943
-	; Binary clause Simplified: NOTEQUALS
-	lda localVariable_UpdateControl_eraseObj
-	; Compare with pure num / var optimization
-	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock28066
-UpdateControl_ConditionalTrueBlock28064: ;Main true block ;keep 
-	; LineNumber: 2942
-	lda localVariable_UpdateControl_eraseObj
-	; Calling storevariable on generic assign expression
-	sta localVariable_DeletePos_id
-	lda #$0
-	; Calling storevariable on generic assign expression
-	sta localVariable_DeletePos_isDyn
-	; Calling storevariable on generic assign expression
-	sta localVariable_DeletePos_isAnim
-	jsr DeletePos
-UpdateControl_elsedoneblock28066
-	; LineNumber: 2944
-	; Binary clause Simplified: NOTEQUALS
-	lda localVariable_UpdateControl_eraseObj2
-	; Compare with pure num / var optimization
-	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock28072
-UpdateControl_ConditionalTrueBlock28070: ;Main true block ;keep 
-	; LineNumber: 2943
-	lda localVariable_UpdateControl_eraseObj2
-	; Calling storevariable on generic assign expression
-	sta localVariable_DeletePos_id
-	lda #$0
-	; Calling storevariable on generic assign expression
-	sta localVariable_DeletePos_isDyn
-	; Calling storevariable on generic assign expression
-	sta localVariable_DeletePos_isAnim
-	jsr DeletePos
-UpdateControl_elsedoneblock28072
-	; LineNumber: 2945
-	lda localVariable_UpdateControl_gravity
-	; Calling storevariable on generic assign expression
-	sta localVariable_ConvertShift_gravity
-	lda #$2
-	; Calling storevariable on generic assign expression
-	sta localVariable_ConvertShift_pos
-	jsr ConvertShift
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdateControl_shift
-	sty localVariable_UpdateControl_shift+1
-	; LineNumber: 2946
-	lda localVariable_UpdateControl_oldx
-	; Calling storevariable on generic assign expression
-	sta localVariable_CalcPositionX_startx
-	lda localVariable_UpdateControl_shift+1
-	; Calling storevariable on generic assign expression
-	sta localVariable_CalcPositionX_offsetx
-	jsr CalcPositionX
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdateControl_newx
-	; LineNumber: 2947
-	lda localVariable_UpdateControl_oldy
-	; Calling storevariable on generic assign expression
-	sta localVariable_CalcPositionY_starty
-	lda localVariable_UpdateControl_shift
-	; Calling storevariable on generic assign expression
-	sta localVariable_CalcPositionY_offsety
-	jsr CalcPositionY
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdateControl_newy
-	; LineNumber: 2949
-	jmp UpdateControl_elsedoneblock27987
-UpdateControl_elseblock27986
-	; LineNumber: 2948
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdateControl_moveDir
-	; Compare with pure num / var optimization
-	cmp #$1;keep
-	bne UpdateControl_localfailed28107
-	jmp UpdateControl_ConditionalTrueBlock28077
-UpdateControl_localfailed28107
-	jmp UpdateControl_elseblock28078
-UpdateControl_ConditionalTrueBlock28077: ;Main true block ;keep 
-	; LineNumber: 2949
 	; LineNumber: 2950
-	lda localVariable_UpdateControl_id
+	; Binary clause Simplified: NOTEQUALS
+	lda localVariable_UpdateControl_eraseObj
+	; Compare with pure num / var optimization
+	cmp #$ff;keep
+	beq UpdateControl_elsedoneblock28104
+UpdateControl_ConditionalTrueBlock28102: ;Main true block ;keep 
+	; LineNumber: 2949
+	lda localVariable_UpdateControl_eraseObj
 	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_id
-	; Load Byte array
-	; CAST type NADA
-	ldx localVariable_UpdateControl_id
-	lda objectList_gobject_gobject_transZ,x 
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_z
-	lda #$1
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_pos
-	lda #$10
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_comp
+	sta localVariable_DeletePos_id
 	lda #$0
 	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_compIdx
+	sta localVariable_DeletePos_isDyn
 	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_b_norm
-	jsr GetObjArea
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdateControl_eraseObj
+	sta localVariable_DeletePos_isAnim
+	jsr DeletePos
+UpdateControl_elsedoneblock28104
 	; LineNumber: 2951
 	; Binary clause Simplified: NOTEQUALS
+	lda localVariable_UpdateControl_eraseObj2
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock28112
-UpdateControl_ConditionalTrueBlock28110: ;Main true block ;keep 
+	beq UpdateControl_elsedoneblock28110
+UpdateControl_ConditionalTrueBlock28108: ;Main true block ;keep 
 	; LineNumber: 2950
-	lda localVariable_UpdateControl_eraseObj
+	lda localVariable_UpdateControl_eraseObj2
 	; Calling storevariable on generic assign expression
 	sta localVariable_DeletePos_id
 	lda #$0
@@ -16606,12 +16550,12 @@ UpdateControl_ConditionalTrueBlock28110: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_DeletePos_isAnim
 	jsr DeletePos
-UpdateControl_elsedoneblock28112
+UpdateControl_elsedoneblock28110
 	; LineNumber: 2952
 	lda localVariable_UpdateControl_gravity
 	; Calling storevariable on generic assign expression
 	sta localVariable_ConvertShift_gravity
-	lda #$1
+	lda #$2
 	; Calling storevariable on generic assign expression
 	sta localVariable_ConvertShift_pos
 	jsr ConvertShift
@@ -16639,18 +16583,18 @@ UpdateControl_elsedoneblock28112
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_newy
 	; LineNumber: 2956
-	jmp UpdateControl_elsedoneblock28079
-UpdateControl_elseblock28078
+	jmp UpdateControl_elsedoneblock28025
+UpdateControl_elseblock28024
 	; LineNumber: 2955
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateControl_moveDir
 	; Compare with pure num / var optimization
-	cmp #$7;keep
-	bne UpdateControl_localfailed28127
-	jmp UpdateControl_ConditionalTrueBlock28117
-UpdateControl_localfailed28127
-	jmp UpdateControl_elsedoneblock28119
-UpdateControl_ConditionalTrueBlock28117: ;Main true block ;keep 
+	cmp #$1;keep
+	bne UpdateControl_localfailed28145
+	jmp UpdateControl_ConditionalTrueBlock28115
+UpdateControl_localfailed28145
+	jmp UpdateControl_elseblock28116
+UpdateControl_ConditionalTrueBlock28115: ;Main true block ;keep 
 	; LineNumber: 2956
 	; LineNumber: 2957
 	lda localVariable_UpdateControl_id
@@ -16662,7 +16606,7 @@ UpdateControl_ConditionalTrueBlock28117: ;Main true block ;keep
 	lda objectList_gobject_gobject_transZ,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_z
-	lda #$7
+	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_pos
 	lda #$10
@@ -16680,8 +16624,8 @@ UpdateControl_ConditionalTrueBlock28117: ;Main true block ;keep
 	; Binary clause Simplified: NOTEQUALS
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock28132
-UpdateControl_ConditionalTrueBlock28130: ;Main true block ;keep 
+	beq UpdateControl_elsedoneblock28150
+UpdateControl_ConditionalTrueBlock28148: ;Main true block ;keep 
 	; LineNumber: 2957
 	lda localVariable_UpdateControl_eraseObj
 	; Calling storevariable on generic assign expression
@@ -16692,12 +16636,12 @@ UpdateControl_ConditionalTrueBlock28130: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_DeletePos_isAnim
 	jsr DeletePos
-UpdateControl_elsedoneblock28132
+UpdateControl_elsedoneblock28150
 	; LineNumber: 2959
 	lda localVariable_UpdateControl_gravity
 	; Calling storevariable on generic assign expression
 	sta localVariable_ConvertShift_gravity
-	lda #$7
+	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_ConvertShift_pos
 	jsr ConvertShift
@@ -16724,27 +16668,113 @@ UpdateControl_elsedoneblock28132
 	jsr CalcPositionY
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_newy
-	; LineNumber: 2962
-UpdateControl_elsedoneblock28119
-UpdateControl_elsedoneblock28079
-UpdateControl_elsedoneblock27987
-UpdateControl_elsedoneblock27803
-UpdateControl_elsedoneblock27447
-UpdateControl_elsedoneblock26735
 	; LineNumber: 2963
+	jmp UpdateControl_elsedoneblock28117
+UpdateControl_elseblock28116
+	; LineNumber: 2962
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdateControl_moveDir
+	; Compare with pure num / var optimization
+	cmp #$7;keep
+	bne UpdateControl_localfailed28165
+	jmp UpdateControl_ConditionalTrueBlock28155
+UpdateControl_localfailed28165
+	jmp UpdateControl_elsedoneblock28157
+UpdateControl_ConditionalTrueBlock28155: ;Main true block ;keep 
+	; LineNumber: 2963
+	; LineNumber: 2964
+	lda localVariable_UpdateControl_id
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_id
+	; Load Byte array
+	; CAST type NADA
+	ldx localVariable_UpdateControl_id
+	lda objectList_gobject_gobject_transZ,x 
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_z
+	lda #$7
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_pos
+	lda #$10
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_comp
+	lda #$0
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_compIdx
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_b_norm
+	jsr GetObjArea
+	; Calling storevariable on generic assign expression
+	sta localVariable_UpdateControl_eraseObj
+	; LineNumber: 2965
+	; Binary clause Simplified: NOTEQUALS
+	; Compare with pure num / var optimization
+	cmp #$ff;keep
+	beq UpdateControl_elsedoneblock28170
+UpdateControl_ConditionalTrueBlock28168: ;Main true block ;keep 
+	; LineNumber: 2964
+	lda localVariable_UpdateControl_eraseObj
+	; Calling storevariable on generic assign expression
+	sta localVariable_DeletePos_id
+	lda #$0
+	; Calling storevariable on generic assign expression
+	sta localVariable_DeletePos_isDyn
+	; Calling storevariable on generic assign expression
+	sta localVariable_DeletePos_isAnim
+	jsr DeletePos
+UpdateControl_elsedoneblock28170
+	; LineNumber: 2966
+	lda localVariable_UpdateControl_gravity
+	; Calling storevariable on generic assign expression
+	sta localVariable_ConvertShift_gravity
+	lda #$7
+	; Calling storevariable on generic assign expression
+	sta localVariable_ConvertShift_pos
+	jsr ConvertShift
+	; Calling storevariable on generic assign expression
+	sta localVariable_UpdateControl_shift
+	sty localVariable_UpdateControl_shift+1
+	; LineNumber: 2967
+	lda localVariable_UpdateControl_oldx
+	; Calling storevariable on generic assign expression
+	sta localVariable_CalcPositionX_startx
+	lda localVariable_UpdateControl_shift+1
+	; Calling storevariable on generic assign expression
+	sta localVariable_CalcPositionX_offsetx
+	jsr CalcPositionX
+	; Calling storevariable on generic assign expression
+	sta localVariable_UpdateControl_newx
+	; LineNumber: 2968
+	lda localVariable_UpdateControl_oldy
+	; Calling storevariable on generic assign expression
+	sta localVariable_CalcPositionY_starty
+	lda localVariable_UpdateControl_shift
+	; Calling storevariable on generic assign expression
+	sta localVariable_CalcPositionY_offsety
+	jsr CalcPositionY
+	; Calling storevariable on generic assign expression
+	sta localVariable_UpdateControl_newy
+	; LineNumber: 2969
+UpdateControl_elsedoneblock28157
+UpdateControl_elsedoneblock28117
+UpdateControl_elsedoneblock28025
+UpdateControl_elsedoneblock27841
+UpdateControl_elsedoneblock27485
+UpdateControl_elsedoneblock26773
+	; LineNumber: 2970
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateControl_newx
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateControl_elsedoneblock28138
-UpdateControl_ConditionalTrueBlock28136: ;Main true block ;keep 
-	; LineNumber: 2962
-	; LineNumber: 2964
+	beq UpdateControl_elsedoneblock28176
+UpdateControl_ConditionalTrueBlock28174: ;Main true block ;keep 
+	; LineNumber: 2969
+	; LineNumber: 2971
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_CycleAnimation_id
 	jsr CycleAnimation
-	; LineNumber: 2965
+	; LineNumber: 2972
 	lda localVariable_UpdateControl_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_SetPos_i
@@ -16767,52 +16797,52 @@ UpdateControl_ConditionalTrueBlock28136: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_SetPos_z
 	jsr SetPos
-	; LineNumber: 2966
-UpdateControl_elsedoneblock28138
-	; LineNumber: 2967
+	; LineNumber: 2973
+UpdateControl_elsedoneblock28176
+	; LineNumber: 2974
 	rts
 end_procedure_UpdateControl
 	; NodeProcedureDecl 3
 	; ***********  Defining procedure : UpdatePhysics
 	;    Procedure type : User-defined procedure
-	; LineNumber: 2980
-	; LineNumber: 2971
+	; LineNumber: 2987
+	; LineNumber: 2978
 localVariable_UpdatePhysics_fall	dc.b	0
-	; LineNumber: 2971
+	; LineNumber: 2978
 localVariable_UpdatePhysics_fallDown	dc.b	0
-	; LineNumber: 2971
+	; LineNumber: 2978
 localVariable_UpdatePhysics_fallLeftDown	dc.b	0
-	; LineNumber: 2971
+	; LineNumber: 2978
 localVariable_UpdatePhysics_fallRightDown	dc.b	0
-	; LineNumber: 2972
-localVariable_UpdatePhysics_colObj	dc.b	0
-	; LineNumber: 2972
-localVariable_UpdatePhysics_eraseObj	dc.b	0
-	; LineNumber: 2972
-localVariable_UpdatePhysics_destroyObj	dc.b	0
-	; LineNumber: 2973
-localVariable_UpdatePhysics_oldx	dc.b	$ff
-	; LineNumber: 2973
-localVariable_UpdatePhysics_oldy	dc.b	$ff
-	; LineNumber: 2973
-localVariable_UpdatePhysics_newx	dc.b	$ff
-	; LineNumber: 2973
-localVariable_UpdatePhysics_newy	dc.b	$ff
-	; LineNumber: 2974
-localVariable_UpdatePhysics_gravity	dc.b	0
-	; LineNumber: 2975
-localVariable_UpdatePhysics_shift	dc.w	0
-	; LineNumber: 2976
-localVariable_UpdatePhysics_shiftDir	dc.b	0
-	; LineNumber: 2977
-localVariable_UpdatePhysics_doPhys	dc.b	0
 	; LineNumber: 2979
-localVariable_UpdatePhysics_controlId	dc.b	0
-	; LineNumber: 2969
-localVariable_UpdatePhysics_id	dc.b	0
-UpdatePhysics_block28141
-UpdatePhysics
+localVariable_UpdatePhysics_colObj	dc.b	0
+	; LineNumber: 2979
+localVariable_UpdatePhysics_eraseObj	dc.b	0
+	; LineNumber: 2979
+localVariable_UpdatePhysics_destroyObj	dc.b	0
+	; LineNumber: 2980
+localVariable_UpdatePhysics_oldx	dc.b	$ff
+	; LineNumber: 2980
+localVariable_UpdatePhysics_oldy	dc.b	$ff
+	; LineNumber: 2980
+localVariable_UpdatePhysics_newx	dc.b	$ff
+	; LineNumber: 2980
+localVariable_UpdatePhysics_newy	dc.b	$ff
 	; LineNumber: 2981
+localVariable_UpdatePhysics_gravity	dc.b	0
+	; LineNumber: 2982
+localVariable_UpdatePhysics_shift	dc.w	0
+	; LineNumber: 2983
+localVariable_UpdatePhysics_shiftDir	dc.b	0
+	; LineNumber: 2984
+localVariable_UpdatePhysics_doPhys	dc.b	0
+	; LineNumber: 2986
+localVariable_UpdatePhysics_controlId	dc.b	0
+	; LineNumber: 2976
+localVariable_UpdatePhysics_id	dc.b	0
+UpdatePhysics_block28179
+UpdatePhysics
+	; LineNumber: 2988
 	
 ; //	c:boolean;
 	; Load Byte array
@@ -16821,44 +16851,44 @@ UpdatePhysics
 	lda objectList_gobject_gobject_physGravity,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_gravity
-	; LineNumber: 2982
+	; LineNumber: 2989
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_fallDown
-	; LineNumber: 2983
+	; LineNumber: 2990
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_fallLeftDown
-	; LineNumber: 2984
+	; LineNumber: 2991
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_fallRightDown
-	; LineNumber: 2985
+	; LineNumber: 2992
 	lda #$ff
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_fall
-	; LineNumber: 2986
+	; LineNumber: 2993
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_doPhys
-	; LineNumber: 2987
+	; LineNumber: 2994
 	; Load Byte array
 	; CAST type NADA
 	lda objectList_gobject_gobject_controlId,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_controlId
-	; LineNumber: 2992
+	; LineNumber: 2999
 	; Binary clause Simplified: NOTEQUALS
 	clc
 	; Load Byte array
 	; CAST type NADA
 	lda objectList_gobject_gobject_b_physFallDown,x 
 	; cmp #$00 ignored
-	beq UpdatePhysics_localfailed45373
-	jmp UpdatePhysics_ConditionalTrueBlock28143
-UpdatePhysics_localfailed45373
-	jmp UpdatePhysics_elsedoneblock28145
-UpdatePhysics_ConditionalTrueBlock28143: ;Main true block ;keep 
-	; LineNumber: 2992
-	; LineNumber: 2993
+	beq UpdatePhysics_localfailed45411
+	jmp UpdatePhysics_ConditionalTrueBlock28181
+UpdatePhysics_localfailed45411
+	jmp UpdatePhysics_elsedoneblock28183
+UpdatePhysics_ConditionalTrueBlock28181: ;Main true block ;keep 
+	; LineNumber: 2999
+	; LineNumber: 3000
 	
 ; //	if(controlId <> $FF) then begin
 ; //		controlList[controlId].b_fallDown := false;
@@ -16886,22 +16916,22 @@ UpdatePhysics_ConditionalTrueBlock28143: ;Main true block ;keep
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_colObj
-	; LineNumber: 2994
+	; LineNumber: 3001
 	; Binary clause Simplified: EQUALS
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne UpdatePhysics_localfailed45407
-	jmp UpdatePhysics_ConditionalTrueBlock45376
-UpdatePhysics_localfailed45407
-	jmp UpdatePhysics_elseblock45377
-UpdatePhysics_ConditionalTrueBlock45376: ;Main true block ;keep 
-	; LineNumber: 2993
+	bne UpdatePhysics_localfailed45445
+	jmp UpdatePhysics_ConditionalTrueBlock45414
+UpdatePhysics_localfailed45445
+	jmp UpdatePhysics_elseblock45415
+UpdatePhysics_ConditionalTrueBlock45414: ;Main true block ;keep 
+	; LineNumber: 3000
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_fallDown
-	jmp UpdatePhysics_elsedoneblock45378
-UpdatePhysics_elseblock45377
-	; LineNumber: 2994
+	jmp UpdatePhysics_elsedoneblock45416
+UpdatePhysics_elseblock45415
+	; LineNumber: 3001
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdatePhysics_id
 	; Calling storevariable on generic assign expression
@@ -16926,8 +16956,8 @@ UpdatePhysics_elseblock45377
 	jsr GetObjArea
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne UpdatePhysics_elseblock45412
-UpdatePhysics_localsuccess45425: ;keep
+	bne UpdatePhysics_elseblock45450
+UpdatePhysics_localsuccess45463: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdatePhysics_id
@@ -16953,8 +16983,8 @@ UpdatePhysics_localsuccess45425: ;keep
 	jsr GetObjArea
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne UpdatePhysics_elseblock45412
-UpdatePhysics_localsuccess45424: ;keep
+	bne UpdatePhysics_elseblock45450
+UpdatePhysics_localsuccess45462: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	clc
@@ -16963,15 +16993,15 @@ UpdatePhysics_localsuccess45424: ;keep
 	ldx localVariable_UpdatePhysics_id
 	lda objectList_gobject_gobject_b_physRollLeftRight,x 
 	; cmp #$00 ignored
-	beq UpdatePhysics_elseblock45412
-UpdatePhysics_ConditionalTrueBlock45411: ;Main true block ;keep 
-	; LineNumber: 2994
+	beq UpdatePhysics_elseblock45450
+UpdatePhysics_ConditionalTrueBlock45449: ;Main true block ;keep 
+	; LineNumber: 3001
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_fallLeftDown
-	jmp UpdatePhysics_elsedoneblock45413
-UpdatePhysics_elseblock45412
-	; LineNumber: 2995
+	jmp UpdatePhysics_elsedoneblock45451
+UpdatePhysics_elseblock45450
+	; LineNumber: 3002
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdatePhysics_id
 	; Calling storevariable on generic assign expression
@@ -16996,8 +17026,8 @@ UpdatePhysics_elseblock45412
 	jsr GetObjArea
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne UpdatePhysics_elsedoneblock45431
-UpdatePhysics_localsuccess45434: ;keep
+	bne UpdatePhysics_elsedoneblock45469
+UpdatePhysics_localsuccess45472: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdatePhysics_id
@@ -17023,8 +17053,8 @@ UpdatePhysics_localsuccess45434: ;keep
 	jsr GetObjArea
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne UpdatePhysics_elsedoneblock45431
-UpdatePhysics_localsuccess45433: ;keep
+	bne UpdatePhysics_elsedoneblock45469
+UpdatePhysics_localsuccess45471: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	clc
@@ -17033,33 +17063,33 @@ UpdatePhysics_localsuccess45433: ;keep
 	ldx localVariable_UpdatePhysics_id
 	lda objectList_gobject_gobject_b_physRollLeftRight,x 
 	; cmp #$00 ignored
-	beq UpdatePhysics_elsedoneblock45431
-UpdatePhysics_ConditionalTrueBlock45429: ;Main true block ;keep 
-	; LineNumber: 2995
+	beq UpdatePhysics_elsedoneblock45469
+UpdatePhysics_ConditionalTrueBlock45467: ;Main true block ;keep 
+	; LineNumber: 3002
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_fallRightDown
-UpdatePhysics_elsedoneblock45431
-UpdatePhysics_elsedoneblock45413
-UpdatePhysics_elsedoneblock45378
-	; LineNumber: 2997
+UpdatePhysics_elsedoneblock45469
+UpdatePhysics_elsedoneblock45451
+UpdatePhysics_elsedoneblock45416
+	; LineNumber: 3004
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdatePhysics_colObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdatePhysics_localfailed53655
-	jmp UpdatePhysics_ConditionalTrueBlock45437
-UpdatePhysics_localfailed53655
-	jmp UpdatePhysics_elsedoneblock45439
-UpdatePhysics_ConditionalTrueBlock45437: ;Main true block ;keep 
-	; LineNumber: 2997
-	; LineNumber: 2998
+	beq UpdatePhysics_localfailed53693
+	jmp UpdatePhysics_ConditionalTrueBlock45475
+UpdatePhysics_localfailed53693
+	jmp UpdatePhysics_elsedoneblock45477
+UpdatePhysics_ConditionalTrueBlock45475: ;Main true block ;keep 
+	; LineNumber: 3004
+	; LineNumber: 3005
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdatePhysics_controlId
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdatePhysics_elsedoneblock53660
-UpdatePhysics_localsuccess53662: ;keep
+	beq UpdatePhysics_elsedoneblock53698
+UpdatePhysics_localsuccess53700: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	clc
@@ -17068,33 +17098,33 @@ UpdatePhysics_localsuccess53662: ;keep
 	ldx localVariable_UpdatePhysics_controlId
 	lda controlList_controlObject_controlObject_b_fallDown,x 
 	; cmp #$00 ignored
-	beq UpdatePhysics_elsedoneblock53660
-UpdatePhysics_ConditionalTrueBlock53658: ;Main true block ;keep 
-	; LineNumber: 2997
-	; LineNumber: 3000
+	beq UpdatePhysics_elsedoneblock53698
+UpdatePhysics_ConditionalTrueBlock53696: ;Main true block ;keep 
+	; LineNumber: 3004
+	; LineNumber: 3007
 	lda #<sndFall
 	ldy #>sndFall
 	; Calling storevariable on generic assign expression
 	sta psnd+6
 	sty psnd+7
-	; LineNumber: 3000
+	; LineNumber: 3007
 	lda #$f0
 	; Calling storevariable on generic assign expression
 	sta vsnd+$3
-	; LineNumber: 3000
+	; LineNumber: 3007
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta vsndTime+$3
-	; LineNumber: 3001
-UpdatePhysics_elsedoneblock53660
-	; LineNumber: 3002
+	; LineNumber: 3008
+UpdatePhysics_elsedoneblock53698
+	; LineNumber: 3009
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_UpdatePhysics_colObj
 	lda objectList_gobject_gobject_shiftDir,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_shiftDir
-	; LineNumber: 3003
+	; LineNumber: 3010
 	; Binary clause Simplified: EQUALS
 	; 8 bit binop
 	; Add/sub where right value is constant number
@@ -17105,13 +17135,13 @@ UpdatePhysics_elsedoneblock53660
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$4;keep
-	bne UpdatePhysics_localfailed57769
-	jmp UpdatePhysics_ConditionalTrueBlock53665
-UpdatePhysics_localfailed57769
-	jmp UpdatePhysics_elsedoneblock53667
-UpdatePhysics_ConditionalTrueBlock53665: ;Main true block ;keep 
-	; LineNumber: 3002
-	; LineNumber: 3004
+	bne UpdatePhysics_localfailed57807
+	jmp UpdatePhysics_ConditionalTrueBlock53703
+UpdatePhysics_localfailed57807
+	jmp UpdatePhysics_elsedoneblock53705
+UpdatePhysics_ConditionalTrueBlock53703: ;Main true block ;keep 
+	; LineNumber: 3009
+	; LineNumber: 3011
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdatePhysics_id
 	; Calling storevariable on generic assign expression
@@ -17137,9 +17167,9 @@ UpdatePhysics_ConditionalTrueBlock53665: ;Main true block ;keep
 	jsr GetObjArea
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne UpdatePhysics_localfailed59823
-	jmp UpdatePhysics_ConditionalTrueBlock57772
-UpdatePhysics_localfailed59823: ;keep
+	bne UpdatePhysics_localfailed59861
+	jmp UpdatePhysics_ConditionalTrueBlock57810
+UpdatePhysics_localfailed59861: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdatePhysics_id
@@ -17166,205 +17196,205 @@ UpdatePhysics_localfailed59823: ;keep
 	jsr GetObjArea
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdatePhysics_localfailed59822
-	jmp UpdatePhysics_ConditionalTrueBlock57772
-UpdatePhysics_localfailed59822
-	jmp UpdatePhysics_elsedoneblock57774
-UpdatePhysics_ConditionalTrueBlock57772: ;Main true block ;keep 
-	; LineNumber: 3005
-	; LineNumber: 3006
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdatePhysics_gravity
-	; Compare with pure num / var optimization
-	cmp #$7;keep
-	bne UpdatePhysics_localfailed60849
-UpdatePhysics_localsuccess60850: ;keep
-	; ; logical AND, second requirement
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdatePhysics_shiftDir
-	; Compare with pure num / var optimization
-	cmp #$3;keep
-	bne UpdatePhysics_localfailed60849
-	jmp UpdatePhysics_ConditionalTrueBlock59826
-UpdatePhysics_localfailed60849
-	jmp UpdatePhysics_elseblock59827
-UpdatePhysics_ConditionalTrueBlock59826: ;Main true block ;keep 
-	; LineNumber: 3005
-	lda #$3
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdatePhysics_fall
-	jmp UpdatePhysics_elsedoneblock59828
-UpdatePhysics_elseblock59827
-	; LineNumber: 3006
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdatePhysics_gravity
-	; Compare with pure num / var optimization
-	cmp #$7;keep
-	bne UpdatePhysics_localfailed61363
-UpdatePhysics_localsuccess61364: ;keep
-	; ; logical AND, second requirement
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdatePhysics_shiftDir
-	; Compare with pure num / var optimization
-	cmp #$5;keep
-	bne UpdatePhysics_localfailed61363
-	jmp UpdatePhysics_ConditionalTrueBlock60854
-UpdatePhysics_localfailed61363
-	jmp UpdatePhysics_elseblock60855
-UpdatePhysics_ConditionalTrueBlock60854: ;Main true block ;keep 
-	; LineNumber: 3006
-	lda #$5
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdatePhysics_fall
-	jmp UpdatePhysics_elsedoneblock60856
-UpdatePhysics_elseblock60855
-	; LineNumber: 3007
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdatePhysics_gravity
-	; Compare with pure num / var optimization
-	cmp #$3;keep
-	bne UpdatePhysics_localfailed61620
-UpdatePhysics_localsuccess61621: ;keep
-	; ; logical AND, second requirement
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdatePhysics_shiftDir
-	; Compare with pure num / var optimization
-	cmp #$1;keep
-	bne UpdatePhysics_localfailed61620
-	jmp UpdatePhysics_ConditionalTrueBlock61368
-UpdatePhysics_localfailed61620
-	jmp UpdatePhysics_elseblock61369
-UpdatePhysics_ConditionalTrueBlock61368: ;Main true block ;keep 
-	; LineNumber: 3007
-	lda #$3
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdatePhysics_fall
-	jmp UpdatePhysics_elsedoneblock61370
-UpdatePhysics_elseblock61369
-	; LineNumber: 3008
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdatePhysics_gravity
-	; Compare with pure num / var optimization
-	cmp #$3;keep
-	bne UpdatePhysics_elseblock61626
-UpdatePhysics_localsuccess61749: ;keep
-	; ; logical AND, second requirement
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdatePhysics_shiftDir
-	; Compare with pure num / var optimization
-	cmp #$7;keep
-	bne UpdatePhysics_elseblock61626
-UpdatePhysics_ConditionalTrueBlock61625: ;Main true block ;keep 
-	; LineNumber: 3008
-	lda #$5
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdatePhysics_fall
-	jmp UpdatePhysics_elsedoneblock61627
-UpdatePhysics_elseblock61626
-	; LineNumber: 3009
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdatePhysics_gravity
-	; Compare with pure num / var optimization
-	cmp #$1;keep
-	bne UpdatePhysics_elseblock61754
-UpdatePhysics_localsuccess61813: ;keep
-	; ; logical AND, second requirement
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdatePhysics_shiftDir
-	; Compare with pure num / var optimization
-	cmp #$3;keep
-	bne UpdatePhysics_elseblock61754
-UpdatePhysics_ConditionalTrueBlock61753: ;Main true block ;keep 
-	; LineNumber: 3009
-	lda #$5
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdatePhysics_fall
-	jmp UpdatePhysics_elsedoneblock61755
-UpdatePhysics_elseblock61754
-	; LineNumber: 3010
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdatePhysics_gravity
-	; Compare with pure num / var optimization
-	cmp #$1;keep
-	bne UpdatePhysics_elseblock61818
-UpdatePhysics_localsuccess61845: ;keep
-	; ; logical AND, second requirement
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdatePhysics_shiftDir
-	; Compare with pure num / var optimization
-	cmp #$5;keep
-	bne UpdatePhysics_elseblock61818
-UpdatePhysics_ConditionalTrueBlock61817: ;Main true block ;keep 
-	; LineNumber: 3010
-	lda #$3
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdatePhysics_fall
-	jmp UpdatePhysics_elsedoneblock61819
-UpdatePhysics_elseblock61818
-	; LineNumber: 3011
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdatePhysics_gravity
-	; Compare with pure num / var optimization
-	cmp #$5;keep
-	bne UpdatePhysics_elseblock61850
-UpdatePhysics_localsuccess61861: ;keep
-	; ; logical AND, second requirement
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdatePhysics_shiftDir
-	; Compare with pure num / var optimization
-	cmp #$1;keep
-	bne UpdatePhysics_elseblock61850
-UpdatePhysics_ConditionalTrueBlock61849: ;Main true block ;keep 
-	; LineNumber: 3011
-	lda #$5
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdatePhysics_fall
-	jmp UpdatePhysics_elsedoneblock61851
-UpdatePhysics_elseblock61850
+	beq UpdatePhysics_localfailed59860
+	jmp UpdatePhysics_ConditionalTrueBlock57810
+UpdatePhysics_localfailed59860
+	jmp UpdatePhysics_elsedoneblock57812
+UpdatePhysics_ConditionalTrueBlock57810: ;Main true block ;keep 
 	; LineNumber: 3012
+	; LineNumber: 3013
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdatePhysics_gravity
 	; Compare with pure num / var optimization
-	cmp #$5;keep
-	bne UpdatePhysics_elsedoneblock61867
-UpdatePhysics_localsuccess61869: ;keep
+	cmp #$7;keep
+	bne UpdatePhysics_localfailed60887
+UpdatePhysics_localsuccess60888: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdatePhysics_shiftDir
 	; Compare with pure num / var optimization
-	cmp #$7;keep
-	bne UpdatePhysics_elsedoneblock61867
-UpdatePhysics_ConditionalTrueBlock61865: ;Main true block ;keep 
+	cmp #$3;keep
+	bne UpdatePhysics_localfailed60887
+	jmp UpdatePhysics_ConditionalTrueBlock59864
+UpdatePhysics_localfailed60887
+	jmp UpdatePhysics_elseblock59865
+UpdatePhysics_ConditionalTrueBlock59864: ;Main true block ;keep 
 	; LineNumber: 3012
 	lda #$3
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_fall
-UpdatePhysics_elsedoneblock61867
-UpdatePhysics_elsedoneblock61851
-UpdatePhysics_elsedoneblock61819
-UpdatePhysics_elsedoneblock61755
-UpdatePhysics_elsedoneblock61627
-UpdatePhysics_elsedoneblock61370
-UpdatePhysics_elsedoneblock60856
-UpdatePhysics_elsedoneblock59828
+	jmp UpdatePhysics_elsedoneblock59866
+UpdatePhysics_elseblock59865
+	; LineNumber: 3013
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdatePhysics_gravity
+	; Compare with pure num / var optimization
+	cmp #$7;keep
+	bne UpdatePhysics_localfailed61401
+UpdatePhysics_localsuccess61402: ;keep
+	; ; logical AND, second requirement
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdatePhysics_shiftDir
+	; Compare with pure num / var optimization
+	cmp #$5;keep
+	bne UpdatePhysics_localfailed61401
+	jmp UpdatePhysics_ConditionalTrueBlock60892
+UpdatePhysics_localfailed61401
+	jmp UpdatePhysics_elseblock60893
+UpdatePhysics_ConditionalTrueBlock60892: ;Main true block ;keep 
+	; LineNumber: 3013
+	lda #$5
+	; Calling storevariable on generic assign expression
+	sta localVariable_UpdatePhysics_fall
+	jmp UpdatePhysics_elsedoneblock60894
+UpdatePhysics_elseblock60893
 	; LineNumber: 3014
-UpdatePhysics_elsedoneblock57774
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdatePhysics_gravity
+	; Compare with pure num / var optimization
+	cmp #$3;keep
+	bne UpdatePhysics_localfailed61658
+UpdatePhysics_localsuccess61659: ;keep
+	; ; logical AND, second requirement
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdatePhysics_shiftDir
+	; Compare with pure num / var optimization
+	cmp #$1;keep
+	bne UpdatePhysics_localfailed61658
+	jmp UpdatePhysics_ConditionalTrueBlock61406
+UpdatePhysics_localfailed61658
+	jmp UpdatePhysics_elseblock61407
+UpdatePhysics_ConditionalTrueBlock61406: ;Main true block ;keep 
+	; LineNumber: 3014
+	lda #$3
+	; Calling storevariable on generic assign expression
+	sta localVariable_UpdatePhysics_fall
+	jmp UpdatePhysics_elsedoneblock61408
+UpdatePhysics_elseblock61407
+	; LineNumber: 3015
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdatePhysics_gravity
+	; Compare with pure num / var optimization
+	cmp #$3;keep
+	bne UpdatePhysics_elseblock61664
+UpdatePhysics_localsuccess61787: ;keep
+	; ; logical AND, second requirement
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdatePhysics_shiftDir
+	; Compare with pure num / var optimization
+	cmp #$7;keep
+	bne UpdatePhysics_elseblock61664
+UpdatePhysics_ConditionalTrueBlock61663: ;Main true block ;keep 
+	; LineNumber: 3015
+	lda #$5
+	; Calling storevariable on generic assign expression
+	sta localVariable_UpdatePhysics_fall
+	jmp UpdatePhysics_elsedoneblock61665
+UpdatePhysics_elseblock61664
 	; LineNumber: 3016
-UpdatePhysics_elsedoneblock53667
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdatePhysics_gravity
+	; Compare with pure num / var optimization
+	cmp #$1;keep
+	bne UpdatePhysics_elseblock61792
+UpdatePhysics_localsuccess61851: ;keep
+	; ; logical AND, second requirement
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdatePhysics_shiftDir
+	; Compare with pure num / var optimization
+	cmp #$3;keep
+	bne UpdatePhysics_elseblock61792
+UpdatePhysics_ConditionalTrueBlock61791: ;Main true block ;keep 
+	; LineNumber: 3016
+	lda #$5
+	; Calling storevariable on generic assign expression
+	sta localVariable_UpdatePhysics_fall
+	jmp UpdatePhysics_elsedoneblock61793
+UpdatePhysics_elseblock61792
 	; LineNumber: 3017
-UpdatePhysics_elsedoneblock45439
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdatePhysics_gravity
+	; Compare with pure num / var optimization
+	cmp #$1;keep
+	bne UpdatePhysics_elseblock61856
+UpdatePhysics_localsuccess61883: ;keep
+	; ; logical AND, second requirement
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdatePhysics_shiftDir
+	; Compare with pure num / var optimization
+	cmp #$5;keep
+	bne UpdatePhysics_elseblock61856
+UpdatePhysics_ConditionalTrueBlock61855: ;Main true block ;keep 
+	; LineNumber: 3017
+	lda #$3
+	; Calling storevariable on generic assign expression
+	sta localVariable_UpdatePhysics_fall
+	jmp UpdatePhysics_elsedoneblock61857
+UpdatePhysics_elseblock61856
+	; LineNumber: 3018
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdatePhysics_gravity
+	; Compare with pure num / var optimization
+	cmp #$5;keep
+	bne UpdatePhysics_elseblock61888
+UpdatePhysics_localsuccess61899: ;keep
+	; ; logical AND, second requirement
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdatePhysics_shiftDir
+	; Compare with pure num / var optimization
+	cmp #$1;keep
+	bne UpdatePhysics_elseblock61888
+UpdatePhysics_ConditionalTrueBlock61887: ;Main true block ;keep 
+	; LineNumber: 3018
+	lda #$5
+	; Calling storevariable on generic assign expression
+	sta localVariable_UpdatePhysics_fall
+	jmp UpdatePhysics_elsedoneblock61889
+UpdatePhysics_elseblock61888
 	; LineNumber: 3019
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdatePhysics_gravity
+	; Compare with pure num / var optimization
+	cmp #$5;keep
+	bne UpdatePhysics_elsedoneblock61905
+UpdatePhysics_localsuccess61907: ;keep
+	; ; logical AND, second requirement
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdatePhysics_shiftDir
+	; Compare with pure num / var optimization
+	cmp #$7;keep
+	bne UpdatePhysics_elsedoneblock61905
+UpdatePhysics_ConditionalTrueBlock61903: ;Main true block ;keep 
+	; LineNumber: 3019
+	lda #$3
+	; Calling storevariable on generic assign expression
+	sta localVariable_UpdatePhysics_fall
+UpdatePhysics_elsedoneblock61905
+UpdatePhysics_elsedoneblock61889
+UpdatePhysics_elsedoneblock61857
+UpdatePhysics_elsedoneblock61793
+UpdatePhysics_elsedoneblock61665
+UpdatePhysics_elsedoneblock61408
+UpdatePhysics_elsedoneblock60894
+UpdatePhysics_elsedoneblock59866
+	; LineNumber: 3021
+UpdatePhysics_elsedoneblock57812
+	; LineNumber: 3023
+UpdatePhysics_elsedoneblock53705
+	; LineNumber: 3024
+UpdatePhysics_elsedoneblock45477
+	; LineNumber: 3026
 	; Binary clause Simplified: NOTEQUALS
 	clc
 	lda localVariable_UpdatePhysics_fallDown
 	; cmp #$00 ignored
-	beq UpdatePhysics_localfailed61967
-	jmp UpdatePhysics_ConditionalTrueBlock61872
-UpdatePhysics_localfailed61967
-	jmp UpdatePhysics_elseblock61873
-UpdatePhysics_ConditionalTrueBlock61872: ;Main true block ;keep 
-	; LineNumber: 3019
-	; LineNumber: 3020
+	beq UpdatePhysics_localfailed62005
+	jmp UpdatePhysics_ConditionalTrueBlock61910
+UpdatePhysics_localfailed62005
+	jmp UpdatePhysics_elseblock61911
+UpdatePhysics_ConditionalTrueBlock61910: ;Main true block ;keep 
+	; LineNumber: 3026
+	; LineNumber: 3027
 	lda localVariable_UpdatePhysics_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_SwitchAnimation_id
@@ -17372,137 +17402,137 @@ UpdatePhysics_ConditionalTrueBlock61872: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_SwitchAnimation_anim
 	jsr SwitchAnimation
-	; LineNumber: 3021
+	; LineNumber: 3028
 	lda #$7
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_fall
-	; LineNumber: 3022
+	; LineNumber: 3029
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdatePhysics_controlId
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdatePhysics_elsedoneblock61972
-UpdatePhysics_ConditionalTrueBlock61970: ;Main true block ;keep 
-	; LineNumber: 3022
-	; LineNumber: 3023
+	beq UpdatePhysics_elsedoneblock62010
+UpdatePhysics_ConditionalTrueBlock62008: ;Main true block ;keep 
+	; LineNumber: 3029
+	; LineNumber: 3030
 	lda #$1
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdatePhysics_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_fallDown,x
-	; LineNumber: 3024
-UpdatePhysics_elsedoneblock61972
-	; LineNumber: 3026
-	jmp UpdatePhysics_elsedoneblock61874
-UpdatePhysics_elseblock61873
-	; LineNumber: 3025
+	; LineNumber: 3031
+UpdatePhysics_elsedoneblock62010
+	; LineNumber: 3033
+	jmp UpdatePhysics_elsedoneblock61912
+UpdatePhysics_elseblock61911
+	; LineNumber: 3032
 	; Binary clause Simplified: NOTEQUALS
 	clc
 	lda localVariable_UpdatePhysics_fallLeftDown
 	; cmp #$00 ignored
-	beq UpdatePhysics_elseblock61978
-UpdatePhysics_ConditionalTrueBlock61977: ;Main true block ;keep 
-	; LineNumber: 3026
-	; LineNumber: 3027
+	beq UpdatePhysics_elseblock62016
+UpdatePhysics_ConditionalTrueBlock62015: ;Main true block ;keep 
+	; LineNumber: 3033
+	; LineNumber: 3034
 	lda #$6
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_fall
-	; LineNumber: 3028
+	; LineNumber: 3035
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdatePhysics_controlId
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdatePhysics_elsedoneblock62024
-UpdatePhysics_ConditionalTrueBlock62022: ;Main true block ;keep 
-	; LineNumber: 3028
-	; LineNumber: 3029
+	beq UpdatePhysics_elsedoneblock62062
+UpdatePhysics_ConditionalTrueBlock62060: ;Main true block ;keep 
+	; LineNumber: 3035
+	; LineNumber: 3036
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdatePhysics_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_fallDown,x
-	; LineNumber: 3030
-UpdatePhysics_elsedoneblock62024
-	; LineNumber: 3032
-	jmp UpdatePhysics_elsedoneblock61979
-UpdatePhysics_elseblock61978
-	; LineNumber: 3031
+	; LineNumber: 3037
+UpdatePhysics_elsedoneblock62062
+	; LineNumber: 3039
+	jmp UpdatePhysics_elsedoneblock62017
+UpdatePhysics_elseblock62016
+	; LineNumber: 3038
 	; Binary clause Simplified: NOTEQUALS
 	clc
 	lda localVariable_UpdatePhysics_fallRightDown
 	; cmp #$00 ignored
-	beq UpdatePhysics_elseblock62030
-UpdatePhysics_ConditionalTrueBlock62029: ;Main true block ;keep 
-	; LineNumber: 3032
-	; LineNumber: 3033
+	beq UpdatePhysics_elseblock62068
+UpdatePhysics_ConditionalTrueBlock62067: ;Main true block ;keep 
+	; LineNumber: 3039
+	; LineNumber: 3040
 	lda #$8
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_fall
-	; LineNumber: 3034
-	; Binary clause Simplified: NOTEQUALS
-	lda localVariable_UpdatePhysics_controlId
-	; Compare with pure num / var optimization
-	cmp #$ff;keep
-	beq UpdatePhysics_elsedoneblock62050
-UpdatePhysics_ConditionalTrueBlock62048: ;Main true block ;keep 
-	; LineNumber: 3034
-	; LineNumber: 3035
-	lda #$0
-	; Calling storevariable on generic assign expression
-	ldx localVariable_UpdatePhysics_controlId ; optimized, look out for bugs
-	sta controlList_controlObject_controlObject_b_fallDown,x
-	; LineNumber: 3036
-UpdatePhysics_elsedoneblock62050
-	; LineNumber: 3037
-	jmp UpdatePhysics_elsedoneblock62031
-UpdatePhysics_elseblock62030
-	; LineNumber: 3038
-	; LineNumber: 3039
-	; Binary clause Simplified: NOTEQUALS
-	lda localVariable_UpdatePhysics_controlId
-	; Compare with pure num / var optimization
-	cmp #$ff;keep
-	beq UpdatePhysics_elsedoneblock62057
-UpdatePhysics_ConditionalTrueBlock62055: ;Main true block ;keep 
-	; LineNumber: 3039
-	; LineNumber: 3040
-	lda #$0
-	; Calling storevariable on generic assign expression
-	ldx localVariable_UpdatePhysics_controlId ; optimized, look out for bugs
-	sta controlList_controlObject_controlObject_b_fallDown,x
 	; LineNumber: 3041
-UpdatePhysics_elsedoneblock62057
+	; Binary clause Simplified: NOTEQUALS
+	lda localVariable_UpdatePhysics_controlId
+	; Compare with pure num / var optimization
+	cmp #$ff;keep
+	beq UpdatePhysics_elsedoneblock62088
+UpdatePhysics_ConditionalTrueBlock62086: ;Main true block ;keep 
+	; LineNumber: 3041
 	; LineNumber: 3042
-UpdatePhysics_elsedoneblock62031
-UpdatePhysics_elsedoneblock61979
-UpdatePhysics_elsedoneblock61874
+	lda #$0
+	; Calling storevariable on generic assign expression
+	ldx localVariable_UpdatePhysics_controlId ; optimized, look out for bugs
+	sta controlList_controlObject_controlObject_b_fallDown,x
+	; LineNumber: 3043
+UpdatePhysics_elsedoneblock62088
 	; LineNumber: 3044
+	jmp UpdatePhysics_elsedoneblock62069
+UpdatePhysics_elseblock62068
+	; LineNumber: 3045
+	; LineNumber: 3046
+	; Binary clause Simplified: NOTEQUALS
+	lda localVariable_UpdatePhysics_controlId
+	; Compare with pure num / var optimization
+	cmp #$ff;keep
+	beq UpdatePhysics_elsedoneblock62095
+UpdatePhysics_ConditionalTrueBlock62093: ;Main true block ;keep 
+	; LineNumber: 3046
+	; LineNumber: 3047
+	lda #$0
+	; Calling storevariable on generic assign expression
+	ldx localVariable_UpdatePhysics_controlId ; optimized, look out for bugs
+	sta controlList_controlObject_controlObject_b_fallDown,x
+	; LineNumber: 3048
+UpdatePhysics_elsedoneblock62095
+	; LineNumber: 3049
+UpdatePhysics_elsedoneblock62069
+UpdatePhysics_elsedoneblock62017
+UpdatePhysics_elsedoneblock61912
+	; LineNumber: 3051
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_UpdatePhysics_id
 	lda objectList_gobject_gobject_transX,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_oldx
-	; LineNumber: 3045
+	; LineNumber: 3052
 	; Load Byte array
 	; CAST type NADA
 	lda objectList_gobject_gobject_transY,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_oldy
-	; LineNumber: 3046
+	; LineNumber: 3053
 	lda #$ff
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_newx
-	; LineNumber: 3047
+	; LineNumber: 3054
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdatePhysics_fall
 	; Compare with pure num / var optimization
 	cmp #$7;keep
-	bne UpdatePhysics_localfailed62329
-	jmp UpdatePhysics_ConditionalTrueBlock62061
-UpdatePhysics_localfailed62329
-	jmp UpdatePhysics_elseblock62062
-UpdatePhysics_ConditionalTrueBlock62061: ;Main true block ;keep 
-	; LineNumber: 3047
-	; LineNumber: 3048
+	bne UpdatePhysics_localfailed62367
+	jmp UpdatePhysics_ConditionalTrueBlock62099
+UpdatePhysics_localfailed62367
+	jmp UpdatePhysics_elseblock62100
+UpdatePhysics_ConditionalTrueBlock62099: ;Main true block ;keep 
+	; LineNumber: 3054
+	; LineNumber: 3055
 	lda localVariable_UpdatePhysics_gravity
 	; Calling storevariable on generic assign expression
 	sta localVariable_ConvertShift_gravity
@@ -17513,7 +17543,7 @@ UpdatePhysics_ConditionalTrueBlock62061: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_shift
 	sty localVariable_UpdatePhysics_shift+1
-	; LineNumber: 3049
+	; LineNumber: 3056
 	lda localVariable_UpdatePhysics_oldx
 	; Calling storevariable on generic assign expression
 	sta localVariable_CalcPositionX_startx
@@ -17523,7 +17553,7 @@ UpdatePhysics_ConditionalTrueBlock62061: ;Main true block ;keep
 	jsr CalcPositionX
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_newx
-	; LineNumber: 3050
+	; LineNumber: 3057
 	lda localVariable_UpdatePhysics_oldy
 	; Calling storevariable on generic assign expression
 	sta localVariable_CalcPositionY_starty
@@ -17533,21 +17563,21 @@ UpdatePhysics_ConditionalTrueBlock62061: ;Main true block ;keep
 	jsr CalcPositionY
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_newy
-	; LineNumber: 3052
-	jmp UpdatePhysics_elsedoneblock62063
-UpdatePhysics_elseblock62062
-	; LineNumber: 3051
+	; LineNumber: 3059
+	jmp UpdatePhysics_elsedoneblock62101
+UpdatePhysics_elseblock62100
+	; LineNumber: 3058
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdatePhysics_fall
 	; Compare with pure num / var optimization
 	cmp #$6;keep
-	bne UpdatePhysics_localfailed62465
-	jmp UpdatePhysics_ConditionalTrueBlock62333
-UpdatePhysics_localfailed62465
-	jmp UpdatePhysics_elseblock62334
-UpdatePhysics_ConditionalTrueBlock62333: ;Main true block ;keep 
-	; LineNumber: 3052
-	; LineNumber: 3053
+	bne UpdatePhysics_localfailed62503
+	jmp UpdatePhysics_ConditionalTrueBlock62371
+UpdatePhysics_localfailed62503
+	jmp UpdatePhysics_elseblock62372
+UpdatePhysics_ConditionalTrueBlock62371: ;Main true block ;keep 
+	; LineNumber: 3059
+	; LineNumber: 3060
 	lda localVariable_UpdatePhysics_gravity
 	; Calling storevariable on generic assign expression
 	sta localVariable_ConvertShift_gravity
@@ -17558,7 +17588,7 @@ UpdatePhysics_ConditionalTrueBlock62333: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_shift
 	sty localVariable_UpdatePhysics_shift+1
-	; LineNumber: 3054
+	; LineNumber: 3061
 	lda localVariable_UpdatePhysics_oldx
 	; Calling storevariable on generic assign expression
 	sta localVariable_CalcPositionX_startx
@@ -17568,7 +17598,7 @@ UpdatePhysics_ConditionalTrueBlock62333: ;Main true block ;keep
 	jsr CalcPositionX
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_newx
-	; LineNumber: 3055
+	; LineNumber: 3062
 	lda localVariable_UpdatePhysics_oldy
 	; Calling storevariable on generic assign expression
 	sta localVariable_CalcPositionY_starty
@@ -17578,21 +17608,21 @@ UpdatePhysics_ConditionalTrueBlock62333: ;Main true block ;keep
 	jsr CalcPositionY
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_newy
-	; LineNumber: 3057
-	jmp UpdatePhysics_elsedoneblock62335
-UpdatePhysics_elseblock62334
-	; LineNumber: 3056
+	; LineNumber: 3064
+	jmp UpdatePhysics_elsedoneblock62373
+UpdatePhysics_elseblock62372
+	; LineNumber: 3063
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdatePhysics_fall
 	; Compare with pure num / var optimization
 	cmp #$8;keep
-	bne UpdatePhysics_localfailed62533
-	jmp UpdatePhysics_ConditionalTrueBlock62469
-UpdatePhysics_localfailed62533
-	jmp UpdatePhysics_elseblock62470
-UpdatePhysics_ConditionalTrueBlock62469: ;Main true block ;keep 
-	; LineNumber: 3056
-	; LineNumber: 3058
+	bne UpdatePhysics_localfailed62571
+	jmp UpdatePhysics_ConditionalTrueBlock62507
+UpdatePhysics_localfailed62571
+	jmp UpdatePhysics_elseblock62508
+UpdatePhysics_ConditionalTrueBlock62507: ;Main true block ;keep 
+	; LineNumber: 3063
+	; LineNumber: 3065
 	lda localVariable_UpdatePhysics_gravity
 	; Calling storevariable on generic assign expression
 	sta localVariable_ConvertShift_gravity
@@ -17603,7 +17633,7 @@ UpdatePhysics_ConditionalTrueBlock62469: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_shift
 	sty localVariable_UpdatePhysics_shift+1
-	; LineNumber: 3059
+	; LineNumber: 3066
 	lda localVariable_UpdatePhysics_oldx
 	; Calling storevariable on generic assign expression
 	sta localVariable_CalcPositionX_startx
@@ -17613,7 +17643,7 @@ UpdatePhysics_ConditionalTrueBlock62469: ;Main true block ;keep
 	jsr CalcPositionX
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_newx
-	; LineNumber: 3060
+	; LineNumber: 3067
 	lda localVariable_UpdatePhysics_oldy
 	; Calling storevariable on generic assign expression
 	sta localVariable_CalcPositionY_starty
@@ -17623,21 +17653,21 @@ UpdatePhysics_ConditionalTrueBlock62469: ;Main true block ;keep
 	jsr CalcPositionY
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_newy
-	; LineNumber: 3062
-	jmp UpdatePhysics_elsedoneblock62471
-UpdatePhysics_elseblock62470
-	; LineNumber: 3061
+	; LineNumber: 3069
+	jmp UpdatePhysics_elsedoneblock62509
+UpdatePhysics_elseblock62508
+	; LineNumber: 3068
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdatePhysics_fall
 	; Compare with pure num / var optimization
 	cmp #$3;keep
-	bne UpdatePhysics_localfailed62567
-	jmp UpdatePhysics_ConditionalTrueBlock62537
-UpdatePhysics_localfailed62567
-	jmp UpdatePhysics_elseblock62538
-UpdatePhysics_ConditionalTrueBlock62537: ;Main true block ;keep 
-	; LineNumber: 3061
-	; LineNumber: 3063
+	bne UpdatePhysics_localfailed62605
+	jmp UpdatePhysics_ConditionalTrueBlock62575
+UpdatePhysics_localfailed62605
+	jmp UpdatePhysics_elseblock62576
+UpdatePhysics_ConditionalTrueBlock62575: ;Main true block ;keep 
+	; LineNumber: 3068
+	; LineNumber: 3070
 	lda localVariable_UpdatePhysics_gravity
 	; Calling storevariable on generic assign expression
 	sta localVariable_ConvertShift_gravity
@@ -17648,7 +17678,7 @@ UpdatePhysics_ConditionalTrueBlock62537: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_shift
 	sty localVariable_UpdatePhysics_shift+1
-	; LineNumber: 3064
+	; LineNumber: 3071
 	lda localVariable_UpdatePhysics_oldx
 	; Calling storevariable on generic assign expression
 	sta localVariable_CalcPositionX_startx
@@ -17658,7 +17688,7 @@ UpdatePhysics_ConditionalTrueBlock62537: ;Main true block ;keep
 	jsr CalcPositionX
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_newx
-	; LineNumber: 3065
+	; LineNumber: 3072
 	lda localVariable_UpdatePhysics_oldy
 	; Calling storevariable on generic assign expression
 	sta localVariable_CalcPositionY_starty
@@ -17668,7 +17698,7 @@ UpdatePhysics_ConditionalTrueBlock62537: ;Main true block ;keep
 	jsr CalcPositionY
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_newy
-	; LineNumber: 3066
+	; LineNumber: 3073
 	lda localVariable_UpdatePhysics_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -17692,28 +17722,28 @@ UpdatePhysics_ConditionalTrueBlock62537: ;Main true block ;keep
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_eraseObj
-	; LineNumber: 3068
+	; LineNumber: 3075
 	lda #<sndShift
 	ldy #>sndShift
 	; Calling storevariable on generic assign expression
 	sta psnd+4
 	sty psnd+5
-	; LineNumber: 3068
+	; LineNumber: 3075
 	lda #$f0
 	; Calling storevariable on generic assign expression
 	sta vsnd+$2
-	; LineNumber: 3068
+	; LineNumber: 3075
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta vsndTime+$2
-	; LineNumber: 3069
+	; LineNumber: 3076
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdatePhysics_eraseObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdatePhysics_elsedoneblock62572
-UpdatePhysics_ConditionalTrueBlock62570: ;Main true block ;keep 
-	; LineNumber: 3068
+	beq UpdatePhysics_elsedoneblock62610
+UpdatePhysics_ConditionalTrueBlock62608: ;Main true block ;keep 
+	; LineNumber: 3075
 	lda localVariable_UpdatePhysics_eraseObj
 	; Calling storevariable on generic assign expression
 	sta localVariable_DeletePos_id
@@ -17723,22 +17753,22 @@ UpdatePhysics_ConditionalTrueBlock62570: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_DeletePos_isAnim
 	jsr DeletePos
-UpdatePhysics_elsedoneblock62572
-	; LineNumber: 3071
-	jmp UpdatePhysics_elsedoneblock62539
-UpdatePhysics_elseblock62538
-	; LineNumber: 3070
+UpdatePhysics_elsedoneblock62610
+	; LineNumber: 3078
+	jmp UpdatePhysics_elsedoneblock62577
+UpdatePhysics_elseblock62576
+	; LineNumber: 3077
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdatePhysics_fall
 	; Compare with pure num / var optimization
 	cmp #$5;keep
-	bne UpdatePhysics_localfailed62587
-	jmp UpdatePhysics_ConditionalTrueBlock62577
-UpdatePhysics_localfailed62587
-	jmp UpdatePhysics_elsedoneblock62579
-UpdatePhysics_ConditionalTrueBlock62577: ;Main true block ;keep 
-	; LineNumber: 3070
-	; LineNumber: 3072
+	bne UpdatePhysics_localfailed62625
+	jmp UpdatePhysics_ConditionalTrueBlock62615
+UpdatePhysics_localfailed62625
+	jmp UpdatePhysics_elsedoneblock62617
+UpdatePhysics_ConditionalTrueBlock62615: ;Main true block ;keep 
+	; LineNumber: 3077
+	; LineNumber: 3079
 	lda localVariable_UpdatePhysics_gravity
 	; Calling storevariable on generic assign expression
 	sta localVariable_ConvertShift_gravity
@@ -17749,7 +17779,7 @@ UpdatePhysics_ConditionalTrueBlock62577: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_shift
 	sty localVariable_UpdatePhysics_shift+1
-	; LineNumber: 3073
+	; LineNumber: 3080
 	lda localVariable_UpdatePhysics_oldx
 	; Calling storevariable on generic assign expression
 	sta localVariable_CalcPositionX_startx
@@ -17759,7 +17789,7 @@ UpdatePhysics_ConditionalTrueBlock62577: ;Main true block ;keep
 	jsr CalcPositionX
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_newx
-	; LineNumber: 3074
+	; LineNumber: 3081
 	lda localVariable_UpdatePhysics_oldy
 	; Calling storevariable on generic assign expression
 	sta localVariable_CalcPositionY_starty
@@ -17769,7 +17799,7 @@ UpdatePhysics_ConditionalTrueBlock62577: ;Main true block ;keep
 	jsr CalcPositionY
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_newy
-	; LineNumber: 3075
+	; LineNumber: 3082
 	lda localVariable_UpdatePhysics_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -17793,28 +17823,28 @@ UpdatePhysics_ConditionalTrueBlock62577: ;Main true block ;keep
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_eraseObj
-	; LineNumber: 3077
+	; LineNumber: 3084
 	lda #<sndShift
 	ldy #>sndShift
 	; Calling storevariable on generic assign expression
 	sta psnd+4
 	sty psnd+5
-	; LineNumber: 3077
+	; LineNumber: 3084
 	lda #$f0
 	; Calling storevariable on generic assign expression
 	sta vsnd+$2
-	; LineNumber: 3077
+	; LineNumber: 3084
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta vsndTime+$2
-	; LineNumber: 3078
+	; LineNumber: 3085
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdatePhysics_eraseObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdatePhysics_elsedoneblock62592
-UpdatePhysics_ConditionalTrueBlock62590: ;Main true block ;keep 
-	; LineNumber: 3077
+	beq UpdatePhysics_elsedoneblock62630
+UpdatePhysics_ConditionalTrueBlock62628: ;Main true block ;keep 
+	; LineNumber: 3084
 	lda localVariable_UpdatePhysics_eraseObj
 	; Calling storevariable on generic assign expression
 	sta localVariable_DeletePos_id
@@ -17824,21 +17854,21 @@ UpdatePhysics_ConditionalTrueBlock62590: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_DeletePos_isAnim
 	jsr DeletePos
-UpdatePhysics_elsedoneblock62592
-	; LineNumber: 3079
-UpdatePhysics_elsedoneblock62579
-UpdatePhysics_elsedoneblock62539
-UpdatePhysics_elsedoneblock62471
-UpdatePhysics_elsedoneblock62335
-UpdatePhysics_elsedoneblock62063
-	; LineNumber: 3081
+UpdatePhysics_elsedoneblock62630
+	; LineNumber: 3086
+UpdatePhysics_elsedoneblock62617
+UpdatePhysics_elsedoneblock62577
+UpdatePhysics_elsedoneblock62509
+UpdatePhysics_elsedoneblock62373
+UpdatePhysics_elsedoneblock62101
+	; LineNumber: 3088
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdatePhysics_newx
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdatePhysics_elsedoneblock62598
-UpdatePhysics_ConditionalTrueBlock62596: ;Main true block ;keep 
-	; LineNumber: 3080
+	beq UpdatePhysics_elsedoneblock62636
+UpdatePhysics_ConditionalTrueBlock62634: ;Main true block ;keep 
+	; LineNumber: 3087
 	lda localVariable_UpdatePhysics_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_SetPos_i
@@ -17861,63 +17891,63 @@ UpdatePhysics_ConditionalTrueBlock62596: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_SetPos_z
 	jsr SetPos
-UpdatePhysics_elsedoneblock62598
-	; LineNumber: 3082
-UpdatePhysics_elsedoneblock28145
-	; LineNumber: 3083
+UpdatePhysics_elsedoneblock62636
+	; LineNumber: 3089
+UpdatePhysics_elsedoneblock28183
+	; LineNumber: 3090
 	rts
 end_procedure_UpdatePhysics
 	; NodeProcedureDecl 3
 	; ***********  Defining procedure : UpdateFloater
 	;    Procedure type : User-defined procedure
-	; LineNumber: 3092
-	; LineNumber: 3087
+	; LineNumber: 3099
+	; LineNumber: 3094
 localVariable_UpdateFloater_waterId	dc.b	0
-	; LineNumber: 3088
+	; LineNumber: 3095
 localVariable_UpdateFloater_colObj	dc.b	0
-	; LineNumber: 3088
+	; LineNumber: 3095
 localVariable_UpdateFloater_eraseObj	dc.b	0
-	; LineNumber: 3088
+	; LineNumber: 3095
 localVariable_UpdateFloater_z	dc.b	0
-	; LineNumber: 3089
+	; LineNumber: 3096
 localVariable_UpdateFloater_oldx	dc.b	0
-	; LineNumber: 3089
+	; LineNumber: 3096
 localVariable_UpdateFloater_oldy	dc.b	0
-	; LineNumber: 3089
+	; LineNumber: 3096
 localVariable_UpdateFloater_newx	dc.b	0
-	; LineNumber: 3089
+	; LineNumber: 3096
 localVariable_UpdateFloater_newy	dc.b	0
-	; LineNumber: 3089
+	; LineNumber: 3096
 localVariable_UpdateFloater_moveDir	dc.b	0
-	; LineNumber: 3090
+	; LineNumber: 3097
 localVariable_UpdateFloater_shift	dc.w	0
-	; LineNumber: 3091
+	; LineNumber: 3098
 localVariable_UpdateFloater_floatDir	dc.b	0
-	; LineNumber: 3085
+	; LineNumber: 3092
 localVariable_UpdateFloater_id	dc.b	0
-UpdateFloater_block62601
+UpdateFloater_block62639
 UpdateFloater
-	; LineNumber: 3093
+	; LineNumber: 3100
 	; Binary clause Simplified: EQUALS
 	clc
 	; Modulo
 	lda #$4
-UpdateFloater_val_var63295 = $88
-	sta UpdateFloater_val_var63295
+UpdateFloater_val_var63333 = $88
+	sta UpdateFloater_val_var63333
 	lda globaltime
 	sec
-UpdateFloater_modulo63296
-	sbc UpdateFloater_val_var63295
-	bcs UpdateFloater_modulo63296
-	adc UpdateFloater_val_var63295
+UpdateFloater_modulo63334
+	sbc UpdateFloater_val_var63333
+	bcs UpdateFloater_modulo63334
+	adc UpdateFloater_val_var63333
 	; cmp #$00 ignored
-	bne UpdateFloater_localfailed63294
-	jmp UpdateFloater_ConditionalTrueBlock62603
-UpdateFloater_localfailed63294
-	jmp UpdateFloater_elsedoneblock62605
-UpdateFloater_ConditionalTrueBlock62603: ;Main true block ;keep 
-	; LineNumber: 3093
-	; LineNumber: 3094
+	bne UpdateFloater_localfailed63332
+	jmp UpdateFloater_ConditionalTrueBlock62641
+UpdateFloater_localfailed63332
+	jmp UpdateFloater_elsedoneblock62643
+UpdateFloater_ConditionalTrueBlock62641: ;Main true block ;keep 
+	; LineNumber: 3100
+	; LineNumber: 3101
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_UpdateFloater_id
@@ -17941,61 +17971,61 @@ UpdateFloater_ConditionalTrueBlock62603: ;Main true block ;keep
 	jsr GetObjectByPosFilterComp
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateFloater_waterId
-	; LineNumber: 3095
+	; LineNumber: 3102
 	lda #$ff
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateFloater_floatDir
-	; LineNumber: 3096
+	; LineNumber: 3103
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateFloater_waterId
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateFloater_elsedoneblock63301
-UpdateFloater_ConditionalTrueBlock63299: ;Main true block ;keep 
-	; LineNumber: 3095
+	beq UpdateFloater_elsedoneblock63339
+UpdateFloater_ConditionalTrueBlock63337: ;Main true block ;keep 
+	; LineNumber: 3102
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_UpdateFloater_waterId
 	lda objectList_gobject_gobject_physGravity,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateFloater_floatDir
-UpdateFloater_elsedoneblock63301
-	; LineNumber: 3097
+UpdateFloater_elsedoneblock63339
+	; LineNumber: 3104
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateFloater_floatDir
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateFloater_localfailed63646
-	jmp UpdateFloater_ConditionalTrueBlock63305
-UpdateFloater_localfailed63646
-	jmp UpdateFloater_elsedoneblock63307
-UpdateFloater_ConditionalTrueBlock63305: ;Main true block ;keep 
-	; LineNumber: 3097
-	; LineNumber: 3098
+	beq UpdateFloater_localfailed63684
+	jmp UpdateFloater_ConditionalTrueBlock63343
+UpdateFloater_localfailed63684
+	jmp UpdateFloater_elsedoneblock63345
+UpdateFloater_ConditionalTrueBlock63343: ;Main true block ;keep 
+	; LineNumber: 3104
+	; LineNumber: 3105
 	lda #$ff
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateFloater_moveDir
-	; LineNumber: 3099
+	; LineNumber: 3106
 	ldy #0   ; Force integer assignment, set y = 0 for values lower than 255
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateFloater_shift
 	sty localVariable_UpdateFloater_shift+1
-	; LineNumber: 3100
+	; LineNumber: 3107
 	lda #$ff
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateFloater_newx
-	; LineNumber: 3101
+	; LineNumber: 3108
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateFloater_newy
-	; LineNumber: 3102
+	; LineNumber: 3109
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_UpdateFloater_id
 	lda objectList_gobject_gobject_transZ,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateFloater_z
-	; LineNumber: 3103
+	; LineNumber: 3110
 	lda localVariable_UpdateFloater_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -18017,7 +18047,7 @@ UpdateFloater_ConditionalTrueBlock63305: ;Main true block ;keep
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateFloater_colObj
-	; LineNumber: 3104
+	; LineNumber: 3111
 	lda localVariable_UpdateFloater_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -18039,34 +18069,34 @@ UpdateFloater_ConditionalTrueBlock63305: ;Main true block ;keep
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateFloater_eraseObj
-	; LineNumber: 3105
+	; LineNumber: 3112
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateFloater_colObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne UpdateFloater_localfailed63654
-	jmp UpdateFloater_localsuccess63653
-UpdateFloater_localfailed63654: ;keep
+	bne UpdateFloater_localfailed63692
+	jmp UpdateFloater_localsuccess63691
+UpdateFloater_localfailed63692: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateFloater_eraseObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateFloater_elsedoneblock63651
-UpdateFloater_localsuccess63653: ;keep
+	beq UpdateFloater_elsedoneblock63689
+UpdateFloater_localsuccess63691: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateFloater_floatDir
 	; Compare with pure num / var optimization
 	cmp #$3;keep
-	bne UpdateFloater_elsedoneblock63651
-UpdateFloater_ConditionalTrueBlock63649: ;Main true block ;keep 
-	; LineNumber: 3104
+	bne UpdateFloater_elsedoneblock63689
+UpdateFloater_ConditionalTrueBlock63687: ;Main true block ;keep 
+	; LineNumber: 3111
 	lda #$3
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateFloater_moveDir
-UpdateFloater_elsedoneblock63651
-	; LineNumber: 3107
+UpdateFloater_elsedoneblock63689
+	; LineNumber: 3114
 	
 ; //TODO: AnimationSwimL
 	lda localVariable_UpdateFloater_id
@@ -18090,7 +18120,7 @@ UpdateFloater_elsedoneblock63651
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateFloater_colObj
-	; LineNumber: 3108
+	; LineNumber: 3115
 	lda localVariable_UpdateFloater_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -18112,34 +18142,34 @@ UpdateFloater_elsedoneblock63651
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateFloater_eraseObj
-	; LineNumber: 3109
+	; LineNumber: 3116
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateFloater_colObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne UpdateFloater_localfailed63662
-	jmp UpdateFloater_localsuccess63661
-UpdateFloater_localfailed63662: ;keep
+	bne UpdateFloater_localfailed63700
+	jmp UpdateFloater_localsuccess63699
+UpdateFloater_localfailed63700: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateFloater_eraseObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateFloater_elsedoneblock63659
-UpdateFloater_localsuccess63661: ;keep
+	beq UpdateFloater_elsedoneblock63697
+UpdateFloater_localsuccess63699: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateFloater_floatDir
 	; Compare with pure num / var optimization
 	cmp #$5;keep
-	bne UpdateFloater_elsedoneblock63659
-UpdateFloater_ConditionalTrueBlock63657: ;Main true block ;keep 
-	; LineNumber: 3108
+	bne UpdateFloater_elsedoneblock63697
+UpdateFloater_ConditionalTrueBlock63695: ;Main true block ;keep 
+	; LineNumber: 3115
 	lda #$5
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateFloater_moveDir
-UpdateFloater_elsedoneblock63659
-	; LineNumber: 3111
+UpdateFloater_elsedoneblock63697
+	; LineNumber: 3118
 	
 ; //TODO: AnimationSwimR
 	lda localVariable_UpdateFloater_id
@@ -18163,7 +18193,7 @@ UpdateFloater_elsedoneblock63659
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateFloater_colObj
-	; LineNumber: 3112
+	; LineNumber: 3119
 	lda localVariable_UpdateFloater_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -18185,34 +18215,34 @@ UpdateFloater_elsedoneblock63659
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateFloater_eraseObj
-	; LineNumber: 3113
+	; LineNumber: 3120
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateFloater_colObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne UpdateFloater_localfailed63670
-	jmp UpdateFloater_localsuccess63669
-UpdateFloater_localfailed63670: ;keep
+	bne UpdateFloater_localfailed63708
+	jmp UpdateFloater_localsuccess63707
+UpdateFloater_localfailed63708: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateFloater_eraseObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateFloater_elsedoneblock63667
-UpdateFloater_localsuccess63669: ;keep
+	beq UpdateFloater_elsedoneblock63705
+UpdateFloater_localsuccess63707: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateFloater_floatDir
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne UpdateFloater_elsedoneblock63667
-UpdateFloater_ConditionalTrueBlock63665: ;Main true block ;keep 
-	; LineNumber: 3112
+	bne UpdateFloater_elsedoneblock63705
+UpdateFloater_ConditionalTrueBlock63703: ;Main true block ;keep 
+	; LineNumber: 3119
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateFloater_moveDir
-UpdateFloater_elsedoneblock63667
-	; LineNumber: 3115
+UpdateFloater_elsedoneblock63705
+	; LineNumber: 3122
 	
 ; //TODO: AnimationSwimR
 	lda localVariable_UpdateFloater_id
@@ -18239,7 +18269,7 @@ UpdateFloater_elsedoneblock63667
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateFloater_colObj
-	; LineNumber: 3116
+	; LineNumber: 3123
 	lda localVariable_UpdateFloater_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
@@ -18250,81 +18280,6 @@ UpdateFloater_elsedoneblock63667
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_z
 	lda #$7
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_pos
-	lda #$10
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_comp
-	lda #$0
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_compIdx
-	lda #$1
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_b_norm
-	jsr GetObjArea
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdateFloater_eraseObj
-	; LineNumber: 3117
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdateFloater_colObj
-	; Compare with pure num / var optimization
-	cmp #$ff;keep
-	bne UpdateFloater_localfailed63678
-	jmp UpdateFloater_localsuccess63677
-UpdateFloater_localfailed63678: ;keep
-	; ; logical OR, second chance
-	; Binary clause Simplified: NOTEQUALS
-	lda localVariable_UpdateFloater_eraseObj
-	; Compare with pure num / var optimization
-	cmp #$ff;keep
-	beq UpdateFloater_elsedoneblock63675
-UpdateFloater_localsuccess63677: ;keep
-	; ; logical AND, second requirement
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdateFloater_floatDir
-	; Compare with pure num / var optimization
-	cmp #$7;keep
-	bne UpdateFloater_elsedoneblock63675
-UpdateFloater_ConditionalTrueBlock63673: ;Main true block ;keep 
-	; LineNumber: 3116
-	lda #$7
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdateFloater_moveDir
-UpdateFloater_elsedoneblock63675
-	; LineNumber: 3119
-	
-; //TODO: AnimationSwimR
-	; Load Byte array
-	; CAST type NADA
-	ldx localVariable_UpdateFloater_id
-	lda objectList_gobject_gobject_transX,x 
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdateFloater_oldx
-	; LineNumber: 3120
-	; Load Byte array
-	; CAST type NADA
-	lda objectList_gobject_gobject_transY,x 
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdateFloater_oldy
-	; LineNumber: 3122
-	; Binary clause Simplified: EQUALS
-	lda localVariable_UpdateFloater_moveDir
-	; Compare with pure num / var optimization
-	cmp #$3;keep
-	bne UpdateFloater_localfailed63831
-	jmp UpdateFloater_ConditionalTrueBlock63681
-UpdateFloater_localfailed63831
-	jmp UpdateFloater_elseblock63682
-UpdateFloater_ConditionalTrueBlock63681: ;Main true block ;keep 
-	; LineNumber: 3122
-	; LineNumber: 3123
-	lda localVariable_UpdateFloater_id
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_id
-	lda localVariable_UpdateFloater_z
-	; Calling storevariable on generic assign expression
-	sta localVariable_GetObjArea_z
-	lda #$3
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_pos
 	lda #$10
@@ -18340,66 +18295,57 @@ UpdateFloater_ConditionalTrueBlock63681: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateFloater_eraseObj
 	; LineNumber: 3124
-	; Binary clause Simplified: NOTEQUALS
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdateFloater_colObj
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateFloater_elsedoneblock63836
-UpdateFloater_ConditionalTrueBlock63834: ;Main true block ;keep 
-	; LineNumber: 3123
+	bne UpdateFloater_localfailed63716
+	jmp UpdateFloater_localsuccess63715
+UpdateFloater_localfailed63716: ;keep
+	; ; logical OR, second chance
+	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateFloater_eraseObj
-	; Calling storevariable on generic assign expression
-	sta localVariable_DeletePos_id
-	lda #$0
-	; Calling storevariable on generic assign expression
-	sta localVariable_DeletePos_isDyn
-	; Calling storevariable on generic assign expression
-	sta localVariable_DeletePos_isAnim
-	jsr DeletePos
-UpdateFloater_elsedoneblock63836
-	; LineNumber: 3125
+	; Compare with pure num / var optimization
+	cmp #$ff;keep
+	beq UpdateFloater_elsedoneblock63713
+UpdateFloater_localsuccess63715: ;keep
+	; ; logical AND, second requirement
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdateFloater_floatDir
+	; Compare with pure num / var optimization
+	cmp #$7;keep
+	bne UpdateFloater_elsedoneblock63713
+UpdateFloater_ConditionalTrueBlock63711: ;Main true block ;keep 
+	; LineNumber: 3123
 	lda #$7
 	; Calling storevariable on generic assign expression
-	sta localVariable_ConvertShift_gravity
-	lda #$3
-	; Calling storevariable on generic assign expression
-	sta localVariable_ConvertShift_pos
-	jsr ConvertShift
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdateFloater_shift
-	sty localVariable_UpdateFloater_shift+1
+	sta localVariable_UpdateFloater_moveDir
+UpdateFloater_elsedoneblock63713
 	; LineNumber: 3126
-	lda localVariable_UpdateFloater_oldx
+	
+; //TODO: AnimationSwimR
+	; Load Byte array
+	; CAST type NADA
+	ldx localVariable_UpdateFloater_id
+	lda objectList_gobject_gobject_transX,x 
 	; Calling storevariable on generic assign expression
-	sta localVariable_CalcPositionX_startx
-	lda localVariable_UpdateFloater_shift+1
-	; Calling storevariable on generic assign expression
-	sta localVariable_CalcPositionX_offsetx
-	jsr CalcPositionX
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdateFloater_newx
+	sta localVariable_UpdateFloater_oldx
 	; LineNumber: 3127
-	lda localVariable_UpdateFloater_oldy
+	; Load Byte array
+	; CAST type NADA
+	lda objectList_gobject_gobject_transY,x 
 	; Calling storevariable on generic assign expression
-	sta localVariable_CalcPositionY_starty
-	lda localVariable_UpdateFloater_shift
-	; Calling storevariable on generic assign expression
-	sta localVariable_CalcPositionY_offsety
-	jsr CalcPositionY
-	; Calling storevariable on generic assign expression
-	sta localVariable_UpdateFloater_newy
+	sta localVariable_UpdateFloater_oldy
 	; LineNumber: 3129
-	jmp UpdateFloater_elsedoneblock63683
-UpdateFloater_elseblock63682
-	; LineNumber: 3128
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateFloater_moveDir
 	; Compare with pure num / var optimization
-	cmp #$5;keep
-	bne UpdateFloater_localfailed63911
-	jmp UpdateFloater_ConditionalTrueBlock63841
-UpdateFloater_localfailed63911
-	jmp UpdateFloater_elseblock63842
-UpdateFloater_ConditionalTrueBlock63841: ;Main true block ;keep 
+	cmp #$3;keep
+	bne UpdateFloater_localfailed63869
+	jmp UpdateFloater_ConditionalTrueBlock63719
+UpdateFloater_localfailed63869
+	jmp UpdateFloater_elseblock63720
+UpdateFloater_ConditionalTrueBlock63719: ;Main true block ;keep 
 	; LineNumber: 3129
 	; LineNumber: 3130
 	lda localVariable_UpdateFloater_id
@@ -18408,7 +18354,7 @@ UpdateFloater_ConditionalTrueBlock63841: ;Main true block ;keep
 	lda localVariable_UpdateFloater_z
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_z
-	lda #$5
+	lda #$3
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_pos
 	lda #$10
@@ -18427,8 +18373,8 @@ UpdateFloater_ConditionalTrueBlock63841: ;Main true block ;keep
 	; Binary clause Simplified: NOTEQUALS
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateFloater_elsedoneblock63916
-UpdateFloater_ConditionalTrueBlock63914: ;Main true block ;keep 
+	beq UpdateFloater_elsedoneblock63874
+UpdateFloater_ConditionalTrueBlock63872: ;Main true block ;keep 
 	; LineNumber: 3130
 	lda localVariable_UpdateFloater_eraseObj
 	; Calling storevariable on generic assign expression
@@ -18439,12 +18385,12 @@ UpdateFloater_ConditionalTrueBlock63914: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_DeletePos_isAnim
 	jsr DeletePos
-UpdateFloater_elsedoneblock63916
+UpdateFloater_elsedoneblock63874
 	; LineNumber: 3132
 	lda #$7
 	; Calling storevariable on generic assign expression
 	sta localVariable_ConvertShift_gravity
-	lda #$5
+	lda #$3
 	; Calling storevariable on generic assign expression
 	sta localVariable_ConvertShift_pos
 	jsr ConvertShift
@@ -18471,28 +18417,28 @@ UpdateFloater_elsedoneblock63916
 	jsr CalcPositionY
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateFloater_newy
-	; LineNumber: 3137
-	jmp UpdateFloater_elsedoneblock63843
-UpdateFloater_elseblock63842
 	; LineNumber: 3136
+	jmp UpdateFloater_elsedoneblock63721
+UpdateFloater_elseblock63720
+	; LineNumber: 3135
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateFloater_moveDir
 	; Compare with pure num / var optimization
-	cmp #$1;keep
-	bne UpdateFloater_localfailed63951
-	jmp UpdateFloater_ConditionalTrueBlock63921
-UpdateFloater_localfailed63951
-	jmp UpdateFloater_elseblock63922
-UpdateFloater_ConditionalTrueBlock63921: ;Main true block ;keep 
+	cmp #$5;keep
+	bne UpdateFloater_localfailed63949
+	jmp UpdateFloater_ConditionalTrueBlock63879
+UpdateFloater_localfailed63949
+	jmp UpdateFloater_elseblock63880
+UpdateFloater_ConditionalTrueBlock63879: ;Main true block ;keep 
+	; LineNumber: 3136
 	; LineNumber: 3137
-	; LineNumber: 3138
 	lda localVariable_UpdateFloater_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_id
 	lda localVariable_UpdateFloater_z
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_z
-	lda #$1
+	lda #$5
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_pos
 	lda #$10
@@ -18507,13 +18453,13 @@ UpdateFloater_ConditionalTrueBlock63921: ;Main true block ;keep
 	jsr GetObjArea
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateFloater_eraseObj
-	; LineNumber: 3139
+	; LineNumber: 3138
 	; Binary clause Simplified: NOTEQUALS
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateFloater_elsedoneblock63956
-UpdateFloater_ConditionalTrueBlock63954: ;Main true block ;keep 
-	; LineNumber: 3138
+	beq UpdateFloater_elsedoneblock63954
+UpdateFloater_ConditionalTrueBlock63952: ;Main true block ;keep 
+	; LineNumber: 3137
 	lda localVariable_UpdateFloater_eraseObj
 	; Calling storevariable on generic assign expression
 	sta localVariable_DeletePos_id
@@ -18523,19 +18469,19 @@ UpdateFloater_ConditionalTrueBlock63954: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_DeletePos_isAnim
 	jsr DeletePos
-UpdateFloater_elsedoneblock63956
-	; LineNumber: 3140
+UpdateFloater_elsedoneblock63954
+	; LineNumber: 3139
 	lda #$7
 	; Calling storevariable on generic assign expression
 	sta localVariable_ConvertShift_gravity
-	lda #$1
+	lda #$5
 	; Calling storevariable on generic assign expression
 	sta localVariable_ConvertShift_pos
 	jsr ConvertShift
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateFloater_shift
 	sty localVariable_UpdateFloater_shift+1
-	; LineNumber: 3141
+	; LineNumber: 3140
 	lda localVariable_UpdateFloater_oldx
 	; Calling storevariable on generic assign expression
 	sta localVariable_CalcPositionX_startx
@@ -18545,7 +18491,7 @@ UpdateFloater_elsedoneblock63956
 	jsr CalcPositionX
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateFloater_newx
-	; LineNumber: 3142
+	; LineNumber: 3141
 	lda localVariable_UpdateFloater_oldy
 	; Calling storevariable on generic assign expression
 	sta localVariable_CalcPositionY_starty
@@ -18556,18 +18502,18 @@ UpdateFloater_elsedoneblock63956
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateFloater_newy
 	; LineNumber: 3144
-	jmp UpdateFloater_elsedoneblock63923
-UpdateFloater_elseblock63922
+	jmp UpdateFloater_elsedoneblock63881
+UpdateFloater_elseblock63880
 	; LineNumber: 3143
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateFloater_moveDir
 	; Compare with pure num / var optimization
-	cmp #$7;keep
-	bne UpdateFloater_localfailed63971
-	jmp UpdateFloater_ConditionalTrueBlock63961
-UpdateFloater_localfailed63971
-	jmp UpdateFloater_elsedoneblock63963
-UpdateFloater_ConditionalTrueBlock63961: ;Main true block ;keep 
+	cmp #$1;keep
+	bne UpdateFloater_localfailed63989
+	jmp UpdateFloater_ConditionalTrueBlock63959
+UpdateFloater_localfailed63989
+	jmp UpdateFloater_elseblock63960
+UpdateFloater_ConditionalTrueBlock63959: ;Main true block ;keep 
 	; LineNumber: 3144
 	; LineNumber: 3145
 	lda localVariable_UpdateFloater_id
@@ -18576,7 +18522,7 @@ UpdateFloater_ConditionalTrueBlock63961: ;Main true block ;keep
 	lda localVariable_UpdateFloater_z
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_z
-	lda #$7
+	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjArea_pos
 	lda #$10
@@ -18595,8 +18541,8 @@ UpdateFloater_ConditionalTrueBlock63961: ;Main true block ;keep
 	; Binary clause Simplified: NOTEQUALS
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateFloater_elsedoneblock63976
-UpdateFloater_ConditionalTrueBlock63974: ;Main true block ;keep 
+	beq UpdateFloater_elsedoneblock63994
+UpdateFloater_ConditionalTrueBlock63992: ;Main true block ;keep 
 	; LineNumber: 3145
 	lda localVariable_UpdateFloater_eraseObj
 	; Calling storevariable on generic assign expression
@@ -18607,11 +18553,12 @@ UpdateFloater_ConditionalTrueBlock63974: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_DeletePos_isAnim
 	jsr DeletePos
-UpdateFloater_elsedoneblock63976
+UpdateFloater_elsedoneblock63994
 	; LineNumber: 3147
 	lda #$7
 	; Calling storevariable on generic assign expression
 	sta localVariable_ConvertShift_gravity
+	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_ConvertShift_pos
 	jsr ConvertShift
@@ -18638,19 +18585,102 @@ UpdateFloater_elsedoneblock63976
 	jsr CalcPositionY
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateFloater_newy
+	; LineNumber: 3151
+	jmp UpdateFloater_elsedoneblock63961
+UpdateFloater_elseblock63960
 	; LineNumber: 3150
-UpdateFloater_elsedoneblock63963
-UpdateFloater_elsedoneblock63923
-UpdateFloater_elsedoneblock63843
-UpdateFloater_elsedoneblock63683
+	; Binary clause Simplified: EQUALS
+	lda localVariable_UpdateFloater_moveDir
+	; Compare with pure num / var optimization
+	cmp #$7;keep
+	bne UpdateFloater_localfailed64009
+	jmp UpdateFloater_ConditionalTrueBlock63999
+UpdateFloater_localfailed64009
+	jmp UpdateFloater_elsedoneblock64001
+UpdateFloater_ConditionalTrueBlock63999: ;Main true block ;keep 
+	; LineNumber: 3151
 	; LineNumber: 3152
+	lda localVariable_UpdateFloater_id
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_id
+	lda localVariable_UpdateFloater_z
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_z
+	lda #$7
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_pos
+	lda #$10
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_comp
+	lda #$0
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_compIdx
+	lda #$1
+	; Calling storevariable on generic assign expression
+	sta localVariable_GetObjArea_b_norm
+	jsr GetObjArea
+	; Calling storevariable on generic assign expression
+	sta localVariable_UpdateFloater_eraseObj
+	; LineNumber: 3153
+	; Binary clause Simplified: NOTEQUALS
+	; Compare with pure num / var optimization
+	cmp #$ff;keep
+	beq UpdateFloater_elsedoneblock64014
+UpdateFloater_ConditionalTrueBlock64012: ;Main true block ;keep 
+	; LineNumber: 3152
+	lda localVariable_UpdateFloater_eraseObj
+	; Calling storevariable on generic assign expression
+	sta localVariable_DeletePos_id
+	lda #$0
+	; Calling storevariable on generic assign expression
+	sta localVariable_DeletePos_isDyn
+	; Calling storevariable on generic assign expression
+	sta localVariable_DeletePos_isAnim
+	jsr DeletePos
+UpdateFloater_elsedoneblock64014
+	; LineNumber: 3154
+	lda #$7
+	; Calling storevariable on generic assign expression
+	sta localVariable_ConvertShift_gravity
+	; Calling storevariable on generic assign expression
+	sta localVariable_ConvertShift_pos
+	jsr ConvertShift
+	; Calling storevariable on generic assign expression
+	sta localVariable_UpdateFloater_shift
+	sty localVariable_UpdateFloater_shift+1
+	; LineNumber: 3155
+	lda localVariable_UpdateFloater_oldx
+	; Calling storevariable on generic assign expression
+	sta localVariable_CalcPositionX_startx
+	lda localVariable_UpdateFloater_shift+1
+	; Calling storevariable on generic assign expression
+	sta localVariable_CalcPositionX_offsetx
+	jsr CalcPositionX
+	; Calling storevariable on generic assign expression
+	sta localVariable_UpdateFloater_newx
+	; LineNumber: 3156
+	lda localVariable_UpdateFloater_oldy
+	; Calling storevariable on generic assign expression
+	sta localVariable_CalcPositionY_starty
+	lda localVariable_UpdateFloater_shift
+	; Calling storevariable on generic assign expression
+	sta localVariable_CalcPositionY_offsety
+	jsr CalcPositionY
+	; Calling storevariable on generic assign expression
+	sta localVariable_UpdateFloater_newy
+	; LineNumber: 3157
+UpdateFloater_elsedoneblock64001
+UpdateFloater_elsedoneblock63961
+UpdateFloater_elsedoneblock63881
+UpdateFloater_elsedoneblock63721
+	; LineNumber: 3159
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateFloater_newx
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateFloater_elsedoneblock63982
-UpdateFloater_ConditionalTrueBlock63980: ;Main true block ;keep 
-	; LineNumber: 3151
+	beq UpdateFloater_elsedoneblock64020
+UpdateFloater_ConditionalTrueBlock64018: ;Main true block ;keep 
+	; LineNumber: 3158
 	lda localVariable_UpdateFloater_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_SetPos_i
@@ -18670,32 +18700,32 @@ UpdateFloater_ConditionalTrueBlock63980: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_SetPos_z
 	jsr SetPos
-UpdateFloater_elsedoneblock63982
-	; LineNumber: 3153
-UpdateFloater_elsedoneblock63307
-	; LineNumber: 3154
-UpdateFloater_elsedoneblock62605
-	; LineNumber: 3155
+UpdateFloater_elsedoneblock64020
+	; LineNumber: 3160
+UpdateFloater_elsedoneblock63345
+	; LineNumber: 3161
+UpdateFloater_elsedoneblock62643
+	; LineNumber: 3162
 	rts
 end_procedure_UpdateFloater
 	; NodeProcedureDecl 3
 	; ***********  Defining procedure : IncCurrentWater
 	;    Procedure type : User-defined procedure
-	; LineNumber: 3160
-	; LineNumber: 3159
+	; LineNumber: 3167
+	; LineNumber: 3166
 localVariable_IncCurrentWater_laserEmitId	dc.b	0
-	; LineNumber: 3157
+	; LineNumber: 3164
 localVariable_IncCurrentWater_id	dc.b	0
-IncCurrentWater_block63985
+IncCurrentWater_block64023
 IncCurrentWater
-	; LineNumber: 3161
+	; LineNumber: 3168
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_IncCurrentWater_id
 	lda objectList_gobject_gobject_laserEmitId,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_IncCurrentWater_laserEmitId
-	; LineNumber: 3162
+	; LineNumber: 3169
 	; Binary clause Simplified: LESS
 	; Load Byte array
 	; CAST type NADA
@@ -18703,9 +18733,9 @@ IncCurrentWater
 	lda laserList_laserObject_laserObject_currentLaser,x 
 	; Compare with pure num / var optimization
 	cmp #$1e;keep
-	bcs IncCurrentWater_elsedoneblock63989
-IncCurrentWater_ConditionalTrueBlock63987: ;Main true block ;keep 
-	; LineNumber: 3162
+	bcs IncCurrentWater_elsedoneblock64027
+IncCurrentWater_ConditionalTrueBlock64025: ;Main true block ;keep 
+	; LineNumber: 3169
 	; Optimizer: a = a +/- b
 	; Load Byte array
 	; CAST type NADA
@@ -18714,128 +18744,56 @@ IncCurrentWater_ConditionalTrueBlock63987: ;Main true block ;keep
 	clc
 	adc #$4
 	sta laserList_laserObject_laserObject_currentLaser,x
-IncCurrentWater_elsedoneblock63989
-	; LineNumber: 3164
+IncCurrentWater_elsedoneblock64027
+	; LineNumber: 3171
 	rts
 end_procedure_IncCurrentWater
 	; NodeProcedureDecl 3
 	; ***********  Defining procedure : UpdateFontaine
 	;    Procedure type : User-defined procedure
-	; LineNumber: 3172
-	; LineNumber: 3169
+	; LineNumber: 3179
+	; LineNumber: 3176
 localVariable_UpdateFontaine_id1	dc.b	0
-	; LineNumber: 3169
+	; LineNumber: 3176
 localVariable_UpdateFontaine_i	dc.b	0
-	; LineNumber: 3169
+	; LineNumber: 3176
 localVariable_UpdateFontaine_x	dc.b	0
-	; LineNumber: 3169
+	; LineNumber: 3176
 localVariable_UpdateFontaine_y	dc.b	0
-	; LineNumber: 3170
+	; LineNumber: 3177
 localVariable_UpdateFontaine_pos	dc.b	0
-	; LineNumber: 3170
+	; LineNumber: 3177
 localVariable_UpdateFontaine_id2	dc.b	0
-	; LineNumber: 3171
+	; LineNumber: 3178
 localVariable_UpdateFontaine_laserEmitId	dc.b	0
-	; LineNumber: 3167
+	; LineNumber: 3174
 localVariable_UpdateFontaine_id	dc.b	0
-UpdateFontaine_block63992
+UpdateFontaine_block64030
 UpdateFontaine
-	; LineNumber: 3173
+	; LineNumber: 3180
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_UpdateFontaine_id
 	lda objectList_gobject_gobject_laserEmitId,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateFontaine_laserEmitId
-	; LineNumber: 3174
-	lda #$ff
-	; Calling storevariable on generic assign expression
-	ldx localVariable_UpdateFontaine_laserEmitId ; optimized, look out for bugs
-	sta laserList_laserObject_laserObject_laserDir,x
-	; LineNumber: 3175
-	; Binary clause Simplified: EQUALS
-	; Load Byte array
-	; CAST type NADA
-	lda laserList_laserObject_laserObject_laserType,x 
-	; Compare with pure num / var optimization
-	cmp #$3;keep
-	bne UpdateFontaine_localfailed64140
-	jmp UpdateFontaine_ConditionalTrueBlock63994
-UpdateFontaine_localfailed64140
-	jmp UpdateFontaine_elseblock63995
-UpdateFontaine_ConditionalTrueBlock63994: ;Main true block ;keep 
-	; LineNumber: 3175
-	; LineNumber: 3176
-	; Binary clause Simplified: NOTEQUALS
-	; Load Byte array
-	; CAST type NADA
-	ldx localVariable_UpdateFontaine_laserEmitId
-	lda laserList_laserObject_laserObject_lastLaserDir,x 
-	; Compare with pure num / var optimization
-	cmp #$3;keep
-	beq UpdateFontaine_elsedoneblock64145
-UpdateFontaine_ConditionalTrueBlock64143: ;Main true block ;keep 
-	; LineNumber: 3175
-	lda #$0
-	; Calling storevariable on generic assign expression
-	ldx localVariable_UpdateFontaine_laserEmitId ; optimized, look out for bugs
-	sta laserList_laserObject_laserObject_currentLaser,x
-UpdateFontaine_elsedoneblock64145
-	; LineNumber: 3177
-	lda localVariable_UpdateFontaine_id
-	; Calling storevariable on generic assign expression
-	sta localVariable_IncCurrentWater_id
-	jsr IncCurrentWater
-	; LineNumber: 3178
-	lda localVariable_UpdateFontaine_id
-	; Calling storevariable on generic assign expression
-	sta localVariable_DirectFire_id
-	; Load Byte array
-	; CAST type NADA
-	ldx localVariable_UpdateFontaine_id
-	lda objectList_gobject_gobject_transX,x 
-	; Calling storevariable on generic assign expression
-	sta localVariable_DirectFire_xpos
-	; Load Byte array
-	; CAST type NADA
-	lda objectList_gobject_gobject_transY,x 
-	; Calling storevariable on generic assign expression
-	sta localVariable_DirectFire_ypos
-	lda #$ff
-	; Calling storevariable on generic assign expression
-	sta localVariable_DirectFire_xdir
-	lda #$0
-	; Calling storevariable on generic assign expression
-	sta localVariable_DirectFire_ydir
-	; Calling storevariable on generic assign expression
-	sta localVariable_DirectFire_bomb
-	jsr DirectFire
-	; LineNumber: 3179
-	lda #$3
-	; Calling storevariable on generic assign expression
-	ldx localVariable_UpdateFontaine_laserEmitId ; optimized, look out for bugs
-	sta laserList_laserObject_laserObject_laserDir,x
-	; LineNumber: 3180
-	; Load Byte array
-	; CAST type NADA
-	; Calling storevariable on generic assign expression
-	sta laserList_laserObject_laserObject_lastLaserDir,x
-	; LineNumber: 3182
-	jmp UpdateFontaine_elsedoneblock63996
-UpdateFontaine_elseblock63995
 	; LineNumber: 3181
+	lda #$ff
+	; Calling storevariable on generic assign expression
+	ldx localVariable_UpdateFontaine_laserEmitId ; optimized, look out for bugs
+	sta laserList_laserObject_laserObject_laserDir,x
+	; LineNumber: 3182
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
 	; CAST type NADA
-	ldx localVariable_UpdateFontaine_laserEmitId
 	lda laserList_laserObject_laserObject_laserType,x 
 	; Compare with pure num / var optimization
-	cmp #$5;keep
-	bne UpdateFontaine_localfailed64218
-	jmp UpdateFontaine_ConditionalTrueBlock64150
-UpdateFontaine_localfailed64218
-	jmp UpdateFontaine_elseblock64151
-UpdateFontaine_ConditionalTrueBlock64150: ;Main true block ;keep 
+	cmp #$3;keep
+	bne UpdateFontaine_localfailed64178
+	jmp UpdateFontaine_ConditionalTrueBlock64032
+UpdateFontaine_localfailed64178
+	jmp UpdateFontaine_elseblock64033
+UpdateFontaine_ConditionalTrueBlock64032: ;Main true block ;keep 
 	; LineNumber: 3182
 	; LineNumber: 3183
 	; Binary clause Simplified: NOTEQUALS
@@ -18844,15 +18802,15 @@ UpdateFontaine_ConditionalTrueBlock64150: ;Main true block ;keep
 	ldx localVariable_UpdateFontaine_laserEmitId
 	lda laserList_laserObject_laserObject_lastLaserDir,x 
 	; Compare with pure num / var optimization
-	cmp #$5;keep
-	beq UpdateFontaine_elsedoneblock64223
-UpdateFontaine_ConditionalTrueBlock64221: ;Main true block ;keep 
+	cmp #$3;keep
+	beq UpdateFontaine_elsedoneblock64183
+UpdateFontaine_ConditionalTrueBlock64181: ;Main true block ;keep 
 	; LineNumber: 3182
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateFontaine_laserEmitId ; optimized, look out for bugs
 	sta laserList_laserObject_laserObject_currentLaser,x
-UpdateFontaine_elsedoneblock64223
+UpdateFontaine_elsedoneblock64183
 	; LineNumber: 3184
 	lda localVariable_UpdateFontaine_id
 	; Calling storevariable on generic assign expression
@@ -18873,7 +18831,7 @@ UpdateFontaine_elsedoneblock64223
 	lda objectList_gobject_gobject_transY,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_DirectFire_ypos
-	lda #$1
+	lda #$ff
 	; Calling storevariable on generic assign expression
 	sta localVariable_DirectFire_xdir
 	lda #$0
@@ -18883,7 +18841,7 @@ UpdateFontaine_elsedoneblock64223
 	sta localVariable_DirectFire_bomb
 	jsr DirectFire
 	; LineNumber: 3186
-	lda #$5
+	lda #$3
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateFontaine_laserEmitId ; optimized, look out for bugs
 	sta laserList_laserObject_laserObject_laserDir,x
@@ -18893,8 +18851,8 @@ UpdateFontaine_elsedoneblock64223
 	; Calling storevariable on generic assign expression
 	sta laserList_laserObject_laserObject_lastLaserDir,x
 	; LineNumber: 3189
-	jmp UpdateFontaine_elsedoneblock64152
-UpdateFontaine_elseblock64151
+	jmp UpdateFontaine_elsedoneblock64034
+UpdateFontaine_elseblock64033
 	; LineNumber: 3188
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
@@ -18902,12 +18860,12 @@ UpdateFontaine_elseblock64151
 	ldx localVariable_UpdateFontaine_laserEmitId
 	lda laserList_laserObject_laserObject_laserType,x 
 	; Compare with pure num / var optimization
-	cmp #$1;keep
-	bne UpdateFontaine_localfailed64257
-	jmp UpdateFontaine_ConditionalTrueBlock64228
-UpdateFontaine_localfailed64257
-	jmp UpdateFontaine_elseblock64229
-UpdateFontaine_ConditionalTrueBlock64228: ;Main true block ;keep 
+	cmp #$5;keep
+	bne UpdateFontaine_localfailed64256
+	jmp UpdateFontaine_ConditionalTrueBlock64188
+UpdateFontaine_localfailed64256
+	jmp UpdateFontaine_elseblock64189
+UpdateFontaine_ConditionalTrueBlock64188: ;Main true block ;keep 
 	; LineNumber: 3189
 	; LineNumber: 3190
 	; Binary clause Simplified: NOTEQUALS
@@ -18916,15 +18874,15 @@ UpdateFontaine_ConditionalTrueBlock64228: ;Main true block ;keep
 	ldx localVariable_UpdateFontaine_laserEmitId
 	lda laserList_laserObject_laserObject_lastLaserDir,x 
 	; Compare with pure num / var optimization
-	cmp #$1;keep
-	beq UpdateFontaine_elsedoneblock64262
-UpdateFontaine_ConditionalTrueBlock64260: ;Main true block ;keep 
+	cmp #$5;keep
+	beq UpdateFontaine_elsedoneblock64261
+UpdateFontaine_ConditionalTrueBlock64259: ;Main true block ;keep 
 	; LineNumber: 3189
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateFontaine_laserEmitId ; optimized, look out for bugs
 	sta laserList_laserObject_laserObject_currentLaser,x
-UpdateFontaine_elsedoneblock64262
+UpdateFontaine_elsedoneblock64261
 	; LineNumber: 3191
 	lda localVariable_UpdateFontaine_id
 	; Calling storevariable on generic assign expression
@@ -18945,18 +18903,17 @@ UpdateFontaine_elsedoneblock64262
 	lda objectList_gobject_gobject_transY,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_DirectFire_ypos
-	lda #$0
+	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_DirectFire_xdir
-	lda #$ff
+	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_DirectFire_ydir
-	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_DirectFire_bomb
 	jsr DirectFire
 	; LineNumber: 3193
-	lda #$1
+	lda #$5
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateFontaine_laserEmitId ; optimized, look out for bugs
 	sta laserList_laserObject_laserObject_laserDir,x
@@ -18966,8 +18923,8 @@ UpdateFontaine_elsedoneblock64262
 	; Calling storevariable on generic assign expression
 	sta laserList_laserObject_laserObject_lastLaserDir,x
 	; LineNumber: 3196
-	jmp UpdateFontaine_elsedoneblock64230
-UpdateFontaine_elseblock64229
+	jmp UpdateFontaine_elsedoneblock64190
+UpdateFontaine_elseblock64189
 	; LineNumber: 3195
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
@@ -18975,9 +18932,12 @@ UpdateFontaine_elseblock64229
 	ldx localVariable_UpdateFontaine_laserEmitId
 	lda laserList_laserObject_laserObject_laserType,x 
 	; Compare with pure num / var optimization
-	cmp #$7;keep
-	bne UpdateFontaine_elsedoneblock64269
-UpdateFontaine_ConditionalTrueBlock64267: ;Main true block ;keep 
+	cmp #$1;keep
+	bne UpdateFontaine_localfailed64295
+	jmp UpdateFontaine_ConditionalTrueBlock64266
+UpdateFontaine_localfailed64295
+	jmp UpdateFontaine_elseblock64267
+UpdateFontaine_ConditionalTrueBlock64266: ;Main true block ;keep 
 	; LineNumber: 3196
 	; LineNumber: 3197
 	; Binary clause Simplified: NOTEQUALS
@@ -18986,15 +18946,15 @@ UpdateFontaine_ConditionalTrueBlock64267: ;Main true block ;keep
 	ldx localVariable_UpdateFontaine_laserEmitId
 	lda laserList_laserObject_laserObject_lastLaserDir,x 
 	; Compare with pure num / var optimization
-	cmp #$7;keep
-	beq UpdateFontaine_elsedoneblock64281
-UpdateFontaine_ConditionalTrueBlock64279: ;Main true block ;keep 
+	cmp #$1;keep
+	beq UpdateFontaine_elsedoneblock64300
+UpdateFontaine_ConditionalTrueBlock64298: ;Main true block ;keep 
 	; LineNumber: 3196
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateFontaine_laserEmitId ; optimized, look out for bugs
 	sta laserList_laserObject_laserObject_currentLaser,x
-UpdateFontaine_elsedoneblock64281
+UpdateFontaine_elsedoneblock64300
 	; LineNumber: 3198
 	lda localVariable_UpdateFontaine_id
 	; Calling storevariable on generic assign expression
@@ -19018,7 +18978,7 @@ UpdateFontaine_elsedoneblock64281
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_DirectFire_xdir
-	lda #$1
+	lda #$ff
 	; Calling storevariable on generic assign expression
 	sta localVariable_DirectFire_ydir
 	lda #$0
@@ -19026,7 +18986,7 @@ UpdateFontaine_elsedoneblock64281
 	sta localVariable_DirectFire_bomb
 	jsr DirectFire
 	; LineNumber: 3200
-	lda #$7
+	lda #$1
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateFontaine_laserEmitId ; optimized, look out for bugs
 	sta laserList_laserObject_laserObject_laserDir,x
@@ -19035,12 +18995,82 @@ UpdateFontaine_elsedoneblock64281
 	; CAST type NADA
 	; Calling storevariable on generic assign expression
 	sta laserList_laserObject_laserObject_lastLaserDir,x
-	; LineNumber: 3202
-UpdateFontaine_elsedoneblock64269
-UpdateFontaine_elsedoneblock64230
-UpdateFontaine_elsedoneblock64152
-UpdateFontaine_elsedoneblock63996
 	; LineNumber: 3203
+	jmp UpdateFontaine_elsedoneblock64268
+UpdateFontaine_elseblock64267
+	; LineNumber: 3202
+	; Binary clause Simplified: EQUALS
+	; Load Byte array
+	; CAST type NADA
+	ldx localVariable_UpdateFontaine_laserEmitId
+	lda laserList_laserObject_laserObject_laserType,x 
+	; Compare with pure num / var optimization
+	cmp #$7;keep
+	bne UpdateFontaine_elsedoneblock64307
+UpdateFontaine_ConditionalTrueBlock64305: ;Main true block ;keep 
+	; LineNumber: 3203
+	; LineNumber: 3204
+	; Binary clause Simplified: NOTEQUALS
+	; Load Byte array
+	; CAST type NADA
+	ldx localVariable_UpdateFontaine_laserEmitId
+	lda laserList_laserObject_laserObject_lastLaserDir,x 
+	; Compare with pure num / var optimization
+	cmp #$7;keep
+	beq UpdateFontaine_elsedoneblock64319
+UpdateFontaine_ConditionalTrueBlock64317: ;Main true block ;keep 
+	; LineNumber: 3203
+	lda #$0
+	; Calling storevariable on generic assign expression
+	ldx localVariable_UpdateFontaine_laserEmitId ; optimized, look out for bugs
+	sta laserList_laserObject_laserObject_currentLaser,x
+UpdateFontaine_elsedoneblock64319
+	; LineNumber: 3205
+	lda localVariable_UpdateFontaine_id
+	; Calling storevariable on generic assign expression
+	sta localVariable_IncCurrentWater_id
+	jsr IncCurrentWater
+	; LineNumber: 3206
+	lda localVariable_UpdateFontaine_id
+	; Calling storevariable on generic assign expression
+	sta localVariable_DirectFire_id
+	; Load Byte array
+	; CAST type NADA
+	ldx localVariable_UpdateFontaine_id
+	lda objectList_gobject_gobject_transX,x 
+	; Calling storevariable on generic assign expression
+	sta localVariable_DirectFire_xpos
+	; Load Byte array
+	; CAST type NADA
+	lda objectList_gobject_gobject_transY,x 
+	; Calling storevariable on generic assign expression
+	sta localVariable_DirectFire_ypos
+	lda #$0
+	; Calling storevariable on generic assign expression
+	sta localVariable_DirectFire_xdir
+	lda #$1
+	; Calling storevariable on generic assign expression
+	sta localVariable_DirectFire_ydir
+	lda #$0
+	; Calling storevariable on generic assign expression
+	sta localVariable_DirectFire_bomb
+	jsr DirectFire
+	; LineNumber: 3207
+	lda #$7
+	; Calling storevariable on generic assign expression
+	ldx localVariable_UpdateFontaine_laserEmitId ; optimized, look out for bugs
+	sta laserList_laserObject_laserObject_laserDir,x
+	; LineNumber: 3208
+	; Load Byte array
+	; CAST type NADA
+	; Calling storevariable on generic assign expression
+	sta laserList_laserObject_laserObject_lastLaserDir,x
+	; LineNumber: 3209
+UpdateFontaine_elsedoneblock64307
+UpdateFontaine_elsedoneblock64268
+UpdateFontaine_elsedoneblock64190
+UpdateFontaine_elsedoneblock64034
+	; LineNumber: 3210
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
 	; CAST type NADA
@@ -19048,35 +19078,35 @@ UpdateFontaine_elsedoneblock63996
 	lda laserList_laserObject_laserObject_laserDir,x 
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne UpdateFontaine_elsedoneblock64287
-UpdateFontaine_ConditionalTrueBlock64285: ;Main true block ;keep 
-	; LineNumber: 3202
+	bne UpdateFontaine_elsedoneblock64325
+UpdateFontaine_ConditionalTrueBlock64323: ;Main true block ;keep 
+	; LineNumber: 3209
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateFontaine_laserEmitId ; optimized, look out for bugs
 	sta laserList_laserObject_laserObject_currentLaser,x
-UpdateFontaine_elsedoneblock64287
-	; LineNumber: 3204
+UpdateFontaine_elsedoneblock64325
+	; LineNumber: 3211
 	rts
 end_procedure_UpdateFontaine
 	; NodeProcedureDecl 3
 	; ***********  Defining procedure : IncCurrentLaser
 	;    Procedure type : User-defined procedure
-	; LineNumber: 3209
-	; LineNumber: 3208
+	; LineNumber: 3216
+	; LineNumber: 3215
 localVariable_IncCurrentLaser_laserEmitId	dc.b	0
-	; LineNumber: 3206
+	; LineNumber: 3213
 localVariable_IncCurrentLaser_id	dc.b	0
-IncCurrentLaser_block64290
+IncCurrentLaser_block64328
 IncCurrentLaser
-	; LineNumber: 3210
+	; LineNumber: 3217
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_IncCurrentLaser_id
 	lda objectList_gobject_gobject_laserEmitId,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_IncCurrentLaser_laserEmitId
-	; LineNumber: 3211
+	; LineNumber: 3218
 	; Binary clause Simplified: LESS
 	; Load Byte array
 	; CAST type NADA
@@ -19084,9 +19114,9 @@ IncCurrentLaser
 	lda laserList_laserObject_laserObject_currentLaser,x 
 	; Compare with pure num / var optimization
 	cmp #$1e;keep
-	bcs IncCurrentLaser_elsedoneblock64294
-IncCurrentLaser_ConditionalTrueBlock64292: ;Main true block ;keep 
-	; LineNumber: 3211
+	bcs IncCurrentLaser_elsedoneblock64332
+IncCurrentLaser_ConditionalTrueBlock64330: ;Main true block ;keep 
+	; LineNumber: 3218
 	; Optimizer: a = a +/- b
 	; Load Byte array
 	; CAST type NADA
@@ -19095,184 +19125,184 @@ IncCurrentLaser_ConditionalTrueBlock64292: ;Main true block ;keep
 	clc
 	adc #$4
 	sta laserList_laserObject_laserObject_currentLaser,x
-IncCurrentLaser_elsedoneblock64294
-	; LineNumber: 3213
+IncCurrentLaser_elsedoneblock64332
+	; LineNumber: 3220
 	rts
 end_procedure_IncCurrentLaser
 	; NodeProcedureDecl 3
 	; ***********  Defining procedure : CalcFireExitDir
 	;    Procedure type : User-defined procedure
-	; LineNumber: 3218
-	; LineNumber: 3217
+	; LineNumber: 3225
+	; LineNumber: 3224
 localVariable_CalcFireExitDir_ret	dc.b	0
-	; LineNumber: 3215
+	; LineNumber: 3222
 localVariable_CalcFireExitDir_xdir	dc.b	0
-	; LineNumber: 3215
+	; LineNumber: 3222
 localVariable_CalcFireExitDir_ydir	dc.b	0
-CalcFireExitDir_block64297
+CalcFireExitDir_block64335
 CalcFireExitDir
-	; LineNumber: 3219
+	; LineNumber: 3226
 	; Binary clause Simplified: EQUALS
 	lda localVariable_CalcFireExitDir_xdir
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne CalcFireExitDir_elseblock64300
-CalcFireExitDir_localsuccess64367: ;keep
+	bne CalcFireExitDir_elseblock64338
+CalcFireExitDir_localsuccess64405: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	clc
 	lda localVariable_CalcFireExitDir_ydir
 	; cmp #$00 ignored
-	bne CalcFireExitDir_elseblock64300
-CalcFireExitDir_ConditionalTrueBlock64299: ;Main true block ;keep 
-	; LineNumber: 3219
+	bne CalcFireExitDir_elseblock64338
+CalcFireExitDir_ConditionalTrueBlock64337: ;Main true block ;keep 
+	; LineNumber: 3226
 	lda #$5
 	; Calling storevariable on generic assign expression
 	sta localVariable_CalcFireExitDir_ret
-	jmp CalcFireExitDir_elsedoneblock64301
-CalcFireExitDir_elseblock64300
-	; LineNumber: 3220
+	jmp CalcFireExitDir_elsedoneblock64339
+CalcFireExitDir_elseblock64338
+	; LineNumber: 3227
 	; Binary clause Simplified: EQUALS
 	lda localVariable_CalcFireExitDir_xdir
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne CalcFireExitDir_elseblock64372
-CalcFireExitDir_localsuccess64403: ;keep
+	bne CalcFireExitDir_elseblock64410
+CalcFireExitDir_localsuccess64441: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	clc
 	lda localVariable_CalcFireExitDir_ydir
 	; cmp #$00 ignored
-	bne CalcFireExitDir_elseblock64372
-CalcFireExitDir_ConditionalTrueBlock64371: ;Main true block ;keep 
-	; LineNumber: 3221
+	bne CalcFireExitDir_elseblock64410
+CalcFireExitDir_ConditionalTrueBlock64409: ;Main true block ;keep 
+	; LineNumber: 3228
 	lda #$3
 	; Calling storevariable on generic assign expression
 	sta localVariable_CalcFireExitDir_ret
-	jmp CalcFireExitDir_elsedoneblock64373
-CalcFireExitDir_elseblock64372
-	; LineNumber: 3222
+	jmp CalcFireExitDir_elsedoneblock64411
+CalcFireExitDir_elseblock64410
+	; LineNumber: 3229
 	; Binary clause Simplified: EQUALS
 	clc
 	lda localVariable_CalcFireExitDir_xdir
 	; cmp #$00 ignored
-	bne CalcFireExitDir_elseblock64408
-CalcFireExitDir_localsuccess64421: ;keep
+	bne CalcFireExitDir_elseblock64446
+CalcFireExitDir_localsuccess64459: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	lda localVariable_CalcFireExitDir_ydir
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne CalcFireExitDir_elseblock64408
-CalcFireExitDir_ConditionalTrueBlock64407: ;Main true block ;keep 
-	; LineNumber: 3223
+	bne CalcFireExitDir_elseblock64446
+CalcFireExitDir_ConditionalTrueBlock64445: ;Main true block ;keep 
+	; LineNumber: 3230
 	lda #$7
 	; Calling storevariable on generic assign expression
 	sta localVariable_CalcFireExitDir_ret
-	jmp CalcFireExitDir_elsedoneblock64409
-CalcFireExitDir_elseblock64408
-	; LineNumber: 3224
+	jmp CalcFireExitDir_elsedoneblock64447
+CalcFireExitDir_elseblock64446
+	; LineNumber: 3231
 	; Binary clause Simplified: EQUALS
 	clc
 	lda localVariable_CalcFireExitDir_xdir
 	; cmp #$00 ignored
-	bne CalcFireExitDir_elseblock64426
-CalcFireExitDir_localsuccess64430: ;keep
+	bne CalcFireExitDir_elseblock64464
+CalcFireExitDir_localsuccess64468: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	lda localVariable_CalcFireExitDir_ydir
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne CalcFireExitDir_elseblock64426
-CalcFireExitDir_ConditionalTrueBlock64425: ;Main true block ;keep 
-	; LineNumber: 3225
+	bne CalcFireExitDir_elseblock64464
+CalcFireExitDir_ConditionalTrueBlock64463: ;Main true block ;keep 
+	; LineNumber: 3232
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_CalcFireExitDir_ret
-	jmp CalcFireExitDir_elsedoneblock64427
-CalcFireExitDir_elseblock64426
-	; LineNumber: 3227
+	jmp CalcFireExitDir_elsedoneblock64465
+CalcFireExitDir_elseblock64464
+	; LineNumber: 3234
 	lda #$ff
 	; Calling storevariable on generic assign expression
 	sta localVariable_CalcFireExitDir_ret
-CalcFireExitDir_elsedoneblock64427
-CalcFireExitDir_elsedoneblock64409
-CalcFireExitDir_elsedoneblock64373
-CalcFireExitDir_elsedoneblock64301
-	; LineNumber: 3230
-	; LineNumber: 3230
+CalcFireExitDir_elsedoneblock64465
+CalcFireExitDir_elsedoneblock64447
+CalcFireExitDir_elsedoneblock64411
+CalcFireExitDir_elsedoneblock64339
+	; LineNumber: 3237
+	; LineNumber: 3237
 	lda localVariable_CalcFireExitDir_ret
 	rts
 end_procedure_CalcFireExitDir
 	; NodeProcedureDecl 3
 	; ***********  Defining procedure : FireLaser
 	;    Procedure type : User-defined procedure
-	; LineNumber: 3248
-	; LineNumber: 3234
-localVariable_FireLaser_laserEmitId	dc.b	0
-	; LineNumber: 3235
-localVariable_FireLaser_laserId	dc.b	0
-	; LineNumber: 3236
-localVariable_FireLaser_collideId	dc.b	0
-	; LineNumber: 3236
-localVariable_FireLaser_collideId2	dc.b	0
-	; LineNumber: 3236
-localVariable_FireLaser_mirrorId	dc.b	0
-	; LineNumber: 3236
-localVariable_FireLaser_destroyAbleId	dc.b	0
-	; LineNumber: 3236
-localVariable_FireLaser_portalId	dc.b	0
-	; LineNumber: 3236
-localVariable_FireLaser_waterId	dc.b	0
-	; LineNumber: 3237
-localVariable_FireLaser_collide	dc.b	0
-	; LineNumber: 3238
-localVariable_FireLaser_controlId	dc.b	0
-	; LineNumber: 3239
-localVariable_FireLaser_laserx	dc.b	0
-	; LineNumber: 3239
-localVariable_FireLaser_lasery	dc.b	0
-	; LineNumber: 3239
-localVariable_FireLaser_lastx	dc.b	0
-	; LineNumber: 3239
-localVariable_FireLaser_lasty	dc.b	0
-	; LineNumber: 3240
-localVariable_FireLaser_countLaser	dc.b	0
+	; LineNumber: 3255
 	; LineNumber: 3241
-localVariable_FireLaser_turn	dc.b	0
+localVariable_FireLaser_laserEmitId	dc.b	0
 	; LineNumber: 3242
-localVariable_FireLaser_targetPortal	dc.b	0
+localVariable_FireLaser_laserId	dc.b	0
 	; LineNumber: 3243
-localVariable_FireLaser_dir	dc.b	0
+localVariable_FireLaser_collideId	dc.b	0
+	; LineNumber: 3243
+localVariable_FireLaser_collideId2	dc.b	0
+	; LineNumber: 3243
+localVariable_FireLaser_mirrorId	dc.b	0
+	; LineNumber: 3243
+localVariable_FireLaser_destroyAbleId	dc.b	0
+	; LineNumber: 3243
+localVariable_FireLaser_portalId	dc.b	0
+	; LineNumber: 3243
+localVariable_FireLaser_waterId	dc.b	0
 	; LineNumber: 3244
-localVariable_FireLaser_portalIdMove	dc.b	0
+localVariable_FireLaser_collide	dc.b	0
 	; LineNumber: 3245
-localVariable_FireLaser_tempx	dc.b	0
-	; LineNumber: 3245
-localVariable_FireLaser_tempy	dc.b	0
-	; LineNumber: 3245
-localVariable_FireLaser_tempx2	dc.b	0
-	; LineNumber: 3245
-localVariable_FireLaser_tempy2	dc.b	0
-	; LineNumber: 3245
-localVariable_FireLaser_pos	dc.b	0
+localVariable_FireLaser_controlId	dc.b	0
 	; LineNumber: 3246
-localVariable_FireLaser_laserType	dc.b	0
+localVariable_FireLaser_laserx	dc.b	0
+	; LineNumber: 3246
+localVariable_FireLaser_lasery	dc.b	0
+	; LineNumber: 3246
+localVariable_FireLaser_lastx	dc.b	0
+	; LineNumber: 3246
+localVariable_FireLaser_lasty	dc.b	0
 	; LineNumber: 3247
-localVariable_FireLaser_collideControlId	dc.b	0
-	; LineNumber: 3232
-localVariable_FireLaser_id	dc.b	0
-	; LineNumber: 3232
-localVariable_FireLaser_xpos	dc.b	0
-	; LineNumber: 3232
-localVariable_FireLaser_ypos	dc.b	0
-	; LineNumber: 3232
-localVariable_FireLaser_xdir	dc.b	0
-	; LineNumber: 3232
-localVariable_FireLaser_ydir	dc.b	0
-FireLaser_block64433
-FireLaser
+localVariable_FireLaser_countLaser	dc.b	0
+	; LineNumber: 3248
+localVariable_FireLaser_turn	dc.b	0
+	; LineNumber: 3249
+localVariable_FireLaser_targetPortal	dc.b	0
 	; LineNumber: 3250
+localVariable_FireLaser_dir	dc.b	0
+	; LineNumber: 3251
+localVariable_FireLaser_portalIdMove	dc.b	0
+	; LineNumber: 3252
+localVariable_FireLaser_tempx	dc.b	0
+	; LineNumber: 3252
+localVariable_FireLaser_tempy	dc.b	0
+	; LineNumber: 3252
+localVariable_FireLaser_tempx2	dc.b	0
+	; LineNumber: 3252
+localVariable_FireLaser_tempy2	dc.b	0
+	; LineNumber: 3252
+localVariable_FireLaser_pos	dc.b	0
+	; LineNumber: 3253
+localVariable_FireLaser_laserType	dc.b	0
+	; LineNumber: 3254
+localVariable_FireLaser_collideControlId	dc.b	0
+	; LineNumber: 3239
+localVariable_FireLaser_id	dc.b	0
+	; LineNumber: 3239
+localVariable_FireLaser_xpos	dc.b	0
+	; LineNumber: 3239
+localVariable_FireLaser_ypos	dc.b	0
+	; LineNumber: 3239
+localVariable_FireLaser_xdir	dc.b	0
+	; LineNumber: 3239
+localVariable_FireLaser_ydir	dc.b	0
+FireLaser_block64471
+FireLaser
+	; LineNumber: 3257
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
 	; CAST type NADA
@@ -19280,31 +19310,31 @@ FireLaser
 	lda objectList_gobject_gobject_onOff,x 
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne FireLaser_localfailed118571
-	jmp FireLaser_ConditionalTrueBlock64435
-FireLaser_localfailed118571
-	jmp FireLaser_elsedoneblock64437
-FireLaser_ConditionalTrueBlock64435: ;Main true block ;keep 
-	; LineNumber: 3250
-	; LineNumber: 3251
+	bne FireLaser_localfailed118609
+	jmp FireLaser_ConditionalTrueBlock64473
+FireLaser_localfailed118609
+	jmp FireLaser_elsedoneblock64475
+FireLaser_ConditionalTrueBlock64473: ;Main true block ;keep 
+	; LineNumber: 3257
+	; LineNumber: 3258
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_FireLaser_id
 	lda objectList_gobject_gobject_laserEmitId,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_laserEmitId
-	; LineNumber: 3252
+	; LineNumber: 3259
 	lda #$ff
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_controlId
-	; LineNumber: 3253
+	; LineNumber: 3260
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_FireLaser_laserEmitId
 	lda laserList_laserObject_laserObject_laserType,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_laserType
-	; LineNumber: 3254
+	; LineNumber: 3261
 	; Binary clause Simplified: EQUALS
 	; 8 bit binop
 	; Add/sub where right value is constant number
@@ -19316,29 +19346,29 @@ FireLaser_ConditionalTrueBlock64435: ;Main true block ;keep
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$80;keep
-	bne FireLaser_elsedoneblock118576
-FireLaser_ConditionalTrueBlock118574: ;Main true block ;keep 
-	; LineNumber: 3254
+	bne FireLaser_elsedoneblock118614
+FireLaser_ConditionalTrueBlock118612: ;Main true block ;keep 
+	; LineNumber: 3261
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_FireLaser_id
 	lda objectList_gobject_gobject_controlId,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_controlId
-FireLaser_elsedoneblock118576
-	; LineNumber: 3256
+FireLaser_elsedoneblock118614
+	; LineNumber: 3263
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_collide
-	; LineNumber: 3257
+	; LineNumber: 3264
 	lda localVariable_FireLaser_xpos
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_lastx
-	; LineNumber: 3258
+	; LineNumber: 3265
 	lda localVariable_FireLaser_ypos
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_lasty
-	; LineNumber: 3259
+	; LineNumber: 3266
 	lda localVariable_FireLaser_xpos
 	; Calling storevariable on generic assign expression
 	sta localVariable_CalcPositionX_startx
@@ -19348,7 +19378,7 @@ FireLaser_elsedoneblock118576
 	jsr CalcPositionX
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_laserx
-	; LineNumber: 3260
+	; LineNumber: 3267
 	lda localVariable_FireLaser_ypos
 	; Calling storevariable on generic assign expression
 	sta localVariable_CalcPositionY_starty
@@ -19358,17 +19388,17 @@ FireLaser_elsedoneblock118576
 	jsr CalcPositionY
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_lasery
-	; LineNumber: 3261
+	; LineNumber: 3268
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_countLaser
-	; LineNumber: 3262
+	; LineNumber: 3269
 	; Binary clause Simplified: EQUALS
 	lda localVariable_FireLaser_laserType
 	; Compare with pure num / var optimization
 	cmp #$a;keep
-	bne FireLaser_elsedoneblock118582
-FireLaser_localsuccess118584: ;keep
+	bne FireLaser_elsedoneblock118620
+FireLaser_localsuccess118622: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
@@ -19377,26 +19407,26 @@ FireLaser_localsuccess118584: ;keep
 	lda laserList_laserObject_laserObject_currentLaser,x 
 	; Compare with pure num / var optimization
 	cmp #$4;keep
-	bne FireLaser_elsedoneblock118582
-FireLaser_ConditionalTrueBlock118580: ;Main true block ;keep 
-	; LineNumber: 3262
-	; LineNumber: 3264
+	bne FireLaser_elsedoneblock118620
+FireLaser_ConditionalTrueBlock118618: ;Main true block ;keep 
+	; LineNumber: 3269
+	; LineNumber: 3271
 	lda #<sndLaser
 	ldy #>sndLaser
 	; Calling storevariable on generic assign expression
 	sta psnd+6
 	sty psnd+7
-	; LineNumber: 3264
+	; LineNumber: 3271
 	lda #$ff
 	; Calling storevariable on generic assign expression
 	sta vsnd+$3
-	; LineNumber: 3264
+	; LineNumber: 3271
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta vsndTime+$3
-	; LineNumber: 3265
-FireLaser_elsedoneblock118582
-	; LineNumber: 3266
+	; LineNumber: 3272
+FireLaser_elsedoneblock118620
+	; LineNumber: 3273
 	lda localVariable_FireLaser_laserx
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjectByPosFilterComp_x
@@ -19415,7 +19445,7 @@ FireLaser_elsedoneblock118582
 	jsr GetObjectByPosFilterComp
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_collideId
-	; LineNumber: 3267
+	; LineNumber: 3274
 	lda localVariable_FireLaser_laserx
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjectByPosFilterComp_x
@@ -19434,36 +19464,36 @@ FireLaser_elsedoneblock118582
 	jsr GetObjectByPosFilterComp
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_mirrorId
-	; LineNumber: 3269
+	; LineNumber: 3276
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_FireLaser_collideId
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq FireLaser_elsedoneblock118589
-FireLaser_localsuccess118591: ;keep
+	beq FireLaser_elsedoneblock118627
+FireLaser_localsuccess118629: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	lda localVariable_FireLaser_mirrorId
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne FireLaser_elsedoneblock118589
-FireLaser_ConditionalTrueBlock118587: ;Main true block ;keep 
-	; LineNumber: 3268
+	bne FireLaser_elsedoneblock118627
+FireLaser_ConditionalTrueBlock118625: ;Main true block ;keep 
+	; LineNumber: 3275
 	
 ; // destroyAbleId := GetObjectByPosFilterComp(laserx, lasery, 1, 1, 2); and destroyAbleId = $FF 
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_collide
-FireLaser_elsedoneblock118589
-	; LineNumber: 3270
-FireLaser_while118593
-FireLaser_loopstart118597
+FireLaser_elsedoneblock118627
+	; LineNumber: 3277
+FireLaser_while118631
+FireLaser_loopstart118635
 	; Binary clause Simplified: EQUALS
 	clc
 	lda localVariable_FireLaser_collide
 	; cmp #$00 ignored
-	bne FireLaser_localfailed145360
-FireLaser_localsuccess145361: ;keep
+	bne FireLaser_localfailed145398
+FireLaser_localsuccess145399: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: GREATER
 	; Load Byte array
@@ -19472,14 +19502,14 @@ FireLaser_localsuccess145361: ;keep
 	lda laserList_laserObject_laserObject_currentLaser,x 
 	; Compare with pure num / var optimization
 	cmp localVariable_FireLaser_countLaser;keep
-	bcc FireLaser_localfailed145360
-	beq FireLaser_localfailed145360
-	jmp FireLaser_ConditionalTrueBlock118594
-FireLaser_localfailed145360
-	jmp FireLaser_elsedoneblock118596
-FireLaser_ConditionalTrueBlock118594: ;Main true block ;keep 
-	; LineNumber: 3270
-	; LineNumber: 3271
+	bcc FireLaser_localfailed145398
+	beq FireLaser_localfailed145398
+	jmp FireLaser_ConditionalTrueBlock118632
+FireLaser_localfailed145398
+	jmp FireLaser_elsedoneblock118634
+FireLaser_ConditionalTrueBlock118632: ;Main true block ;keep 
+	; LineNumber: 3277
+	; LineNumber: 3278
 	lda localVariable_FireLaser_laserx
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjectByPosFilterComp_x
@@ -19498,7 +19528,7 @@ FireLaser_ConditionalTrueBlock118594: ;Main true block ;keep
 	jsr GetObjectByPosFilterComp
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_collideId
-	; LineNumber: 3272
+	; LineNumber: 3279
 	lda localVariable_FireLaser_laserx
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjectByPosFilterComp_x
@@ -19517,33 +19547,33 @@ FireLaser_ConditionalTrueBlock118594: ;Main true block ;keep
 	jsr GetObjectByPosFilterComp
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_mirrorId
-	; LineNumber: 3274
+	; LineNumber: 3281
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_FireLaser_collideId
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq FireLaser_localfailed158744
-FireLaser_localsuccess158745: ;keep
+	beq FireLaser_localfailed158782
+FireLaser_localsuccess158783: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	lda localVariable_FireLaser_mirrorId
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne FireLaser_localfailed158744
-	jmp FireLaser_ConditionalTrueBlock145364
-FireLaser_localfailed158744
-	jmp FireLaser_elseblock145365
-FireLaser_ConditionalTrueBlock145364: ;Main true block ;keep 
-	; LineNumber: 3273
+	bne FireLaser_localfailed158782
+	jmp FireLaser_ConditionalTrueBlock145402
+FireLaser_localfailed158782
+	jmp FireLaser_elseblock145403
+FireLaser_ConditionalTrueBlock145402: ;Main true block ;keep 
+	; LineNumber: 3280
 	
 ; // destroyAbleId := GetObjectByPosFilterComp(laserx, lasery, 1, 1, 2); and destroyAbleId = $FF 
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_collide
-	jmp FireLaser_elsedoneblock145366
-FireLaser_elseblock145365
-	; LineNumber: 3275
-	; LineNumber: 3276
+	jmp FireLaser_elsedoneblock145404
+FireLaser_elseblock145403
+	; LineNumber: 3282
+	; LineNumber: 3283
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
 	; CAST type NADA
@@ -19560,487 +19590,487 @@ FireLaser_elseblock145365
 	lda mapfront,x 
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne FireLaser_localfailed165437
-	jmp FireLaser_ConditionalTrueBlock158749
-FireLaser_localfailed165437
-	jmp FireLaser_elsedoneblock158751
-FireLaser_ConditionalTrueBlock158749: ;Main true block ;keep 
-	; LineNumber: 3276
-	; LineNumber: 3277
+	bne FireLaser_localfailed165475
+	jmp FireLaser_ConditionalTrueBlock158787
+FireLaser_localfailed165475
+	jmp FireLaser_elsedoneblock158789
+FireLaser_ConditionalTrueBlock158787: ;Main true block ;keep 
+	; LineNumber: 3283
+	; LineNumber: 3284
 	jsr GetId
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_laserId
-	; LineNumber: 3278
+	; LineNumber: 3285
 	; Binary clause Simplified: NOTEQUALS
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq FireLaser_localfailed168666
-	jmp FireLaser_ConditionalTrueBlock165440
-FireLaser_localfailed168666
-	jmp FireLaser_elsedoneblock165442
-FireLaser_ConditionalTrueBlock165440: ;Main true block ;keep 
-	; LineNumber: 3277
-	; LineNumber: 3279
+	beq FireLaser_localfailed168704
+	jmp FireLaser_ConditionalTrueBlock165478
+FireLaser_localfailed168704
+	jmp FireLaser_elsedoneblock165480
+FireLaser_ConditionalTrueBlock165478: ;Main true block ;keep 
+	; LineNumber: 3284
+	; LineNumber: 3286
 	; Binary clause Simplified: NOTEQUALS
 	clc
 	lda localVariable_FireLaser_xdir
 	; cmp #$00 ignored
-	beq FireLaser_elseblock168670
-FireLaser_localsuccess168681: ;keep
+	beq FireLaser_elseblock168708
+FireLaser_localsuccess168719: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	clc
 	lda localVariable_FireLaser_ydir
 	; cmp #$00 ignored
-	bne FireLaser_elseblock168670
-FireLaser_ConditionalTrueBlock168669: ;Main true block ;keep 
-	; LineNumber: 3278
+	bne FireLaser_elseblock168708
+FireLaser_ConditionalTrueBlock168707: ;Main true block ;keep 
+	; LineNumber: 3285
 	lda #$74
 	; Calling storevariable on generic assign expression
 	ldx localVariable_FireLaser_laserId ; optimized, look out for bugs
 	sta objectList_gobject_gobject_rendTilePos,x
-	jmp FireLaser_elsedoneblock168671
-FireLaser_elseblock168670
-	; LineNumber: 3279
+	jmp FireLaser_elsedoneblock168709
+FireLaser_elseblock168708
+	; LineNumber: 3286
 	; Binary clause Simplified: EQUALS
 	clc
 	lda localVariable_FireLaser_xdir
 	; cmp #$00 ignored
-	bne FireLaser_elsedoneblock168687
-FireLaser_localsuccess168689: ;keep
+	bne FireLaser_elsedoneblock168725
+FireLaser_localsuccess168727: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	clc
 	lda localVariable_FireLaser_ydir
 	; cmp #$00 ignored
-	beq FireLaser_elsedoneblock168687
-FireLaser_ConditionalTrueBlock168685: ;Main true block ;keep 
-	; LineNumber: 3279
+	beq FireLaser_elsedoneblock168725
+FireLaser_ConditionalTrueBlock168723: ;Main true block ;keep 
+	; LineNumber: 3286
 	lda #$75
 	; Calling storevariable on generic assign expression
 	ldx localVariable_FireLaser_laserId ; optimized, look out for bugs
 	sta objectList_gobject_gobject_rendTilePos,x
-FireLaser_elsedoneblock168687
-FireLaser_elsedoneblock168671
-	; LineNumber: 3281
+FireLaser_elsedoneblock168725
+FireLaser_elsedoneblock168709
+	; LineNumber: 3288
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_FireLaser_laserType
 	; Compare with pure num / var optimization
 	cmp #$a;keep
-	beq FireLaser_elseblock168693
-FireLaser_ConditionalTrueBlock168692: ;Main true block ;keep 
-	; LineNumber: 3281
-	; LineNumber: 3282
+	beq FireLaser_elseblock168731
+FireLaser_ConditionalTrueBlock168730: ;Main true block ;keep 
+	; LineNumber: 3288
+	; LineNumber: 3289
 	lda #$8
 	; Calling storevariable on generic assign expression
 	ldx localVariable_FireLaser_laserId ; optimized, look out for bugs
 	sta objectList_gobject_gobject_component0,x
-	; LineNumber: 3284
-	jmp FireLaser_elsedoneblock168694
-FireLaser_elseblock168693
-	; LineNumber: 3284
+	; LineNumber: 3291
+	jmp FireLaser_elsedoneblock168732
+FireLaser_elseblock168731
+	; LineNumber: 3291
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_FireLaser_laserId ; optimized, look out for bugs
 	sta objectList_gobject_gobject_component0,x
-FireLaser_elsedoneblock168694
-	; LineNumber: 3286
+FireLaser_elsedoneblock168732
+	; LineNumber: 3293
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_FireLaser_laserId ; optimized, look out for bugs
 	sta objectList_gobject_gobject_component1,x
-	; LineNumber: 3287
+	; LineNumber: 3294
 	lda #$2
 	; Calling storevariable on generic assign expression
 	sta objectList_gobject_gobject_component2,x
-	; LineNumber: 3288
+	; LineNumber: 3295
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta objectList_gobject_gobject_component3,x
-	; LineNumber: 3289
+	; LineNumber: 3296
 	lda localVariable_FireLaser_laserx
 	; Calling storevariable on generic assign expression
 	sta objectList_gobject_gobject_transX,x
-	; LineNumber: 3290
+	; LineNumber: 3297
 	lda localVariable_FireLaser_lasery
 	; Calling storevariable on generic assign expression
 	sta objectList_gobject_gobject_transY,x
-	; LineNumber: 3291
+	; LineNumber: 3298
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta objectList_gobject_gobject_transZ,x
-	; LineNumber: 3292
+	; LineNumber: 3299
 	lda localVariable_FireLaser_id
 	; Calling storevariable on generic assign expression
 	sta objectList_gobject_gobject_laserTag,x
-	; LineNumber: 3294
+	; LineNumber: 3301
 	lda #$ff
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_turn
-	; LineNumber: 3295
+	; LineNumber: 3302
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_FireLaser_mirrorId
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq FireLaser_localfailed170270
-	jmp FireLaser_ConditionalTrueBlock168700
-FireLaser_localfailed170270
-	jmp FireLaser_elsedoneblock168702
-FireLaser_ConditionalTrueBlock168700: ;Main true block ;keep 
-	; LineNumber: 3295
-	; LineNumber: 3296
+	beq FireLaser_localfailed170308
+	jmp FireLaser_ConditionalTrueBlock168738
+FireLaser_localfailed170308
+	jmp FireLaser_elsedoneblock168740
+FireLaser_ConditionalTrueBlock168738: ;Main true block ;keep 
+	; LineNumber: 3302
+	; LineNumber: 3303
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_FireLaser_mirrorId
 	lda objectList_gobject_gobject_mirrorTurn,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_turn
-	; LineNumber: 3298
+	; LineNumber: 3305
 	; Binary clause Simplified: EQUALS
 	lda localVariable_FireLaser_xdir
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne FireLaser_localfailed171056
-FireLaser_localsuccess171057: ;keep
+	bne FireLaser_localfailed171094
+FireLaser_localsuccess171095: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	clc
 	lda localVariable_FireLaser_ydir
 	; cmp #$00 ignored
-	bne FireLaser_localfailed171056
-	jmp FireLaser_ConditionalTrueBlock170273
-FireLaser_localfailed171056
-	jmp FireLaser_elseblock170274
-FireLaser_ConditionalTrueBlock170273: ;Main true block ;keep 
-	; LineNumber: 3298
-	; LineNumber: 3299
+	bne FireLaser_localfailed171094
+	jmp FireLaser_ConditionalTrueBlock170311
+FireLaser_localfailed171094
+	jmp FireLaser_elseblock170312
+FireLaser_ConditionalTrueBlock170311: ;Main true block ;keep 
+	; LineNumber: 3305
+	; LineNumber: 3306
 	; Binary clause Simplified: EQUALS
 	lda localVariable_FireLaser_turn
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne FireLaser_elseblock171061
-FireLaser_ConditionalTrueBlock171060: ;Main true block ;keep 
-	; LineNumber: 3299
-	; LineNumber: 3300
+	bne FireLaser_elseblock171099
+FireLaser_ConditionalTrueBlock171098: ;Main true block ;keep 
+	; LineNumber: 3306
+	; LineNumber: 3307
 	
 ; // laser left
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_xdir
-	; LineNumber: 3301
+	; LineNumber: 3308
 	lda #$ff
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_ydir
-	; LineNumber: 3302
+	; LineNumber: 3309
 	lda #$79
 	; Calling storevariable on generic assign expression
 	ldx localVariable_FireLaser_laserId ; optimized, look out for bugs
 	sta objectList_gobject_gobject_rendTilePos,x
-	; LineNumber: 3303
-	jmp FireLaser_elsedoneblock171062
-FireLaser_elseblock171061
-	; LineNumber: 3303
+	; LineNumber: 3310
+	jmp FireLaser_elsedoneblock171100
+FireLaser_elseblock171099
+	; LineNumber: 3310
 	; Binary clause Simplified: EQUALS
 	lda localVariable_FireLaser_turn
 	; Compare with pure num / var optimization
 	cmp #$2;keep
-	bne FireLaser_elseblock171089
-FireLaser_ConditionalTrueBlock171088: ;Main true block ;keep 
-	; LineNumber: 3304
-	; LineNumber: 3305
+	bne FireLaser_elseblock171127
+FireLaser_ConditionalTrueBlock171126: ;Main true block ;keep 
+	; LineNumber: 3311
+	; LineNumber: 3312
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_xdir
-	; LineNumber: 3306
+	; LineNumber: 3313
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_ydir
-	; LineNumber: 3307
+	; LineNumber: 3314
 	lda #$7a
 	; Calling storevariable on generic assign expression
 	ldx localVariable_FireLaser_laserId ; optimized, look out for bugs
 	sta objectList_gobject_gobject_rendTilePos,x
-	; LineNumber: 3309
-	jmp FireLaser_elsedoneblock171090
-FireLaser_elseblock171089
-	; LineNumber: 3308
+	; LineNumber: 3316
+	jmp FireLaser_elsedoneblock171128
+FireLaser_elseblock171127
+	; LineNumber: 3315
 	; Binary clause Simplified: EQUALS
 	lda localVariable_FireLaser_turn
 	; Compare with pure num / var optimization
 	cmp #$3;keep
-	bne FireLaser_elsedoneblock171104
-FireLaser_ConditionalTrueBlock171102: ;Main true block ;keep 
-	; LineNumber: 3308
+	bne FireLaser_elsedoneblock171142
+FireLaser_ConditionalTrueBlock171140: ;Main true block ;keep 
+	; LineNumber: 3315
 	lda #$76
 	; Calling storevariable on generic assign expression
 	ldx localVariable_FireLaser_laserId ; optimized, look out for bugs
 	sta objectList_gobject_gobject_rendTilePos,x
-FireLaser_elsedoneblock171104
-FireLaser_elsedoneblock171090
-FireLaser_elsedoneblock171062
-	; LineNumber: 3311
-	jmp FireLaser_elsedoneblock170275
-FireLaser_elseblock170274
-	; LineNumber: 3311
+FireLaser_elsedoneblock171142
+FireLaser_elsedoneblock171128
+FireLaser_elsedoneblock171100
+	; LineNumber: 3318
+	jmp FireLaser_elsedoneblock170313
+FireLaser_elseblock170312
+	; LineNumber: 3318
 	; Binary clause Simplified: EQUALS
 	lda localVariable_FireLaser_xdir
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne FireLaser_localfailed171474
-FireLaser_localsuccess171475: ;keep
+	bne FireLaser_localfailed171512
+FireLaser_localsuccess171513: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	clc
 	lda localVariable_FireLaser_ydir
 	; cmp #$00 ignored
-	bne FireLaser_localfailed171474
-	jmp FireLaser_ConditionalTrueBlock171109
-FireLaser_localfailed171474
-	jmp FireLaser_elseblock171110
-FireLaser_ConditionalTrueBlock171109: ;Main true block ;keep 
-	; LineNumber: 3312
-	; LineNumber: 3313
+	bne FireLaser_localfailed171512
+	jmp FireLaser_ConditionalTrueBlock171147
+FireLaser_localfailed171512
+	jmp FireLaser_elseblock171148
+FireLaser_ConditionalTrueBlock171147: ;Main true block ;keep 
+	; LineNumber: 3319
+	; LineNumber: 3320
 	; Binary clause Simplified: EQUALS
 	lda localVariable_FireLaser_turn
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne FireLaser_elseblock171479
-FireLaser_ConditionalTrueBlock171478: ;Main true block ;keep 
-	; LineNumber: 3313
-	; LineNumber: 3314
+	bne FireLaser_elseblock171517
+FireLaser_ConditionalTrueBlock171516: ;Main true block ;keep 
+	; LineNumber: 3320
+	; LineNumber: 3321
 	
 ; // laser right
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_xdir
-	; LineNumber: 3315
+	; LineNumber: 3322
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_ydir
-	; LineNumber: 3316
+	; LineNumber: 3323
 	lda #$7b
 	; Calling storevariable on generic assign expression
 	ldx localVariable_FireLaser_laserId ; optimized, look out for bugs
 	sta objectList_gobject_gobject_rendTilePos,x
-	; LineNumber: 3317
-	jmp FireLaser_elsedoneblock171480
-FireLaser_elseblock171479
-	; LineNumber: 3317
+	; LineNumber: 3324
+	jmp FireLaser_elsedoneblock171518
+FireLaser_elseblock171517
+	; LineNumber: 3324
 	; Binary clause Simplified: EQUALS
 	lda localVariable_FireLaser_turn
 	; Compare with pure num / var optimization
 	cmp #$2;keep
-	bne FireLaser_elseblock171507
-FireLaser_ConditionalTrueBlock171506: ;Main true block ;keep 
-	; LineNumber: 3318
-	; LineNumber: 3319
+	bne FireLaser_elseblock171545
+FireLaser_ConditionalTrueBlock171544: ;Main true block ;keep 
+	; LineNumber: 3325
+	; LineNumber: 3326
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_xdir
-	; LineNumber: 3320
+	; LineNumber: 3327
 	lda #$ff
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_ydir
-	; LineNumber: 3321
+	; LineNumber: 3328
 	lda #$78
 	; Calling storevariable on generic assign expression
 	ldx localVariable_FireLaser_laserId ; optimized, look out for bugs
 	sta objectList_gobject_gobject_rendTilePos,x
-	; LineNumber: 3323
-	jmp FireLaser_elsedoneblock171508
-FireLaser_elseblock171507
-	; LineNumber: 3322
+	; LineNumber: 3330
+	jmp FireLaser_elsedoneblock171546
+FireLaser_elseblock171545
+	; LineNumber: 3329
 	; Binary clause Simplified: EQUALS
 	lda localVariable_FireLaser_turn
 	; Compare with pure num / var optimization
 	cmp #$3;keep
-	bne FireLaser_elsedoneblock171522
-FireLaser_ConditionalTrueBlock171520: ;Main true block ;keep 
-	; LineNumber: 3322
+	bne FireLaser_elsedoneblock171560
+FireLaser_ConditionalTrueBlock171558: ;Main true block ;keep 
+	; LineNumber: 3329
 	lda #$76
 	; Calling storevariable on generic assign expression
 	ldx localVariable_FireLaser_laserId ; optimized, look out for bugs
 	sta objectList_gobject_gobject_rendTilePos,x
-FireLaser_elsedoneblock171522
-FireLaser_elsedoneblock171508
-FireLaser_elsedoneblock171480
-	; LineNumber: 3325
-	jmp FireLaser_elsedoneblock171111
-FireLaser_elseblock171110
-	; LineNumber: 3325
+FireLaser_elsedoneblock171560
+FireLaser_elsedoneblock171546
+FireLaser_elsedoneblock171518
+	; LineNumber: 3332
+	jmp FireLaser_elsedoneblock171149
+FireLaser_elseblock171148
+	; LineNumber: 3332
 	; Binary clause Simplified: EQUALS
 	clc
 	lda localVariable_FireLaser_xdir
 	; cmp #$00 ignored
-	bne FireLaser_localfailed171683
-FireLaser_localsuccess171684: ;keep
+	bne FireLaser_localfailed171721
+FireLaser_localsuccess171722: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	lda localVariable_FireLaser_ydir
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne FireLaser_localfailed171683
-	jmp FireLaser_ConditionalTrueBlock171527
-FireLaser_localfailed171683
-	jmp FireLaser_elseblock171528
-FireLaser_ConditionalTrueBlock171527: ;Main true block ;keep 
-	; LineNumber: 3326
-	; LineNumber: 3327
+	bne FireLaser_localfailed171721
+	jmp FireLaser_ConditionalTrueBlock171565
+FireLaser_localfailed171721
+	jmp FireLaser_elseblock171566
+FireLaser_ConditionalTrueBlock171565: ;Main true block ;keep 
+	; LineNumber: 3333
+	; LineNumber: 3334
 	; Binary clause Simplified: EQUALS
 	lda localVariable_FireLaser_turn
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne FireLaser_elseblock171688
-FireLaser_ConditionalTrueBlock171687: ;Main true block ;keep 
-	; LineNumber: 3327
-	; LineNumber: 3328
+	bne FireLaser_elseblock171726
+FireLaser_ConditionalTrueBlock171725: ;Main true block ;keep 
+	; LineNumber: 3334
+	; LineNumber: 3335
 	
 ; // laser up
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_xdir
-	; LineNumber: 3329
+	; LineNumber: 3336
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_ydir
-	; LineNumber: 3330
+	; LineNumber: 3337
 	lda #$7a
 	; Calling storevariable on generic assign expression
 	ldx localVariable_FireLaser_laserId ; optimized, look out for bugs
 	sta objectList_gobject_gobject_rendTilePos,x
-	; LineNumber: 3331
-	jmp FireLaser_elsedoneblock171689
-FireLaser_elseblock171688
-	; LineNumber: 3331
+	; LineNumber: 3338
+	jmp FireLaser_elsedoneblock171727
+FireLaser_elseblock171726
+	; LineNumber: 3338
 	; Binary clause Simplified: EQUALS
 	lda localVariable_FireLaser_turn
 	; Compare with pure num / var optimization
 	cmp #$2;keep
-	bne FireLaser_elseblock171716
-FireLaser_ConditionalTrueBlock171715: ;Main true block ;keep 
-	; LineNumber: 3332
-	; LineNumber: 3333
+	bne FireLaser_elseblock171754
+FireLaser_ConditionalTrueBlock171753: ;Main true block ;keep 
+	; LineNumber: 3339
+	; LineNumber: 3340
 	lda #$ff
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_xdir
-	; LineNumber: 3334
+	; LineNumber: 3341
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_ydir
-	; LineNumber: 3335
+	; LineNumber: 3342
 	lda #$7b
 	; Calling storevariable on generic assign expression
 	ldx localVariable_FireLaser_laserId ; optimized, look out for bugs
 	sta objectList_gobject_gobject_rendTilePos,x
-	; LineNumber: 3337
-	jmp FireLaser_elsedoneblock171717
-FireLaser_elseblock171716
-	; LineNumber: 3336
+	; LineNumber: 3344
+	jmp FireLaser_elsedoneblock171755
+FireLaser_elseblock171754
+	; LineNumber: 3343
 	; Binary clause Simplified: EQUALS
 	lda localVariable_FireLaser_turn
 	; Compare with pure num / var optimization
 	cmp #$3;keep
-	bne FireLaser_elsedoneblock171731
-FireLaser_ConditionalTrueBlock171729: ;Main true block ;keep 
-	; LineNumber: 3336
+	bne FireLaser_elsedoneblock171769
+FireLaser_ConditionalTrueBlock171767: ;Main true block ;keep 
+	; LineNumber: 3343
 	lda #$77
 	; Calling storevariable on generic assign expression
 	ldx localVariable_FireLaser_laserId ; optimized, look out for bugs
 	sta objectList_gobject_gobject_rendTilePos,x
-FireLaser_elsedoneblock171731
-FireLaser_elsedoneblock171717
-FireLaser_elsedoneblock171689
-	; LineNumber: 3339
-	jmp FireLaser_elsedoneblock171529
-FireLaser_elseblock171528
-	; LineNumber: 3339
+FireLaser_elsedoneblock171769
+FireLaser_elsedoneblock171755
+FireLaser_elsedoneblock171727
+	; LineNumber: 3346
+	jmp FireLaser_elsedoneblock171567
+FireLaser_elseblock171566
+	; LineNumber: 3346
 	; Binary clause Simplified: EQUALS
 	clc
 	lda localVariable_FireLaser_xdir
 	; cmp #$00 ignored
-	bne FireLaser_elsedoneblock171738
-FireLaser_localsuccess171788: ;keep
+	bne FireLaser_elsedoneblock171776
+FireLaser_localsuccess171826: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	lda localVariable_FireLaser_ydir
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne FireLaser_elsedoneblock171738
-FireLaser_ConditionalTrueBlock171736: ;Main true block ;keep 
-	; LineNumber: 3340
-	; LineNumber: 3341
+	bne FireLaser_elsedoneblock171776
+FireLaser_ConditionalTrueBlock171774: ;Main true block ;keep 
+	; LineNumber: 3347
+	; LineNumber: 3348
 	; Binary clause Simplified: EQUALS
 	lda localVariable_FireLaser_turn
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne FireLaser_elseblock171792
-FireLaser_ConditionalTrueBlock171791: ;Main true block ;keep 
-	; LineNumber: 3341
-	; LineNumber: 3342
+	bne FireLaser_elseblock171830
+FireLaser_ConditionalTrueBlock171829: ;Main true block ;keep 
+	; LineNumber: 3348
+	; LineNumber: 3349
 	
 ; // laser down
 	lda #$ff
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_xdir
-	; LineNumber: 3343
+	; LineNumber: 3350
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_ydir
-	; LineNumber: 3344
+	; LineNumber: 3351
 	lda #$78
 	; Calling storevariable on generic assign expression
 	ldx localVariable_FireLaser_laserId ; optimized, look out for bugs
 	sta objectList_gobject_gobject_rendTilePos,x
-	; LineNumber: 3345
-	jmp FireLaser_elsedoneblock171793
-FireLaser_elseblock171792
-	; LineNumber: 3345
+	; LineNumber: 3352
+	jmp FireLaser_elsedoneblock171831
+FireLaser_elseblock171830
+	; LineNumber: 3352
 	; Binary clause Simplified: EQUALS
 	lda localVariable_FireLaser_turn
 	; Compare with pure num / var optimization
 	cmp #$2;keep
-	bne FireLaser_elseblock171820
-FireLaser_ConditionalTrueBlock171819: ;Main true block ;keep 
-	; LineNumber: 3346
-	; LineNumber: 3347
+	bne FireLaser_elseblock171858
+FireLaser_ConditionalTrueBlock171857: ;Main true block ;keep 
+	; LineNumber: 3353
+	; LineNumber: 3354
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_xdir
-	; LineNumber: 3348
+	; LineNumber: 3355
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_ydir
-	; LineNumber: 3349
+	; LineNumber: 3356
 	lda #$79
 	; Calling storevariable on generic assign expression
 	ldx localVariable_FireLaser_laserId ; optimized, look out for bugs
 	sta objectList_gobject_gobject_rendTilePos,x
-	; LineNumber: 3351
-	jmp FireLaser_elsedoneblock171821
-FireLaser_elseblock171820
-	; LineNumber: 3350
+	; LineNumber: 3358
+	jmp FireLaser_elsedoneblock171859
+FireLaser_elseblock171858
+	; LineNumber: 3357
 	; Binary clause Simplified: EQUALS
 	lda localVariable_FireLaser_turn
 	; Compare with pure num / var optimization
 	cmp #$3;keep
-	bne FireLaser_elsedoneblock171835
-FireLaser_ConditionalTrueBlock171833: ;Main true block ;keep 
-	; LineNumber: 3350
+	bne FireLaser_elsedoneblock171873
+FireLaser_ConditionalTrueBlock171871: ;Main true block ;keep 
+	; LineNumber: 3357
 	lda #$77
 	; Calling storevariable on generic assign expression
 	ldx localVariable_FireLaser_laserId ; optimized, look out for bugs
 	sta objectList_gobject_gobject_rendTilePos,x
-FireLaser_elsedoneblock171835
-FireLaser_elsedoneblock171821
-FireLaser_elsedoneblock171793
-	; LineNumber: 3352
-FireLaser_elsedoneblock171738
-FireLaser_elsedoneblock171529
-FireLaser_elsedoneblock171111
-FireLaser_elsedoneblock170275
-	; LineNumber: 3353
-FireLaser_elsedoneblock168702
-	; LineNumber: 3354
+FireLaser_elsedoneblock171873
+FireLaser_elsedoneblock171859
+FireLaser_elsedoneblock171831
+	; LineNumber: 3359
+FireLaser_elsedoneblock171776
+FireLaser_elsedoneblock171567
+FireLaser_elsedoneblock171149
+FireLaser_elsedoneblock170313
+	; LineNumber: 3360
+FireLaser_elsedoneblock168740
+	; LineNumber: 3361
 	lda localVariable_FireLaser_laserx
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjectByPosFilterComp_x
@@ -20059,58 +20089,58 @@ FireLaser_elsedoneblock168702
 	jsr GetObjectByPosFilterComp
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_waterId
-	; LineNumber: 3355
+	; LineNumber: 3362
 	; Binary clause Simplified: NOTEQUALS
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq FireLaser_elsedoneblock171841
-FireLaser_ConditionalTrueBlock171839: ;Main true block ;keep 
-	; LineNumber: 3355
-	; LineNumber: 3356
+	beq FireLaser_elsedoneblock171879
+FireLaser_ConditionalTrueBlock171877: ;Main true block ;keep 
+	; LineNumber: 3362
+	; LineNumber: 3363
 	; Binary clause Simplified: EQUALS
 	clc
 	lda localVariable_FireLaser_xdir
 	; cmp #$00 ignored
-	bne FireLaser_elseblock171869
-FireLaser_localsuccess171880: ;keep
+	bne FireLaser_elseblock171907
+FireLaser_localsuccess171918: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	clc
 	lda localVariable_FireLaser_ydir
 	; cmp #$00 ignored
-	beq FireLaser_elseblock171869
-FireLaser_ConditionalTrueBlock171868: ;Main true block ;keep 
-	; LineNumber: 3355
+	beq FireLaser_elseblock171907
+FireLaser_ConditionalTrueBlock171906: ;Main true block ;keep 
+	; LineNumber: 3362
 	lda #$4d
 	; Calling storevariable on generic assign expression
 	ldx localVariable_FireLaser_laserId ; optimized, look out for bugs
 	sta objectList_gobject_gobject_rendTilePos,x
-	jmp FireLaser_elsedoneblock171870
-FireLaser_elseblock171869
-	; LineNumber: 3356
+	jmp FireLaser_elsedoneblock171908
+FireLaser_elseblock171907
+	; LineNumber: 3363
 	; Binary clause Simplified: NOTEQUALS
 	clc
 	lda localVariable_FireLaser_xdir
 	; cmp #$00 ignored
-	beq FireLaser_elsedoneblock171886
-FireLaser_localsuccess171888: ;keep
+	beq FireLaser_elsedoneblock171924
+FireLaser_localsuccess171926: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	clc
 	lda localVariable_FireLaser_ydir
 	; cmp #$00 ignored
-	bne FireLaser_elsedoneblock171886
-FireLaser_ConditionalTrueBlock171884: ;Main true block ;keep 
-	; LineNumber: 3356
+	bne FireLaser_elsedoneblock171924
+FireLaser_ConditionalTrueBlock171922: ;Main true block ;keep 
+	; LineNumber: 3363
 	lda #$4c
 	; Calling storevariable on generic assign expression
 	ldx localVariable_FireLaser_laserId ; optimized, look out for bugs
 	sta objectList_gobject_gobject_rendTilePos,x
-FireLaser_elsedoneblock171886
-FireLaser_elsedoneblock171870
-	; LineNumber: 3358
-FireLaser_elsedoneblock171841
-	; LineNumber: 3359
+FireLaser_elsedoneblock171924
+FireLaser_elsedoneblock171908
+	; LineNumber: 3365
+FireLaser_elsedoneblock171879
+	; LineNumber: 3366
 	lda localVariable_FireLaser_laserId
 	; Calling storevariable on generic assign expression
 	sta localVariable_AddMapItem_Id
@@ -20124,7 +20154,7 @@ FireLaser_elsedoneblock171841
 	; Calling storevariable on generic assign expression
 	sta localVariable_AddMapItem_z
 	jsr AddMapItem
-	; LineNumber: 3360
+	; LineNumber: 3367
 	; 8 bit binop
 	; Add/sub where right value is constant number
 	; Load Byte array
@@ -20143,9 +20173,9 @@ FireLaser_elsedoneblock171841
 	; Calling storevariable on generic assign expression
 	sta localVariable_PaintPos_col
 	jsr PaintPos
-	; LineNumber: 3361
-FireLaser_elsedoneblock165442
-	; LineNumber: 3363
+	; LineNumber: 3368
+FireLaser_elsedoneblock165480
+	; LineNumber: 3370
 	lda localVariable_FireLaser_laserx
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjectByPosFilterComp_x
@@ -20164,12 +20194,12 @@ FireLaser_elsedoneblock165442
 	jsr GetObjectByPosFilterComp
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_portalId
-	; LineNumber: 3364
+	; LineNumber: 3371
 	; Binary clause Simplified: NOTEQUALS
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq FireLaser_localfailed172007
-FireLaser_localsuccess172008: ;keep
+	beq FireLaser_localfailed172045
+FireLaser_localsuccess172046: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	; Load Byte array
@@ -20177,8 +20207,8 @@ FireLaser_localsuccess172008: ;keep
 	lda portals +$0 ; array with const index optimization 
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq FireLaser_localfailed172007
-FireLaser_localsuccess172009: ;keep
+	beq FireLaser_localfailed172045
+FireLaser_localsuccess172047: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	; Load Byte array
@@ -20186,71 +20216,71 @@ FireLaser_localsuccess172009: ;keep
 	lda portals +$1 ; array with const index optimization 
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq FireLaser_localfailed172007
-	jmp FireLaser_ConditionalTrueBlock171891
-FireLaser_localfailed172007
-	jmp FireLaser_elsedoneblock171893
-FireLaser_ConditionalTrueBlock171891: ;Main true block ;keep 
-	; LineNumber: 3364
-	; LineNumber: 3365
+	beq FireLaser_localfailed172045
+	jmp FireLaser_ConditionalTrueBlock171929
+FireLaser_localfailed172045
+	jmp FireLaser_elsedoneblock171931
+FireLaser_ConditionalTrueBlock171929: ;Main true block ;keep 
+	; LineNumber: 3371
+	; LineNumber: 3372
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
 	; CAST type NADA
 	lda portals +$0 ; array with const index optimization 
 	; Compare with pure num / var optimization
 	cmp localVariable_FireLaser_portalId;keep
-	bne FireLaser_elseblock172013
-FireLaser_ConditionalTrueBlock172012: ;Main true block ;keep 
-	; LineNumber: 3364
+	bne FireLaser_elseblock172051
+FireLaser_ConditionalTrueBlock172050: ;Main true block ;keep 
+	; LineNumber: 3371
 	; Load Byte array
 	; CAST type NADA
 	lda portals +$1 ; array with const index optimization 
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_targetPortal
-	jmp FireLaser_elsedoneblock172014
-FireLaser_elseblock172013
-	; LineNumber: 3365
+	jmp FireLaser_elsedoneblock172052
+FireLaser_elseblock172051
+	; LineNumber: 3372
 	; Load Byte array
 	; CAST type NADA
 	lda portals +$0 ; array with const index optimization 
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_targetPortal
-FireLaser_elsedoneblock172014
-	; LineNumber: 3367
+FireLaser_elsedoneblock172052
+	; LineNumber: 3374
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_FireLaser_targetPortal
 	lda objectList_gobject_gobject_transX,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_laserx
-	; LineNumber: 3368
+	; LineNumber: 3375
 	; Load Byte array
 	; CAST type NADA
 	lda objectList_gobject_gobject_transY,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_lasery
-	; LineNumber: 3369
+	; LineNumber: 3376
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
 	; CAST type NADA
 	lda objectList_gobject_gobject_portalFireExitDir,x 
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne FireLaser_elseblock172021
-FireLaser_ConditionalTrueBlock172020: ;Main true block ;keep 
-	; LineNumber: 3369
-	; LineNumber: 3370
+	bne FireLaser_elseblock172059
+FireLaser_ConditionalTrueBlock172058: ;Main true block ;keep 
+	; LineNumber: 3376
+	; LineNumber: 3377
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_xdir
-	; LineNumber: 3371
+	; LineNumber: 3378
 	lda #$ff
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_ydir
-	; LineNumber: 3373
-	jmp FireLaser_elsedoneblock172022
-FireLaser_elseblock172021
-	; LineNumber: 3372
+	; LineNumber: 3380
+	jmp FireLaser_elsedoneblock172060
+FireLaser_elseblock172059
+	; LineNumber: 3379
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
 	; CAST type NADA
@@ -20258,21 +20288,21 @@ FireLaser_elseblock172021
 	lda objectList_gobject_gobject_portalFireExitDir,x 
 	; Compare with pure num / var optimization
 	cmp #$7;keep
-	bne FireLaser_elseblock172077
-FireLaser_ConditionalTrueBlock172076: ;Main true block ;keep 
-	; LineNumber: 3373
-	; LineNumber: 3374
+	bne FireLaser_elseblock172115
+FireLaser_ConditionalTrueBlock172114: ;Main true block ;keep 
+	; LineNumber: 3380
+	; LineNumber: 3381
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_xdir
-	; LineNumber: 3375
+	; LineNumber: 3382
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_ydir
-	; LineNumber: 3377
-	jmp FireLaser_elsedoneblock172078
-FireLaser_elseblock172077
-	; LineNumber: 3376
+	; LineNumber: 3384
+	jmp FireLaser_elsedoneblock172116
+FireLaser_elseblock172115
+	; LineNumber: 3383
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
 	; CAST type NADA
@@ -20280,21 +20310,21 @@ FireLaser_elseblock172077
 	lda objectList_gobject_gobject_portalFireExitDir,x 
 	; Compare with pure num / var optimization
 	cmp #$3;keep
-	bne FireLaser_elseblock172105
-FireLaser_ConditionalTrueBlock172104: ;Main true block ;keep 
-	; LineNumber: 3377
-	; LineNumber: 3378
+	bne FireLaser_elseblock172143
+FireLaser_ConditionalTrueBlock172142: ;Main true block ;keep 
+	; LineNumber: 3384
+	; LineNumber: 3385
 	lda #$ff
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_xdir
-	; LineNumber: 3379
+	; LineNumber: 3386
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_ydir
-	; LineNumber: 3381
-	jmp FireLaser_elsedoneblock172106
-FireLaser_elseblock172105
-	; LineNumber: 3380
+	; LineNumber: 3388
+	jmp FireLaser_elsedoneblock172144
+FireLaser_elseblock172143
+	; LineNumber: 3387
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
 	; CAST type NADA
@@ -20302,34 +20332,34 @@ FireLaser_elseblock172105
 	lda objectList_gobject_gobject_portalFireExitDir,x 
 	; Compare with pure num / var optimization
 	cmp #$5;keep
-	bne FireLaser_elsedoneblock172120
-FireLaser_ConditionalTrueBlock172118: ;Main true block ;keep 
-	; LineNumber: 3381
-	; LineNumber: 3382
+	bne FireLaser_elsedoneblock172158
+FireLaser_ConditionalTrueBlock172156: ;Main true block ;keep 
+	; LineNumber: 3388
+	; LineNumber: 3389
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_xdir
-	; LineNumber: 3383
+	; LineNumber: 3390
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_ydir
-	; LineNumber: 3385
-FireLaser_elsedoneblock172120
-FireLaser_elsedoneblock172106
-FireLaser_elsedoneblock172078
-FireLaser_elsedoneblock172022
-FireLaser_elsedoneblock171893
-	; LineNumber: 3387
-FireLaser_elsedoneblock158751
-	; LineNumber: 3388
+	; LineNumber: 3392
+FireLaser_elsedoneblock172158
+FireLaser_elsedoneblock172144
+FireLaser_elsedoneblock172116
+FireLaser_elsedoneblock172060
+FireLaser_elsedoneblock171931
+	; LineNumber: 3394
+FireLaser_elsedoneblock158789
+	; LineNumber: 3395
 	lda localVariable_FireLaser_laserx
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_lastx
-	; LineNumber: 3389
+	; LineNumber: 3396
 	lda localVariable_FireLaser_lasery
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_lasty
-	; LineNumber: 3390
+	; LineNumber: 3397
 	lda localVariable_FireLaser_laserx
 	; Calling storevariable on generic assign expression
 	sta localVariable_CalcPositionX_startx
@@ -20339,7 +20369,7 @@ FireLaser_elsedoneblock158751
 	jsr CalcPositionX
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_laserx
-	; LineNumber: 3391
+	; LineNumber: 3398
 	lda localVariable_FireLaser_lasery
 	; Calling storevariable on generic assign expression
 	sta localVariable_CalcPositionY_starty
@@ -20349,42 +20379,42 @@ FireLaser_elsedoneblock158751
 	jsr CalcPositionY
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_lasery
-	; LineNumber: 3392
+	; LineNumber: 3399
 	; Test Inc dec D
 	inc localVariable_FireLaser_countLaser
-	; LineNumber: 3393
-FireLaser_elsedoneblock145366
-	; LineNumber: 3394
-	jmp FireLaser_while118593
-FireLaser_elsedoneblock118596
-FireLaser_loopend118598
-	; LineNumber: 3398
+	; LineNumber: 3400
+FireLaser_elsedoneblock145404
+	; LineNumber: 3401
+	jmp FireLaser_while118631
+FireLaser_elsedoneblock118634
+FireLaser_loopend118636
+	; LineNumber: 3405
 	; Binary clause Simplified: NOTEQUALS
 	clc
 	lda localVariable_FireLaser_collide
 	; cmp #$00 ignored
-	beq FireLaser_localfailed172415
-FireLaser_localsuccess172416: ;keep
+	beq FireLaser_localfailed172453
+FireLaser_localsuccess172454: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_FireLaser_collideId
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq FireLaser_localfailed172415
-	jmp FireLaser_ConditionalTrueBlock172124
-FireLaser_localfailed172415
-	jmp FireLaser_elsedoneblock172126
-FireLaser_ConditionalTrueBlock172124: ;Main true block ;keep 
-	; LineNumber: 3398
-	; LineNumber: 3399
+	beq FireLaser_localfailed172453
+	jmp FireLaser_ConditionalTrueBlock172162
+FireLaser_localfailed172453
+	jmp FireLaser_elsedoneblock172164
+FireLaser_ConditionalTrueBlock172162: ;Main true block ;keep 
+	; LineNumber: 3405
+	; LineNumber: 3406
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_FireLaser_laserType
 	; Compare with pure num / var optimization
 	cmp #$a;keep
-	beq FireLaser_elsedoneblock172421
-FireLaser_ConditionalTrueBlock172419: ;Main true block ;keep 
-	; LineNumber: 3399
-	; LineNumber: 3400
+	beq FireLaser_elsedoneblock172459
+FireLaser_ConditionalTrueBlock172457: ;Main true block ;keep 
+	; LineNumber: 3406
+	; LineNumber: 3407
 	
 ; // Collide Actions
 	; Load Byte array
@@ -20393,12 +20423,12 @@ FireLaser_ConditionalTrueBlock172419: ;Main true block ;keep
 	lda objectList_gobject_gobject_controlId,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_collideControlId
-	; LineNumber: 3401
+	; LineNumber: 3408
 	; Binary clause Simplified: NOTEQUALS
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq FireLaser_elsedoneblock172434
-FireLaser_localsuccess172436: ;keep
+	beq FireLaser_elsedoneblock172472
+FireLaser_localsuccess172474: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	; Load Byte array
@@ -20407,45 +20437,45 @@ FireLaser_localsuccess172436: ;keep
 	lda controlList_controlObject_controlObject_controlState,x 
 	; Compare with pure num / var optimization
 	cmp #$5;keep
-	beq FireLaser_elsedoneblock172434
-FireLaser_ConditionalTrueBlock172432: ;Main true block ;keep 
-	; LineNumber: 3401
-	; LineNumber: 3403
+	beq FireLaser_elsedoneblock172472
+FireLaser_ConditionalTrueBlock172470: ;Main true block ;keep 
+	; LineNumber: 3408
+	; LineNumber: 3410
 	lda #<sndExplosion
 	ldy #>sndExplosion
 	; Calling storevariable on generic assign expression
 	sta psnd+6
 	sty psnd+7
-	; LineNumber: 3403
+	; LineNumber: 3410
 	lda #$c8
 	; Calling storevariable on generic assign expression
 	sta vsnd+$3
-	; LineNumber: 3403
+	; LineNumber: 3410
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta vsndTime+$3
-	; LineNumber: 3404
+	; LineNumber: 3411
 	; Calling storevariable on generic assign expression
 	ldx localVariable_FireLaser_collideId ; optimized, look out for bugs
 	sta objectList_gobject_gobject_b_physFallDown,x
-	; LineNumber: 3405
+	; LineNumber: 3412
 	lda #$5
 	; Calling storevariable on generic assign expression
 	ldx localVariable_FireLaser_collideControlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_controlState,x
-	; LineNumber: 3406
+	; LineNumber: 3413
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta controlList_controlObject_controlObject_controlJumpStep,x
-	; LineNumber: 3407
+	; LineNumber: 3414
 	lda localVariable_FireLaser_id
 	; Calling storevariable on generic assign expression
 	sta controlList_controlObject_controlObject_controlCollideLaserTag,x
-	; LineNumber: 3408
-FireLaser_elsedoneblock172434
-	; LineNumber: 3410
-FireLaser_elsedoneblock172421
-	; LineNumber: 3414
+	; LineNumber: 3415
+FireLaser_elsedoneblock172472
+	; LineNumber: 3417
+FireLaser_elsedoneblock172459
+	; LineNumber: 3421
 	; Binary clause Simplified: EQUALS
 	; 8 bit binop
 	; Add/sub where right value is constant number
@@ -20457,33 +20487,33 @@ FireLaser_elsedoneblock172421
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne FireLaser_localfailed172472
-	jmp FireLaser_ConditionalTrueBlock172439
-FireLaser_localfailed172472
-	jmp FireLaser_elsedoneblock172441
-FireLaser_ConditionalTrueBlock172439: ;Main true block ;keep 
-	; LineNumber: 3414
-	; LineNumber: 3415
+	bne FireLaser_localfailed172510
+	jmp FireLaser_ConditionalTrueBlock172477
+FireLaser_localfailed172510
+	jmp FireLaser_elsedoneblock172479
+FireLaser_ConditionalTrueBlock172477: ;Main true block ;keep 
+	; LineNumber: 3421
+	; LineNumber: 3422
 	; Binary clause Simplified: EQUALS
 	clc
 	; Modulo
 	lda #$2
-FireLaser_val_var172490 = $88
-	sta FireLaser_val_var172490
+FireLaser_val_var172528 = $88
+	sta FireLaser_val_var172528
 	lda globaltime
 	sec
-FireLaser_modulo172491
-	sbc FireLaser_val_var172490
-	bcs FireLaser_modulo172491
-	adc FireLaser_val_var172490
+FireLaser_modulo172529
+	sbc FireLaser_val_var172528
+	bcs FireLaser_modulo172529
+	adc FireLaser_val_var172528
 	; cmp #$00 ignored
-	bne FireLaser_localfailed172489
-	jmp FireLaser_ConditionalTrueBlock172475
-FireLaser_localfailed172489
-	jmp FireLaser_elsedoneblock172477
-FireLaser_ConditionalTrueBlock172475: ;Main true block ;keep 
-	; LineNumber: 3415
-	; LineNumber: 3416
+	bne FireLaser_localfailed172527
+	jmp FireLaser_ConditionalTrueBlock172513
+FireLaser_localfailed172527
+	jmp FireLaser_elsedoneblock172515
+FireLaser_ConditionalTrueBlock172513: ;Main true block ;keep 
+	; LineNumber: 3422
+	; LineNumber: 3423
 	
 ; // PushPull
 	; Load Byte array
@@ -20492,13 +20522,13 @@ FireLaser_ConditionalTrueBlock172475: ;Main true block ;keep
 	lda objectList_gobject_gobject_transX,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_tempx
-	; LineNumber: 3417
+	; LineNumber: 3424
 	; Load Byte array
 	; CAST type NADA
 	lda objectList_gobject_gobject_transY,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_tempy
-	; LineNumber: 3418
+	; LineNumber: 3425
 	lda localVariable_FireLaser_laserx
 	; Calling storevariable on generic assign expression
 	sta localVariable_CalcPositionX_startx
@@ -20517,7 +20547,7 @@ FireLaser_ConditionalTrueBlock172475: ;Main true block ;keep
 	jsr CalcPositionX
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_laserx
-	; LineNumber: 3419
+	; LineNumber: 3426
 	lda localVariable_FireLaser_lasery
 	; Calling storevariable on generic assign expression
 	sta localVariable_CalcPositionY_starty
@@ -20537,7 +20567,7 @@ FireLaser_ConditionalTrueBlock172475: ;Main true block ;keep
 	jsr CalcPositionY
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_lasery
-	; LineNumber: 3420
+	; LineNumber: 3427
 	lda localVariable_FireLaser_laserx
 	; Calling storevariable on generic assign expression
 	sta localVariable_GetObjectByPosFilterComp_x
@@ -20556,37 +20586,37 @@ FireLaser_ConditionalTrueBlock172475: ;Main true block ;keep
 	jsr GetObjectByPosFilterComp
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_collideId2
-	; LineNumber: 3421
+	; LineNumber: 3428
 	; Binary clause Simplified: EQUALS
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne FireLaser_elsedoneblock172500
-FireLaser_ConditionalTrueBlock172498: ;Main true block ;keep 
-	; LineNumber: 3421
-	; LineNumber: 3423
+	bne FireLaser_elsedoneblock172538
+FireLaser_ConditionalTrueBlock172536: ;Main true block ;keep 
+	; LineNumber: 3428
+	; LineNumber: 3430
 	lda #<sndShift
 	ldy #>sndShift
 	; Calling storevariable on generic assign expression
 	sta psnd+2
 	sty psnd+3
-	; LineNumber: 3423
+	; LineNumber: 3430
 	lda #$f0
 	; Calling storevariable on generic assign expression
 	sta vsnd+$1
-	; LineNumber: 3423
+	; LineNumber: 3430
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta vsndTime+$1
-	; LineNumber: 3424
+	; LineNumber: 3431
 	lda localVariable_FireLaser_laserx
 	; Calling storevariable on generic assign expression
 	ldx localVariable_FireLaser_collideId ; optimized, look out for bugs
 	sta objectList_gobject_gobject_transX,x
-	; LineNumber: 3425
+	; LineNumber: 3432
 	lda localVariable_FireLaser_lasery
 	; Calling storevariable on generic assign expression
 	sta objectList_gobject_gobject_transY,x
-	; LineNumber: 3426
+	; LineNumber: 3433
 	lda localVariable_FireLaser_collideId
 	; Calling storevariable on generic assign expression
 	sta localVariable_SetPos_i
@@ -20608,18 +20638,18 @@ FireLaser_ConditionalTrueBlock172498: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_SetPos_z
 	jsr SetPos
-	; LineNumber: 3428
-FireLaser_elsedoneblock172500
-FireLaser_elsedoneblock172477
-	; LineNumber: 3429
-FireLaser_elsedoneblock172441
-	; LineNumber: 3432
+	; LineNumber: 3435
+FireLaser_elsedoneblock172538
+FireLaser_elsedoneblock172515
+	; LineNumber: 3436
+FireLaser_elsedoneblock172479
+	; LineNumber: 3439
 	; Binary clause Simplified: EQUALS
 	lda localVariable_FireLaser_laserType
 	; Compare with pure num / var optimization
 	cmp #$a;keep
-	bne FireLaser_localfailed172529
-FireLaser_localsuccess172530: ;keep
+	bne FireLaser_localfailed172567
+FireLaser_localsuccess172568: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	; 8 bit binop
@@ -20632,33 +20662,33 @@ FireLaser_localsuccess172530: ;keep
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$4;keep
-	bne FireLaser_localfailed172529
-	jmp FireLaser_ConditionalTrueBlock172504
-FireLaser_localfailed172529
-	jmp FireLaser_elsedoneblock172506
-FireLaser_ConditionalTrueBlock172504: ;Main true block ;keep 
-	; LineNumber: 3432
-	; LineNumber: 3433
+	bne FireLaser_localfailed172567
+	jmp FireLaser_ConditionalTrueBlock172542
+FireLaser_localfailed172567
+	jmp FireLaser_elsedoneblock172544
+FireLaser_ConditionalTrueBlock172542: ;Main true block ;keep 
+	; LineNumber: 3439
+	; LineNumber: 3440
 	; Binary clause Simplified: EQUALS
 	clc
 	; Modulo
 	lda #$4
-FireLaser_val_var172544 = $88
-	sta FireLaser_val_var172544
+FireLaser_val_var172582 = $88
+	sta FireLaser_val_var172582
 	lda globaltime
 	sec
-FireLaser_modulo172545
-	sbc FireLaser_val_var172544
-	bcs FireLaser_modulo172545
-	adc FireLaser_val_var172544
+FireLaser_modulo172583
+	sbc FireLaser_val_var172582
+	bcs FireLaser_modulo172583
+	adc FireLaser_val_var172582
 	; cmp #$00 ignored
-	bne FireLaser_localfailed172543
-	jmp FireLaser_ConditionalTrueBlock172533
-FireLaser_localfailed172543
-	jmp FireLaser_elsedoneblock172535
-FireLaser_ConditionalTrueBlock172533: ;Main true block ;keep 
-	; LineNumber: 3433
-	; LineNumber: 3434
+	bne FireLaser_localfailed172581
+	jmp FireLaser_ConditionalTrueBlock172571
+FireLaser_localfailed172581
+	jmp FireLaser_elsedoneblock172573
+FireLaser_ConditionalTrueBlock172571: ;Main true block ;keep 
+	; LineNumber: 3440
+	; LineNumber: 3441
 	
 ; // SwitchPos
 	; Load Byte array
@@ -20667,35 +20697,35 @@ FireLaser_ConditionalTrueBlock172533: ;Main true block ;keep
 	lda objectList_gobject_gobject_transX,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_tempx
-	; LineNumber: 3435
+	; LineNumber: 3442
 	; Load Byte array
 	; CAST type NADA
 	lda objectList_gobject_gobject_transY,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_tempy
-	; LineNumber: 3436
+	; LineNumber: 3443
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_FireLaser_collideId
 	lda objectList_gobject_gobject_transX,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_tempx2
-	; LineNumber: 3437
+	; LineNumber: 3444
 	; Load Byte array
 	; CAST type NADA
 	lda objectList_gobject_gobject_transY,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_tempy2
-	; LineNumber: 3439
+	; LineNumber: 3446
 	lda localVariable_FireLaser_tempx2
 	; Calling storevariable on generic assign expression
 	ldx localVariable_FireLaser_id ; optimized, look out for bugs
 	sta objectList_gobject_gobject_transX,x
-	; LineNumber: 3440
+	; LineNumber: 3447
 	lda localVariable_FireLaser_tempy2
 	; Calling storevariable on generic assign expression
 	sta objectList_gobject_gobject_transY,x
-	; LineNumber: 3442
+	; LineNumber: 3449
 	lda localVariable_FireLaser_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_SetPos_i
@@ -20717,16 +20747,16 @@ FireLaser_ConditionalTrueBlock172533: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_SetPos_z
 	jsr SetPos
-	; LineNumber: 3444
+	; LineNumber: 3451
 	lda localVariable_FireLaser_tempx
 	; Calling storevariable on generic assign expression
 	ldx localVariable_FireLaser_collideId ; optimized, look out for bugs
 	sta objectList_gobject_gobject_transX,x
-	; LineNumber: 3445
+	; LineNumber: 3452
 	lda localVariable_FireLaser_tempy
 	; Calling storevariable on generic assign expression
 	sta objectList_gobject_gobject_transY,x
-	; LineNumber: 3447
+	; LineNumber: 3454
 	lda localVariable_FireLaser_collideId
 	; Calling storevariable on generic assign expression
 	sta localVariable_SetPos_i
@@ -20749,7 +20779,7 @@ FireLaser_ConditionalTrueBlock172533: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_SetPos_z
 	jsr SetPos
-	; LineNumber: 3448
+	; LineNumber: 3455
 	lda localVariable_FireLaser_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_SetPos_i
@@ -20772,50 +20802,50 @@ FireLaser_ConditionalTrueBlock172533: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_SetPos_z
 	jsr SetPos
-	; LineNumber: 3451
+	; LineNumber: 3458
 	lda #<sndTransport
 	ldy #>sndTransport
 	; Calling storevariable on generic assign expression
 	sta psnd+2
 	sty psnd+3
-	; LineNumber: 3451
+	; LineNumber: 3458
 	lda #$f0
 	; Calling storevariable on generic assign expression
 	sta vsnd+$1
-	; LineNumber: 3451
+	; LineNumber: 3458
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta vsndTime+$1
-	; LineNumber: 3453
+	; LineNumber: 3460
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_FireLaser_controlId
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq FireLaser_elsedoneblock172550
-FireLaser_ConditionalTrueBlock172548: ;Main true block ;keep 
-	; LineNumber: 3453
-	; LineNumber: 3454
+	beq FireLaser_elsedoneblock172588
+FireLaser_ConditionalTrueBlock172586: ;Main true block ;keep 
+	; LineNumber: 3460
+	; LineNumber: 3461
 	lda #$1
 	; Calling storevariable on generic assign expression
 	ldx localVariable_FireLaser_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_waitRelease,x
-	; LineNumber: 3455
+	; LineNumber: 3462
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta controlList_controlObject_controlObject_b_release,x
-	; LineNumber: 3456
-FireLaser_elsedoneblock172550
-	; LineNumber: 3457
-FireLaser_elsedoneblock172535
-	; LineNumber: 3458
-FireLaser_elsedoneblock172506
-	; LineNumber: 3461
+	; LineNumber: 3463
+FireLaser_elsedoneblock172588
+	; LineNumber: 3464
+FireLaser_elsedoneblock172573
+	; LineNumber: 3465
+FireLaser_elsedoneblock172544
+	; LineNumber: 3468
 	; Binary clause Simplified: EQUALS
 	lda localVariable_FireLaser_laserType
 	; Compare with pure num / var optimization
 	cmp #$a;keep
-	bne FireLaser_localfailed172630
-FireLaser_localsuccess172631: ;keep
+	bne FireLaser_localfailed172668
+FireLaser_localsuccess172669: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	; 8 bit binop
@@ -20828,13 +20858,13 @@ FireLaser_localsuccess172631: ;keep
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$10;keep
-	bne FireLaser_localfailed172630
-	jmp FireLaser_ConditionalTrueBlock172554
-FireLaser_localfailed172630
-	jmp FireLaser_elsedoneblock172556
-FireLaser_ConditionalTrueBlock172554: ;Main true block ;keep 
-	; LineNumber: 3461
-	; LineNumber: 3462
+	bne FireLaser_localfailed172668
+	jmp FireLaser_ConditionalTrueBlock172592
+FireLaser_localfailed172668
+	jmp FireLaser_elsedoneblock172594
+FireLaser_ConditionalTrueBlock172592: ;Main true block ;keep 
+	; LineNumber: 3468
+	; LineNumber: 3469
 	
 ; // PortalActivate
 	; 8 bit binop
@@ -20848,7 +20878,7 @@ FireLaser_ConditionalTrueBlock172554: ;Main true block ;keep
 	 ; end add / sub var with constant
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_pos
-	; LineNumber: 3463
+	; LineNumber: 3470
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
 	; CAST type NADA
@@ -20856,8 +20886,8 @@ FireLaser_ConditionalTrueBlock172554: ;Main true block ;keep
 	lda mapback1,x 
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne FireLaser_localfailed172670
-FireLaser_localsuccess172671: ;keep
+	bne FireLaser_localfailed172708
+FireLaser_localsuccess172709: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
@@ -20866,21 +20896,21 @@ FireLaser_localsuccess172671: ;keep
 	lda mapmain,x 
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne FireLaser_localfailed172670
-	jmp FireLaser_ConditionalTrueBlock172634
-FireLaser_localfailed172670
-	jmp FireLaser_elsedoneblock172636
-FireLaser_ConditionalTrueBlock172634: ;Main true block ;keep 
-	; LineNumber: 3463
-	; LineNumber: 3464
+	bne FireLaser_localfailed172708
+	jmp FireLaser_ConditionalTrueBlock172672
+FireLaser_localfailed172708
+	jmp FireLaser_elsedoneblock172674
+FireLaser_ConditionalTrueBlock172672: ;Main true block ;keep 
+	; LineNumber: 3470
+	; LineNumber: 3471
 	; Binary clause Simplified: NOTEQUALS
 	; Load Byte array
 	; CAST type NADA
 	lda portals +$0 ; array with const index optimization 
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq FireLaser_localfailed172687
-FireLaser_localsuccess172688: ;keep
+	beq FireLaser_localfailed172725
+FireLaser_localsuccess172726: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	; Load Byte array
@@ -20888,50 +20918,50 @@ FireLaser_localsuccess172688: ;keep
 	lda portals +$1 ; array with const index optimization 
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq FireLaser_localfailed172687
-	jmp FireLaser_ConditionalTrueBlock172674
-FireLaser_localfailed172687
-	jmp FireLaser_elseblock172675
-FireLaser_ConditionalTrueBlock172674: ;Main true block ;keep 
-	; LineNumber: 3464
-	; LineNumber: 3465
+	beq FireLaser_localfailed172725
+	jmp FireLaser_ConditionalTrueBlock172712
+FireLaser_localfailed172725
+	jmp FireLaser_elseblock172713
+FireLaser_ConditionalTrueBlock172712: ;Main true block ;keep 
+	; LineNumber: 3471
+	; LineNumber: 3472
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
 	; CAST type NADA
 	lda portals +$0 ; array with const index optimization 
 	; Compare with pure num / var optimization
 	cmp lastPortal;keep
-	bne FireLaser_elseblock172692
-FireLaser_ConditionalTrueBlock172691: ;Main true block ;keep 
-	; LineNumber: 3464
+	bne FireLaser_elseblock172730
+FireLaser_ConditionalTrueBlock172729: ;Main true block ;keep 
+	; LineNumber: 3471
 	; Load Byte array
 	; CAST type NADA
 	lda portals +$1 ; array with const index optimization 
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_portalIdMove
-	jmp FireLaser_elsedoneblock172693
-FireLaser_elseblock172692
-	; LineNumber: 3464
+	jmp FireLaser_elsedoneblock172731
+FireLaser_elseblock172730
+	; LineNumber: 3471
 	; Load Byte array
 	; CAST type NADA
 	lda portals +$0 ; array with const index optimization 
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_portalIdMove
-FireLaser_elsedoneblock172693
-	; LineNumber: 3466
+FireLaser_elsedoneblock172731
+	; LineNumber: 3473
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_FireLaser_portalIdMove
 	lda objectList_gobject_gobject_transX,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_tempx
-	; LineNumber: 3467
+	; LineNumber: 3474
 	; Load Byte array
 	; CAST type NADA
 	lda objectList_gobject_gobject_transY,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_tempy
-	; LineNumber: 3468
+	; LineNumber: 3475
 	lda localVariable_FireLaser_portalIdMove
 	; Calling storevariable on generic assign expression
 	sta localVariable_SetPos_i
@@ -20951,7 +20981,7 @@ FireLaser_elsedoneblock172693
 	; Calling storevariable on generic assign expression
 	sta localVariable_SetPos_z
 	jsr SetPos
-	; LineNumber: 3469
+	; LineNumber: 3476
 	lda localVariable_FireLaser_xdir
 	; Calling storevariable on generic assign expression
 	sta localVariable_CalcFireExitDir_xdir
@@ -20962,15 +20992,15 @@ FireLaser_elsedoneblock172693
 	; Calling storevariable on generic assign expression
 	ldx localVariable_FireLaser_portalIdMove ; optimized, look out for bugs
 	sta objectList_gobject_gobject_portalFireExitDir,x
-	; LineNumber: 3470
+	; LineNumber: 3477
 	lda localVariable_FireLaser_portalIdMove
 	; Calling storevariable on generic assign expression
 	sta lastPortal
-	; LineNumber: 3472
-	jmp FireLaser_elsedoneblock172676
-FireLaser_elseblock172675
-	; LineNumber: 3472
-	; LineNumber: 3473
+	; LineNumber: 3479
+	jmp FireLaser_elsedoneblock172714
+FireLaser_elseblock172713
+	; LineNumber: 3479
+	; LineNumber: 3480
 	lda localVariable_FireLaser_lastx
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitPortal_x
@@ -20987,7 +21017,7 @@ FireLaser_elseblock172675
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitPortal_exitDir
 	jsr InitPortal
-	; LineNumber: 3474
+	; LineNumber: 3481
 	; 8 bit binop
 	; Add/sub where right value is constant number
 	; Load Byte array
@@ -21006,100 +21036,100 @@ FireLaser_elseblock172675
 	; Calling storevariable on generic assign expression
 	sta localVariable_PaintPos_col
 	jsr PaintPos
-	; LineNumber: 3475
-FireLaser_elsedoneblock172676
-	; LineNumber: 3477
+	; LineNumber: 3482
+FireLaser_elsedoneblock172714
+	; LineNumber: 3484
 	lda #<sndPortalActivate
 	ldy #>sndPortalActivate
 	; Calling storevariable on generic assign expression
 	sta psnd+4
 	sty psnd+5
-	; LineNumber: 3477
+	; LineNumber: 3484
 	lda #$f0
 	; Calling storevariable on generic assign expression
 	sta vsnd+$2
-	; LineNumber: 3477
+	; LineNumber: 3484
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta vsndTime+$2
-	; LineNumber: 3478
+	; LineNumber: 3485
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_FireLaser_controlId
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq FireLaser_elsedoneblock172702
-FireLaser_ConditionalTrueBlock172700: ;Main true block ;keep 
-	; LineNumber: 3478
-	; LineNumber: 3479
+	beq FireLaser_elsedoneblock172740
+FireLaser_ConditionalTrueBlock172738: ;Main true block ;keep 
+	; LineNumber: 3485
+	; LineNumber: 3486
 	lda #$1
 	; Calling storevariable on generic assign expression
 	ldx localVariable_FireLaser_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_waitRelease,x
-	; LineNumber: 3480
+	; LineNumber: 3487
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta controlList_controlObject_controlObject_b_release,x
-	; LineNumber: 3481
-FireLaser_elsedoneblock172702
-	; LineNumber: 3482
-FireLaser_elsedoneblock172636
-	; LineNumber: 3483
-FireLaser_elsedoneblock172556
-	; LineNumber: 3484
-FireLaser_elsedoneblock172126
-	; LineNumber: 3485
-FireLaser_elsedoneblock64437
-	; LineNumber: 3486
+	; LineNumber: 3488
+FireLaser_elsedoneblock172740
+	; LineNumber: 3489
+FireLaser_elsedoneblock172674
+	; LineNumber: 3490
+FireLaser_elsedoneblock172594
+	; LineNumber: 3491
+FireLaser_elsedoneblock172164
+	; LineNumber: 3492
+FireLaser_elsedoneblock64475
+	; LineNumber: 3493
 	rts
 end_procedure_FireLaser
 	; NodeProcedureDecl 3
 	; ***********  Defining procedure : UpdateLaser
 	;    Procedure type : User-defined procedure
-	; LineNumber: 3497
-	; LineNumber: 3491
-localVariable_UpdateLaser_id1	dc.b	0
-	; LineNumber: 3491
-localVariable_UpdateLaser_i	dc.b	0
-	; LineNumber: 3491
-localVariable_UpdateLaser_x	dc.b	0
-	; LineNumber: 3491
-localVariable_UpdateLaser_y	dc.b	0
-	; LineNumber: 3492
-localVariable_UpdateLaser_pos	dc.b	0
-	; LineNumber: 3492
-localVariable_UpdateLaser_id2	dc.b	0
-	; LineNumber: 3493
-localVariable_UpdateLaser_exit	dc.b	0
-	; LineNumber: 3494
-localVariable_UpdateLaser_controlId	dc.b	0
-	; LineNumber: 3495
-localVariable_UpdateLaser_joy	dc.b	0
-	; LineNumber: 3496
-localVariable_UpdateLaser_laserEmitId	dc.b	0
-	; LineNumber: 3489
-localVariable_UpdateLaser_id	dc.b	0
-UpdateLaser_block172705
-UpdateLaser
+	; LineNumber: 3504
 	; LineNumber: 3498
+localVariable_UpdateLaser_id1	dc.b	0
+	; LineNumber: 3498
+localVariable_UpdateLaser_i	dc.b	0
+	; LineNumber: 3498
+localVariable_UpdateLaser_x	dc.b	0
+	; LineNumber: 3498
+localVariable_UpdateLaser_y	dc.b	0
+	; LineNumber: 3499
+localVariable_UpdateLaser_pos	dc.b	0
+	; LineNumber: 3499
+localVariable_UpdateLaser_id2	dc.b	0
+	; LineNumber: 3500
+localVariable_UpdateLaser_exit	dc.b	0
+	; LineNumber: 3501
+localVariable_UpdateLaser_controlId	dc.b	0
+	; LineNumber: 3502
+localVariable_UpdateLaser_joy	dc.b	0
+	; LineNumber: 3503
+localVariable_UpdateLaser_laserEmitId	dc.b	0
+	; LineNumber: 3496
+localVariable_UpdateLaser_id	dc.b	0
+UpdateLaser_block172743
+UpdateLaser
+	; LineNumber: 3505
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateLaser_exit
-	; LineNumber: 3499
+	; LineNumber: 3506
 	lda joy1
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateLaser_joy
-	; LineNumber: 3500
+	; LineNumber: 3507
 	lda #$ff
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateLaser_controlId
-	; LineNumber: 3501
+	; LineNumber: 3508
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_UpdateLaser_id
 	lda objectList_gobject_gobject_laserEmitId,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateLaser_laserEmitId
-	; LineNumber: 3502
+	; LineNumber: 3509
 	; Binary clause Simplified: EQUALS
 	; 8 bit binop
 	; Add/sub where right value is constant number
@@ -21110,74 +21140,74 @@ UpdateLaser
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$80;keep
-	bne UpdateLaser_elsedoneblock172709
-UpdateLaser_ConditionalTrueBlock172707: ;Main true block ;keep 
-	; LineNumber: 3502
-	; LineNumber: 3503
+	bne UpdateLaser_elsedoneblock172747
+UpdateLaser_ConditionalTrueBlock172745: ;Main true block ;keep 
+	; LineNumber: 3509
+	; LineNumber: 3510
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_UpdateLaser_id
 	lda objectList_gobject_gobject_controlId,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateLaser_controlId
-	; LineNumber: 3504
+	; LineNumber: 3511
 	; Binary clause Simplified: EQUALS
 	lda gameMode
 	; Compare with pure num / var optimization
 	cmp #$2;keep
-	bne UpdateLaser_elsedoneblock172722
-UpdateLaser_localsuccess172724: ;keep
+	bne UpdateLaser_elsedoneblock172760
+UpdateLaser_localsuccess172762: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	lda localVariable_UpdateLaser_controlId
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne UpdateLaser_elsedoneblock172722
-UpdateLaser_ConditionalTrueBlock172720: ;Main true block ;keep 
-	; LineNumber: 3503
+	bne UpdateLaser_elsedoneblock172760
+UpdateLaser_ConditionalTrueBlock172758: ;Main true block ;keep 
+	; LineNumber: 3510
 	lda simJoy
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateLaser_joy
-UpdateLaser_elsedoneblock172722
-	; LineNumber: 3505
-UpdateLaser_elsedoneblock172709
-	; LineNumber: 3506
+UpdateLaser_elsedoneblock172760
+	; LineNumber: 3512
+UpdateLaser_elsedoneblock172747
+	; LineNumber: 3513
 	; Binary clause Simplified: EQUALS
 	lda gameMode
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne UpdateLaser_localfailed173521
-UpdateLaser_localsuccess173522: ;keep
+	bne UpdateLaser_localfailed173559
+UpdateLaser_localsuccess173560: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	lda activeChar
 	; Compare with pure num / var optimization
 	cmp localVariable_UpdateLaser_controlId;keep
-	beq UpdateLaser_localfailed173521
-UpdateLaser_localsuccess173523: ;keep
+	beq UpdateLaser_localfailed173559
+UpdateLaser_localsuccess173561: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateLaser_controlId
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateLaser_localfailed173521
-	jmp UpdateLaser_ConditionalTrueBlock172727
-UpdateLaser_localfailed173521
-	jmp UpdateLaser_elseblock172728
-UpdateLaser_ConditionalTrueBlock172727: ;Main true block ;keep 
-	; LineNumber: 3507
-	jmp UpdateLaser_elsedoneblock172729
-UpdateLaser_elseblock172728
-	; LineNumber: 3508
-	; LineNumber: 3509
+	beq UpdateLaser_localfailed173559
+	jmp UpdateLaser_ConditionalTrueBlock172765
+UpdateLaser_localfailed173559
+	jmp UpdateLaser_elseblock172766
+UpdateLaser_ConditionalTrueBlock172765: ;Main true block ;keep 
+	; LineNumber: 3514
+	jmp UpdateLaser_elsedoneblock172767
+UpdateLaser_elseblock172766
+	; LineNumber: 3515
+	; LineNumber: 3516
 	; Binary clause Simplified: NOTEQUALS
 	lda localVariable_UpdateLaser_controlId
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	beq UpdateLaser_elsedoneblock173529
-UpdateLaser_ConditionalTrueBlock173527: ;Main true block ;keep 
-	; LineNumber: 3509
-	; LineNumber: 3510
+	beq UpdateLaser_elsedoneblock173567
+UpdateLaser_ConditionalTrueBlock173565: ;Main true block ;keep 
+	; LineNumber: 3516
+	; LineNumber: 3517
 	; Binary clause Simplified: NOTEQUALS
 	clc
 	; Load Byte array
@@ -21185,10 +21215,10 @@ UpdateLaser_ConditionalTrueBlock173527: ;Main true block ;keep
 	ldx localVariable_UpdateLaser_controlId
 	lda controlList_controlObject_controlObject_b_waitRelease,x 
 	; cmp #$00 ignored
-	beq UpdateLaser_elsedoneblock173581
-UpdateLaser_ConditionalTrueBlock173579: ;Main true block ;keep 
-	; LineNumber: 3510
-	; LineNumber: 3511
+	beq UpdateLaser_elsedoneblock173619
+UpdateLaser_ConditionalTrueBlock173617: ;Main true block ;keep 
+	; LineNumber: 3517
+	; LineNumber: 3518
 	; Binary clause Simplified: NOTEQUALS
 	clc
 	; Load Byte array
@@ -21196,19 +21226,19 @@ UpdateLaser_ConditionalTrueBlock173579: ;Main true block ;keep
 	ldx localVariable_UpdateLaser_controlId
 	lda controlList_controlObject_controlObject_b_release,x 
 	; cmp #$00 ignored
-	beq UpdateLaser_elseblock173606
-UpdateLaser_ConditionalTrueBlock173605: ;Main true block ;keep 
-	; LineNumber: 3510
+	beq UpdateLaser_elseblock173644
+UpdateLaser_ConditionalTrueBlock173643: ;Main true block ;keep 
+	; LineNumber: 3517
 	
 ; // do nothin
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateLaser_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_waitRelease,x
-	jmp UpdateLaser_elsedoneblock173607
-UpdateLaser_elseblock173606
-	; LineNumber: 3511
-	; LineNumber: 3513
+	jmp UpdateLaser_elsedoneblock173645
+UpdateLaser_elseblock173644
+	; LineNumber: 3518
+	; LineNumber: 3520
 	; Binary clause Simplified: NOTEQUALS
 	; 8 bit binop
 	; Add/sub where right value is constant number
@@ -21217,49 +21247,49 @@ UpdateLaser_elseblock173606
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$10;keep
-	beq UpdateLaser_elsedoneblock173621
-UpdateLaser_ConditionalTrueBlock173619: ;Main true block ;keep 
-	; LineNumber: 3512
+	beq UpdateLaser_elsedoneblock173659
+UpdateLaser_ConditionalTrueBlock173657: ;Main true block ;keep 
+	; LineNumber: 3519
 	lda #$1
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateLaser_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_b_release,x
-UpdateLaser_elsedoneblock173621
-	; LineNumber: 3514
+UpdateLaser_elsedoneblock173659
+	; LineNumber: 3521
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateLaser_exit
-	; LineNumber: 3515
-UpdateLaser_elsedoneblock173607
-	; LineNumber: 3516
-UpdateLaser_elsedoneblock173581
-	; LineNumber: 3517
-UpdateLaser_elsedoneblock173529
-	; LineNumber: 3519
+	; LineNumber: 3522
+UpdateLaser_elsedoneblock173645
+	; LineNumber: 3523
+UpdateLaser_elsedoneblock173619
+	; LineNumber: 3524
+UpdateLaser_elsedoneblock173567
+	; LineNumber: 3526
 	; Binary clause Simplified: EQUALS
 	clc
 	lda localVariable_UpdateLaser_exit
 	; cmp #$00 ignored
-	bne UpdateLaser_localfailed173971
-	jmp UpdateLaser_ConditionalTrueBlock173625
-UpdateLaser_localfailed173971
-	jmp UpdateLaser_elsedoneblock173627
-UpdateLaser_ConditionalTrueBlock173625: ;Main true block ;keep 
-	; LineNumber: 3519
-	; LineNumber: 3520
+	bne UpdateLaser_localfailed174009
+	jmp UpdateLaser_ConditionalTrueBlock173663
+UpdateLaser_localfailed174009
+	jmp UpdateLaser_elsedoneblock173665
+UpdateLaser_ConditionalTrueBlock173663: ;Main true block ;keep 
+	; LineNumber: 3526
+	; LineNumber: 3527
 	lda #$ff
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateLaser_laserEmitId ; optimized, look out for bugs
 	sta laserList_laserObject_laserObject_laserDir,x
-	; LineNumber: 3521
+	; LineNumber: 3528
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
 	; CAST type NADA
 	lda laserList_laserObject_laserObject_laserType,x 
 	; Compare with pure num / var optimization
 	cmp #$a;keep
-	bne UpdateLaser_localfailed174142
-UpdateLaser_localsuccess174143: ;keep
+	bne UpdateLaser_localfailed174180
+UpdateLaser_localsuccess174181: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	; 8 bit binop
@@ -21269,8 +21299,8 @@ UpdateLaser_localsuccess174143: ;keep
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$10;keep
-	bne UpdateLaser_localfailed174142
-UpdateLaser_localsuccess174144: ;keep
+	bne UpdateLaser_localfailed174180
+UpdateLaser_localsuccess174182: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	; 8 bit binop
@@ -21280,9 +21310,9 @@ UpdateLaser_localsuccess174144: ;keep
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$8;keep
-	bne UpdateLaser_localfailed174142
-	jmp UpdateLaser_ConditionalTrueBlock173974
-UpdateLaser_localfailed174142: ;keep
+	bne UpdateLaser_localfailed174180
+	jmp UpdateLaser_ConditionalTrueBlock174012
+UpdateLaser_localfailed174180: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
@@ -21291,114 +21321,11 @@ UpdateLaser_localfailed174142: ;keep
 	lda laserList_laserObject_laserObject_laserType,x 
 	; Compare with pure num / var optimization
 	cmp #$3;keep
-	bne UpdateLaser_localfailed174141
-	jmp UpdateLaser_ConditionalTrueBlock173974
-UpdateLaser_localfailed174141
-	jmp UpdateLaser_elseblock173975
-UpdateLaser_ConditionalTrueBlock173974: ;Main true block ;keep 
-	; LineNumber: 3521
-	; LineNumber: 3522
-	; Binary clause Simplified: NOTEQUALS
-	; Load Byte array
-	; CAST type NADA
-	ldx localVariable_UpdateLaser_laserEmitId
-	lda laserList_laserObject_laserObject_lastLaserDir,x 
-	; Compare with pure num / var optimization
-	cmp #$3;keep
-	beq UpdateLaser_elsedoneblock174149
-UpdateLaser_ConditionalTrueBlock174147: ;Main true block ;keep 
-	; LineNumber: 3521
-	lda #$0
-	; Calling storevariable on generic assign expression
-	ldx localVariable_UpdateLaser_laserEmitId ; optimized, look out for bugs
-	sta laserList_laserObject_laserObject_currentLaser,x
-UpdateLaser_elsedoneblock174149
-	; LineNumber: 3523
-	lda localVariable_UpdateLaser_id
-	; Calling storevariable on generic assign expression
-	sta localVariable_IncCurrentLaser_id
-	jsr IncCurrentLaser
-	; LineNumber: 3524
-	lda localVariable_UpdateLaser_id
-	; Calling storevariable on generic assign expression
-	sta localVariable_FireLaser_id
-	; Load Byte array
-	; CAST type NADA
-	ldx localVariable_UpdateLaser_id
-	lda objectList_gobject_gobject_transX,x 
-	; Calling storevariable on generic assign expression
-	sta localVariable_FireLaser_xpos
-	; Load Byte array
-	; CAST type NADA
-	lda objectList_gobject_gobject_transY,x 
-	; Calling storevariable on generic assign expression
-	sta localVariable_FireLaser_ypos
-	lda #$ff
-	; Calling storevariable on generic assign expression
-	sta localVariable_FireLaser_xdir
-	lda #$0
-	; Calling storevariable on generic assign expression
-	sta localVariable_FireLaser_ydir
-	jsr FireLaser
-	; LineNumber: 3525
-	lda #$3
-	; Calling storevariable on generic assign expression
-	ldx localVariable_UpdateLaser_laserEmitId ; optimized, look out for bugs
-	sta laserList_laserObject_laserObject_laserDir,x
-	; LineNumber: 3526
-	; Load Byte array
-	; CAST type NADA
-	; Calling storevariable on generic assign expression
-	sta laserList_laserObject_laserObject_lastLaserDir,x
-	; LineNumber: 3528
-	jmp UpdateLaser_elsedoneblock173976
-UpdateLaser_elseblock173975
-	; LineNumber: 3527
-	; Binary clause Simplified: EQUALS
-	; Load Byte array
-	; CAST type NADA
-	ldx localVariable_UpdateLaser_laserEmitId
-	lda laserList_laserObject_laserObject_laserType,x 
-	; Compare with pure num / var optimization
-	cmp #$a;keep
-	bne UpdateLaser_localfailed174232
-UpdateLaser_localsuccess174233: ;keep
-	; ; logical AND, second requirement
-	; Binary clause Simplified: EQUALS
-	; 8 bit binop
-	; Add/sub where right value is constant number
-	lda localVariable_UpdateLaser_joy
-	and #$10
-	 ; end add / sub var with constant
-	; Compare with pure num / var optimization
-	cmp #$10;keep
-	bne UpdateLaser_localfailed174232
-UpdateLaser_localsuccess174234: ;keep
-	; ; logical AND, second requirement
-	; Binary clause Simplified: EQUALS
-	; 8 bit binop
-	; Add/sub where right value is constant number
-	lda localVariable_UpdateLaser_joy
-	and #$1
-	 ; end add / sub var with constant
-	; Compare with pure num / var optimization
-	cmp #$1;keep
-	bne UpdateLaser_localfailed174232
-	jmp UpdateLaser_ConditionalTrueBlock174154
-UpdateLaser_localfailed174232: ;keep
-	; ; logical OR, second chance
-	; Binary clause Simplified: EQUALS
-	; Load Byte array
-	; CAST type NADA
-	ldx localVariable_UpdateLaser_laserEmitId
-	lda laserList_laserObject_laserObject_laserType,x 
-	; Compare with pure num / var optimization
-	cmp #$5;keep
-	bne UpdateLaser_localfailed174231
-	jmp UpdateLaser_ConditionalTrueBlock174154
-UpdateLaser_localfailed174231
-	jmp UpdateLaser_elseblock174155
-UpdateLaser_ConditionalTrueBlock174154: ;Main true block ;keep 
+	bne UpdateLaser_localfailed174179
+	jmp UpdateLaser_ConditionalTrueBlock174012
+UpdateLaser_localfailed174179
+	jmp UpdateLaser_elseblock174013
+UpdateLaser_ConditionalTrueBlock174012: ;Main true block ;keep 
 	; LineNumber: 3528
 	; LineNumber: 3529
 	; Binary clause Simplified: NOTEQUALS
@@ -21407,15 +21334,15 @@ UpdateLaser_ConditionalTrueBlock174154: ;Main true block ;keep
 	ldx localVariable_UpdateLaser_laserEmitId
 	lda laserList_laserObject_laserObject_lastLaserDir,x 
 	; Compare with pure num / var optimization
-	cmp #$5;keep
-	beq UpdateLaser_elsedoneblock174239
-UpdateLaser_ConditionalTrueBlock174237: ;Main true block ;keep 
+	cmp #$3;keep
+	beq UpdateLaser_elsedoneblock174187
+UpdateLaser_ConditionalTrueBlock174185: ;Main true block ;keep 
 	; LineNumber: 3528
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateLaser_laserEmitId ; optimized, look out for bugs
 	sta laserList_laserObject_laserObject_currentLaser,x
-UpdateLaser_elsedoneblock174239
+UpdateLaser_elsedoneblock174187
 	; LineNumber: 3530
 	lda localVariable_UpdateLaser_id
 	; Calling storevariable on generic assign expression
@@ -21436,7 +21363,7 @@ UpdateLaser_elsedoneblock174239
 	lda objectList_gobject_gobject_transY,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_ypos
-	lda #$1
+	lda #$ff
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_xdir
 	lda #$0
@@ -21444,7 +21371,7 @@ UpdateLaser_elsedoneblock174239
 	sta localVariable_FireLaser_ydir
 	jsr FireLaser
 	; LineNumber: 3532
-	lda #$5
+	lda #$3
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateLaser_laserEmitId ; optimized, look out for bugs
 	sta laserList_laserObject_laserObject_laserDir,x
@@ -21454,8 +21381,8 @@ UpdateLaser_elsedoneblock174239
 	; Calling storevariable on generic assign expression
 	sta laserList_laserObject_laserObject_lastLaserDir,x
 	; LineNumber: 3535
-	jmp UpdateLaser_elsedoneblock174156
-UpdateLaser_elseblock174155
+	jmp UpdateLaser_elsedoneblock174014
+UpdateLaser_elseblock174013
 	; LineNumber: 3534
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
@@ -21464,8 +21391,8 @@ UpdateLaser_elseblock174155
 	lda laserList_laserObject_laserObject_laserType,x 
 	; Compare with pure num / var optimization
 	cmp #$a;keep
-	bne UpdateLaser_localfailed174277
-UpdateLaser_localsuccess174278: ;keep
+	bne UpdateLaser_localfailed174270
+UpdateLaser_localsuccess174271: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	; 8 bit binop
@@ -21475,20 +21402,20 @@ UpdateLaser_localsuccess174278: ;keep
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$10;keep
-	bne UpdateLaser_localfailed174277
-UpdateLaser_localsuccess174279: ;keep
+	bne UpdateLaser_localfailed174270
+UpdateLaser_localsuccess174272: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	; 8 bit binop
 	; Add/sub where right value is constant number
 	lda localVariable_UpdateLaser_joy
-	and #$2
+	and #$1
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
-	cmp #$2;keep
-	bne UpdateLaser_localfailed174277
-	jmp UpdateLaser_ConditionalTrueBlock174244
-UpdateLaser_localfailed174277: ;keep
+	cmp #$1;keep
+	bne UpdateLaser_localfailed174270
+	jmp UpdateLaser_ConditionalTrueBlock174192
+UpdateLaser_localfailed174270: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
@@ -21496,12 +21423,12 @@ UpdateLaser_localfailed174277: ;keep
 	ldx localVariable_UpdateLaser_laserEmitId
 	lda laserList_laserObject_laserObject_laserType,x 
 	; Compare with pure num / var optimization
-	cmp #$1;keep
-	bne UpdateLaser_localfailed174276
-	jmp UpdateLaser_ConditionalTrueBlock174244
-UpdateLaser_localfailed174276
-	jmp UpdateLaser_elseblock174245
-UpdateLaser_ConditionalTrueBlock174244: ;Main true block ;keep 
+	cmp #$5;keep
+	bne UpdateLaser_localfailed174269
+	jmp UpdateLaser_ConditionalTrueBlock174192
+UpdateLaser_localfailed174269
+	jmp UpdateLaser_elseblock174193
+UpdateLaser_ConditionalTrueBlock174192: ;Main true block ;keep 
 	; LineNumber: 3535
 	; LineNumber: 3536
 	; Binary clause Simplified: NOTEQUALS
@@ -21510,15 +21437,15 @@ UpdateLaser_ConditionalTrueBlock174244: ;Main true block ;keep
 	ldx localVariable_UpdateLaser_laserEmitId
 	lda laserList_laserObject_laserObject_lastLaserDir,x 
 	; Compare with pure num / var optimization
-	cmp #$1;keep
-	beq UpdateLaser_elsedoneblock174284
-UpdateLaser_ConditionalTrueBlock174282: ;Main true block ;keep 
+	cmp #$5;keep
+	beq UpdateLaser_elsedoneblock174277
+UpdateLaser_ConditionalTrueBlock174275: ;Main true block ;keep 
 	; LineNumber: 3535
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateLaser_laserEmitId ; optimized, look out for bugs
 	sta laserList_laserObject_laserObject_currentLaser,x
-UpdateLaser_elsedoneblock174284
+UpdateLaser_elsedoneblock174277
 	; LineNumber: 3537
 	lda localVariable_UpdateLaser_id
 	; Calling storevariable on generic assign expression
@@ -21539,15 +21466,15 @@ UpdateLaser_elsedoneblock174284
 	lda objectList_gobject_gobject_transY,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_ypos
-	lda #$0
+	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_xdir
-	lda #$ff
+	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_ydir
 	jsr FireLaser
 	; LineNumber: 3539
-	lda #$1
+	lda #$5
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateLaser_laserEmitId ; optimized, look out for bugs
 	sta laserList_laserObject_laserObject_laserDir,x
@@ -21557,8 +21484,8 @@ UpdateLaser_elsedoneblock174284
 	; Calling storevariable on generic assign expression
 	sta laserList_laserObject_laserObject_lastLaserDir,x
 	; LineNumber: 3542
-	jmp UpdateLaser_elsedoneblock174246
-UpdateLaser_elseblock174245
+	jmp UpdateLaser_elsedoneblock174194
+UpdateLaser_elseblock174193
 	; LineNumber: 3541
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
@@ -21567,8 +21494,8 @@ UpdateLaser_elseblock174245
 	lda laserList_laserObject_laserObject_laserType,x 
 	; Compare with pure num / var optimization
 	cmp #$a;keep
-	bne UpdateLaser_localfailed174299
-UpdateLaser_localsuccess174300: ;keep
+	bne UpdateLaser_localfailed174315
+UpdateLaser_localsuccess174316: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	; 8 bit binop
@@ -21578,20 +21505,20 @@ UpdateLaser_localsuccess174300: ;keep
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$10;keep
-	bne UpdateLaser_localfailed174299
-UpdateLaser_localsuccess174301: ;keep
+	bne UpdateLaser_localfailed174315
+UpdateLaser_localsuccess174317: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	; 8 bit binop
 	; Add/sub where right value is constant number
 	lda localVariable_UpdateLaser_joy
-	and #$4
+	and #$2
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
-	cmp #$4;keep
-	bne UpdateLaser_localfailed174299
-	jmp UpdateLaser_ConditionalTrueBlock174289
-UpdateLaser_localfailed174299: ;keep
+	cmp #$2;keep
+	bne UpdateLaser_localfailed174315
+	jmp UpdateLaser_ConditionalTrueBlock174282
+UpdateLaser_localfailed174315: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
@@ -21599,9 +21526,12 @@ UpdateLaser_localfailed174299: ;keep
 	ldx localVariable_UpdateLaser_laserEmitId
 	lda laserList_laserObject_laserObject_laserType,x 
 	; Compare with pure num / var optimization
-	cmp #$7;keep
-	bne UpdateLaser_elsedoneblock174291
-UpdateLaser_ConditionalTrueBlock174289: ;Main true block ;keep 
+	cmp #$1;keep
+	bne UpdateLaser_localfailed174314
+	jmp UpdateLaser_ConditionalTrueBlock174282
+UpdateLaser_localfailed174314
+	jmp UpdateLaser_elseblock174283
+UpdateLaser_ConditionalTrueBlock174282: ;Main true block ;keep 
 	; LineNumber: 3542
 	; LineNumber: 3543
 	; Binary clause Simplified: NOTEQUALS
@@ -21610,15 +21540,15 @@ UpdateLaser_ConditionalTrueBlock174289: ;Main true block ;keep
 	ldx localVariable_UpdateLaser_laserEmitId
 	lda laserList_laserObject_laserObject_lastLaserDir,x 
 	; Compare with pure num / var optimization
-	cmp #$7;keep
-	beq UpdateLaser_elsedoneblock174306
-UpdateLaser_ConditionalTrueBlock174304: ;Main true block ;keep 
+	cmp #$1;keep
+	beq UpdateLaser_elsedoneblock174322
+UpdateLaser_ConditionalTrueBlock174320: ;Main true block ;keep 
 	; LineNumber: 3542
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateLaser_laserEmitId ; optimized, look out for bugs
 	sta laserList_laserObject_laserObject_currentLaser,x
-UpdateLaser_elsedoneblock174306
+UpdateLaser_elsedoneblock174322
 	; LineNumber: 3544
 	lda localVariable_UpdateLaser_id
 	; Calling storevariable on generic assign expression
@@ -21642,12 +21572,12 @@ UpdateLaser_elsedoneblock174306
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_xdir
-	lda #$1
+	lda #$ff
 	; Calling storevariable on generic assign expression
 	sta localVariable_FireLaser_ydir
 	jsr FireLaser
 	; LineNumber: 3546
-	lda #$7
+	lda #$1
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateLaser_laserEmitId ; optimized, look out for bugs
 	sta laserList_laserObject_laserObject_laserDir,x
@@ -21656,12 +21586,112 @@ UpdateLaser_elsedoneblock174306
 	; CAST type NADA
 	; Calling storevariable on generic assign expression
 	sta laserList_laserObject_laserObject_lastLaserDir,x
-	; LineNumber: 3548
-UpdateLaser_elsedoneblock174291
-UpdateLaser_elsedoneblock174246
-UpdateLaser_elsedoneblock174156
-UpdateLaser_elsedoneblock173976
 	; LineNumber: 3549
+	jmp UpdateLaser_elsedoneblock174284
+UpdateLaser_elseblock174283
+	; LineNumber: 3548
+	; Binary clause Simplified: EQUALS
+	; Load Byte array
+	; CAST type NADA
+	ldx localVariable_UpdateLaser_laserEmitId
+	lda laserList_laserObject_laserObject_laserType,x 
+	; Compare with pure num / var optimization
+	cmp #$a;keep
+	bne UpdateLaser_localfailed174337
+UpdateLaser_localsuccess174338: ;keep
+	; ; logical AND, second requirement
+	; Binary clause Simplified: EQUALS
+	; 8 bit binop
+	; Add/sub where right value is constant number
+	lda localVariable_UpdateLaser_joy
+	and #$10
+	 ; end add / sub var with constant
+	; Compare with pure num / var optimization
+	cmp #$10;keep
+	bne UpdateLaser_localfailed174337
+UpdateLaser_localsuccess174339: ;keep
+	; ; logical AND, second requirement
+	; Binary clause Simplified: EQUALS
+	; 8 bit binop
+	; Add/sub where right value is constant number
+	lda localVariable_UpdateLaser_joy
+	and #$4
+	 ; end add / sub var with constant
+	; Compare with pure num / var optimization
+	cmp #$4;keep
+	bne UpdateLaser_localfailed174337
+	jmp UpdateLaser_ConditionalTrueBlock174327
+UpdateLaser_localfailed174337: ;keep
+	; ; logical OR, second chance
+	; Binary clause Simplified: EQUALS
+	; Load Byte array
+	; CAST type NADA
+	ldx localVariable_UpdateLaser_laserEmitId
+	lda laserList_laserObject_laserObject_laserType,x 
+	; Compare with pure num / var optimization
+	cmp #$7;keep
+	bne UpdateLaser_elsedoneblock174329
+UpdateLaser_ConditionalTrueBlock174327: ;Main true block ;keep 
+	; LineNumber: 3549
+	; LineNumber: 3550
+	; Binary clause Simplified: NOTEQUALS
+	; Load Byte array
+	; CAST type NADA
+	ldx localVariable_UpdateLaser_laserEmitId
+	lda laserList_laserObject_laserObject_lastLaserDir,x 
+	; Compare with pure num / var optimization
+	cmp #$7;keep
+	beq UpdateLaser_elsedoneblock174344
+UpdateLaser_ConditionalTrueBlock174342: ;Main true block ;keep 
+	; LineNumber: 3549
+	lda #$0
+	; Calling storevariable on generic assign expression
+	ldx localVariable_UpdateLaser_laserEmitId ; optimized, look out for bugs
+	sta laserList_laserObject_laserObject_currentLaser,x
+UpdateLaser_elsedoneblock174344
+	; LineNumber: 3551
+	lda localVariable_UpdateLaser_id
+	; Calling storevariable on generic assign expression
+	sta localVariable_IncCurrentLaser_id
+	jsr IncCurrentLaser
+	; LineNumber: 3552
+	lda localVariable_UpdateLaser_id
+	; Calling storevariable on generic assign expression
+	sta localVariable_FireLaser_id
+	; Load Byte array
+	; CAST type NADA
+	ldx localVariable_UpdateLaser_id
+	lda objectList_gobject_gobject_transX,x 
+	; Calling storevariable on generic assign expression
+	sta localVariable_FireLaser_xpos
+	; Load Byte array
+	; CAST type NADA
+	lda objectList_gobject_gobject_transY,x 
+	; Calling storevariable on generic assign expression
+	sta localVariable_FireLaser_ypos
+	lda #$0
+	; Calling storevariable on generic assign expression
+	sta localVariable_FireLaser_xdir
+	lda #$1
+	; Calling storevariable on generic assign expression
+	sta localVariable_FireLaser_ydir
+	jsr FireLaser
+	; LineNumber: 3553
+	lda #$7
+	; Calling storevariable on generic assign expression
+	ldx localVariable_UpdateLaser_laserEmitId ; optimized, look out for bugs
+	sta laserList_laserObject_laserObject_laserDir,x
+	; LineNumber: 3554
+	; Load Byte array
+	; CAST type NADA
+	; Calling storevariable on generic assign expression
+	sta laserList_laserObject_laserObject_lastLaserDir,x
+	; LineNumber: 3555
+UpdateLaser_elsedoneblock174329
+UpdateLaser_elsedoneblock174284
+UpdateLaser_elsedoneblock174194
+UpdateLaser_elsedoneblock174014
+	; LineNumber: 3556
 	; Binary clause Simplified: EQUALS
 	; Load Byte array
 	; CAST type NADA
@@ -21669,32 +21699,32 @@ UpdateLaser_elsedoneblock173976
 	lda laserList_laserObject_laserObject_laserDir,x 
 	; Compare with pure num / var optimization
 	cmp #$ff;keep
-	bne UpdateLaser_elsedoneblock174312
-UpdateLaser_ConditionalTrueBlock174310: ;Main true block ;keep 
-	; LineNumber: 3548
+	bne UpdateLaser_elsedoneblock174350
+UpdateLaser_ConditionalTrueBlock174348: ;Main true block ;keep 
+	; LineNumber: 3555
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateLaser_laserEmitId ; optimized, look out for bugs
 	sta laserList_laserObject_laserObject_currentLaser,x
-UpdateLaser_elsedoneblock174312
-	; LineNumber: 3550
-UpdateLaser_elsedoneblock173627
-	; LineNumber: 3551
-UpdateLaser_elsedoneblock172729
-	; LineNumber: 3552
+UpdateLaser_elsedoneblock174350
+	; LineNumber: 3557
+UpdateLaser_elsedoneblock173665
+	; LineNumber: 3558
+UpdateLaser_elsedoneblock172767
+	; LineNumber: 3559
 	rts
 end_procedure_UpdateLaser
 	; NodeProcedureDecl 3
 	; ***********  Defining procedure : UpdateObject
 	;    Procedure type : User-defined procedure
-	; LineNumber: 3558
-	; LineNumber: 3557
+	; LineNumber: 3565
+	; LineNumber: 3564
 localVariable_UpdateObject_controlId	dc.b	0
-	; LineNumber: 3555
+	; LineNumber: 3562
 localVariable_UpdateObject_id	dc.b	0
-UpdateObject_block174315
+UpdateObject_block174353
 UpdateObject
-	; LineNumber: 3559
+	; LineNumber: 3566
 	; Binary clause Simplified: EQUALS
 	; 8 bit binop
 	; Add/sub where right value is constant number
@@ -21706,17 +21736,17 @@ UpdateObject
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$40;keep
-	bne UpdateObject_elsedoneblock174319
-UpdateObject_ConditionalTrueBlock174317: ;Main true block ;keep 
-	; LineNumber: 3558
-	; LineNumber: 3560
+	bne UpdateObject_elsedoneblock174357
+UpdateObject_ConditionalTrueBlock174355: ;Main true block ;keep 
+	; LineNumber: 3565
+	; LineNumber: 3567
 	lda localVariable_UpdateObject_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateLaser_id
 	jsr UpdateLaser
-	; LineNumber: 3561
-UpdateObject_elsedoneblock174319
-	; LineNumber: 3562
+	; LineNumber: 3568
+UpdateObject_elsedoneblock174357
+	; LineNumber: 3569
 	; Binary clause Simplified: EQUALS
 	; 8 bit binop
 	; Add/sub where right value is constant number
@@ -21728,28 +21758,28 @@ UpdateObject_elsedoneblock174319
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$20;keep
-	bne UpdateObject_elsedoneblock174325
-UpdateObject_ConditionalTrueBlock174323: ;Main true block ;keep 
-	; LineNumber: 3561
-	; LineNumber: 3563
+	bne UpdateObject_elsedoneblock174363
+UpdateObject_ConditionalTrueBlock174361: ;Main true block ;keep 
+	; LineNumber: 3568
+	; LineNumber: 3570
 	lda localVariable_UpdateObject_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateFontaine_id
 	jsr UpdateFontaine
-	; LineNumber: 3564
-UpdateObject_elsedoneblock174325
-	; LineNumber: 3566
+	; LineNumber: 3571
+UpdateObject_elsedoneblock174363
+	; LineNumber: 3573
 	; Binary clause Simplified: EQUALS
 	clc
 	lda cycle
 	; cmp #$00 ignored
-	bne UpdateObject_localfailed174419
-	jmp UpdateObject_ConditionalTrueBlock174329
-UpdateObject_localfailed174419
-	jmp UpdateObject_elseblock174330
-UpdateObject_ConditionalTrueBlock174329: ;Main true block ;keep 
-	; LineNumber: 3566
-	; LineNumber: 3567
+	bne UpdateObject_localfailed174457
+	jmp UpdateObject_ConditionalTrueBlock174367
+UpdateObject_localfailed174457
+	jmp UpdateObject_elseblock174368
+UpdateObject_ConditionalTrueBlock174367: ;Main true block ;keep 
+	; LineNumber: 3573
+	; LineNumber: 3574
 	; Binary clause Simplified: EQUALS
 	; 8 bit binop
 	; Add/sub where right value is constant number
@@ -21761,22 +21791,22 @@ UpdateObject_ConditionalTrueBlock174329: ;Main true block ;keep
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne UpdateObject_elsedoneblock174424
-UpdateObject_ConditionalTrueBlock174422: ;Main true block ;keep 
-	; LineNumber: 3567
-	; LineNumber: 3568
+	bne UpdateObject_elsedoneblock174462
+UpdateObject_ConditionalTrueBlock174460: ;Main true block ;keep 
+	; LineNumber: 3574
+	; LineNumber: 3575
 	lda localVariable_UpdateObject_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdatePhysics_id
 	jsr UpdatePhysics
-	; LineNumber: 3569
+	; LineNumber: 3576
 	lda localVariable_UpdateObject_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_ProcessBackObj_id
 	jsr ProcessBackObj
-	; LineNumber: 3570
-UpdateObject_elsedoneblock174424
-	; LineNumber: 3571
+	; LineNumber: 3577
+UpdateObject_elsedoneblock174462
+	; LineNumber: 3578
 	; Binary clause Simplified: EQUALS
 	; 8 bit binop
 	; Add/sub where right value is constant number
@@ -21788,22 +21818,22 @@ UpdateObject_elsedoneblock174424
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$8;keep
-	bne UpdateObject_elsedoneblock174430
-UpdateObject_ConditionalTrueBlock174428: ;Main true block ;keep 
-	; LineNumber: 3570
-	; LineNumber: 3572
+	bne UpdateObject_elsedoneblock174468
+UpdateObject_ConditionalTrueBlock174466: ;Main true block ;keep 
+	; LineNumber: 3577
+	; LineNumber: 3579
 	lda localVariable_UpdateObject_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateFloater_id
 	jsr UpdateFloater
-	; LineNumber: 3573
+	; LineNumber: 3580
 	lda localVariable_UpdateObject_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_ProcessBackObj_id
 	jsr ProcessBackObj
-	; LineNumber: 3574
-UpdateObject_elsedoneblock174430
-	; LineNumber: 3576
+	; LineNumber: 3581
+UpdateObject_elsedoneblock174468
+	; LineNumber: 3583
 	; Binary clause Simplified: EQUALS
 	; 8 bit binop
 	; Add/sub where right value is constant number
@@ -21815,28 +21845,28 @@ UpdateObject_elsedoneblock174430
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$80;keep
-	bne UpdateObject_localfailed174461
-	jmp UpdateObject_ConditionalTrueBlock174434
-UpdateObject_localfailed174461
-	jmp UpdateObject_elsedoneblock174436
-UpdateObject_ConditionalTrueBlock174434: ;Main true block ;keep 
-	; LineNumber: 3576
-	; LineNumber: 3577
+	bne UpdateObject_localfailed174499
+	jmp UpdateObject_ConditionalTrueBlock174472
+UpdateObject_localfailed174499
+	jmp UpdateObject_elsedoneblock174474
+UpdateObject_ConditionalTrueBlock174472: ;Main true block ;keep 
+	; LineNumber: 3583
+	; LineNumber: 3584
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_UpdateObject_id
 	lda objectList_gobject_gobject_controlId,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateObject_controlId
-	; LineNumber: 3578
+	; LineNumber: 3585
 	; Binary clause Simplified: GREATEREQUAL
 	; Load Byte array
 	; CAST type NADA
 	lda objectList_gobject_gobject_moves,x 
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bcc UpdateObject_elseblock174465
-UpdateObject_localsuccess174476: ;keep
+	bcc UpdateObject_elseblock174503
+UpdateObject_localsuccess174514: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	clc
@@ -21845,24 +21875,24 @@ UpdateObject_localsuccess174476: ;keep
 	ldx localVariable_UpdateObject_controlId
 	lda controlList_controlObject_controlObject_b_fallDown,x 
 	; cmp #$00 ignored
-	bne UpdateObject_elseblock174465
-UpdateObject_ConditionalTrueBlock174464: ;Main true block ;keep 
-	; LineNumber: 3577
+	bne UpdateObject_elseblock174503
+UpdateObject_ConditionalTrueBlock174502: ;Main true block ;keep 
+	; LineNumber: 3584
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta needExtraCycle
-	jmp UpdateObject_elsedoneblock174466
-UpdateObject_elseblock174465
-	; LineNumber: 3579
-	; LineNumber: 3580
+	jmp UpdateObject_elsedoneblock174504
+UpdateObject_elseblock174503
+	; LineNumber: 3586
+	; LineNumber: 3587
 	
 ; //			retryPressed := $FF;
 	; Binary clause Simplified: NOTEQUALS
 	clc
 	lda retryPressed
 	; cmp #$00 ignored
-	beq UpdateObject_elsedoneblock174482
-UpdateObject_localsuccess174484: ;keep
+	beq UpdateObject_elsedoneblock174520
+UpdateObject_localsuccess174522: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	; Load Byte array
@@ -21871,64 +21901,64 @@ UpdateObject_localsuccess174484: ;keep
 	lda controlList_controlObject_controlObject_controlState,x 
 	; Compare with pure num / var optimization
 	cmp #$5;keep
-	beq UpdateObject_elsedoneblock174482
-UpdateObject_ConditionalTrueBlock174480: ;Main true block ;keep 
-	; LineNumber: 3580
-	; LineNumber: 3582
+	beq UpdateObject_elsedoneblock174520
+UpdateObject_ConditionalTrueBlock174518: ;Main true block ;keep 
+	; LineNumber: 3587
+	; LineNumber: 3589
 	lda #<sndExplosion
 	ldy #>sndExplosion
 	; Calling storevariable on generic assign expression
 	sta psnd+6
 	sty psnd+7
-	; LineNumber: 3582
+	; LineNumber: 3589
 	lda #$c8
 	; Calling storevariable on generic assign expression
 	sta vsnd+$3
-	; LineNumber: 3582
+	; LineNumber: 3589
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta vsndTime+$3
-	; LineNumber: 3583
+	; LineNumber: 3590
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateObject_id ; optimized, look out for bugs
 	sta objectList_gobject_gobject_b_physFallDown,x
-	; LineNumber: 3584
+	; LineNumber: 3591
 	lda #$5
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateObject_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_controlState,x
-	; LineNumber: 3585
+	; LineNumber: 3592
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta controlList_controlObject_controlObject_controlJumpStep,x
-	; LineNumber: 3587
-UpdateObject_elsedoneblock174482
-	; LineNumber: 3589
+	; LineNumber: 3594
+UpdateObject_elsedoneblock174520
+	; LineNumber: 3596
 	
 ; //ProcessDestroyObj(id);
 	lda localVariable_UpdateObject_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_InputControl_id
 	jsr InputControl
-	; LineNumber: 3590
+	; LineNumber: 3597
 	lda localVariable_UpdateObject_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_id
 	jsr UpdateControl
-	; LineNumber: 3591
+	; LineNumber: 3598
 	lda localVariable_UpdateObject_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_ProcessBackObj_id
 	jsr ProcessBackObj
-	; LineNumber: 3592
-UpdateObject_elsedoneblock174466
-	; LineNumber: 3593
-UpdateObject_elsedoneblock174436
-	; LineNumber: 3595
-	jmp UpdateObject_elsedoneblock174331
-UpdateObject_elseblock174330
-	; LineNumber: 3594
-	; LineNumber: 3596
+	; LineNumber: 3599
+UpdateObject_elsedoneblock174504
+	; LineNumber: 3600
+UpdateObject_elsedoneblock174474
+	; LineNumber: 3602
+	jmp UpdateObject_elsedoneblock174369
+UpdateObject_elseblock174368
+	; LineNumber: 3601
+	; LineNumber: 3603
 	; Binary clause Simplified: EQUALS
 	; 8 bit binop
 	; Add/sub where right value is constant number
@@ -21940,25 +21970,25 @@ UpdateObject_elseblock174330
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$80;keep
-	bne UpdateObject_elsedoneblock174490
-UpdateObject_ConditionalTrueBlock174488: ;Main true block ;keep 
-	; LineNumber: 3596
-	; LineNumber: 3597
+	bne UpdateObject_elsedoneblock174528
+UpdateObject_ConditionalTrueBlock174526: ;Main true block ;keep 
+	; LineNumber: 3603
+	; LineNumber: 3604
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_UpdateObject_id
 	lda objectList_gobject_gobject_controlId,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateObject_controlId
-	; LineNumber: 3598
+	; LineNumber: 3605
 	
 ; //			retryPressed := $FF;
 	; Binary clause Simplified: NOTEQUALS
 	clc
 	lda retryPressed
 	; cmp #$00 ignored
-	beq UpdateObject_elsedoneblock174503
-UpdateObject_localsuccess174505: ;keep
+	beq UpdateObject_elsedoneblock174541
+UpdateObject_localsuccess174543: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	; Load Byte array
@@ -21967,100 +21997,100 @@ UpdateObject_localsuccess174505: ;keep
 	lda controlList_controlObject_controlObject_controlState,x 
 	; Compare with pure num / var optimization
 	cmp #$5;keep
-	beq UpdateObject_elsedoneblock174503
-UpdateObject_ConditionalTrueBlock174501: ;Main true block ;keep 
-	; LineNumber: 3598
-	; LineNumber: 3600
+	beq UpdateObject_elsedoneblock174541
+UpdateObject_ConditionalTrueBlock174539: ;Main true block ;keep 
+	; LineNumber: 3605
+	; LineNumber: 3607
 	lda #<sndExplosion
 	ldy #>sndExplosion
 	; Calling storevariable on generic assign expression
 	sta psnd+6
 	sty psnd+7
-	; LineNumber: 3600
+	; LineNumber: 3607
 	lda #$c8
 	; Calling storevariable on generic assign expression
 	sta vsnd+$3
-	; LineNumber: 3600
+	; LineNumber: 3607
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta vsndTime+$3
-	; LineNumber: 3601
+	; LineNumber: 3608
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateObject_id ; optimized, look out for bugs
 	sta objectList_gobject_gobject_b_physFallDown,x
-	; LineNumber: 3602
+	; LineNumber: 3609
 	lda #$5
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateObject_controlId ; optimized, look out for bugs
 	sta controlList_controlObject_controlObject_controlState,x
-	; LineNumber: 3603
+	; LineNumber: 3610
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta controlList_controlObject_controlObject_controlJumpStep,x
-	; LineNumber: 3605
-UpdateObject_elsedoneblock174503
-	; LineNumber: 3607
+	; LineNumber: 3612
+UpdateObject_elsedoneblock174541
+	; LineNumber: 3614
 	
 ; //ProcessDestroyObj(id);
 	lda localVariable_UpdateObject_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_InputControl_id
 	jsr InputControl
-	; LineNumber: 3608
+	; LineNumber: 3615
 	lda localVariable_UpdateObject_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateControl_id
 	jsr UpdateControl
-	; LineNumber: 3609
+	; LineNumber: 3616
 	lda localVariable_UpdateObject_id
 	; Calling storevariable on generic assign expression
 	sta localVariable_ProcessBackObj_id
 	jsr ProcessBackObj
-	; LineNumber: 3610
-UpdateObject_elsedoneblock174490
-	; LineNumber: 3611
-UpdateObject_elsedoneblock174331
-	; LineNumber: 3612
+	; LineNumber: 3617
+UpdateObject_elsedoneblock174528
+	; LineNumber: 3618
+UpdateObject_elsedoneblock174369
+	; LineNumber: 3619
 	lda #$0
 	; Calling storevariable on generic assign expression
 	ldx localVariable_UpdateObject_id ; optimized, look out for bugs
 	sta objectList_gobject_gobject_moves,x
-	; LineNumber: 3613
+	; LineNumber: 3620
 	rts
 end_procedure_UpdateObject
 	; NodeProcedureDecl 3
 	; ***********  Defining procedure : Update
 	;    Procedure type : User-defined procedure
-	; LineNumber: 3619
-	; LineNumber: 3617
+	; LineNumber: 3626
+	; LineNumber: 3624
 localVariable_Update_i	dc.b	0
-	; LineNumber: 3618
+	; LineNumber: 3625
 localVariable_Update_id	dc.b	0
-Update_block174507
+Update_block174545
 Update
-	; LineNumber: 3620
+	; LineNumber: 3627
 	jsr ClearAllLaser
-	; LineNumber: 3621
+	; LineNumber: 3628
 	lda 197
 	; Calling storevariable on generic assign expression
 	sta localVariable_Update_i
-	; LineNumber: 3622
+	; LineNumber: 3629
 	; Binary clause Simplified: EQUALS
 	lda gameMode
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne Update_elsedoneblock174511
-Update_ConditionalTrueBlock174509: ;Main true block ;keep 
-	; LineNumber: 3622
-	; LineNumber: 3624
+	bne Update_elsedoneblock174549
+Update_ConditionalTrueBlock174547: ;Main true block ;keep 
+	; LineNumber: 3629
+	; LineNumber: 3631
 	; Binary clause Simplified: EQUALS
 	lda localVariable_Update_i
 	; Compare with pure num / var optimization
 	cmp #$20;keep
-	bne Update_elsedoneblock174523
-Update_ConditionalTrueBlock174521: ;Main true block ;keep 
-	; LineNumber: 3624
-	; LineNumber: 3626
+	bne Update_elsedoneblock174561
+Update_ConditionalTrueBlock174559: ;Main true block ;keep 
+	; LineNumber: 3631
+	; LineNumber: 3633
 	
 ; //Key::Read();
 	lda #<sndPlayerChange
@@ -22068,110 +22098,110 @@ Update_ConditionalTrueBlock174521: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta psnd+4
 	sty psnd+5
-	; LineNumber: 3626
+	; LineNumber: 3633
 	lda #$f0
 	; Calling storevariable on generic assign expression
 	sta vsnd+$2
-	; LineNumber: 3626
+	; LineNumber: 3633
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta vsndTime+$2
-	; LineNumber: 3627
+	; LineNumber: 3634
 	jsr SwapActiveChar
-	; LineNumber: 3628
-Update_elsedoneblock174523
-	; LineNumber: 3629
-Update_elsedoneblock174511
-	; LineNumber: 3630
+	; LineNumber: 3635
+Update_elsedoneblock174561
+	; LineNumber: 3636
+Update_elsedoneblock174549
+	; LineNumber: 3637
 	; Binary clause Simplified: EQUALS
 	lda localVariable_Update_i
 	; Compare with pure num / var optimization
 	cmp #$3f;keep
-	bne Update_elsedoneblock174529
-Update_ConditionalTrueBlock174527: ;Main true block ;keep 
-	; LineNumber: 3630
-	; LineNumber: 3631
+	bne Update_elsedoneblock174567
+Update_ConditionalTrueBlock174565: ;Main true block ;keep 
+	; LineNumber: 3637
+	; LineNumber: 3638
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta retryPressed
-	; LineNumber: 3632
-Update_elsedoneblock174529
-	; LineNumber: 3633
+	; LineNumber: 3639
+Update_elsedoneblock174567
+	; LineNumber: 3640
 	; Binary clause Simplified: EQUALS
 	clc
 	lda cycle
 	; cmp #$00 ignored
-	bne Update_elseblock174534
-Update_localsuccess174538: ;keep
+	bne Update_elseblock174572
+Update_localsuccess174576: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: NOTEQUALS
 	clc
 	lda needExtraCycle
 	; cmp #$00 ignored
-	beq Update_elseblock174534
-Update_ConditionalTrueBlock174533: ;Main true block ;keep 
-	; LineNumber: 3632
+	beq Update_elseblock174572
+Update_ConditionalTrueBlock174571: ;Main true block ;keep 
+	; LineNumber: 3639
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta cycle
-	jmp Update_elsedoneblock174535
-Update_elseblock174534
-	; LineNumber: 3632
-	lda #$0
-	; Calling storevariable on generic assign expression
-	sta cycle
-Update_elsedoneblock174535
+	jmp Update_elsedoneblock174573
+Update_elseblock174572
 	; LineNumber: 3639
 	lda #$0
 	; Calling storevariable on generic assign expression
+	sta cycle
+Update_elsedoneblock174573
+	; LineNumber: 3646
+	lda #$0
+	; Calling storevariable on generic assign expression
 	sta localVariable_Update_i
-Update_forloop174541
-	; LineNumber: 3635
-	; LineNumber: 3636
+Update_forloop174579
+	; LineNumber: 3642
+	; LineNumber: 3643
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_Update_i
 	lda dynObjectList,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_Update_id
-	; LineNumber: 3637
+	; LineNumber: 3644
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateObject_id
 	jsr UpdateObject
-	; LineNumber: 3638
-Update_loopstart174542
+	; LineNumber: 3645
+Update_loopstart174580
 	; Compare is onpage
 	; Test Inc dec D
 	inc localVariable_Update_i
 	lda countDyn
 	cmp localVariable_Update_i ;keep
-	bne Update_forloop174541
-Update_loopdone174546: ;keep
-Update_loopend174543
-	; LineNumber: 3640
+	bne Update_forloop174579
+Update_loopdone174584: ;keep
+Update_loopend174581
+	; LineNumber: 3647
 	; Binary clause Simplified: EQUALS
 	lda cycle
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne Update_elsedoneblock174550
-Update_ConditionalTrueBlock174548: ;Main true block ;keep 
-	; LineNumber: 3639
+	bne Update_elsedoneblock174588
+Update_ConditionalTrueBlock174586: ;Main true block ;keep 
+	; LineNumber: 3646
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta needExtraCycle
-Update_elsedoneblock174550
-	; LineNumber: 3642
+Update_elsedoneblock174588
+	; LineNumber: 3649
 	rts
 end_procedure_Update
 	; NodeProcedureDecl 3
 	; ***********  Defining procedure : InitAnimations
 	;    Procedure type : User-defined procedure
-	; LineNumber: 3650
-	; LineNumber: 3648
-localVariable_InitAnimations_pa	=  $72
-InitAnimations_block174553
+	; LineNumber: 3657
+	; LineNumber: 3655
+localVariable_InitAnimations_pa	= $72
+InitAnimations_block174591
 InitAnimations
-	; LineNumber: 3683
+	; LineNumber: 3690
 	
 ; // walk left
 ; // l            r            u            d
@@ -22200,47 +22230,47 @@ InitAnimations
 	ldx #>animList
 	sta localVariable_InitAnimations_pa
 	stx localVariable_InitAnimations_pa+1
-	; LineNumber: 3684
+	; LineNumber: 3691
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$0 ; optimized, look out for bugs
 	lda #$80
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3685
+	; LineNumber: 3692
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$1 ; optimized, look out for bugs
 	lda #$84
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3686
+	; LineNumber: 3693
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$2 ; optimized, look out for bugs
 	lda #$88
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3687
+	; LineNumber: 3694
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$3 ; optimized, look out for bugs
 	lda #$8c
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3688
+	; LineNumber: 3695
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$4 ; optimized, look out for bugs
 	lda #$1
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3689
+	; LineNumber: 3696
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$5 ; optimized, look out for bugs
 	lda #$4
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3690
+	; LineNumber: 3697
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$6 ; optimized, look out for bugs
 	lda #$1
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3691
+	; LineNumber: 3698
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$7 ; optimized, look out for bugs
 	lda #$3
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3693
+	; LineNumber: 3700
 	; INTEGER optimization: a=b+c 
 	lda #<animList
 	clc
@@ -22249,47 +22279,47 @@ InitAnimations
 	lda #>animList
 	adc #$00
 	sta localVariable_InitAnimations_pa+1
-	; LineNumber: 3694
+	; LineNumber: 3701
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$0 ; optimized, look out for bugs
 	lda #$90
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3695
+	; LineNumber: 3702
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$1 ; optimized, look out for bugs
 	lda #$94
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3696
+	; LineNumber: 3703
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$2 ; optimized, look out for bugs
 	lda #$98
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3697
+	; LineNumber: 3704
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$3 ; optimized, look out for bugs
 	lda #$9c
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3698
+	; LineNumber: 3705
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$4 ; optimized, look out for bugs
 	lda #$1
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3699
+	; LineNumber: 3706
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$5 ; optimized, look out for bugs
 	lda #$4
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3700
+	; LineNumber: 3707
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$6 ; optimized, look out for bugs
 	lda #$1
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3701
+	; LineNumber: 3708
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$7 ; optimized, look out for bugs
 	lda #$3
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3703
+	; LineNumber: 3710
 	; INTEGER optimization: a=b+c 
 	lda #<animList
 	clc
@@ -22298,43 +22328,43 @@ InitAnimations
 	lda #>animList
 	adc #$00
 	sta localVariable_InitAnimations_pa+1
-	; LineNumber: 3704
+	; LineNumber: 3711
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$0 ; optimized, look out for bugs
 	lda #$a0
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3705
+	; LineNumber: 3712
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$1 ; optimized, look out for bugs
 	lda #$ff
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3706
+	; LineNumber: 3713
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$2 ; optimized, look out for bugs
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3707
+	; LineNumber: 3714
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$3 ; optimized, look out for bugs
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3708
+	; LineNumber: 3715
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$4 ; optimized, look out for bugs
 	lda #$1
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3709
+	; LineNumber: 3716
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$5 ; optimized, look out for bugs
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3710
+	; LineNumber: 3717
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$6 ; optimized, look out for bugs
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3711
+	; LineNumber: 3718
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$7 ; optimized, look out for bugs
 	lda #$0
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3713
+	; LineNumber: 3720
 	; INTEGER optimization: a=b+c 
 	lda #<animList
 	clc
@@ -22343,43 +22373,43 @@ InitAnimations
 	lda #>animList
 	adc #$00
 	sta localVariable_InitAnimations_pa+1
-	; LineNumber: 3714
+	; LineNumber: 3721
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$0 ; optimized, look out for bugs
 	lda #$a4
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3715
+	; LineNumber: 3722
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$1 ; optimized, look out for bugs
 	lda #$ff
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3716
+	; LineNumber: 3723
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$2 ; optimized, look out for bugs
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3717
+	; LineNumber: 3724
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$3 ; optimized, look out for bugs
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3718
+	; LineNumber: 3725
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$4 ; optimized, look out for bugs
 	lda #$1
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3719
+	; LineNumber: 3726
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$5 ; optimized, look out for bugs
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3720
+	; LineNumber: 3727
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$6 ; optimized, look out for bugs
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3721
+	; LineNumber: 3728
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$7 ; optimized, look out for bugs
 	lda #$0
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3723
+	; LineNumber: 3730
 	; INTEGER optimization: a=b+c 
 	lda #<animList
 	clc
@@ -22388,43 +22418,43 @@ InitAnimations
 	lda #>animList
 	adc #$00
 	sta localVariable_InitAnimations_pa+1
-	; LineNumber: 3724
+	; LineNumber: 3731
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$0 ; optimized, look out for bugs
 	lda #$a8
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3725
+	; LineNumber: 3732
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$1 ; optimized, look out for bugs
 	lda #$ff
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3726
+	; LineNumber: 3733
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$2 ; optimized, look out for bugs
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3727
+	; LineNumber: 3734
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$3 ; optimized, look out for bugs
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3728
+	; LineNumber: 3735
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$4 ; optimized, look out for bugs
 	lda #$1
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3729
+	; LineNumber: 3736
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$5 ; optimized, look out for bugs
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3730
+	; LineNumber: 3737
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$6 ; optimized, look out for bugs
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3731
+	; LineNumber: 3738
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$7 ; optimized, look out for bugs
 	lda #$0
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3733
+	; LineNumber: 3740
 	; INTEGER optimization: a=b+c 
 	lda #<animList
 	clc
@@ -22433,46 +22463,46 @@ InitAnimations
 	lda #>animList
 	adc #$00
 	sta localVariable_InitAnimations_pa+1
-	; LineNumber: 3734
+	; LineNumber: 3741
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$0 ; optimized, look out for bugs
 	lda #$ac
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3735
+	; LineNumber: 3742
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$1 ; optimized, look out for bugs
 	lda #$b0
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3736
+	; LineNumber: 3743
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$2 ; optimized, look out for bugs
 	lda #$ff
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3737
+	; LineNumber: 3744
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$3 ; optimized, look out for bugs
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3738
+	; LineNumber: 3745
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$4 ; optimized, look out for bugs
 	lda #$1
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3739
+	; LineNumber: 3746
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$5 ; optimized, look out for bugs
 	lda #$2
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3740
+	; LineNumber: 3747
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$6 ; optimized, look out for bugs
 	lda #$1
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3741
+	; LineNumber: 3748
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$7 ; optimized, look out for bugs
 	lda #$3
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3743
+	; LineNumber: 3750
 	; INTEGER optimization: a=b+c 
 	lda #<animList
 	clc
@@ -22481,46 +22511,46 @@ InitAnimations
 	lda #>animList
 	adc #$00
 	sta localVariable_InitAnimations_pa+1
-	; LineNumber: 3744
+	; LineNumber: 3751
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$0 ; optimized, look out for bugs
 	lda #$b4
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3745
+	; LineNumber: 3752
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$1 ; optimized, look out for bugs
 	lda #$b8
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3746
+	; LineNumber: 3753
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$2 ; optimized, look out for bugs
 	lda #$ff
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3747
+	; LineNumber: 3754
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$3 ; optimized, look out for bugs
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3748
+	; LineNumber: 3755
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$4 ; optimized, look out for bugs
 	lda #$1
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3749
+	; LineNumber: 3756
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$5 ; optimized, look out for bugs
 	lda #$2
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3750
+	; LineNumber: 3757
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$6 ; optimized, look out for bugs
 	lda #$1
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3751
+	; LineNumber: 3758
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$7 ; optimized, look out for bugs
 	lda #$3
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3753
+	; LineNumber: 3760
 	; INTEGER optimization: a=b+c 
 	lda #<animList
 	clc
@@ -22529,47 +22559,47 @@ InitAnimations
 	lda #>animList
 	adc #$00
 	sta localVariable_InitAnimations_pa+1
-	; LineNumber: 3754
+	; LineNumber: 3761
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$0 ; optimized, look out for bugs
 	lda #$6b
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3755
+	; LineNumber: 3762
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$1 ; optimized, look out for bugs
 	lda #$6c
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3756
+	; LineNumber: 3763
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$2 ; optimized, look out for bugs
 	lda #$6d
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3757
+	; LineNumber: 3764
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$3 ; optimized, look out for bugs
 	lda #$6e
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3758
+	; LineNumber: 3765
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$4 ; optimized, look out for bugs
 	lda #$0
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3759
+	; LineNumber: 3766
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$5 ; optimized, look out for bugs
 	lda #$4
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3760
+	; LineNumber: 3767
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$6 ; optimized, look out for bugs
 	lda #$1
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3761
+	; LineNumber: 3768
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$7 ; optimized, look out for bugs
 	lda #$2
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3763
+	; LineNumber: 3770
 	; INTEGER optimization: a=b+c 
 	lda #<animList
 	clc
@@ -22578,44 +22608,44 @@ InitAnimations
 	lda #>animList
 	adc #$00
 	sta localVariable_InitAnimations_pa+1
-	; LineNumber: 3764
+	; LineNumber: 3771
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$0 ; optimized, look out for bugs
 	lda #$63
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3765
+	; LineNumber: 3772
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$1 ; optimized, look out for bugs
 	lda #$ff
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3766
+	; LineNumber: 3773
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$2 ; optimized, look out for bugs
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3767
+	; LineNumber: 3774
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$3 ; optimized, look out for bugs
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3768
+	; LineNumber: 3775
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$4 ; optimized, look out for bugs
 	lda #$0
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3769
+	; LineNumber: 3776
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$5 ; optimized, look out for bugs
 	lda #$1
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3770
+	; LineNumber: 3777
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$6 ; optimized, look out for bugs
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3771
+	; LineNumber: 3778
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$7 ; optimized, look out for bugs
 	lda #$0
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3773
+	; LineNumber: 3780
 	; INTEGER optimization: a=b+c 
 	lda #<animList
 	clc
@@ -22624,44 +22654,44 @@ InitAnimations
 	lda #>animList
 	adc #$00
 	sta localVariable_InitAnimations_pa+1
-	; LineNumber: 3774
+	; LineNumber: 3781
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$0 ; optimized, look out for bugs
 	lda #$64
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3775
+	; LineNumber: 3782
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$1 ; optimized, look out for bugs
 	lda #$ff
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3776
+	; LineNumber: 3783
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$2 ; optimized, look out for bugs
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3777
+	; LineNumber: 3784
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$3 ; optimized, look out for bugs
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3778
+	; LineNumber: 3785
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$4 ; optimized, look out for bugs
 	lda #$0
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3779
+	; LineNumber: 3786
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$5 ; optimized, look out for bugs
 	lda #$1
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3780
+	; LineNumber: 3787
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$6 ; optimized, look out for bugs
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3781
+	; LineNumber: 3788
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$7 ; optimized, look out for bugs
 	lda #$0
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3783
+	; LineNumber: 3790
 	; INTEGER optimization: a=b+c 
 	lda #<animList
 	clc
@@ -22670,44 +22700,44 @@ InitAnimations
 	lda #>animList
 	adc #$00
 	sta localVariable_InitAnimations_pa+1
-	; LineNumber: 3784
+	; LineNumber: 3791
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$0 ; optimized, look out for bugs
 	lda #$67
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3785
+	; LineNumber: 3792
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$1 ; optimized, look out for bugs
 	lda #$ff
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3786
+	; LineNumber: 3793
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$2 ; optimized, look out for bugs
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3787
+	; LineNumber: 3794
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$3 ; optimized, look out for bugs
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3788
+	; LineNumber: 3795
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$4 ; optimized, look out for bugs
 	lda #$0
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3789
+	; LineNumber: 3796
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$5 ; optimized, look out for bugs
 	lda #$1
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3790
+	; LineNumber: 3797
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$6 ; optimized, look out for bugs
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3791
+	; LineNumber: 3798
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$7 ; optimized, look out for bugs
 	lda #$0
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3793
+	; LineNumber: 3800
 	; INTEGER optimization: a=b+c 
 	lda #<animList
 	clc
@@ -22716,44 +22746,44 @@ InitAnimations
 	lda #>animList
 	adc #$00
 	sta localVariable_InitAnimations_pa+1
-	; LineNumber: 3794
+	; LineNumber: 3801
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$0 ; optimized, look out for bugs
 	lda #$66
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3795
+	; LineNumber: 3802
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$1 ; optimized, look out for bugs
 	lda #$ff
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3796
+	; LineNumber: 3803
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$2 ; optimized, look out for bugs
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3797
+	; LineNumber: 3804
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$3 ; optimized, look out for bugs
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3798
+	; LineNumber: 3805
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$4 ; optimized, look out for bugs
 	lda #$0
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3799
+	; LineNumber: 3806
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$5 ; optimized, look out for bugs
 	lda #$1
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3800
+	; LineNumber: 3807
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$6 ; optimized, look out for bugs
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3801
+	; LineNumber: 3808
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$7 ; optimized, look out for bugs
 	lda #$0
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3803
+	; LineNumber: 3810
 	; INTEGER optimization: a=b+c 
 	lda #<animList
 	clc
@@ -22762,45 +22792,45 @@ InitAnimations
 	lda #>animList
 	adc #$00
 	sta localVariable_InitAnimations_pa+1
-	; LineNumber: 3804
+	; LineNumber: 3811
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$0 ; optimized, look out for bugs
 	lda #$4f
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3805
+	; LineNumber: 3812
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$1 ; optimized, look out for bugs
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3806
+	; LineNumber: 3813
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$2 ; optimized, look out for bugs
 	lda #$50
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3807
+	; LineNumber: 3814
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$3 ; optimized, look out for bugs
 	lda #$51
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3808
+	; LineNumber: 3815
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$4 ; optimized, look out for bugs
 	lda #$0
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3809
+	; LineNumber: 3816
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$5 ; optimized, look out for bugs
 	lda #$4
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3810
+	; LineNumber: 3817
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$6 ; optimized, look out for bugs
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3811
+	; LineNumber: 3818
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$7 ; optimized, look out for bugs
 	lda #$1
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3813
+	; LineNumber: 3820
 	; INTEGER optimization: a=b+c 
 	lda #<animList
 	clc
@@ -22809,53 +22839,53 @@ InitAnimations
 	lda #>animList
 	adc #$00
 	sta localVariable_InitAnimations_pa+1
-	; LineNumber: 3814
+	; LineNumber: 3821
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$0 ; optimized, look out for bugs
 	lda #$51
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3815
+	; LineNumber: 3822
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$1 ; optimized, look out for bugs
 	lda #$50
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3816
+	; LineNumber: 3823
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$2 ; optimized, look out for bugs
 	lda #$4f
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3817
+	; LineNumber: 3824
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$3 ; optimized, look out for bugs
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3818
+	; LineNumber: 3825
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$4 ; optimized, look out for bugs
 	lda #$0
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3819
+	; LineNumber: 3826
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$5 ; optimized, look out for bugs
 	lda #$4
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3820
+	; LineNumber: 3827
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$6 ; optimized, look out for bugs
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3821
+	; LineNumber: 3828
 	; Store Variable simplified optimization : right-hand term is pure
 	ldy #$7 ; optimized, look out for bugs
 	lda #$1
 	sta (localVariable_InitAnimations_pa),y
-	; LineNumber: 3824
+	; LineNumber: 3831
 	rts
 end_procedure_InitAnimations
 	; NodeProcedureDecl 3
 	; ***********  Defining procedure : InitialiseTables
 	;    Procedure type : User-defined procedure
-	; LineNumber: 3826
+	; LineNumber: 3833
 InitialiseTables
-	; LineNumber: 3829
+	; LineNumber: 3836
 	
 ; // create an address table of screen row addresses, we will use this to quickly find the Y position in screen memory
 ; // without needing to use costly multiplication
@@ -22867,22 +22897,22 @@ InitialiseTables
 	sta scr1,x   ; Address of table
 	tya
 	sta scr1+1,x
-InitialiseTables_dtloop174568
+InitialiseTables_dtloop174606
 	tay
 	lda scr1,x
 	inx
 	inx
 	clc
 	adc #$14
-	bcc InitialiseTables_dtnooverflow174569
+	bcc InitialiseTables_dtnooverflow174607
 	iny
-InitialiseTables_dtnooverflow174569
+InitialiseTables_dtnooverflow174607
 	sta scr1,x
 	tya
 	sta scr1+1,x
 	cpx #$26
-	bcc InitialiseTables_dtloop174568
-	; LineNumber: 3830
+	bcc InitialiseTables_dtloop174606
+	; LineNumber: 3837
 	; ----------
 	; DefineAddressTable address, StartValue, IncrementValue, TableSize
 	ldy #>$1e00
@@ -22891,22 +22921,22 @@ InitialiseTables_dtnooverflow174569
 	sta scr2,x   ; Address of table
 	tya
 	sta scr2+1,x
-InitialiseTables_dtloop174570
+InitialiseTables_dtloop174608
 	tay
 	lda scr2,x
 	inx
 	inx
 	clc
 	adc #$14
-	bcc InitialiseTables_dtnooverflow174571
+	bcc InitialiseTables_dtnooverflow174609
 	iny
-InitialiseTables_dtnooverflow174571
+InitialiseTables_dtnooverflow174609
 	sta scr2,x
 	tya
 	sta scr2+1,x
 	cpx #$26
-	bcc InitialiseTables_dtloop174570
-	; LineNumber: 3831
+	bcc InitialiseTables_dtloop174608
+	; LineNumber: 3838
 	; ----------
 	; DefineAddressTable address, StartValue, IncrementValue, TableSize
 	ldy #>$9400
@@ -22915,22 +22945,22 @@ InitialiseTables_dtnooverflow174571
 	sta col1,x   ; Address of table
 	tya
 	sta col1+1,x
-InitialiseTables_dtloop174572
+InitialiseTables_dtloop174610
 	tay
 	lda col1,x
 	inx
 	inx
 	clc
 	adc #$14
-	bcc InitialiseTables_dtnooverflow174573
+	bcc InitialiseTables_dtnooverflow174611
 	iny
-InitialiseTables_dtnooverflow174573
+InitialiseTables_dtnooverflow174611
 	sta col1,x
 	tya
 	sta col1+1,x
 	cpx #$26
-	bcc InitialiseTables_dtloop174572
-	; LineNumber: 3832
+	bcc InitialiseTables_dtloop174610
+	; LineNumber: 3839
 	; ----------
 	; DefineAddressTable address, StartValue, IncrementValue, TableSize
 	ldy #>$9600
@@ -22939,44 +22969,44 @@ InitialiseTables_dtnooverflow174573
 	sta col2,x   ; Address of table
 	tya
 	sta col2+1,x
-InitialiseTables_dtloop174574
+InitialiseTables_dtloop174612
 	tay
 	lda col2,x
 	inx
 	inx
 	clc
 	adc #$14
-	bcc InitialiseTables_dtnooverflow174575
+	bcc InitialiseTables_dtnooverflow174613
 	iny
-InitialiseTables_dtnooverflow174575
+InitialiseTables_dtnooverflow174613
 	sta col2,x
 	tya
 	sta col2+1,x
 	cpx #$26
-	bcc InitialiseTables_dtloop174574
-	; LineNumber: 3833
+	bcc InitialiseTables_dtloop174612
+	; LineNumber: 3840
 	rts
 end_procedure_InitialiseTables
 	; NodeProcedureDecl 3
 	; ***********  Defining procedure : InitScreen
 	;    Procedure type : User-defined procedure
-	; LineNumber: 3836
+	; LineNumber: 3843
 InitScreen
-	; LineNumber: 3838
+	; LineNumber: 3845
 	
 ; // set the screen and border colour
 	; Assigning memory location
 	lda #$94
 	; Calling storevariable on generic assign expression
 	sta $9002
-	; LineNumber: 3839
+	; LineNumber: 3846
 	
 ; // width
 	; Assigning memory location
 	lda #$26
 	; Calling storevariable on generic assign expression
 	sta $9003
-	; LineNumber: 3840
+	; LineNumber: 3847
 	
 ; // 24 (25 rows-1) x 2
 	; Assigning memory location
@@ -22989,7 +23019,7 @@ InitScreen
 	 ; end add / sub var with constant
 	; Calling storevariable on generic assign expression
 	sta $9000
-	; LineNumber: 3841
+	; LineNumber: 3848
 	; Assigning memory location
 	; 8 bit binop
 	; Add/sub where right value is constant number
@@ -23000,22 +23030,22 @@ InitScreen
 	 ; end add / sub var with constant
 	; Calling storevariable on generic assign expression
 	sta $9001
-	; LineNumber: 3842
+	; LineNumber: 3849
 screenmemory =  $fd
 colormemory =  $fb
-	; LineNumber: 3846
+	; LineNumber: 3853
 	
 ; //	SCREEN_BG_COLOR := %00001110;
 	; Assigning memory location
 	lda #$8
 	; Calling storevariable on generic assign expression
 	sta $900f
-	; LineNumber: 3847
+	; LineNumber: 3854
 	; Assigning memory location
 	lda #$ce
 	; Calling storevariable on generic assign expression
 	sta $9005
-	; LineNumber: 3848
+	; LineNumber: 3855
 	; Assigning memory location
 	; 8 bit binop
 	; Add/sub where right value is constant number
@@ -23024,9 +23054,9 @@ colormemory =  $fb
 	 ; end add / sub var with constant
 	; Calling storevariable on generic assign expression
 	sta $9002
-	; LineNumber: 3849
+	; LineNumber: 3856
 	jsr InitialiseTables
-	; LineNumber: 3850
+	; LineNumber: 3857
 	rts
 end_procedure_InitScreen
 	; NodeProcedureDecl 4
@@ -23104,67 +23134,67 @@ StartBlockA280:
 	; Starting new memory block at $A280
 	; ***********  Defining procedure : UpdateMain
 	;    Procedure type : User-defined procedure
-	; LineNumber: 3861
-	; LineNumber: 3857
+	; LineNumber: 3868
+	; LineNumber: 3864
 localVariable_UpdateMain_levStr		dc.b	"00"
 	dc.b	0
-	; LineNumber: 3858
+	; LineNumber: 3865
 localVariable_UpdateMain_levStr2		dc.b	"00"
 	dc.b	0
-	; LineNumber: 3859
+	; LineNumber: 3866
 localVariable_UpdateMain_pos	dc.b	0
-	; LineNumber: 3860
+	; LineNumber: 3867
 localVariable_UpdateMain_len	dc.b	0
-UpdateMain_block174577
+UpdateMain_block174615
 UpdateMain
-	; LineNumber: 3862
+	; LineNumber: 3869
 	; Assigning a string : localVariable_UpdateMain_levStr
 	ldy #0
-UpdateMain_stringassigncpy174578
-	lda UpdateMain_stringassignstr174579,y
+UpdateMain_stringassigncpy174616
+	lda UpdateMain_stringassignstr174617,y
 	sta localVariable_UpdateMain_levStr,y
 	iny
 	cmp #0 ;keep
-	bne UpdateMain_stringassigncpy174578
-	; LineNumber: 3863
+	bne UpdateMain_stringassigncpy174616
+	; LineNumber: 3870
 	; Assigning a string : localVariable_UpdateMain_levStr2
 	ldy #0
-UpdateMain_stringassigncpy174580
-	lda UpdateMain_stringassignstr174581,y
+UpdateMain_stringassigncpy174618
+	lda UpdateMain_stringassignstr174619,y
 	sta localVariable_UpdateMain_levStr2,y
 	iny
 	cmp #0 ;keep
-	bne UpdateMain_stringassigncpy174580
-	; LineNumber: 3865
+	bne UpdateMain_stringassigncpy174618
+	; LineNumber: 3872
 	; Binary clause Simplified: EQUALS
 	lda state
 	; Compare with pure num / var optimization
 	cmp #$6;keep
-	bne UpdateMain_localfailed174812
-	jmp UpdateMain_ConditionalTrueBlock174583
-UpdateMain_localfailed174812
-	jmp UpdateMain_elseblock174584
-UpdateMain_ConditionalTrueBlock174583: ;Main true block ;keep 
-	; LineNumber: 3865
-	; LineNumber: 3866
+	bne UpdateMain_localfailed174850
+	jmp UpdateMain_ConditionalTrueBlock174621
+UpdateMain_localfailed174850
+	jmp UpdateMain_elseblock174622
+UpdateMain_ConditionalTrueBlock174621: ;Main true block ;keep 
+	; LineNumber: 3872
+	; LineNumber: 3873
 	; Binary clause Simplified: GREATEREQUAL
 	lda levelSingle
 	; Compare with pure num / var optimization
 	cmp #$9;keep
-	bcc UpdateMain_elseblock174816
-UpdateMain_ConditionalTrueBlock174815: ;Main true block ;keep 
-	; LineNumber: 3865
+	bcc UpdateMain_elseblock174854
+UpdateMain_ConditionalTrueBlock174853: ;Main true block ;keep 
+	; LineNumber: 3872
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateMain_pos
-	jmp UpdateMain_elsedoneblock174817
-UpdateMain_elseblock174816
-	; LineNumber: 3865
+	jmp UpdateMain_elsedoneblock174855
+UpdateMain_elseblock174854
+	; LineNumber: 3872
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateMain_pos
-UpdateMain_elsedoneblock174817
-	; LineNumber: 3867
+UpdateMain_elsedoneblock174855
+	; LineNumber: 3874
 	; INTEGER optimization: a=b+c 
 	lda levelSingle
 	clc
@@ -23185,25 +23215,25 @@ UpdateMain_elsedoneblock174817
 	; Calling storevariable on generic assign expression
 	sta str_b
 	jsr str_itoa
-	; LineNumber: 3868
+	; LineNumber: 3875
 	; Binary clause Simplified: GREATEREQUAL
 	lda levelCoop
 	; Compare with pure num / var optimization
 	cmp #$9;keep
-	bcc UpdateMain_elseblock174826
-UpdateMain_ConditionalTrueBlock174825: ;Main true block ;keep 
-	; LineNumber: 3867
+	bcc UpdateMain_elseblock174864
+UpdateMain_ConditionalTrueBlock174863: ;Main true block ;keep 
+	; LineNumber: 3874
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateMain_pos
-	jmp UpdateMain_elsedoneblock174827
-UpdateMain_elseblock174826
-	; LineNumber: 3867
+	jmp UpdateMain_elsedoneblock174865
+UpdateMain_elseblock174864
+	; LineNumber: 3874
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateMain_pos
-UpdateMain_elsedoneblock174827
-	; LineNumber: 3869
+UpdateMain_elsedoneblock174865
+	; LineNumber: 3876
 	; INTEGER optimization: a=b+c 
 	lda levelCoop
 	clc
@@ -23224,7 +23254,7 @@ UpdateMain_elsedoneblock174827
 	; Calling storevariable on generic assign expression
 	sta str_b
 	jsr str_itoa
-	; LineNumber: 3871
+	; LineNumber: 3878
 	
 ; //TODO
 	; Binary clause Simplified: EQUALS
@@ -23235,25 +23265,25 @@ UpdateMain_elsedoneblock174827
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$10;keep
-	bne UpdateMain_elsedoneblock174837
-UpdateMain_ConditionalTrueBlock174835: ;Main true block ;keep 
-	; LineNumber: 3871
-	; LineNumber: 3872
+	bne UpdateMain_elsedoneblock174875
+UpdateMain_ConditionalTrueBlock174873: ;Main true block ;keep 
+	; LineNumber: 3878
+	; LineNumber: 3879
 	; Binary clause Simplified: EQUALS
 	clc
 	lda menuItem
 	; cmp #$00 ignored
-	bne UpdateMain_localfailed174865
-	jmp UpdateMain_ConditionalTrueBlock174861
-UpdateMain_localfailed174865: ;keep
+	bne UpdateMain_localfailed174903
+	jmp UpdateMain_ConditionalTrueBlock174899
+UpdateMain_localfailed174903: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: EQUALS
 	lda menuItem
 	; Compare with pure num / var optimization
 	cmp #$3;keep
-	bne UpdateMain_elsedoneblock174863
-UpdateMain_ConditionalTrueBlock174861: ;Main true block ;keep 
-	; LineNumber: 3871
+	bne UpdateMain_elsedoneblock174901
+UpdateMain_ConditionalTrueBlock174899: ;Main true block ;keep 
+	; LineNumber: 3878
 	lda levelSingle
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitGame_levSingle
@@ -23264,15 +23294,15 @@ UpdateMain_ConditionalTrueBlock174861: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitGame_mode
 	jsr InitGame
-UpdateMain_elsedoneblock174863
-	; LineNumber: 3873
+UpdateMain_elsedoneblock174901
+	; LineNumber: 3880
 	; Binary clause Simplified: EQUALS
 	lda menuItem
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne UpdateMain_elsedoneblock174870
-UpdateMain_ConditionalTrueBlock174868: ;Main true block ;keep 
-	; LineNumber: 3872
+	bne UpdateMain_elsedoneblock174908
+UpdateMain_ConditionalTrueBlock174906: ;Main true block ;keep 
+	; LineNumber: 3879
 	lda levelSingle
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitGame_levSingle
@@ -23283,23 +23313,23 @@ UpdateMain_ConditionalTrueBlock174868: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitGame_mode
 	jsr InitGame
-UpdateMain_elsedoneblock174870
-	; LineNumber: 3874
+UpdateMain_elsedoneblock174908
+	; LineNumber: 3881
 	; Binary clause Simplified: EQUALS
 	lda menuItem
 	; Compare with pure num / var optimization
 	cmp #$2;keep
-	bne UpdateMain_localfailed174878
-	jmp UpdateMain_ConditionalTrueBlock174874
-UpdateMain_localfailed174878: ;keep
+	bne UpdateMain_localfailed174916
+	jmp UpdateMain_ConditionalTrueBlock174912
+UpdateMain_localfailed174916: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: EQUALS
 	lda menuItem
 	; Compare with pure num / var optimization
 	cmp #$4;keep
-	bne UpdateMain_elsedoneblock174876
-UpdateMain_ConditionalTrueBlock174874: ;Main true block ;keep 
-	; LineNumber: 3873
+	bne UpdateMain_elsedoneblock174914
+UpdateMain_ConditionalTrueBlock174912: ;Main true block ;keep 
+	; LineNumber: 3880
 	lda levelSingle
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitGame_levSingle
@@ -23310,14 +23340,14 @@ UpdateMain_ConditionalTrueBlock174874: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitGame_mode
 	jsr InitGame
-UpdateMain_elsedoneblock174876
-	; LineNumber: 3875
+UpdateMain_elsedoneblock174914
+	; LineNumber: 3882
 	lda #$2
 	; Calling storevariable on generic assign expression
 	sta state
-	; LineNumber: 3876
-UpdateMain_elsedoneblock174837
-	; LineNumber: 3877
+	; LineNumber: 3883
+UpdateMain_elsedoneblock174875
+	; LineNumber: 3884
 	; Binary clause Simplified: EQUALS
 	; 8 bit binop
 	; Add/sub where right value is constant number
@@ -23326,38 +23356,38 @@ UpdateMain_elsedoneblock174837
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$8;keep
-	bne UpdateMain_elsedoneblock174883
-UpdateMain_ConditionalTrueBlock174881: ;Main true block ;keep 
-	; LineNumber: 3877
-	; LineNumber: 3878
+	bne UpdateMain_elsedoneblock174921
+UpdateMain_ConditionalTrueBlock174919: ;Main true block ;keep 
+	; LineNumber: 3884
+	; LineNumber: 3885
 	; Binary clause Simplified: EQUALS
 	lda menuItem
 	; Compare with pure num / var optimization
 	cmp #$3;keep
-	bne UpdateMain_elsedoneblock174901
-UpdateMain_ConditionalTrueBlock174899: ;Main true block ;keep 
-	; LineNumber: 3877
+	bne UpdateMain_elsedoneblock174939
+UpdateMain_ConditionalTrueBlock174937: ;Main true block ;keep 
+	; LineNumber: 3884
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_DecLevel_mode
 	jsr DecLevel
-UpdateMain_elsedoneblock174901
-	; LineNumber: 3879
+UpdateMain_elsedoneblock174939
+	; LineNumber: 3886
 	; Binary clause Simplified: EQUALS
 	lda menuItem
 	; Compare with pure num / var optimization
 	cmp #$4;keep
-	bne UpdateMain_elsedoneblock174907
-UpdateMain_ConditionalTrueBlock174905: ;Main true block ;keep 
-	; LineNumber: 3878
+	bne UpdateMain_elsedoneblock174945
+UpdateMain_ConditionalTrueBlock174943: ;Main true block ;keep 
+	; LineNumber: 3885
 	lda #$2
 	; Calling storevariable on generic assign expression
 	sta localVariable_DecLevel_mode
 	jsr DecLevel
-UpdateMain_elsedoneblock174907
-	; LineNumber: 3880
-UpdateMain_elsedoneblock174883
-	; LineNumber: 3881
+UpdateMain_elsedoneblock174945
+	; LineNumber: 3887
+UpdateMain_elsedoneblock174921
+	; LineNumber: 3888
 	; Binary clause Simplified: EQUALS
 	; 8 bit binop
 	; Add/sub where right value is constant number
@@ -23366,38 +23396,38 @@ UpdateMain_elsedoneblock174883
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne UpdateMain_elsedoneblock174913
-UpdateMain_ConditionalTrueBlock174911: ;Main true block ;keep 
-	; LineNumber: 3881
-	; LineNumber: 3882
+	bne UpdateMain_elsedoneblock174951
+UpdateMain_ConditionalTrueBlock174949: ;Main true block ;keep 
+	; LineNumber: 3888
+	; LineNumber: 3889
 	; Binary clause Simplified: EQUALS
 	lda menuItem
 	; Compare with pure num / var optimization
 	cmp #$3;keep
-	bne UpdateMain_elsedoneblock174931
-UpdateMain_ConditionalTrueBlock174929: ;Main true block ;keep 
-	; LineNumber: 3881
+	bne UpdateMain_elsedoneblock174969
+UpdateMain_ConditionalTrueBlock174967: ;Main true block ;keep 
+	; LineNumber: 3888
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_IncLevel_mode
 	jsr IncLevel
-UpdateMain_elsedoneblock174931
-	; LineNumber: 3883
+UpdateMain_elsedoneblock174969
+	; LineNumber: 3890
 	; Binary clause Simplified: EQUALS
 	lda menuItem
 	; Compare with pure num / var optimization
 	cmp #$4;keep
-	bne UpdateMain_elsedoneblock174937
-UpdateMain_ConditionalTrueBlock174935: ;Main true block ;keep 
-	; LineNumber: 3882
+	bne UpdateMain_elsedoneblock174975
+UpdateMain_ConditionalTrueBlock174973: ;Main true block ;keep 
+	; LineNumber: 3889
 	lda #$2
 	; Calling storevariable on generic assign expression
 	sta localVariable_IncLevel_mode
 	jsr IncLevel
-UpdateMain_elsedoneblock174937
-	; LineNumber: 3884
-UpdateMain_elsedoneblock174913
-	; LineNumber: 3886
+UpdateMain_elsedoneblock174975
+	; LineNumber: 3891
+UpdateMain_elsedoneblock174951
+	; LineNumber: 3893
 	lda #<localVariable_UpdateMain_levStr
 	ldx #>localVariable_UpdateMain_levStr
 	sta localVariable_PrintStringColor_p1
@@ -23412,7 +23442,7 @@ UpdateMain_elsedoneblock174913
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintStringColor_varPrefixed_c
 	jsr PrintStringColor
-	; LineNumber: 3887
+	; LineNumber: 3894
 	lda #<localVariable_UpdateMain_levStr2
 	ldx #>localVariable_UpdateMain_levStr2
 	sta localVariable_PrintStringColor_p1
@@ -23427,7 +23457,7 @@ UpdateMain_elsedoneblock174913
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintStringColor_varPrefixed_c
 	jsr PrintStringColor
-	; LineNumber: 3889
+	; LineNumber: 3896
 	lda #$5
 	; Calling storevariable on generic assign expression
 	sta localVariable_MenuMove_len
@@ -23435,18 +23465,18 @@ UpdateMain_elsedoneblock174913
 	; Calling storevariable on generic assign expression
 	sta localVariable_MenuMove_oldMenuItem
 	jsr MenuMove
-	; LineNumber: 3891
-	jmp UpdateMain_elsedoneblock174585
-UpdateMain_elseblock174584
-	; LineNumber: 3891
+	; LineNumber: 3898
+	jmp UpdateMain_elsedoneblock174623
+UpdateMain_elseblock174622
+	; LineNumber: 3898
 	; Binary clause Simplified: EQUALS
 	lda state
 	; Compare with pure num / var optimization
 	cmp #$7;keep
-	bne UpdateMain_elsedoneblock174944
-UpdateMain_ConditionalTrueBlock174942: ;Main true block ;keep 
-	; LineNumber: 3892
-	; LineNumber: 3893
+	bne UpdateMain_elsedoneblock174982
+UpdateMain_ConditionalTrueBlock174980: ;Main true block ;keep 
+	; LineNumber: 3899
+	; LineNumber: 3900
 	; Binary clause Simplified: EQUALS
 	; 8 bit binop
 	; Add/sub where right value is constant number
@@ -23455,38 +23485,38 @@ UpdateMain_ConditionalTrueBlock174942: ;Main true block ;keep
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$10;keep
-	bne UpdateMain_elsedoneblock174996
-UpdateMain_ConditionalTrueBlock174994: ;Main true block ;keep 
-	; LineNumber: 3893
-	; LineNumber: 3894
+	bne UpdateMain_elsedoneblock175034
+UpdateMain_ConditionalTrueBlock175032: ;Main true block ;keep 
+	; LineNumber: 3900
+	; LineNumber: 3901
 	; Binary clause Simplified: EQUALS
 	clc
 	lda menuItem
 	; cmp #$00 ignored
-	bne UpdateMain_elseblock175021
-UpdateMain_ConditionalTrueBlock175020: ;Main true block ;keep 
-	; LineNumber: 3893
+	bne UpdateMain_elseblock175059
+UpdateMain_ConditionalTrueBlock175058: ;Main true block ;keep 
+	; LineNumber: 3900
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta state
-	jmp UpdateMain_elsedoneblock175022
-UpdateMain_elseblock175021
-	; LineNumber: 3894
+	jmp UpdateMain_elsedoneblock175060
+UpdateMain_elseblock175059
+	; LineNumber: 3901
 	; Binary clause Simplified: EQUALS
 	lda menuItem
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne UpdateMain_elsedoneblock175036
-UpdateMain_ConditionalTrueBlock175034: ;Main true block ;keep 
-	; LineNumber: 3894
+	bne UpdateMain_elsedoneblock175074
+UpdateMain_ConditionalTrueBlock175072: ;Main true block ;keep 
+	; LineNumber: 3901
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta state
-UpdateMain_elsedoneblock175036
-UpdateMain_elsedoneblock175022
-	; LineNumber: 3896
-UpdateMain_elsedoneblock174996
-	; LineNumber: 3897
+UpdateMain_elsedoneblock175074
+UpdateMain_elsedoneblock175060
+	; LineNumber: 3903
+UpdateMain_elsedoneblock175034
+	; LineNumber: 3904
 	lda #$2
 	; Calling storevariable on generic assign expression
 	sta localVariable_MenuMove_len
@@ -23494,81 +23524,81 @@ UpdateMain_elsedoneblock174996
 	; Calling storevariable on generic assign expression
 	sta localVariable_MenuMove_oldMenuItem
 	jsr MenuMove
-	; LineNumber: 3898
-UpdateMain_elsedoneblock174944
-UpdateMain_elsedoneblock174585
-	; LineNumber: 3899
+	; LineNumber: 3905
+UpdateMain_elsedoneblock174982
+UpdateMain_elsedoneblock174623
+	; LineNumber: 3906
 	rts
 end_procedure_UpdateMain
 	; NodeProcedureDecl 4
 	; ***********  Defining procedure : OpenMain
 	;    Procedure type : User-defined procedure
-	; LineNumber: 3907
-	; LineNumber: 3903
+	; LineNumber: 3914
+	; LineNumber: 3910
 localVariable_OpenMain_i	dc.b	0
-	; LineNumber: 3904
+	; LineNumber: 3911
 localVariable_OpenMain_levStr		dc.b	"00"
 	dc.b	0
-	; LineNumber: 3905
+	; LineNumber: 3912
 localVariable_OpenMain_pos	dc.b	0
-	; LineNumber: 3906
+	; LineNumber: 3913
 localVariable_OpenMain_len	dc.b	0
-OpenMain_block175039
+OpenMain_block175077
 OpenMain
-	; LineNumber: 3909
+	; LineNumber: 3916
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta time
-	; LineNumber: 3910
+	; LineNumber: 3917
 	; Calling storevariable on generic assign expression
 	sta menuItem
-	; LineNumber: 3911
+	; LineNumber: 3918
 	lda #$30
 	; Calling storevariable on generic assign expression
 	sta localVariable_OpenMain_levStr+$0
-	; LineNumber: 3912
+	; LineNumber: 3919
 	; Binary clause Simplified: EQUALS
 	lda state
 	; Compare with pure num / var optimization
 	cmp #$2;keep
-	bne OpenMain_localfailed175136
-	jmp OpenMain_ConditionalTrueBlock175041
-OpenMain_localfailed175136
-	jmp OpenMain_elseblock175042
-OpenMain_ConditionalTrueBlock175041: ;Main true block ;keep 
-	; LineNumber: 3911
-	; LineNumber: 3914
+	bne OpenMain_localfailed175174
+	jmp OpenMain_ConditionalTrueBlock175079
+OpenMain_localfailed175174
+	jmp OpenMain_elseblock175080
+OpenMain_ConditionalTrueBlock175079: ;Main true block ;keep 
+	; LineNumber: 3918
+	; LineNumber: 3921
 	; Binary clause Simplified: EQUALS
 	clc
 	lda gameMode
 	; cmp #$00 ignored
-	bne OpenMain_localfailed175164
-	jmp OpenMain_ConditionalTrueBlock175139
-OpenMain_localfailed175164
-	jmp OpenMain_elseblock175140
-OpenMain_ConditionalTrueBlock175139: ;Main true block ;keep 
-	; LineNumber: 3914
-	; LineNumber: 3915
+	bne OpenMain_localfailed175202
+	jmp OpenMain_ConditionalTrueBlock175177
+OpenMain_localfailed175202
+	jmp OpenMain_elseblock175178
+OpenMain_ConditionalTrueBlock175177: ;Main true block ;keep 
+	; LineNumber: 3921
+	; LineNumber: 3922
 	; Binary clause Simplified: GREATEREQUAL
 	lda levelSingle
 	; Compare with pure num / var optimization
 	cmp #$9;keep
-	bcc OpenMain_elseblock175168
-OpenMain_ConditionalTrueBlock175167: ;Main true block ;keep 
-	; LineNumber: 3914
+	bcc OpenMain_elseblock175206
+OpenMain_ConditionalTrueBlock175205: ;Main true block ;keep 
+	; LineNumber: 3921
 	
 ; //		InitLevel();
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_OpenMain_pos
-	jmp OpenMain_elsedoneblock175169
-OpenMain_elseblock175168
-	; LineNumber: 3914
+	jmp OpenMain_elsedoneblock175207
+OpenMain_elseblock175206
+	; LineNumber: 3921
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_OpenMain_pos
-OpenMain_elsedoneblock175169
-	; LineNumber: 3916
+OpenMain_elsedoneblock175207
+	; LineNumber: 3923
 	; INTEGER optimization: a=b+c 
 	lda levelSingle
 	clc
@@ -23589,28 +23619,28 @@ OpenMain_elsedoneblock175169
 	; Calling storevariable on generic assign expression
 	sta str_b
 	jsr str_itoa
-	jmp OpenMain_elsedoneblock175141
-OpenMain_elseblock175140
-	; LineNumber: 3918
-	; LineNumber: 3919
+	jmp OpenMain_elsedoneblock175179
+OpenMain_elseblock175178
+	; LineNumber: 3925
+	; LineNumber: 3926
 	; Binary clause Simplified: GREATEREQUAL
 	lda levelCoop
 	; Compare with pure num / var optimization
 	cmp #$9;keep
-	bcc OpenMain_elseblock175179
-OpenMain_ConditionalTrueBlock175178: ;Main true block ;keep 
-	; LineNumber: 3918
+	bcc OpenMain_elseblock175217
+OpenMain_ConditionalTrueBlock175216: ;Main true block ;keep 
+	; LineNumber: 3925
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_OpenMain_pos
-	jmp OpenMain_elsedoneblock175180
-OpenMain_elseblock175179
-	; LineNumber: 3918
+	jmp OpenMain_elsedoneblock175218
+OpenMain_elseblock175217
+	; LineNumber: 3925
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_OpenMain_pos
-OpenMain_elsedoneblock175180
-	; LineNumber: 3920
+OpenMain_elsedoneblock175218
+	; LineNumber: 3927
 	; INTEGER optimization: a=b+c 
 	lda levelCoop
 	clc
@@ -23631,8 +23661,8 @@ OpenMain_elsedoneblock175180
 	; Calling storevariable on generic assign expression
 	sta str_b
 	jsr str_itoa
-OpenMain_elsedoneblock175141
-	; LineNumber: 3922
+OpenMain_elsedoneblock175179
+	; LineNumber: 3929
 	lda #<txtLevel
 	ldx #>txtLevel
 	sta localVariable_PrintCenterStringColor_p1
@@ -23644,7 +23674,7 @@ OpenMain_elsedoneblock175141
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintCenterStringColor_varPrefixed_c
 	jsr PrintCenterStringColor
-	; LineNumber: 3923
+	; LineNumber: 3930
 	lda #<localVariable_OpenMain_levStr
 	ldx #>localVariable_OpenMain_levStr
 	sta localVariable_PrintStringColor_p1
@@ -23659,7 +23689,7 @@ OpenMain_elsedoneblock175141
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintStringColor_varPrefixed_c
 	jsr PrintStringColor
-	; LineNumber: 3926
+	; LineNumber: 3933
 	; Load Integer array
 	; CAST type INTEGER
 	ldx #0 ; watch for bug, Integer array has max index of 128
@@ -23674,22 +23704,22 @@ OpenMain_elsedoneblock175141
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintCenterStringColor_varPrefixed_c
 	jsr PrintCenterStringColor
-	; LineNumber: 3928
+	; LineNumber: 3935
 	; Binary clause Simplified: NOTEQUALS
 	clc
 	lda gameMode
 	; cmp #$00 ignored
-	beq OpenMain_elsedoneblock175190
-OpenMain_ConditionalTrueBlock175188: ;Main true block ;keep 
-	; LineNumber: 3928
-	; LineNumber: 3929
+	beq OpenMain_elsedoneblock175228
+OpenMain_ConditionalTrueBlock175226: ;Main true block ;keep 
+	; LineNumber: 3935
+	; LineNumber: 3936
 	; Binary clause Simplified: NOTEQUALS
 	clc
 	lda levBothMustComplete
 	; cmp #$00 ignored
-	beq OpenMain_elseblock175203
-OpenMain_ConditionalTrueBlock175202: ;Main true block ;keep 
-	; LineNumber: 3928
+	beq OpenMain_elseblock175241
+OpenMain_ConditionalTrueBlock175240: ;Main true block ;keep 
+	; LineNumber: 3935
 	lda #<txtBothMustComplete
 	ldx #>txtBothMustComplete
 	sta localVariable_PrintCenterStringColor_p1
@@ -23701,9 +23731,9 @@ OpenMain_ConditionalTrueBlock175202: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintCenterStringColor_varPrefixed_c
 	jsr PrintCenterStringColor
-	jmp OpenMain_elsedoneblock175204
-OpenMain_elseblock175203
-	; LineNumber: 3929
+	jmp OpenMain_elsedoneblock175242
+OpenMain_elseblock175241
+	; LineNumber: 3936
 	lda #<txtOneMustComplete
 	ldx #>txtOneMustComplete
 	sta localVariable_PrintCenterStringColor_p1
@@ -23715,10 +23745,10 @@ OpenMain_elseblock175203
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintCenterStringColor_varPrefixed_c
 	jsr PrintCenterStringColor
-OpenMain_elsedoneblock175204
-	; LineNumber: 3931
-OpenMain_elsedoneblock175190
-	; LineNumber: 3933
+OpenMain_elsedoneblock175242
+	; LineNumber: 3938
+OpenMain_elsedoneblock175228
+	; LineNumber: 3940
 	lda #<txtStartLevel
 	ldx #>txtStartLevel
 	sta localVariable_PrintCenterStringColor_p1
@@ -23730,7 +23760,7 @@ OpenMain_elsedoneblock175190
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintCenterStringColor_varPrefixed_c
 	jsr PrintCenterStringColor
-	; LineNumber: 3934
+	; LineNumber: 3941
 	lda #<txtMainMenu
 	ldx #>txtMainMenu
 	sta localVariable_PrintCenterStringColor_p1
@@ -23742,7 +23772,7 @@ OpenMain_elsedoneblock175190
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintCenterStringColor_varPrefixed_c
 	jsr PrintCenterStringColor
-	; LineNumber: 3936
+	; LineNumber: 3943
 	lda #<txtPressDel
 	ldx #>txtPressDel
 	sta localVariable_PrintCenterStringColor_p1
@@ -23754,28 +23784,28 @@ OpenMain_elsedoneblock175190
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintCenterStringColor_varPrefixed_c
 	jsr PrintCenterStringColor
-	; LineNumber: 3938
+	; LineNumber: 3945
 	lda #<sndEnd
 	ldy #>sndEnd
 	; Calling storevariable on generic assign expression
 	sta psnd+2
 	sty psnd+3
-	; LineNumber: 3938
+	; LineNumber: 3945
 	lda #$f0
 	; Calling storevariable on generic assign expression
 	sta vsnd+$1
-	; LineNumber: 3938
+	; LineNumber: 3945
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta vsndTime+$1
-	; LineNumber: 3939
+	; LineNumber: 3946
 	; Binary clause Simplified: EQUALS
 	lda gameMode
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne OpenMain_elsedoneblock175212
-OpenMain_ConditionalTrueBlock175210: ;Main true block ;keep 
-	; LineNumber: 3938
+	bne OpenMain_elsedoneblock175250
+OpenMain_ConditionalTrueBlock175248: ;Main true block ;keep 
+	; LineNumber: 3945
 	lda #<txtPressSpace
 	ldx #>txtPressSpace
 	sta localVariable_PrintCenterStringColor_p1
@@ -23787,15 +23817,15 @@ OpenMain_ConditionalTrueBlock175210: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintCenterStringColor_varPrefixed_c
 	jsr PrintCenterStringColor
-OpenMain_elsedoneblock175212
-	; LineNumber: 3940
+OpenMain_elsedoneblock175250
+	; LineNumber: 3947
 	; Binary clause Simplified: EQUALS
 	lda gameMode
 	; Compare with pure num / var optimization
 	cmp #$2;keep
-	bne OpenMain_elsedoneblock175218
-OpenMain_ConditionalTrueBlock175216: ;Main true block ;keep 
-	; LineNumber: 3939
+	bne OpenMain_elsedoneblock175256
+OpenMain_ConditionalTrueBlock175254: ;Main true block ;keep 
+	; LineNumber: 3946
 	lda #<txtPressWasd
 	ldx #>txtPressWasd
 	sta localVariable_PrintCenterStringColor_p1
@@ -23807,26 +23837,26 @@ OpenMain_ConditionalTrueBlock175216: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintCenterStringColor_varPrefixed_c
 	jsr PrintCenterStringColor
-OpenMain_elsedoneblock175218
-	; LineNumber: 3942
+OpenMain_elsedoneblock175256
+	; LineNumber: 3949
 	lda #$7
 	; Calling storevariable on generic assign expression
 	sta state
-	; LineNumber: 3944
-	jmp OpenMain_elsedoneblock175043
-OpenMain_elseblock175042
-	; LineNumber: 3943
+	; LineNumber: 3951
+	jmp OpenMain_elsedoneblock175081
+OpenMain_elseblock175080
+	; LineNumber: 3950
 	; Binary clause Simplified: EQUALS
 	clc
 	lda state
 	; cmp #$00 ignored
-	bne OpenMain_localfailed175227
-	jmp OpenMain_ConditionalTrueBlock175223
-OpenMain_localfailed175227
-	jmp OpenMain_elsedoneblock175225
-OpenMain_ConditionalTrueBlock175223: ;Main true block ;keep 
-	; LineNumber: 3944
-	; LineNumber: 3946
+	bne OpenMain_localfailed175265
+	jmp OpenMain_ConditionalTrueBlock175261
+OpenMain_localfailed175265
+	jmp OpenMain_elsedoneblock175263
+OpenMain_ConditionalTrueBlock175261: ;Main true block ;keep 
+	; LineNumber: 3951
+	; LineNumber: 3953
 	lda #<txtLogo
 	ldx #>txtLogo
 	sta localVariable_PrintCenterStringColor_p1
@@ -23838,7 +23868,7 @@ OpenMain_ConditionalTrueBlock175223: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintCenterStringColor_varPrefixed_c
 	jsr PrintCenterStringColor
-	; LineNumber: 3952
+	; LineNumber: 3959
 	
 ; //		PrintCenterStringColor(#txtSelectGameMode,9,@GREEN);
 ; //		PrintCenterStringColor(#txtSelectGameMode,9,@GREEN);
@@ -23853,7 +23883,7 @@ OpenMain_ConditionalTrueBlock175223: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintCenterStringColor_varPrefixed_c
 	jsr PrintCenterStringColor
-	; LineNumber: 3953
+	; LineNumber: 3960
 	lda #<txtSinglePlayer2Chars
 	ldx #>txtSinglePlayer2Chars
 	sta localVariable_PrintCenterStringColor_p1
@@ -23865,7 +23895,7 @@ OpenMain_ConditionalTrueBlock175223: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintCenterStringColor_varPrefixed_c
 	jsr PrintCenterStringColor
-	; LineNumber: 3954
+	; LineNumber: 3961
 	lda #<txtCoop
 	ldx #>txtCoop
 	sta localVariable_PrintCenterStringColor_p1
@@ -23877,7 +23907,7 @@ OpenMain_ConditionalTrueBlock175223: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintCenterStringColor_varPrefixed_c
 	jsr PrintCenterStringColor
-	; LineNumber: 3956
+	; LineNumber: 3963
 	lda #<txtSingleStart
 	ldx #>txtSingleStart
 	sta localVariable_PrintCenterStringColor_p1
@@ -23889,7 +23919,7 @@ OpenMain_ConditionalTrueBlock175223: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintCenterStringColor_varPrefixed_c
 	jsr PrintCenterStringColor
-	; LineNumber: 3957
+	; LineNumber: 3964
 	lda #<txtCoopStart
 	ldx #>txtCoopStart
 	sta localVariable_PrintCenterStringColor_p1
@@ -23901,7 +23931,7 @@ OpenMain_ConditionalTrueBlock175223: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintCenterStringColor_varPrefixed_c
 	jsr PrintCenterStringColor
-	; LineNumber: 3959
+	; LineNumber: 3966
 	lda #<txtAuthor
 	ldx #>txtAuthor
 	sta localVariable_PrintCenterStringColor_p1
@@ -23913,45 +23943,45 @@ OpenMain_ConditionalTrueBlock175223: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintCenterStringColor_varPrefixed_c
 	jsr PrintCenterStringColor
-	; LineNumber: 3961
+	; LineNumber: 3968
 	lda #$6
 	; Calling storevariable on generic assign expression
 	sta state
-	; LineNumber: 3962
-OpenMain_elsedoneblock175225
-OpenMain_elsedoneblock175043
-	; LineNumber: 3964
+	; LineNumber: 3969
+OpenMain_elsedoneblock175263
+OpenMain_elsedoneblock175081
+	; LineNumber: 3971
 	rts
 end_procedure_OpenMain
 	; NodeProcedureDecl 4
 	; ***********  Defining procedure : InitMap
 	;    Procedure type : User-defined procedure
-	; LineNumber: 3969
-	; LineNumber: 3968
+	; LineNumber: 3976
+	; LineNumber: 3975
 localVariable_InitMap_i	dc.b	0
-	; LineNumber: 3968
+	; LineNumber: 3975
 localVariable_InitMap_x	dc.b	0
-	; LineNumber: 3968
+	; LineNumber: 3975
 localVariable_InitMap_y	dc.b	0
-	; LineNumber: 3968
+	; LineNumber: 3975
 localVariable_InitMap_varPrefixed_c	dc.b	0
-InitMap_block175229
+InitMap_block175267
 InitMap
-	; LineNumber: 3970
+	; LineNumber: 3977
 	jsr ClearMap
-	; LineNumber: 3971
+	; LineNumber: 3978
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta countDyn
-	; LineNumber: 3972
+	; LineNumber: 3979
 	; Calling storevariable on generic assign expression
 	sta countAnim
-	; LineNumber: 3976
+	; LineNumber: 3983
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitMap_i
-InitMap_forloop175230
-	; LineNumber: 3974
-	; LineNumber: 3975
+InitMap_forloop175268
+	; LineNumber: 3981
+	; LineNumber: 3982
 	lda localVariable_InitMap_i
 	; Calling storevariable on generic assign expression
 	pha
@@ -23964,43 +23994,43 @@ InitMap_forloop175230
 	tax
 	pla
 	sta deletedObjects,x
-	; LineNumber: 3976
-InitMap_loopstart175231
+	; LineNumber: 3983
+InitMap_loopstart175269
 	; Compare is onpage
 	; Test Inc dec D
 	inc localVariable_InitMap_i
 	lda #$c8
 	cmp localVariable_InitMap_i ;keep
-	bne InitMap_forloop175230
-InitMap_loopdone175235: ;keep
-InitMap_loopend175232
-	; LineNumber: 3992
+	bne InitMap_forloop175268
+InitMap_loopdone175273: ;keep
+InitMap_loopend175270
+	; LineNumber: 3999
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitMap_i
-InitMap_forloop175236
-	; LineNumber: 3978
-	; LineNumber: 3979
+InitMap_forloop175274
+	; LineNumber: 3985
+	; LineNumber: 3986
 	; Load Unknown type array, assuming BYTE
 	; CAST type NADA
 	ldx localVariable_InitMap_i
 	lda lev,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitMap_varPrefixed_c
-	; LineNumber: 3980
+	; LineNumber: 3987
 	; Modulo
 	lda #$14
-InitMap_val_var175262 = $88
-	sta InitMap_val_var175262
+InitMap_val_var175300 = $88
+	sta InitMap_val_var175300
 	lda localVariable_InitMap_i
 	sec
-InitMap_modulo175263
-	sbc InitMap_val_var175262
-	bcs InitMap_modulo175263
-	adc InitMap_val_var175262
+InitMap_modulo175301
+	sbc InitMap_val_var175300
+	bcs InitMap_modulo175301
+	adc InitMap_val_var175300
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitMap_x
-	; LineNumber: 3981
+	; LineNumber: 3988
 	; Right is PURE NUMERIC : Is word =0
 	; 8 bit div
 	lda localVariable_InitMap_i
@@ -24011,11 +24041,11 @@ InitMap_modulo175263
 	jsr div8x8_procedure
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitMap_y
-	; LineNumber: 3982
+	; LineNumber: 3989
 	lda #$5b
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175267
-	; LineNumber: 3982
+	bne InitMap_casenext175305
+	; LineNumber: 3989
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitFontaine_x
@@ -24029,12 +24059,12 @@ InitMap_modulo175263
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitFontaine_grav
 	jsr InitFontaine
-	jmp InitMap_caseend175266
-InitMap_casenext175267
+	jmp InitMap_caseend175304
+InitMap_casenext175305
 	lda #$5d
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175269
-	; LineNumber: 3983
+	bne InitMap_casenext175307
+	; LineNumber: 3990
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitFontaine_x
@@ -24048,12 +24078,12 @@ InitMap_casenext175267
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitFontaine_grav
 	jsr InitFontaine
-	jmp InitMap_caseend175266
-InitMap_casenext175269
+	jmp InitMap_caseend175304
+InitMap_casenext175307
 	lda #$28
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175271
-	; LineNumber: 3984
+	bne InitMap_casenext175309
+	; LineNumber: 3991
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitFontaine_x
@@ -24067,12 +24097,12 @@ InitMap_casenext175269
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitFontaine_grav
 	jsr InitFontaine
-	jmp InitMap_caseend175266
-InitMap_casenext175271
+	jmp InitMap_caseend175304
+InitMap_casenext175309
 	lda #$29
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175273
-	; LineNumber: 3985
+	bne InitMap_casenext175311
+	; LineNumber: 3992
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitFontaine_x
@@ -24086,12 +24116,12 @@ InitMap_casenext175271
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitFontaine_grav
 	jsr InitFontaine
-	jmp InitMap_caseend175266
-InitMap_casenext175273
+	jmp InitMap_caseend175304
+InitMap_casenext175311
 	lda #$31
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175275
-	; LineNumber: 3986
+	bne InitMap_casenext175313
+	; LineNumber: 3993
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitCannon_x
@@ -24105,12 +24135,12 @@ InitMap_casenext175273
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitCannon_grav
 	jsr InitCannon
-	jmp InitMap_caseend175266
-InitMap_casenext175275
+	jmp InitMap_caseend175304
+InitMap_casenext175313
 	lda #$39
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175277
-	; LineNumber: 3987
+	bne InitMap_casenext175315
+	; LineNumber: 3994
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitCannon_x
@@ -24124,12 +24154,12 @@ InitMap_casenext175275
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitCannon_grav
 	jsr InitCannon
-	jmp InitMap_caseend175266
-InitMap_casenext175277
+	jmp InitMap_caseend175304
+InitMap_casenext175315
 	lda #$37
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175279
-	; LineNumber: 3988
+	bne InitMap_casenext175317
+	; LineNumber: 3995
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitCannon_x
@@ -24143,12 +24173,12 @@ InitMap_casenext175277
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitCannon_grav
 	jsr InitCannon
-	jmp InitMap_caseend175266
-InitMap_casenext175279
+	jmp InitMap_caseend175304
+InitMap_casenext175317
 	lda #$33
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175281
-	; LineNumber: 3989
+	bne InitMap_casenext175319
+	; LineNumber: 3996
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitCannon_x
@@ -24162,46 +24192,46 @@ InitMap_casenext175279
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitCannon_grav
 	jsr InitCannon
-InitMap_casenext175281
-InitMap_caseend175266
-	; LineNumber: 3992
-InitMap_loopstart175237
+InitMap_casenext175319
+InitMap_caseend175304
+	; LineNumber: 3999
+InitMap_loopstart175275
 	; Test Inc dec D
 	inc localVariable_InitMap_i
 	lda #$f0
 	cmp localVariable_InitMap_i ;keep
-	beq InitMap_loopdone175283
-InitMap_loopnotdone175284
-	jmp InitMap_forloop175236
-InitMap_loopdone175283
-InitMap_loopend175238
-	; LineNumber: 4041
+	beq InitMap_loopdone175321
+InitMap_loopnotdone175322
+	jmp InitMap_forloop175274
+InitMap_loopdone175321
+InitMap_loopend175276
+	; LineNumber: 4048
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitMap_i
-InitMap_forloop175285
-	; LineNumber: 3995
-	; LineNumber: 3996
+InitMap_forloop175323
+	; LineNumber: 4002
+	; LineNumber: 4003
 	; Load Unknown type array, assuming BYTE
 	; CAST type NADA
 	ldx localVariable_InitMap_i
 	lda lev,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitMap_varPrefixed_c
-	; LineNumber: 3997
+	; LineNumber: 4004
 	; Modulo
 	lda #$14
-InitMap_val_var175374 = $88
-	sta InitMap_val_var175374
+InitMap_val_var175412 = $88
+	sta InitMap_val_var175412
 	lda localVariable_InitMap_i
 	sec
-InitMap_modulo175375
-	sbc InitMap_val_var175374
-	bcs InitMap_modulo175375
-	adc InitMap_val_var175374
+InitMap_modulo175413
+	sbc InitMap_val_var175412
+	bcs InitMap_modulo175413
+	adc InitMap_val_var175412
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitMap_x
-	; LineNumber: 3998
+	; LineNumber: 4005
 	; Right is PURE NUMERIC : Is word =0
 	; 8 bit div
 	lda localVariable_InitMap_i
@@ -24212,11 +24242,11 @@ InitMap_modulo175375
 	jsr div8x8_procedure
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitMap_y
-	; LineNumber: 3999
+	; LineNumber: 4006
 	lda #$40
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175379
-	; LineNumber: 3999
+	bne InitMap_casenext175417
+	; LineNumber: 4006
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitCharacter_x
@@ -24227,28 +24257,28 @@ InitMap_modulo175375
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitCharacter_controlId
 	jsr InitCharacter
-	jmp InitMap_caseend175378
-InitMap_casenext175379
+	jmp InitMap_caseend175416
+InitMap_casenext175417
 	lda #$25
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175381
-	; LineNumber: 4001
-	; LineNumber: 4002
+	bne InitMap_casenext175419
+	; LineNumber: 4008
+	; LineNumber: 4009
 	; Binary clause Simplified: EQUALS
 	lda gameMode
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne InitMap_localfailed175388
-	jmp InitMap_ConditionalTrueBlock175384
-InitMap_localfailed175388: ;keep
+	bne InitMap_localfailed175426
+	jmp InitMap_ConditionalTrueBlock175422
+InitMap_localfailed175426: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: EQUALS
 	lda gameMode
 	; Compare with pure num / var optimization
 	cmp #$2;keep
-	bne InitMap_elsedoneblock175386
-InitMap_ConditionalTrueBlock175384: ;Main true block ;keep 
-	; LineNumber: 4001
+	bne InitMap_elsedoneblock175424
+InitMap_ConditionalTrueBlock175422: ;Main true block ;keep 
+	; LineNumber: 4008
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitCharacter_x
@@ -24259,14 +24289,14 @@ InitMap_ConditionalTrueBlock175384: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitCharacter_controlId
 	jsr InitCharacter
-InitMap_elsedoneblock175386
-	; LineNumber: 4003
-	jmp InitMap_caseend175378
-InitMap_casenext175381
+InitMap_elsedoneblock175424
+	; LineNumber: 4010
+	jmp InitMap_caseend175416
+InitMap_casenext175419
 	lda #$61
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175390
-	; LineNumber: 4003
+	bne InitMap_casenext175428
+	; LineNumber: 4010
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitBrick_x
@@ -24274,12 +24304,12 @@ InitMap_casenext175381
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitBrick_y
 	jsr InitBrick
-	jmp InitMap_caseend175378
-InitMap_casenext175390
+	jmp InitMap_caseend175416
+InitMap_casenext175428
 	lda #$62
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175392
-	; LineNumber: 4004
+	bne InitMap_casenext175430
+	; LineNumber: 4011
 	lda #$41
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitStone_tilen
@@ -24293,12 +24323,12 @@ InitMap_casenext175390
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitStone_rollLeftRight
 	jsr InitStone
-	jmp InitMap_caseend175378
-InitMap_casenext175392
+	jmp InitMap_caseend175416
+InitMap_casenext175430
 	lda #$66
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175394
-	; LineNumber: 4005
+	bne InitMap_casenext175432
+	; LineNumber: 4012
 	lda #$65
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitStone_tilen
@@ -24312,12 +24342,12 @@ InitMap_casenext175392
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitStone_rollLeftRight
 	jsr InitStone
-	jmp InitMap_caseend175378
-InitMap_casenext175394
+	jmp InitMap_caseend175416
+InitMap_casenext175432
 	lda #$3d
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175396
-	; LineNumber: 4006
+	bne InitMap_casenext175434
+	; LineNumber: 4013
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitWater_x
@@ -24325,12 +24355,12 @@ InitMap_casenext175394
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitWater_y
 	jsr InitWater
-	jmp InitMap_caseend175378
-InitMap_casenext175396
+	jmp InitMap_caseend175416
+InitMap_casenext175434
 	lda #$27
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175398
-	; LineNumber: 4007
+	bne InitMap_casenext175436
+	; LineNumber: 4014
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitWaterFlow_x
@@ -24344,12 +24374,12 @@ InitMap_casenext175396
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitWaterFlow_grav
 	jsr InitWaterFlow
-	jmp InitMap_caseend175378
-InitMap_casenext175398
+	jmp InitMap_caseend175416
+InitMap_casenext175436
 	lda #$26
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175400
-	; LineNumber: 4008
+	bne InitMap_casenext175438
+	; LineNumber: 4015
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitWaterFlow_x
@@ -24363,12 +24393,12 @@ InitMap_casenext175398
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitWaterFlow_grav
 	jsr InitWaterFlow
-	jmp InitMap_caseend175378
-InitMap_casenext175400
+	jmp InitMap_caseend175416
+InitMap_casenext175438
 	lda #$7b
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175402
-	; LineNumber: 4009
+	bne InitMap_casenext175440
+	; LineNumber: 4016
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitWaterFlow_x
@@ -24382,12 +24412,12 @@ InitMap_casenext175400
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitWaterFlow_grav
 	jsr InitWaterFlow
-	jmp InitMap_caseend175378
-InitMap_casenext175402
+	jmp InitMap_caseend175416
+InitMap_casenext175440
 	lda #$7d
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175404
-	; LineNumber: 4010
+	bne InitMap_casenext175442
+	; LineNumber: 4017
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitWaterFlow_x
@@ -24401,12 +24431,12 @@ InitMap_casenext175402
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitWaterFlow_grav
 	jsr InitWaterFlow
-	jmp InitMap_caseend175378
-InitMap_casenext175404
+	jmp InitMap_caseend175416
+InitMap_casenext175442
 	lda #$73
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175406
-	; LineNumber: 4011
+	bne InitMap_casenext175444
+	; LineNumber: 4018
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitSand_x
@@ -24414,12 +24444,12 @@ InitMap_casenext175404
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitSand_y
 	jsr InitSand
-	jmp InitMap_caseend175378
-InitMap_casenext175406
+	jmp InitMap_caseend175416
+InitMap_casenext175444
 	lda #$5e
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175408
-	; LineNumber: 4012
+	bne InitMap_casenext175446
+	; LineNumber: 4019
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitShiftPlattform_x
@@ -24433,12 +24463,12 @@ InitMap_casenext175406
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitShiftPlattform_grav
 	jsr InitShiftPlattform
-	jmp InitMap_caseend175378
-InitMap_casenext175408
+	jmp InitMap_caseend175416
+InitMap_casenext175446
 	lda #$59
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175410
-	; LineNumber: 4013
+	bne InitMap_casenext175448
+	; LineNumber: 4020
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitShiftPlattform_x
@@ -24452,12 +24482,12 @@ InitMap_casenext175408
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitShiftPlattform_grav
 	jsr InitShiftPlattform
-	jmp InitMap_caseend175378
-InitMap_casenext175410
+	jmp InitMap_caseend175416
+InitMap_casenext175448
 	lda #$3e
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175412
-	; LineNumber: 4014
+	bne InitMap_casenext175450
+	; LineNumber: 4021
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitShiftPlattform_x
@@ -24471,12 +24501,12 @@ InitMap_casenext175410
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitShiftPlattform_grav
 	jsr InitShiftPlattform
-	jmp InitMap_caseend175378
-InitMap_casenext175412
+	jmp InitMap_caseend175416
+InitMap_casenext175450
 	lda #$3c
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175414
-	; LineNumber: 4015
+	bne InitMap_casenext175452
+	; LineNumber: 4022
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitShiftPlattform_x
@@ -24490,12 +24520,12 @@ InitMap_casenext175412
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitShiftPlattform_grav
 	jsr InitShiftPlattform
-	jmp InitMap_caseend175378
-InitMap_casenext175414
+	jmp InitMap_caseend175416
+InitMap_casenext175452
 	lda #$68
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175416
-	; LineNumber: 4016
+	bne InitMap_casenext175454
+	; LineNumber: 4023
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitLadder_x
@@ -24503,12 +24533,12 @@ InitMap_casenext175414
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitLadder_y
 	jsr InitLadder
-	jmp InitMap_caseend175378
-InitMap_casenext175416
+	jmp InitMap_caseend175416
+InitMap_casenext175454
 	lda #$2d
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175418
-	; LineNumber: 4017
+	bne InitMap_casenext175456
+	; LineNumber: 4024
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitRobe_x
@@ -24522,12 +24552,12 @@ InitMap_casenext175416
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitRobe_grav
 	jsr InitRobe
-	jmp InitMap_caseend175378
-InitMap_casenext175418
+	jmp InitMap_caseend175416
+InitMap_casenext175456
 	lda #$5f
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175420
-	; LineNumber: 4018
+	bne InitMap_casenext175458
+	; LineNumber: 4025
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitRobe_x
@@ -24541,12 +24571,12 @@ InitMap_casenext175418
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitRobe_grav
 	jsr InitRobe
-	jmp InitMap_caseend175378
-InitMap_casenext175420
+	jmp InitMap_caseend175416
+InitMap_casenext175458
 	lda #$21
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175422
-	; LineNumber: 4019
+	bne InitMap_casenext175460
+	; LineNumber: 4026
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitRobe_x
@@ -24560,12 +24590,12 @@ InitMap_casenext175420
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitRobe_grav
 	jsr InitRobe
-	jmp InitMap_caseend175378
-InitMap_casenext175422
+	jmp InitMap_caseend175416
+InitMap_casenext175460
 	lda #$7c
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175424
-	; LineNumber: 4020
+	bne InitMap_casenext175462
+	; LineNumber: 4027
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitRobe_x
@@ -24579,12 +24609,12 @@ InitMap_casenext175422
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitRobe_grav
 	jsr InitRobe
-	jmp InitMap_caseend175378
-InitMap_casenext175424
+	jmp InitMap_caseend175416
+InitMap_casenext175462
 	lda #$6f
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175426
-	; LineNumber: 4021
+	bne InitMap_casenext175464
+	; LineNumber: 4028
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitPortal_x
@@ -24595,12 +24625,12 @@ InitMap_casenext175424
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitPortal_exitDir
 	jsr InitPortal
-	jmp InitMap_caseend175378
-InitMap_casenext175426
+	jmp InitMap_caseend175416
+InitMap_casenext175464
 	lda #$63
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175428
-	; LineNumber: 4022
+	bne InitMap_casenext175466
+	; LineNumber: 4029
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitPortalActivate_x
@@ -24608,12 +24638,12 @@ InitMap_casenext175426
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitPortalActivate_y
 	jsr InitPortalActivate
-	jmp InitMap_caseend175378
-InitMap_casenext175428
+	jmp InitMap_caseend175416
+InitMap_casenext175466
 	lda #$38
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175430
-	; LineNumber: 4023
+	bne InitMap_casenext175468
+	; LineNumber: 4030
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitGravPad_x
@@ -24627,12 +24657,12 @@ InitMap_casenext175428
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitGravPad_grav
 	jsr InitGravPad
-	jmp InitMap_caseend175378
-InitMap_casenext175430
+	jmp InitMap_caseend175416
+InitMap_casenext175468
 	lda #$32
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175432
-	; LineNumber: 4024
+	bne InitMap_casenext175470
+	; LineNumber: 4031
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitGravPad_x
@@ -24646,12 +24676,12 @@ InitMap_casenext175430
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitGravPad_grav
 	jsr InitGravPad
-	jmp InitMap_caseend175378
-InitMap_casenext175432
+	jmp InitMap_caseend175416
+InitMap_casenext175470
 	lda #$34
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175434
-	; LineNumber: 4025
+	bne InitMap_casenext175472
+	; LineNumber: 4032
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitGravPad_x
@@ -24665,12 +24695,12 @@ InitMap_casenext175432
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitGravPad_grav
 	jsr InitGravPad
-	jmp InitMap_caseend175378
-InitMap_casenext175434
+	jmp InitMap_caseend175416
+InitMap_casenext175472
 	lda #$36
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175436
-	; LineNumber: 4026
+	bne InitMap_casenext175474
+	; LineNumber: 4033
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitGravPad_x
@@ -24684,12 +24714,12 @@ InitMap_casenext175434
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitGravPad_grav
 	jsr InitGravPad
-	jmp InitMap_caseend175378
-InitMap_casenext175436
+	jmp InitMap_caseend175416
+InitMap_casenext175474
 	lda #$6e
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175438
-	; LineNumber: 4027
+	bne InitMap_casenext175476
+	; LineNumber: 4034
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitMirror_x
@@ -24703,12 +24733,12 @@ InitMap_casenext175436
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitMirror_turn
 	jsr InitMirror
-	jmp InitMap_caseend175378
-InitMap_casenext175438
+	jmp InitMap_caseend175416
+InitMap_casenext175476
 	lda #$6d
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175440
-	; LineNumber: 4028
+	bne InitMap_casenext175478
+	; LineNumber: 4035
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitMirror_x
@@ -24722,12 +24752,12 @@ InitMap_casenext175438
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitMirror_turn
 	jsr InitMirror
-	jmp InitMap_caseend175378
-InitMap_casenext175440
+	jmp InitMap_caseend175416
+InitMap_casenext175478
 	lda #$67
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175442
-	; LineNumber: 4029
+	bne InitMap_casenext175480
+	; LineNumber: 4036
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitMirror_x
@@ -24741,12 +24771,12 @@ InitMap_casenext175440
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitMirror_turn
 	jsr InitMirror
-	jmp InitMap_caseend175378
-InitMap_casenext175442
+	jmp InitMap_caseend175416
+InitMap_casenext175480
 	lda #$74
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175444
-	; LineNumber: 4030
+	bne InitMap_casenext175482
+	; LineNumber: 4037
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitLaserTransport_x
@@ -24754,12 +24784,12 @@ InitMap_casenext175442
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitLaserTransport_y
 	jsr InitLaserTransport
-	jmp InitMap_caseend175378
-InitMap_casenext175444
+	jmp InitMap_caseend175416
+InitMap_casenext175482
 	lda #$64
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175446
-	; LineNumber: 4032
+	bne InitMap_casenext175484
+	; LineNumber: 4039
 	
 ; //			@LEV_LASER_TRANSPORT_ONCE: InitLaserTransportOnce(x,y);
 	lda localVariable_InitMap_x
@@ -24775,12 +24805,12 @@ InitMap_casenext175444
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitBox_dir
 	jsr InitBox
-	jmp InitMap_caseend175378
-InitMap_casenext175446
+	jmp InitMap_caseend175416
+InitMap_casenext175484
 	lda #$65
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175448
-	; LineNumber: 4033
+	bne InitMap_casenext175486
+	; LineNumber: 4040
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitBox_x
@@ -24794,12 +24824,12 @@ InitMap_casenext175446
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitBox_dir
 	jsr InitBox
-	jmp InitMap_caseend175378
-InitMap_casenext175448
+	jmp InitMap_caseend175416
+InitMap_casenext175486
 	lda #$72
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175450
-	; LineNumber: 4034
+	bne InitMap_casenext175488
+	; LineNumber: 4041
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitSwitchManual_x
@@ -24807,12 +24837,12 @@ InitMap_casenext175448
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitSwitchManual_y
 	jsr InitSwitchManual
-	jmp InitMap_caseend175378
-InitMap_casenext175450
+	jmp InitMap_caseend175416
+InitMap_casenext175488
 	lda #$78
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175452
-	; LineNumber: 4035
+	bne InitMap_casenext175490
+	; LineNumber: 4042
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitDoor_x
@@ -24820,12 +24850,12 @@ InitMap_casenext175450
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitDoor_y
 	jsr InitDoor
-	jmp InitMap_caseend175378
-InitMap_casenext175452
+	jmp InitMap_caseend175416
+InitMap_casenext175490
 	lda #$58
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175454
-	; LineNumber: 4036
+	bne InitMap_casenext175492
+	; LineNumber: 4043
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitExit_x
@@ -24833,12 +24863,12 @@ InitMap_casenext175452
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitExit_y
 	jsr InitExit
-	jmp InitMap_caseend175378
-InitMap_casenext175454
+	jmp InitMap_caseend175416
+InitMap_casenext175492
 	lda #$2e
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175456
-	; LineNumber: 4037
+	bne InitMap_casenext175494
+	; LineNumber: 4044
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitWaypoint_x
@@ -24846,281 +24876,281 @@ InitMap_casenext175454
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitWaypoint_y
 	jsr InitWaypoint
-InitMap_casenext175456
-InitMap_caseend175378
-	; LineNumber: 4040
-InitMap_loopstart175286
+InitMap_casenext175494
+InitMap_caseend175416
+	; LineNumber: 4047
+InitMap_loopstart175324
 	; Test Inc dec D
 	inc localVariable_InitMap_i
 	lda #$f0
 	cmp localVariable_InitMap_i ;keep
-	beq InitMap_loopdone175458
-InitMap_loopnotdone175459
-	jmp InitMap_forloop175285
-InitMap_loopdone175458
-InitMap_loopend175287
-	; LineNumber: 4041
+	beq InitMap_loopdone175496
+InitMap_loopnotdone175497
+	jmp InitMap_forloop175323
+InitMap_loopdone175496
+InitMap_loopend175325
+	; LineNumber: 4048
 	rts
 end_procedure_InitMap
 	; NodeProcedureDecl 4
 	; ***********  Defining procedure : LoopMenu
 	;    Procedure type : User-defined procedure
-	; LineNumber: 4046
+	; LineNumber: 4053
 LoopMenu
-	; LineNumber: 4047
-LoopMenu_while175461
-LoopMenu_loopstart175465
+	; LineNumber: 4054
+LoopMenu_while175499
+LoopMenu_loopstart175503
 	; Binary clause Simplified: EQUALS
 	lda state
 	; Compare with pure num / var optimization
 	cmp #$6;keep
-	bne LoopMenu_localfailed175474
-	jmp LoopMenu_ConditionalTrueBlock175462
-LoopMenu_localfailed175474: ;keep
+	bne LoopMenu_localfailed175512
+	jmp LoopMenu_ConditionalTrueBlock175500
+LoopMenu_localfailed175512: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: EQUALS
 	lda state
 	; Compare with pure num / var optimization
 	cmp #$7;keep
-	bne LoopMenu_elsedoneblock175464
-LoopMenu_ConditionalTrueBlock175462: ;Main true block ;keep 
-	; LineNumber: 4047
-	; LineNumber: 4048
+	bne LoopMenu_elsedoneblock175502
+LoopMenu_ConditionalTrueBlock175500: ;Main true block ;keep 
+	; LineNumber: 4054
+	; LineNumber: 4055
 	jsr callReadJoy1
-	; LineNumber: 4049
+	; LineNumber: 4056
 	; Wait for no of raster lines
 	lda #$0
 	clc 
 	adc $9004
 	cmp $9004
 	bne *-3
-	; LineNumber: 4050
+	; LineNumber: 4057
 	; Binary clause Simplified: EQUALS
 	clc
 	lda frameStatus
 	; cmp #$00 ignored
-	bne LoopMenu_elsedoneblock175479
-LoopMenu_ConditionalTrueBlock175477: ;Main true block ;keep 
-	; LineNumber: 4050
-	; LineNumber: 4051
+	bne LoopMenu_elsedoneblock175517
+LoopMenu_ConditionalTrueBlock175515: ;Main true block ;keep 
+	; LineNumber: 4057
+	; LineNumber: 4058
 	jsr UpdateMain
-	; LineNumber: 4052
+	; LineNumber: 4059
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta frameStatus
-	; LineNumber: 4052
+	; LineNumber: 4059
 	; Test Inc dec D
 	inc globaltime
-	; LineNumber: 4054
-LoopMenu_elsedoneblock175479
-	; LineNumber: 4055
-	jmp LoopMenu_while175461
-LoopMenu_elsedoneblock175464
-LoopMenu_loopend175466
-	; LineNumber: 4056
+	; LineNumber: 4061
+LoopMenu_elsedoneblock175517
+	; LineNumber: 4062
+	jmp LoopMenu_while175499
+LoopMenu_elsedoneblock175502
+LoopMenu_loopend175504
+	; LineNumber: 4063
 	rts
 end_procedure_LoopMenu
 	; NodeProcedureDecl 4
 	; ***********  Defining procedure : LoopMenu1
 	;    Procedure type : User-defined procedure
-	; LineNumber: 4061
-	; LineNumber: 4060
+	; LineNumber: 4068
+	; LineNumber: 4067
 localVariable_LoopMenu1_exitOpen	dc.b	0
-LoopMenu1_block175482
+LoopMenu1_block175520
 LoopMenu1
-	; LineNumber: 4062
+	; LineNumber: 4069
 	jsr ClearFullScreen
-	; LineNumber: 4063
+	; LineNumber: 4070
 	
 ; // clear screen
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_LoopMenu1_exitOpen
-	; LineNumber: 4064
+	; LineNumber: 4071
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta frameStatus
-	; LineNumber: 4065
-LoopMenu1_while175483
-LoopMenu1_loopstart175487
+	; LineNumber: 4072
+LoopMenu1_while175521
+LoopMenu1_loopstart175525
 	; Binary clause Simplified: EQUALS
 	clc
 	lda localVariable_LoopMenu1_exitOpen
 	; cmp #$00 ignored
-	bne LoopMenu1_elsedoneblock175486
-LoopMenu1_ConditionalTrueBlock175484: ;Main true block ;keep 
-	; LineNumber: 4065
-	; LineNumber: 4067
+	bne LoopMenu1_elsedoneblock175524
+LoopMenu1_ConditionalTrueBlock175522: ;Main true block ;keep 
+	; LineNumber: 4072
+	; LineNumber: 4074
 	; Binary clause Simplified: EQUALS
 	clc
 	lda frameStatus
 	; cmp #$00 ignored
-	bne LoopMenu1_elsedoneblock175500
-LoopMenu1_ConditionalTrueBlock175498: ;Main true block ;keep 
-	; LineNumber: 4067
-	; LineNumber: 4068
+	bne LoopMenu1_elsedoneblock175538
+LoopMenu1_ConditionalTrueBlock175536: ;Main true block ;keep 
+	; LineNumber: 4074
+	; LineNumber: 4075
 	
 ; //waitnoraster(0);
 	jsr OpenMain
-	; LineNumber: 4069
+	; LineNumber: 4076
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta frameStatus
-	; LineNumber: 4070
+	; LineNumber: 4077
 	; Calling storevariable on generic assign expression
 	sta localVariable_LoopMenu1_exitOpen
-	; LineNumber: 4071
-LoopMenu1_elsedoneblock175500
-	; LineNumber: 4072
-	jmp LoopMenu1_while175483
-LoopMenu1_elsedoneblock175486
-LoopMenu1_loopend175488
-	; LineNumber: 4073
+	; LineNumber: 4078
+LoopMenu1_elsedoneblock175538
+	; LineNumber: 4079
+	jmp LoopMenu1_while175521
+LoopMenu1_elsedoneblock175524
+LoopMenu1_loopend175526
+	; LineNumber: 4080
 	rts
 end_procedure_LoopMenu1
 	; NodeProcedureDecl 4
 	; ***********  Defining procedure : GameLoop
 	;    Procedure type : User-defined procedure
-	; LineNumber: 4078
+	; LineNumber: 4085
 GameLoop
-	; LineNumber: 4079
-GameLoop_while175504
-GameLoop_loopstart175508
+	; LineNumber: 4086
+GameLoop_while175542
+GameLoop_loopstart175546
 	; Binary clause Simplified: NOTEQUALS
 	clc
 	lda #$1
 	; cmp #$00 ignored
-	beq GameLoop_localfailed175544
-	jmp GameLoop_ConditionalTrueBlock175505
-GameLoop_localfailed175544
-	jmp GameLoop_elsedoneblock175507
-GameLoop_ConditionalTrueBlock175505: ;Main true block ;keep 
-	; LineNumber: 4079
-	; LineNumber: 4080
+	beq GameLoop_localfailed175582
+	jmp GameLoop_ConditionalTrueBlock175543
+GameLoop_localfailed175582
+	jmp GameLoop_elsedoneblock175545
+GameLoop_ConditionalTrueBlock175543: ;Main true block ;keep 
+	; LineNumber: 4086
+	; LineNumber: 4087
 	jsr callReadJoy1
-	; LineNumber: 4082
+	; LineNumber: 4089
 	; Wait for no of raster lines
 	lda #$0
 	clc 
 	adc $9004
 	cmp $9004
 	bne *-3
-	; LineNumber: 4083
+	; LineNumber: 4090
 	lda #$0
 	cmp state ;keep
-	bne GameLoop_casenext175547
-	; LineNumber: 4084
+	bne GameLoop_casenext175585
+	; LineNumber: 4091
 	jsr LoopMenu1
-	jmp GameLoop_caseend175546
-GameLoop_casenext175547
+	jmp GameLoop_caseend175584
+GameLoop_casenext175585
 	lda #$2
 	cmp state ;keep
-	bne GameLoop_casenext175549
-	; LineNumber: 4086
-	; LineNumber: 4087
-	jsr ClearFullScreen
-	; LineNumber: 4088
-	jsr InitLevel
-	; LineNumber: 4089
-	jsr LoopMenu1
-	; LineNumber: 4090
-	jmp GameLoop_caseend175546
-GameLoop_casenext175549
-	lda #$6
-	cmp state ;keep
-	bne GameLoop_casenext175551
-	; LineNumber: 4091
-	jsr LoopMenu
-	jmp GameLoop_caseend175546
-GameLoop_casenext175551
-	lda #$7
-	cmp state ;keep
-	bne GameLoop_casenext175553
+	bne GameLoop_casenext175587
 	; LineNumber: 4093
 	; LineNumber: 4094
-	jsr LoopMenu
+	jsr ClearFullScreen
 	; LineNumber: 4095
-	jmp GameLoop_caseend175546
-GameLoop_casenext175553
+	jsr InitLevel
+	; LineNumber: 4096
+	jsr LoopMenu1
+	; LineNumber: 4097
+	jmp GameLoop_caseend175584
+GameLoop_casenext175587
+	lda #$6
+	cmp state ;keep
+	bne GameLoop_casenext175589
+	; LineNumber: 4098
+	jsr LoopMenu
+	jmp GameLoop_caseend175584
+GameLoop_casenext175589
+	lda #$7
+	cmp state ;keep
+	bne GameLoop_casenext175591
+	; LineNumber: 4100
+	; LineNumber: 4101
+	jsr LoopMenu
+	; LineNumber: 4102
+	jmp GameLoop_caseend175584
+GameLoop_casenext175591
 	lda #$1
 	cmp state ;keep
-	bne GameLoop_casenext175555
-	; LineNumber: 4095
+	bne GameLoop_casenext175593
+	; LineNumber: 4102
 	jsr InitScene
-	jmp GameLoop_caseend175546
-GameLoop_casenext175555
+	jmp GameLoop_caseend175584
+GameLoop_casenext175593
 	lda #$3
 	cmp state ;keep
-	bne GameLoop_casenext175557
-	; LineNumber: 4097
-	; LineNumber: 4099
+	bne GameLoop_casenext175595
+	; LineNumber: 4104
+	; LineNumber: 4106
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta frameStatus
-	; LineNumber: 4100
+	; LineNumber: 4107
 	
 ; // will be updated in raster chain
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta time
-	; LineNumber: 4101
-GameLoop_while175559
-GameLoop_loopstart175563
+	; LineNumber: 4108
+GameLoop_while175597
+GameLoop_loopstart175601
 	; Binary clause Simplified: EQUALS
 	lda state
 	; Compare with pure num / var optimization
 	cmp #$3;keep
-	bne GameLoop_elsedoneblock175562
-GameLoop_ConditionalTrueBlock175560: ;Main true block ;keep 
-	; LineNumber: 4101
-	; LineNumber: 4102
+	bne GameLoop_elsedoneblock175600
+GameLoop_ConditionalTrueBlock175598: ;Main true block ;keep 
+	; LineNumber: 4108
+	; LineNumber: 4109
 	jsr callReadJoy1
-	; LineNumber: 4103
+	; LineNumber: 4110
 	jsr ReadJoySim
-	; LineNumber: 4104
+	; LineNumber: 4111
 	; Wait for no of raster lines
 	lda #$0
 	clc 
 	adc $9004
 	cmp $9004
 	bne *-3
-	; LineNumber: 4105
+	; LineNumber: 4112
 	; Binary clause Simplified: EQUALS
 	clc
 	lda frameStatus
 	; cmp #$00 ignored
-	bne GameLoop_elsedoneblock175576
-GameLoop_ConditionalTrueBlock175574: ;Main true block ;keep 
-	; LineNumber: 4105
-	; LineNumber: 4106
+	bne GameLoop_elsedoneblock175614
+GameLoop_ConditionalTrueBlock175612: ;Main true block ;keep 
+	; LineNumber: 4112
+	; LineNumber: 4113
 	jsr Update
-	; LineNumber: 4107
+	; LineNumber: 4114
 	jsr Animate
-	; LineNumber: 4108
+	; LineNumber: 4115
 	jsr CycleWater
-	; LineNumber: 4109
+	; LineNumber: 4116
 	jsr DecreaseTextTimer
-	; LineNumber: 4110
+	; LineNumber: 4117
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta frameStatus
-	; LineNumber: 4110
+	; LineNumber: 4117
 	; Test Inc dec D
 	inc globaltime
-	; LineNumber: 4112
-GameLoop_elsedoneblock175576
-	; LineNumber: 4113
-	jmp GameLoop_while175559
-GameLoop_elsedoneblock175562
-GameLoop_loopend175564
-	; LineNumber: 4114
-GameLoop_casenext175557
-GameLoop_caseend175546
-	; LineNumber: 4116
-	jmp GameLoop_while175504
-GameLoop_elsedoneblock175507
-GameLoop_loopend175509
-	; LineNumber: 4117
+	; LineNumber: 4119
+GameLoop_elsedoneblock175614
+	; LineNumber: 4120
+	jmp GameLoop_while175597
+GameLoop_elsedoneblock175600
+GameLoop_loopend175602
+	; LineNumber: 4121
+GameLoop_casenext175595
+GameLoop_caseend175584
+	; LineNumber: 4123
+	jmp GameLoop_while175542
+GameLoop_elsedoneblock175545
+GameLoop_loopend175547
+	; LineNumber: 4124
 	rts
 end_procedure_GameLoop
 	; NodeProcedureDecl -1

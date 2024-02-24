@@ -160,7 +160,7 @@ begin
 							else begin
 								activeChar := controlId;
 								SwapActiveChar();
-								DeletePos(id, true, true);
+								//								DeletePos(id, true, true);
 								sp := #txtPlayerExit;
 								PrintText(@PLAYER_EXIT);
 							end;
@@ -187,6 +187,9 @@ var
 	joy: byte;
 begin
 	controlId := objectList[id].controlId;
+	
+	if(controlList[controlId].controlState = @CTRL_STATE_EXITED) then
+		return();
 
 	ReleaseKeys(id);
 	if(gameMode = @MODE_SINGLE_2CHAR and activeChar <> controlId) then

@@ -1,4 +1,4 @@
-FIZZ V1.0.1 - VIC20
+FIZZ V1.0.2 - VIC20
 -------------------
 
 https://fleischgemuese.itch.io
@@ -18,6 +18,8 @@ Tools
 
 ChangeLog
 ---------
+V1.0.2
+* multiplayer laser bugfix
 
 V1.0.1: 
 * fixed bug with intro screen

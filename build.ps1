@@ -2,6 +2,7 @@ Remove-Item ".\boot"
 Remove-Item ".\var"
 Remove-Item ".\vai"
 Remove-Item ".\intro"
+Remove-Item ".\cod"
 Remove-Item ".\fizz_MVTPB0B1B2B3B5.d64"
 
 # Specify the path to your binary file
