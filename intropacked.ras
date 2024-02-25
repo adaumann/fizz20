@@ -1,5 +1,6 @@
 program intropacked;
 
+/* Attempt to make a intro with self-extracting game file, not working */
 
 @VicMemoryConfig "all"
 @ignoremethod "init16x8div"

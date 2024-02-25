@@ -1,4 +1,12 @@
-How to run FiZZ (VIC20)
+# FiZZ - A platform puzzle game for VIC20
+
+Release: https://fleischgemuese.itch.io/vic-fizz
+
+# Development
+
+The game was developed with the cross-plattform IDE/Compiler Turbo Rascal (www.turborascal.com) 
+
+# Installation
 
 * Download TRSE: https://github.com/leuat/TRSE 
 * Download VICE: https://vice-emu.sourceforge.io/
@@ -9,11 +17,11 @@ How to run FiZZ (VIC20)
 
 Open TRSE -> Tools -> Settings: 
 
-Vic20 Emulator: Path to xvic.exe
+C64 Emulator: Path to x64sc.exe
 Exomizer: Path to exomizer.exe
 
-b) Development disk version
 
+# Development disk version
 For release  open Fizz project and Project Settings:
 * Project output type: prg
 * Target file: game.ras
