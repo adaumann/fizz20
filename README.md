@@ -30,4 +30,4 @@ For release  open Fizz project and Project Settings:
 
 -> The D64 should now be ready
 
-NOTE: With version 0.17.110 it is running, use older version https://github.com/leuat/TRSE/commits/nightly
+NOTE: With version 0.17.110 it is NOT running, use older version https://github.com/leuat/TRSE/commits/nightly
