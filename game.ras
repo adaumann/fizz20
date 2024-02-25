@@ -1889,10 +1889,7 @@ var
 	levStr2: string="00";
 	pos : byte;
 	len: byte;
-begin
-	levStr := "00";
-	levStr2 := "00";
-	
+begin	
 	if(state = @STATE_MENU_INPUT) then begin
 		if(levelSingle >= 9) then pos := 0 else pos := 1; 
 		str::itoa(levelSingle + 1, #levStr + pos, 10);

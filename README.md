@@ -29,5 +29,3 @@ For release  open Fizz project and Project Settings:
 * Run build script build.ps1
 
 -> The D64 should now be ready
-
-NOTE: With version 0.17.110 it is NOT running, use older version https://github.com/leuat/TRSE/commits/nightly

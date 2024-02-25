@@ -18,7 +18,7 @@ col1	dc.w
 col2	dc.w	 
 	org col2+40
 	; Resuming memory block at $400
-fileName	=  $6A
+fileName	= $6A
 	; Resuming memory block at $400
 currentBank	dc.b	$00
 	; Resuming memory block at $400
@@ -48,7 +48,7 @@ vsnd	dc.b $0, $0, $0, $0
 	; Resuming memory block at $400
 vsndTime	dc.b $0, $0, $0, $0
 	; Resuming memory block at $400
-soundPointer	=  $6C
+soundPointer	= $6C
 	; Resuming memory block at $400
 i	dc.b	0
 	; Resuming memory block at $400
@@ -134,7 +134,7 @@ shiftAreaRightY	dc.b $1, $0, $ff, $1, $0, $ff, $1, $0
 ystart	dc.b $0, $14, $28, $3c, $50, $64, $78, $8c
 	dc.b $a0, $b4, $c8, $dc
 	; Resuming memory block at $400
-tempPointer	=  $6E
+tempPointer	= $6E
 	; Resuming memory block at $400
 txtActiveSwitch		dc.b	"SWITCH ACTIVATED"
 	dc.b	0
@@ -235,7 +235,7 @@ lastPortal	dc.b	0
 	; Resuming memory block at $400
 state	dc.b	0
 	; Resuming memory block at $400
-sp	=  $70
+sp	= $70
 	; Resuming memory block at $400
 textTimer	dc.b	0
 	; Resuming memory block at $400
@@ -343,14 +343,14 @@ EndBlock1201:
 StartBlock1210:
 	; Starting new memory block at $1210
 game
-	; LineNumber: 4181
+	; LineNumber: 4178
 	jmp block1
 	; LineNumber: 23
 str_p1	= $64
 	; LineNumber: 23
-str_p2	=  $66
+str_p2	= $66
 	; LineNumber: 23
-str_p3	=  $68
+str_p3	= $68
 	; LineNumber: 24
 str_i	dc.b	0
 	; LineNumber: 24
@@ -744,7 +744,7 @@ timers_vic_raster:
 ;  lda #$56
 ;  ldx #$86
   lda $64
-  ldx  $65
+  ldx $65
   sta $9116     ; load the timer low byte latches
   sta $9126
   ldy #7        ; make a little delay to get the raster effect to the
@@ -761,10 +761,10 @@ timers_vic_raster:
   stx $9115     ; start the reference timer
 pointers_vic_raster:
 ;  lda #00     ; set the raster IRQ routine pointer
-   lda  $66
+   lda $66
   sta $314
 ;  lda #00
-  lda  $67
+  lda $67
   sta $315
   lda #$c0
   sta $912e     ; enable Timer A underflow interrupts
@@ -818,8 +818,8 @@ VIC20_PORTACASS = $911F
 VIC20_PORTBVIA2 = $9120  ; Port B 6522 2 value (joystick)
 VIC20_PORTBVIA2d = $9122 ; Port B 6522 2 direction (joystick)
 joy1 = $5e
-joy1last =  $5f
-joy1pressed =  $60
+joy1last = $5f
+joy1pressed = $60
 callReadJoy1
 	LDA VIC20_PORTACASS
 	EOR #$FF
@@ -1187,68 +1187,68 @@ end_procedure_Key_Held
 	; Ending memory block at $1210
 	; ***********  Defining procedure : vbl
 	;    Procedure type : User-defined procedure
-	; LineNumber: 4127
+	; LineNumber: 4124
 vbl
-	; LineNumber: 4128
+	; LineNumber: 4125
 	; StartIRQ
 	pha
 	txa
 	pha
 	tya
 	pha
-	; LineNumber: 4129
+	; LineNumber: 4126
 	jsr UpdateSound
-	; LineNumber: 4130
+	; LineNumber: 4127
 	; Binary clause Simplified: EQUALS
 	lda frameStatus
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne vbl_localfailed175700
-	jmp vbl_ctb175587
-vbl_localfailed175700
-	jmp vbl_edblock175589
-vbl_ctb175587: ;Main true block ;keep 
-	; LineNumber: 4130
-	; LineNumber: 4131
+	bne vbl_localfailed175696
+	jmp vbl_ctb175583
+vbl_localfailed175696
+	jmp vbl_edblock175585
+vbl_ctb175583: ;Main true block ;keep 
+	; LineNumber: 4127
+	; LineNumber: 4128
 	; Binary clause Simplified: EQUALS
 	clc
 	lda time
 	; cmp #$00 ignored
-	bne vbl_localfailed175758
-	jmp vbl_ctb175703
-vbl_localfailed175758
-	jmp vbl_eblock175704
-vbl_ctb175703: ;Main true block ;keep 
-	; LineNumber: 4131
-	; LineNumber: 4132
+	bne vbl_localfailed175754
+	jmp vbl_ctb175699
+vbl_localfailed175754
+	jmp vbl_eblock175700
+vbl_ctb175699: ;Main true block ;keep 
+	; LineNumber: 4128
+	; LineNumber: 4129
 	jsr SwitchBank
-	; LineNumber: 4136
-	jmp vbl_edblock175705
-vbl_eblock175704
-	; LineNumber: 4135
+	; LineNumber: 4133
+	jmp vbl_edblock175701
+vbl_eblock175700
+	; LineNumber: 4132
 	; Binary clause Simplified: EQUALS
 	lda time
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne vbl_localfailed175787
-vbl_localsuccess175788: ;keep
+	bne vbl_localfailed175783
+vbl_localsuccess175784: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	clc
 	lda currentBank
 	; cmp #$00 ignored
-	bne vbl_localfailed175787
-	jmp vbl_ctb175762
-vbl_localfailed175787
-	jmp vbl_eblock175763
-vbl_ctb175762: ;Main true block ;keep 
-	; LineNumber: 4135
-	; LineNumber: 4137
+	bne vbl_localfailed175783
+	jmp vbl_ctb175758
+vbl_localfailed175783
+	jmp vbl_eblock175759
+vbl_ctb175758: ;Main true block ;keep 
+	; LineNumber: 4132
+	; LineNumber: 4134
 	
 ; // if(state = 8) then state := 2;
 	; Copy half screen unrolled 500 bytes = 12.5*40
 	ldx #00
-vbl_halfcopyloop175790
+vbl_halfcopyloop175786
 	lda $1000 + 0 -1 ,x
 	sta $1e00 + 0 -1 ,x
 	lda $1000 + 40 -1 ,x
@@ -1271,11 +1271,11 @@ vbl_halfcopyloop175790
 	sta $1e00 + 360 -1 ,x
 	inx
 	cpx #40
-	bne vbl_halfcopyloop175790
-	; LineNumber: 4138
+	bne vbl_halfcopyloop175786
+	; LineNumber: 4135
 	; Copy half screen unrolled 500 bytes = 12.5*40
 	ldx #00
-vbl_halfcopyloop175792
+vbl_halfcopyloop175788
 	lda $9400 + 0 -1 ,x
 	sta $9600 + 0 -1 ,x
 	lda $9400 + 40 -1 ,x
@@ -1298,32 +1298,32 @@ vbl_halfcopyloop175792
 	sta $9600 + 360 -1 ,x
 	inx
 	cpx #40
-	bne vbl_halfcopyloop175792
-	; LineNumber: 4140
-	jmp vbl_edblock175764
-vbl_eblock175763
-	; LineNumber: 4139
+	bne vbl_halfcopyloop175788
+	; LineNumber: 4137
+	jmp vbl_edblock175760
+vbl_eblock175759
+	; LineNumber: 4136
 	; Binary clause Simplified: EQUALS
 	lda time
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne vbl_localfailed175804
-vbl_localsuccess175805: ;keep
+	bne vbl_localfailed175800
+vbl_localsuccess175801: ;keep
 	; ; logical AND, second requirement
 	; Binary clause Simplified: EQUALS
 	lda currentBank
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne vbl_localfailed175804
-	jmp vbl_ctb175796
-vbl_localfailed175804
-	jmp vbl_edblock175798
-vbl_ctb175796: ;Main true block ;keep 
-	; LineNumber: 4140
-	; LineNumber: 4141
+	bne vbl_localfailed175800
+	jmp vbl_ctb175792
+vbl_localfailed175800
+	jmp vbl_edblock175794
+vbl_ctb175792: ;Main true block ;keep 
+	; LineNumber: 4137
+	; LineNumber: 4138
 	; Copy half screen unrolled 500 bytes = 12.5*40
 	ldx #00
-vbl_halfcopyloop175807
+vbl_halfcopyloop175803
 	lda $1e00 + 0 -1 ,x
 	sta $1000 + 0 -1 ,x
 	lda $1e00 + 40 -1 ,x
@@ -1346,11 +1346,11 @@ vbl_halfcopyloop175807
 	sta $1000 + 360 -1 ,x
 	inx
 	cpx #40
-	bne vbl_halfcopyloop175807
-	; LineNumber: 4142
+	bne vbl_halfcopyloop175803
+	; LineNumber: 4139
 	; Copy half screen unrolled 500 bytes = 12.5*40
 	ldx #00
-vbl_halfcopyloop175809
+vbl_halfcopyloop175805
 	lda $9600 + 0 -1 ,x
 	sta $9400 + 0 -1 ,x
 	lda $9600 + 40 -1 ,x
@@ -1373,55 +1373,55 @@ vbl_halfcopyloop175809
 	sta $9400 + 360 -1 ,x
 	inx
 	cpx #40
-	bne vbl_halfcopyloop175809
-	; LineNumber: 4143
-vbl_edblock175798
-vbl_edblock175764
-vbl_edblock175705
-	; LineNumber: 4144
-vbl_edblock175589
-	; LineNumber: 4145
+	bne vbl_halfcopyloop175805
+	; LineNumber: 4140
+vbl_edblock175794
+vbl_edblock175760
+vbl_edblock175701
+	; LineNumber: 4141
+vbl_edblock175585
+	; LineNumber: 4142
 	; Binary clause Simplified: EQUALS
 	lda time
 	; Compare with pure num / var optimization
 	cmp #$2;keep
-	bne vbl_edblock175814
-vbl_ctb175812: ;Main true block ;keep 
-	; LineNumber: 4145
-	; LineNumber: 4146
+	bne vbl_edblock175810
+vbl_ctb175808: ;Main true block ;keep 
+	; LineNumber: 4142
+	; LineNumber: 4143
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta frameStatus
-	; LineNumber: 4147
-vbl_edblock175814
-	; LineNumber: 4148
+	; LineNumber: 4144
+vbl_edblock175810
+	; LineNumber: 4145
 	; Binary clause Simplified: LESS
 	lda time
 	; Compare with pure num / var optimization
 	cmp #$4;keep
-	bcs vbl_eblock175819
-vbl_ctb175818: ;Main true block ;keep 
-	; LineNumber: 4147
+	bcs vbl_eblock175815
+vbl_ctb175814: ;Main true block ;keep 
+	; LineNumber: 4144
 	; Test Inc dec D
 	inc time
-	jmp vbl_edblock175820
-vbl_eblock175819
-	; LineNumber: 4148
+	jmp vbl_edblock175816
+vbl_eblock175815
+	; LineNumber: 4145
 	; Binary clause Simplified: EQUALS
 	lda frameStatus
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne vbl_edblock175834
-vbl_ctb175832: ;Main true block ;keep 
-	; LineNumber: 4148
-	; LineNumber: 4150
+	bne vbl_edblock175830
+vbl_ctb175828: ;Main true block ;keep 
+	; LineNumber: 4145
+	; LineNumber: 4147
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta time
-	; LineNumber: 4151
-vbl_edblock175834
-vbl_edblock175820
-	; LineNumber: 4152
+	; LineNumber: 4148
+vbl_edblock175830
+vbl_edblock175816
+	; LineNumber: 4149
 	; CloseIRQ
 	pla
 	tay
@@ -1429,86 +1429,86 @@ vbl_edblock175820
 	tax
 	pla
 	 jmp $eabf     ; return to normal IRQ	
-	; LineNumber: 4153
+	; LineNumber: 4150
 	rti
 end_procedure_vbl
 	; NodeProcedureDecl -1
 	; ***********  Defining procedure : InitScene
 	;    Procedure type : User-defined procedure
-	; LineNumber: 4157
+	; LineNumber: 4154
 InitScene
-	; LineNumber: 4159
+	; LineNumber: 4156
 	jsr InitMap
-	; LineNumber: 4160
+	; LineNumber: 4157
 	jsr InitActors
-	; LineNumber: 4160
+	; LineNumber: 4157
 	lda #$7f
 	sta $912e ; disable and acknowledge interrupts
 	sta $912d
+	; LineNumber: 4159
+	jsr ClearFullScreen
+	; LineNumber: 4160
+	
+; // clear screen
+	jsr PaintFull
+	; LineNumber: 4161
+	jsr PrintFrame
 	; LineNumber: 4162
-	jsr ClearFullScreen
+	jsr ClearText
 	; LineNumber: 4163
-	
-; // clear screen
-	jsr PaintFull
-	; LineNumber: 4164
-	jsr PrintFrame
-	; LineNumber: 4165
-	jsr ClearText
-	; LineNumber: 4166
 	jsr SwitchBank
-	; LineNumber: 4167
+	; LineNumber: 4164
 	jsr ClearFullScreen
-	; LineNumber: 4168
+	; LineNumber: 4165
 	
 ; // clear screen
 	jsr PaintFull
-	; LineNumber: 4169
+	; LineNumber: 4166
 	jsr PrintFrame
-	; LineNumber: 4170
+	; LineNumber: 4167
 	jsr ClearText
-	; LineNumber: 4172
+	; LineNumber: 4169
 	jsr InitAnimations
-	; LineNumber: 4173
+	; LineNumber: 4170
 	lda #$3
 	; Calling storevariable on generic assign expression
 	sta state
-	; LineNumber: 4175
+	; LineNumber: 4172
 	lda #<sndSceneStart
 	ldy #>sndSceneStart
 	; Calling storevariable on generic assign expression
 	sta psnd+4
 	sty psnd+5
-	; LineNumber: 4175
+	; LineNumber: 4172
 	lda #$f0
 	; Calling storevariable on generic assign expression
 	sta vsnd+$2
-	; LineNumber: 4175
+	; LineNumber: 4172
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta vsndTime+$2
-	; LineNumber: 4177
+	; LineNumber: 4174
 	lda #<vbl
-	sta  $66
+	sta $66
 	lda #>vbl
-	sta  $67
+	sta $67
 	ldx raster ; optimized, look out for bugs
 	lda #$0
-	bne InitScene_viarasterirq_ntsc_timing175838
+	bne InitScene_viarasterirq_ntsc_timing175834
 	lda #$86
 	sta $64
 	lda #$56
-	sta  $65
+	sta $65
 	jsr A0_vic_raster
-	jmp InitScene_viarasterirq_end175839
-InitScene_viarasterirq_ntsc_timing175838
+	jmp InitScene_viarasterirq_end175835
+InitScene_viarasterirq_ntsc_timing175834
 	lda #$43
 	sta $64
 	lda #$42
-	sta  $65
+	sta $65
 	jsr A0_vic_raster
-InitScene_viarasterirq_end175839
-	; LineNumber: 4178
+InitScene_viarasterirq_end175835
+	; LineNumber: 4175
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_DispatchEvent_event
@@ -1520,41 +1520,41 @@ InitScene_viarasterirq_end175839
 	; Calling storevariable on generic assign expression
 	sta localVariable_DispatchEvent_p2
 	jsr DispatchEvent
-	; LineNumber: 4179
+	; LineNumber: 4176
 	rts
 end_procedure_InitScene
 block1
 main_block_begin_
-	; LineNumber: 4182
+	; LineNumber: 4179
 	; Binary clause Simplified: EQUALS
 	lda $9000
 	; Compare with pure num / var optimization
 	cmp #$c;keep
-	bne MainProgram_eblock175842
-MainProgram_ctb175841: ;Main true block ;keep 
-	; LineNumber: 4181
+	bne MainProgram_eblock175838
+MainProgram_ctb175837: ;Main true block ;keep 
+	; LineNumber: 4178
 	lda #$79
 	; Calling storevariable on generic assign expression
 	sta raster
-	jmp MainProgram_edblock175843
-MainProgram_eblock175842
-	; LineNumber: 4181
+	jmp MainProgram_edblock175839
+MainProgram_eblock175838
+	; LineNumber: 4178
 	lda #$6b
 	; Calling storevariable on generic assign expression
 	sta raster
-MainProgram_edblock175843
-	; LineNumber: 4183
+MainProgram_edblock175839
+	; LineNumber: 4180
 	jsr ClearFullScreen
-	; LineNumber: 4184
+	; LineNumber: 4181
 	
 ; // clear screen
 	; Assigning a string : fileName
 	;has array index
-	lda #<MainProgram_stringassignstr175849
-	ldy #>MainProgram_stringassignstr175849
+	lda #<MainProgram_stringassignstr175845
+	ldy #>MainProgram_stringassignstr175845
 	sta fileName
 	sty fileName+1
-	; LineNumber: 4185
+	; LineNumber: 4182
 	; Integer constant assigning
 	; Load16bitvariable : #$400
 	ldy #$04
@@ -1563,14 +1563,14 @@ MainProgram_edblock175843
 	sta localVariable_LoadFile_addr
 	sty localVariable_LoadFile_addr+1
 	jsr LoadFile
-	; LineNumber: 4186
+	; LineNumber: 4183
 	; Assigning a string : fileName
 	;has array index
-	lda #<MainProgram_stringassignstr175851
-	ldy #>MainProgram_stringassignstr175851
+	lda #<MainProgram_stringassignstr175847
+	ldy #>MainProgram_stringassignstr175847
 	sta fileName
 	sty fileName+1
-	; LineNumber: 4187
+	; LineNumber: 4184
 	; Integer constant assigning
 	; Load16bitvariable : #$a000
 	ldy #$a0
@@ -1579,27 +1579,27 @@ MainProgram_edblock175843
 	sta localVariable_LoadFile_addr
 	sty localVariable_LoadFile_addr+1
 	jsr LoadFile
-	; LineNumber: 4188
+	; LineNumber: 4185
 	lda #$7f
 	sta $912e ; disable and acknowledge interrupts
 	sta $912d
-	; LineNumber: 4189
+	; LineNumber: 4186
 	jsr InitScreen
-	; LineNumber: 4190
+	; LineNumber: 4187
 	jsr SetupSound
-	; LineNumber: 4192
+	; LineNumber: 4189
 	jsr ClearFullScreen
-	; LineNumber: 4194
+	; LineNumber: 4191
 	
 ; // clear screen
 	lda #$30
 	; Calling storevariable on generic assign expression
 	sta maxSingleLevels
-	; LineNumber: 4195
+	; LineNumber: 4192
 	lda #$1e
 	; Calling storevariable on generic assign expression
 	sta maxMultiLevels
-	; LineNumber: 4196
+	; LineNumber: 4193
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitGame_levSingle
@@ -1609,32 +1609,32 @@ MainProgram_edblock175843
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitGame_mode
 	jsr InitGame
-	; LineNumber: 4197
+	; LineNumber: 4194
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta state
-	; LineNumber: 4199
+	; LineNumber: 4196
 	lda #<vbl
-	sta  $66
+	sta $66
 	lda #>vbl
-	sta  $67
+	sta $67
 	ldx raster ; optimized, look out for bugs
 	lda #$0
-	bne MainProgram_viarasterirq_ntsc_timing175852
+	bne MainProgram_viarasterirq_ntsc_timing175848
 	lda #$86
 	sta $64
 	lda #$56
-	sta  $65
+	sta $65
 	jsr A0_vic_raster
-	jmp MainProgram_viarasterirq_end175853
-MainProgram_viarasterirq_ntsc_timing175852
+	jmp MainProgram_viarasterirq_end175849
+MainProgram_viarasterirq_ntsc_timing175848
 	lda #$43
 	sta $64
 	lda #$42
-	sta  $65
+	sta $65
 	jsr A0_vic_raster
-MainProgram_viarasterirq_end175853
-	; LineNumber: 4267
+MainProgram_viarasterirq_end175849
+	; LineNumber: 4264
 	
 ; //	@define SOUND_TRANSPORT 18 
 ; //x	 
@@ -1723,19 +1723,15 @@ MainProgram_viarasterirq_end175853
 ; //	end;
 ; //	
 	jsr GameLoop
-	; LineNumber: 4268
+	; LineNumber: 4265
 	jmp * ; loop like (�/%
-	; LineNumber: 4269
+	; LineNumber: 4266
 main_block_end_
 	; End of program
 	; Ending memory block at $1210
-UpdateMain_stringassignstr174585		dc.b	"varPrefixed_00"
+MainProgram_stringassignstr175845		dc.b	"VAR"
 	dc.b	0
-UpdateMain_stringassignstr174587		dc.b	"varPrefixed_00"
-	dc.b	0
-MainProgram_stringassignstr175849		dc.b	"VAR"
-	dc.b	0
-MainProgram_stringassignstr175851		dc.b	"COD"
+MainProgram_stringassignstr175847		dc.b	"COD"
 	dc.b	0
 EndBlock1210:
 	org $1800
@@ -1925,7 +1921,7 @@ end_procedure_ColorLine
 	; LineNumber: 584
 localVariable_PrintStringColor_len	dc.b	0
 	; LineNumber: 582
-localVariable_PrintStringColor_p1	=  $72
+localVariable_PrintStringColor_p1	= $72
 	; LineNumber: 582
 localVariable_PrintStringColor_x	dc.b	0
 	; LineNumber: 582
@@ -2046,7 +2042,7 @@ localVariable_PrintCenterStringColor_len	dc.b	0
 	; LineNumber: 602
 localVariable_PrintCenterStringColor_x	dc.b	0
 	; LineNumber: 600
-localVariable_PrintCenterStringColor_p1	=  $72
+localVariable_PrintCenterStringColor_p1	= $72
 	; LineNumber: 600
 localVariable_PrintCenterStringColor_y	dc.b	0
 	; LineNumber: 600
@@ -2699,23 +2695,23 @@ InitLevel_edblock230
 InitLevel_edblock211
 	; LineNumber: 753
 	lda #<vbl
-	sta  $66
+	sta $66
 	lda #>vbl
-	sta  $67
+	sta $67
 	ldx raster ; optimized, look out for bugs
 	lda #$0
 	bne InitLevel_viarasterirq_ntsc_timing235
 	lda #$86
 	sta $64
 	lda #$56
-	sta  $65
+	sta $65
 	jsr A0_vic_raster
 	jmp InitLevel_viarasterirq_end236
 InitLevel_viarasterirq_ntsc_timing235
 	lda #$43
 	sta $64
 	lda #$42
-	sta  $65
+	sta $65
 	jsr A0_vic_raster
 InitLevel_viarasterirq_end236
 	; LineNumber: 754
@@ -3214,7 +3210,7 @@ localVariable_PaintPosAnim_animId	dc.b	0
 	; LineNumber: 894
 localVariable_PaintPosAnim_hideSprite	dc.b	0
 	; LineNumber: 895
-localVariable_PaintPosAnim_pa	=  $72
+localVariable_PaintPosAnim_pa	= $72
 	; LineNumber: 896
 localVariable_PaintPosAnim_currentTile	dc.b	0
 	; LineNumber: 897
@@ -3473,7 +3469,7 @@ PaintPosAnim_binary_clause_temp_var1981 = $88
 	sec
 	sbc #$1
 	 ; end add / sub var with constant
-PaintPosAnim_binary_clause_temp_2_var1982 =  $8A
+PaintPosAnim_binary_clause_temp_2_var1982 = $8A
 	sta PaintPosAnim_binary_clause_temp_2_var1982
 	lda PaintPosAnim_binary_clause_temp_var1981
 	cmp PaintPosAnim_binary_clause_temp_2_var1982;keep
@@ -3553,7 +3549,7 @@ PaintPosAnim_binary_clause_temp_var2040 = $88
 	sec
 	sbc #$1
 	 ; end add / sub var with constant
-PaintPosAnim_binary_clause_temp_2_var2041 =  $8A
+PaintPosAnim_binary_clause_temp_2_var2041 = $8A
 	sta PaintPosAnim_binary_clause_temp_2_var2041
 	lda PaintPosAnim_binary_clause_temp_var2040
 	cmp PaintPosAnim_binary_clause_temp_2_var2041;keep
@@ -3633,7 +3629,7 @@ localVariable_PaintPos_animId	dc.b	0
 	; LineNumber: 941
 localVariable_PaintPos_hideSprite	dc.b	0
 	; LineNumber: 942
-localVariable_PaintPos_pa	=  $72
+localVariable_PaintPos_pa	= $72
 	; LineNumber: 943
 localVariable_PaintPos_currentTile	dc.b	0
 	; LineNumber: 944
@@ -5789,7 +5785,7 @@ end_procedure_SwitchBank
 	; LineNumber: 1353
 localVariable_CycleAnimation_animId	dc.b	0
 	; LineNumber: 1354
-localVariable_CycleAnimation_pa	=  $72
+localVariable_CycleAnimation_pa	= $72
 	; LineNumber: 1351
 localVariable_CycleAnimation_id	dc.b	0
 CycleAnimation_block2879
@@ -5847,7 +5843,7 @@ CycleAnimation_binary_clause_temp_var2897 = $88
 	sec
 	sbc #$1
 	 ; end add / sub var with constant
-CycleAnimation_binary_clause_temp_2_var2898 =  $8A
+CycleAnimation_binary_clause_temp_2_var2898 = $8A
 	sta CycleAnimation_binary_clause_temp_2_var2898
 	lda CycleAnimation_binary_clause_temp_var2897
 	cmp CycleAnimation_binary_clause_temp_2_var2898;keep
@@ -9007,7 +9003,7 @@ end_procedure_InitBrick
 	;    Procedure type : User-defined procedure
 	; LineNumber: 1951
 	; LineNumber: 1949
-localVariable_InitStone_pg	=  $72
+localVariable_InitStone_pg	= $72
 	; LineNumber: 1950
 localVariable_InitStone_id	dc.b	0
 	; LineNumber: 1947
@@ -11117,7 +11113,7 @@ ProcessBackObj_binary_clause_temp_var11225 = $88
 	; CAST type NADA
 	ldx localVariable_ProcessBackObj_id
 	lda objectList_gobject_gobject_physGravity,x 
-ProcessBackObj_binary_clause_temp_2_var11226 =  $8A
+ProcessBackObj_binary_clause_temp_2_var11226 = $8A
 	sta ProcessBackObj_binary_clause_temp_2_var11226
 	lda ProcessBackObj_binary_clause_temp_var11225
 	cmp ProcessBackObj_binary_clause_temp_2_var11226;keep
@@ -11539,7 +11535,7 @@ ProcessBackObj_binary_clause_temp_var11620 = $88
 	; CAST type NADA
 	ldx localVariable_ProcessBackObj_gravPadId
 	lda objectList_gobject_gobject_physGravity,x 
-ProcessBackObj_binary_clause_temp_2_var11621 =  $8A
+ProcessBackObj_binary_clause_temp_2_var11621 = $8A
 	sta ProcessBackObj_binary_clause_temp_2_var11621
 	lda ProcessBackObj_binary_clause_temp_var11620
 	cmp ProcessBackObj_binary_clause_temp_2_var11621;keep
@@ -11749,7 +11745,7 @@ ProcessBackObj_binary_clause_temp_var11797 = $88
 	; CAST type NADA
 	ldx localVariable_ProcessBackObj_controlId
 	lda controlList_controlObject_controlObject_waypointId,x 
-ProcessBackObj_binary_clause_temp_2_var11798 =  $8A
+ProcessBackObj_binary_clause_temp_2_var11798 = $8A
 	sta ProcessBackObj_binary_clause_temp_2_var11798
 	lda ProcessBackObj_binary_clause_temp_var11797
 	cmp ProcessBackObj_binary_clause_temp_2_var11798;keep
@@ -22168,7 +22164,7 @@ end_procedure_Update
 	;    Procedure type : User-defined procedure
 	; LineNumber: 3653
 	; LineNumber: 3651
-localVariable_InitAnimations_pa	=  $72
+localVariable_InitAnimations_pa	= $72
 InitAnimations_block174559
 InitAnimations
 	; LineNumber: 3686
@@ -23104,7 +23100,7 @@ StartBlockA280:
 	; Starting new memory block at $A280
 	; ***********  Defining procedure : UpdateMain
 	;    Procedure type : User-defined procedure
-	; LineNumber: 3864
+	; LineNumber: 3863
 	; LineNumber: 3860
 localVariable_UpdateMain_levStr		dc.b	"00"
 	dc.b	0
@@ -23118,53 +23114,35 @@ localVariable_UpdateMain_len	dc.b	0
 UpdateMain_block174583
 UpdateMain
 	; LineNumber: 3865
-	; Assigning a string : localVariable_UpdateMain_levStr
-	ldy #0
-UpdateMain_stringassigncpy174584
-	lda UpdateMain_stringassignstr174585,y
-	sta localVariable_UpdateMain_levStr,y
-	iny
-	cmp #0 ;keep
-	bne UpdateMain_stringassigncpy174584
-	; LineNumber: 3866
-	; Assigning a string : localVariable_UpdateMain_levStr2
-	ldy #0
-UpdateMain_stringassigncpy174586
-	lda UpdateMain_stringassignstr174587,y
-	sta localVariable_UpdateMain_levStr2,y
-	iny
-	cmp #0 ;keep
-	bne UpdateMain_stringassigncpy174586
-	; LineNumber: 3868
 	; Binary clause Simplified: EQUALS
 	lda state
 	; Compare with pure num / var optimization
 	cmp #$6;keep
-	bne UpdateMain_localfailed174818
-	jmp UpdateMain_ctb174589
-UpdateMain_localfailed174818
-	jmp UpdateMain_eblock174590
-UpdateMain_ctb174589: ;Main true block ;keep 
-	; LineNumber: 3868
-	; LineNumber: 3869
+	bne UpdateMain_localfailed174814
+	jmp UpdateMain_ctb174585
+UpdateMain_localfailed174814
+	jmp UpdateMain_eblock174586
+UpdateMain_ctb174585: ;Main true block ;keep 
+	; LineNumber: 3865
+	; LineNumber: 3866
 	; Binary clause Simplified: GREATEREQUAL
 	lda levelSingle
 	; Compare with pure num / var optimization
 	cmp #$9;keep
-	bcc UpdateMain_eblock174822
-UpdateMain_ctb174821: ;Main true block ;keep 
-	; LineNumber: 3868
+	bcc UpdateMain_eblock174818
+UpdateMain_ctb174817: ;Main true block ;keep 
+	; LineNumber: 3865
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateMain_pos
-	jmp UpdateMain_edblock174823
-UpdateMain_eblock174822
-	; LineNumber: 3868
+	jmp UpdateMain_edblock174819
+UpdateMain_eblock174818
+	; LineNumber: 3865
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateMain_pos
-UpdateMain_edblock174823
-	; LineNumber: 3870
+UpdateMain_edblock174819
+	; LineNumber: 3867
 	; INTEGER optimization: a=b+c 
 	lda levelSingle
 	clc
@@ -23185,25 +23163,25 @@ UpdateMain_edblock174823
 	; Calling storevariable on generic assign expression
 	sta str_b
 	jsr str_itoa
-	; LineNumber: 3871
+	; LineNumber: 3868
 	; Binary clause Simplified: GREATEREQUAL
 	lda levelCoop
 	; Compare with pure num / var optimization
 	cmp #$9;keep
-	bcc UpdateMain_eblock174832
-UpdateMain_ctb174831: ;Main true block ;keep 
-	; LineNumber: 3870
+	bcc UpdateMain_eblock174828
+UpdateMain_ctb174827: ;Main true block ;keep 
+	; LineNumber: 3867
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateMain_pos
-	jmp UpdateMain_edblock174833
-UpdateMain_eblock174832
-	; LineNumber: 3870
+	jmp UpdateMain_edblock174829
+UpdateMain_eblock174828
+	; LineNumber: 3867
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_UpdateMain_pos
-UpdateMain_edblock174833
-	; LineNumber: 3872
+UpdateMain_edblock174829
+	; LineNumber: 3869
 	; INTEGER optimization: a=b+c 
 	lda levelCoop
 	clc
@@ -23224,7 +23202,7 @@ UpdateMain_edblock174833
 	; Calling storevariable on generic assign expression
 	sta str_b
 	jsr str_itoa
-	; LineNumber: 3874
+	; LineNumber: 3871
 	
 ; //TODO
 	; Binary clause Simplified: EQUALS
@@ -23235,25 +23213,25 @@ UpdateMain_edblock174833
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$10;keep
-	bne UpdateMain_edblock174843
-UpdateMain_ctb174841: ;Main true block ;keep 
-	; LineNumber: 3874
-	; LineNumber: 3875
+	bne UpdateMain_edblock174839
+UpdateMain_ctb174837: ;Main true block ;keep 
+	; LineNumber: 3871
+	; LineNumber: 3872
 	; Binary clause Simplified: EQUALS
 	clc
 	lda menuItem
 	; cmp #$00 ignored
-	bne UpdateMain_localfailed174871
-	jmp UpdateMain_ctb174867
-UpdateMain_localfailed174871: ;keep
+	bne UpdateMain_localfailed174867
+	jmp UpdateMain_ctb174863
+UpdateMain_localfailed174867: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: EQUALS
 	lda menuItem
 	; Compare with pure num / var optimization
 	cmp #$3;keep
-	bne UpdateMain_edblock174869
-UpdateMain_ctb174867: ;Main true block ;keep 
-	; LineNumber: 3874
+	bne UpdateMain_edblock174865
+UpdateMain_ctb174863: ;Main true block ;keep 
+	; LineNumber: 3871
 	lda levelSingle
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitGame_levSingle
@@ -23264,15 +23242,15 @@ UpdateMain_ctb174867: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitGame_mode
 	jsr InitGame
-UpdateMain_edblock174869
-	; LineNumber: 3876
+UpdateMain_edblock174865
+	; LineNumber: 3873
 	; Binary clause Simplified: EQUALS
 	lda menuItem
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne UpdateMain_edblock174876
-UpdateMain_ctb174874: ;Main true block ;keep 
-	; LineNumber: 3875
+	bne UpdateMain_edblock174872
+UpdateMain_ctb174870: ;Main true block ;keep 
+	; LineNumber: 3872
 	lda levelSingle
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitGame_levSingle
@@ -23283,23 +23261,23 @@ UpdateMain_ctb174874: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitGame_mode
 	jsr InitGame
-UpdateMain_edblock174876
-	; LineNumber: 3877
+UpdateMain_edblock174872
+	; LineNumber: 3874
 	; Binary clause Simplified: EQUALS
 	lda menuItem
 	; Compare with pure num / var optimization
 	cmp #$2;keep
-	bne UpdateMain_localfailed174884
-	jmp UpdateMain_ctb174880
-UpdateMain_localfailed174884: ;keep
+	bne UpdateMain_localfailed174880
+	jmp UpdateMain_ctb174876
+UpdateMain_localfailed174880: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: EQUALS
 	lda menuItem
 	; Compare with pure num / var optimization
 	cmp #$4;keep
-	bne UpdateMain_edblock174882
-UpdateMain_ctb174880: ;Main true block ;keep 
-	; LineNumber: 3876
+	bne UpdateMain_edblock174878
+UpdateMain_ctb174876: ;Main true block ;keep 
+	; LineNumber: 3873
 	lda levelSingle
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitGame_levSingle
@@ -23310,14 +23288,14 @@ UpdateMain_ctb174880: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitGame_mode
 	jsr InitGame
-UpdateMain_edblock174882
-	; LineNumber: 3878
+UpdateMain_edblock174878
+	; LineNumber: 3875
 	lda #$2
 	; Calling storevariable on generic assign expression
 	sta state
-	; LineNumber: 3879
-UpdateMain_edblock174843
-	; LineNumber: 3880
+	; LineNumber: 3876
+UpdateMain_edblock174839
+	; LineNumber: 3877
 	; Binary clause Simplified: EQUALS
 	; 8 bit binop
 	; Add/sub where right value is constant number
@@ -23326,38 +23304,38 @@ UpdateMain_edblock174843
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$8;keep
-	bne UpdateMain_edblock174889
-UpdateMain_ctb174887: ;Main true block ;keep 
-	; LineNumber: 3880
-	; LineNumber: 3881
+	bne UpdateMain_edblock174885
+UpdateMain_ctb174883: ;Main true block ;keep 
+	; LineNumber: 3877
+	; LineNumber: 3878
 	; Binary clause Simplified: EQUALS
 	lda menuItem
 	; Compare with pure num / var optimization
 	cmp #$3;keep
-	bne UpdateMain_edblock174907
-UpdateMain_ctb174905: ;Main true block ;keep 
-	; LineNumber: 3880
+	bne UpdateMain_edblock174903
+UpdateMain_ctb174901: ;Main true block ;keep 
+	; LineNumber: 3877
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_DecLevel_mode
 	jsr DecLevel
-UpdateMain_edblock174907
-	; LineNumber: 3882
+UpdateMain_edblock174903
+	; LineNumber: 3879
 	; Binary clause Simplified: EQUALS
 	lda menuItem
 	; Compare with pure num / var optimization
 	cmp #$4;keep
-	bne UpdateMain_edblock174913
-UpdateMain_ctb174911: ;Main true block ;keep 
-	; LineNumber: 3881
+	bne UpdateMain_edblock174909
+UpdateMain_ctb174907: ;Main true block ;keep 
+	; LineNumber: 3878
 	lda #$2
 	; Calling storevariable on generic assign expression
 	sta localVariable_DecLevel_mode
 	jsr DecLevel
-UpdateMain_edblock174913
-	; LineNumber: 3883
-UpdateMain_edblock174889
-	; LineNumber: 3884
+UpdateMain_edblock174909
+	; LineNumber: 3880
+UpdateMain_edblock174885
+	; LineNumber: 3881
 	; Binary clause Simplified: EQUALS
 	; 8 bit binop
 	; Add/sub where right value is constant number
@@ -23366,38 +23344,38 @@ UpdateMain_edblock174889
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne UpdateMain_edblock174919
-UpdateMain_ctb174917: ;Main true block ;keep 
-	; LineNumber: 3884
-	; LineNumber: 3885
+	bne UpdateMain_edblock174915
+UpdateMain_ctb174913: ;Main true block ;keep 
+	; LineNumber: 3881
+	; LineNumber: 3882
 	; Binary clause Simplified: EQUALS
 	lda menuItem
 	; Compare with pure num / var optimization
 	cmp #$3;keep
-	bne UpdateMain_edblock174937
-UpdateMain_ctb174935: ;Main true block ;keep 
-	; LineNumber: 3884
+	bne UpdateMain_edblock174933
+UpdateMain_ctb174931: ;Main true block ;keep 
+	; LineNumber: 3881
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_IncLevel_mode
 	jsr IncLevel
-UpdateMain_edblock174937
-	; LineNumber: 3886
+UpdateMain_edblock174933
+	; LineNumber: 3883
 	; Binary clause Simplified: EQUALS
 	lda menuItem
 	; Compare with pure num / var optimization
 	cmp #$4;keep
-	bne UpdateMain_edblock174943
-UpdateMain_ctb174941: ;Main true block ;keep 
-	; LineNumber: 3885
+	bne UpdateMain_edblock174939
+UpdateMain_ctb174937: ;Main true block ;keep 
+	; LineNumber: 3882
 	lda #$2
 	; Calling storevariable on generic assign expression
 	sta localVariable_IncLevel_mode
 	jsr IncLevel
-UpdateMain_edblock174943
-	; LineNumber: 3887
-UpdateMain_edblock174919
-	; LineNumber: 3889
+UpdateMain_edblock174939
+	; LineNumber: 3884
+UpdateMain_edblock174915
+	; LineNumber: 3886
 	lda #<localVariable_UpdateMain_levStr
 	ldx #>localVariable_UpdateMain_levStr
 	sta localVariable_PrintStringColor_p1
@@ -23412,7 +23390,7 @@ UpdateMain_edblock174919
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintStringColor_varPrefixed_c
 	jsr PrintStringColor
-	; LineNumber: 3890
+	; LineNumber: 3887
 	lda #<localVariable_UpdateMain_levStr2
 	ldx #>localVariable_UpdateMain_levStr2
 	sta localVariable_PrintStringColor_p1
@@ -23427,7 +23405,7 @@ UpdateMain_edblock174919
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintStringColor_varPrefixed_c
 	jsr PrintStringColor
-	; LineNumber: 3892
+	; LineNumber: 3889
 	lda #$5
 	; Calling storevariable on generic assign expression
 	sta localVariable_MenuMove_len
@@ -23435,18 +23413,18 @@ UpdateMain_edblock174919
 	; Calling storevariable on generic assign expression
 	sta localVariable_MenuMove_oldMenuItem
 	jsr MenuMove
-	; LineNumber: 3894
-	jmp UpdateMain_edblock174591
-UpdateMain_eblock174590
-	; LineNumber: 3894
+	; LineNumber: 3891
+	jmp UpdateMain_edblock174587
+UpdateMain_eblock174586
+	; LineNumber: 3891
 	; Binary clause Simplified: EQUALS
 	lda state
 	; Compare with pure num / var optimization
 	cmp #$7;keep
-	bne UpdateMain_edblock174950
-UpdateMain_ctb174948: ;Main true block ;keep 
-	; LineNumber: 3895
-	; LineNumber: 3896
+	bne UpdateMain_edblock174946
+UpdateMain_ctb174944: ;Main true block ;keep 
+	; LineNumber: 3892
+	; LineNumber: 3893
 	; Binary clause Simplified: EQUALS
 	; 8 bit binop
 	; Add/sub where right value is constant number
@@ -23455,38 +23433,38 @@ UpdateMain_ctb174948: ;Main true block ;keep
 	 ; end add / sub var with constant
 	; Compare with pure num / var optimization
 	cmp #$10;keep
-	bne UpdateMain_edblock175002
-UpdateMain_ctb175000: ;Main true block ;keep 
-	; LineNumber: 3896
-	; LineNumber: 3897
+	bne UpdateMain_edblock174998
+UpdateMain_ctb174996: ;Main true block ;keep 
+	; LineNumber: 3893
+	; LineNumber: 3894
 	; Binary clause Simplified: EQUALS
 	clc
 	lda menuItem
 	; cmp #$00 ignored
-	bne UpdateMain_eblock175027
-UpdateMain_ctb175026: ;Main true block ;keep 
-	; LineNumber: 3896
+	bne UpdateMain_eblock175023
+UpdateMain_ctb175022: ;Main true block ;keep 
+	; LineNumber: 3893
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta state
-	jmp UpdateMain_edblock175028
-UpdateMain_eblock175027
-	; LineNumber: 3897
+	jmp UpdateMain_edblock175024
+UpdateMain_eblock175023
+	; LineNumber: 3894
 	; Binary clause Simplified: EQUALS
 	lda menuItem
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne UpdateMain_edblock175042
-UpdateMain_ctb175040: ;Main true block ;keep 
-	; LineNumber: 3897
+	bne UpdateMain_edblock175038
+UpdateMain_ctb175036: ;Main true block ;keep 
+	; LineNumber: 3894
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta state
-UpdateMain_edblock175042
-UpdateMain_edblock175028
-	; LineNumber: 3899
-UpdateMain_edblock175002
-	; LineNumber: 3900
+UpdateMain_edblock175038
+UpdateMain_edblock175024
+	; LineNumber: 3896
+UpdateMain_edblock174998
+	; LineNumber: 3897
 	lda #$2
 	; Calling storevariable on generic assign expression
 	sta localVariable_MenuMove_len
@@ -23494,81 +23472,81 @@ UpdateMain_edblock175002
 	; Calling storevariable on generic assign expression
 	sta localVariable_MenuMove_oldMenuItem
 	jsr MenuMove
-	; LineNumber: 3901
-UpdateMain_edblock174950
-UpdateMain_edblock174591
-	; LineNumber: 3902
+	; LineNumber: 3898
+UpdateMain_edblock174946
+UpdateMain_edblock174587
+	; LineNumber: 3899
 	rts
 end_procedure_UpdateMain
 	; NodeProcedureDecl 4
 	; ***********  Defining procedure : OpenMain
 	;    Procedure type : User-defined procedure
-	; LineNumber: 3910
-	; LineNumber: 3906
-localVariable_OpenMain_i	dc.b	0
 	; LineNumber: 3907
+	; LineNumber: 3903
+localVariable_OpenMain_i	dc.b	0
+	; LineNumber: 3904
 localVariable_OpenMain_levStr		dc.b	"00"
 	dc.b	0
-	; LineNumber: 3908
+	; LineNumber: 3905
 localVariable_OpenMain_pos	dc.b	0
-	; LineNumber: 3909
+	; LineNumber: 3906
 localVariable_OpenMain_len	dc.b	0
-OpenMain_block175045
+OpenMain_block175041
 OpenMain
-	; LineNumber: 3912
+	; LineNumber: 3909
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta time
-	; LineNumber: 3913
+	; LineNumber: 3910
 	; Calling storevariable on generic assign expression
 	sta menuItem
-	; LineNumber: 3914
+	; LineNumber: 3911
 	lda #$30
 	; Calling storevariable on generic assign expression
 	sta localVariable_OpenMain_levStr+$0
-	; LineNumber: 3915
+	; LineNumber: 3912
 	; Binary clause Simplified: EQUALS
 	lda state
 	; Compare with pure num / var optimization
 	cmp #$2;keep
-	bne OpenMain_localfailed175142
-	jmp OpenMain_ctb175047
-OpenMain_localfailed175142
-	jmp OpenMain_eblock175048
-OpenMain_ctb175047: ;Main true block ;keep 
+	bne OpenMain_localfailed175138
+	jmp OpenMain_ctb175043
+OpenMain_localfailed175138
+	jmp OpenMain_eblock175044
+OpenMain_ctb175043: ;Main true block ;keep 
+	; LineNumber: 3911
 	; LineNumber: 3914
-	; LineNumber: 3917
 	; Binary clause Simplified: EQUALS
 	clc
 	lda gameMode
 	; cmp #$00 ignored
-	bne OpenMain_localfailed175170
-	jmp OpenMain_ctb175145
-OpenMain_localfailed175170
-	jmp OpenMain_eblock175146
-OpenMain_ctb175145: ;Main true block ;keep 
-	; LineNumber: 3917
-	; LineNumber: 3918
+	bne OpenMain_localfailed175166
+	jmp OpenMain_ctb175141
+OpenMain_localfailed175166
+	jmp OpenMain_eblock175142
+OpenMain_ctb175141: ;Main true block ;keep 
+	; LineNumber: 3914
+	; LineNumber: 3915
 	; Binary clause Simplified: GREATEREQUAL
 	lda levelSingle
 	; Compare with pure num / var optimization
 	cmp #$9;keep
-	bcc OpenMain_eblock175174
-OpenMain_ctb175173: ;Main true block ;keep 
-	; LineNumber: 3917
+	bcc OpenMain_eblock175170
+OpenMain_ctb175169: ;Main true block ;keep 
+	; LineNumber: 3914
 	
 ; //		InitLevel();
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_OpenMain_pos
-	jmp OpenMain_edblock175175
-OpenMain_eblock175174
-	; LineNumber: 3917
+	jmp OpenMain_edblock175171
+OpenMain_eblock175170
+	; LineNumber: 3914
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_OpenMain_pos
-OpenMain_edblock175175
-	; LineNumber: 3919
+OpenMain_edblock175171
+	; LineNumber: 3916
 	; INTEGER optimization: a=b+c 
 	lda levelSingle
 	clc
@@ -23589,28 +23567,28 @@ OpenMain_edblock175175
 	; Calling storevariable on generic assign expression
 	sta str_b
 	jsr str_itoa
-	jmp OpenMain_edblock175147
-OpenMain_eblock175146
-	; LineNumber: 3921
-	; LineNumber: 3922
+	jmp OpenMain_edblock175143
+OpenMain_eblock175142
+	; LineNumber: 3918
+	; LineNumber: 3919
 	; Binary clause Simplified: GREATEREQUAL
 	lda levelCoop
 	; Compare with pure num / var optimization
 	cmp #$9;keep
-	bcc OpenMain_eblock175185
-OpenMain_ctb175184: ;Main true block ;keep 
-	; LineNumber: 3921
+	bcc OpenMain_eblock175181
+OpenMain_ctb175180: ;Main true block ;keep 
+	; LineNumber: 3918
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_OpenMain_pos
-	jmp OpenMain_edblock175186
-OpenMain_eblock175185
-	; LineNumber: 3921
+	jmp OpenMain_edblock175182
+OpenMain_eblock175181
+	; LineNumber: 3918
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta localVariable_OpenMain_pos
-OpenMain_edblock175186
-	; LineNumber: 3923
+OpenMain_edblock175182
+	; LineNumber: 3920
 	; INTEGER optimization: a=b+c 
 	lda levelCoop
 	clc
@@ -23631,8 +23609,8 @@ OpenMain_edblock175186
 	; Calling storevariable on generic assign expression
 	sta str_b
 	jsr str_itoa
-OpenMain_edblock175147
-	; LineNumber: 3925
+OpenMain_edblock175143
+	; LineNumber: 3922
 	lda #<txtLevel
 	ldx #>txtLevel
 	sta localVariable_PrintCenterStringColor_p1
@@ -23644,7 +23622,7 @@ OpenMain_edblock175147
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintCenterStringColor_varPrefixed_c
 	jsr PrintCenterStringColor
-	; LineNumber: 3926
+	; LineNumber: 3923
 	lda #<localVariable_OpenMain_levStr
 	ldx #>localVariable_OpenMain_levStr
 	sta localVariable_PrintStringColor_p1
@@ -23659,7 +23637,7 @@ OpenMain_edblock175147
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintStringColor_varPrefixed_c
 	jsr PrintStringColor
-	; LineNumber: 3929
+	; LineNumber: 3926
 	; Load Integer array
 	; CAST type INTEGER
 	ldx #0 ; watch for bug, Integer array has max index of 128
@@ -23674,22 +23652,22 @@ OpenMain_edblock175147
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintCenterStringColor_varPrefixed_c
 	jsr PrintCenterStringColor
-	; LineNumber: 3931
+	; LineNumber: 3928
 	; Binary clause Simplified: NOTEQUALS
 	clc
 	lda gameMode
 	; cmp #$00 ignored
-	beq OpenMain_edblock175196
-OpenMain_ctb175194: ;Main true block ;keep 
-	; LineNumber: 3931
-	; LineNumber: 3932
+	beq OpenMain_edblock175192
+OpenMain_ctb175190: ;Main true block ;keep 
+	; LineNumber: 3928
+	; LineNumber: 3929
 	; Binary clause Simplified: NOTEQUALS
 	clc
 	lda levBothMustComplete
 	; cmp #$00 ignored
-	beq OpenMain_eblock175209
-OpenMain_ctb175208: ;Main true block ;keep 
-	; LineNumber: 3931
+	beq OpenMain_eblock175205
+OpenMain_ctb175204: ;Main true block ;keep 
+	; LineNumber: 3928
 	lda #<txtBothMustComplete
 	ldx #>txtBothMustComplete
 	sta localVariable_PrintCenterStringColor_p1
@@ -23701,9 +23679,9 @@ OpenMain_ctb175208: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintCenterStringColor_varPrefixed_c
 	jsr PrintCenterStringColor
-	jmp OpenMain_edblock175210
-OpenMain_eblock175209
-	; LineNumber: 3932
+	jmp OpenMain_edblock175206
+OpenMain_eblock175205
+	; LineNumber: 3929
 	lda #<txtOneMustComplete
 	ldx #>txtOneMustComplete
 	sta localVariable_PrintCenterStringColor_p1
@@ -23715,10 +23693,10 @@ OpenMain_eblock175209
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintCenterStringColor_varPrefixed_c
 	jsr PrintCenterStringColor
-OpenMain_edblock175210
-	; LineNumber: 3934
-OpenMain_edblock175196
-	; LineNumber: 3936
+OpenMain_edblock175206
+	; LineNumber: 3931
+OpenMain_edblock175192
+	; LineNumber: 3933
 	lda #<txtStartLevel
 	ldx #>txtStartLevel
 	sta localVariable_PrintCenterStringColor_p1
@@ -23730,7 +23708,7 @@ OpenMain_edblock175196
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintCenterStringColor_varPrefixed_c
 	jsr PrintCenterStringColor
-	; LineNumber: 3937
+	; LineNumber: 3934
 	lda #<txtMainMenu
 	ldx #>txtMainMenu
 	sta localVariable_PrintCenterStringColor_p1
@@ -23742,7 +23720,7 @@ OpenMain_edblock175196
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintCenterStringColor_varPrefixed_c
 	jsr PrintCenterStringColor
-	; LineNumber: 3939
+	; LineNumber: 3936
 	lda #<txtPressDel
 	ldx #>txtPressDel
 	sta localVariable_PrintCenterStringColor_p1
@@ -23754,28 +23732,28 @@ OpenMain_edblock175196
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintCenterStringColor_varPrefixed_c
 	jsr PrintCenterStringColor
-	; LineNumber: 3941
+	; LineNumber: 3938
 	lda #<sndEnd
 	ldy #>sndEnd
 	; Calling storevariable on generic assign expression
 	sta psnd+2
 	sty psnd+3
-	; LineNumber: 3941
+	; LineNumber: 3938
 	lda #$f0
 	; Calling storevariable on generic assign expression
 	sta vsnd+$1
-	; LineNumber: 3941
+	; LineNumber: 3938
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta vsndTime+$1
-	; LineNumber: 3942
+	; LineNumber: 3939
 	; Binary clause Simplified: EQUALS
 	lda gameMode
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne OpenMain_edblock175218
-OpenMain_ctb175216: ;Main true block ;keep 
-	; LineNumber: 3941
+	bne OpenMain_edblock175214
+OpenMain_ctb175212: ;Main true block ;keep 
+	; LineNumber: 3938
 	lda #<txtPressSpace
 	ldx #>txtPressSpace
 	sta localVariable_PrintCenterStringColor_p1
@@ -23787,15 +23765,15 @@ OpenMain_ctb175216: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintCenterStringColor_varPrefixed_c
 	jsr PrintCenterStringColor
-OpenMain_edblock175218
-	; LineNumber: 3943
+OpenMain_edblock175214
+	; LineNumber: 3940
 	; Binary clause Simplified: EQUALS
 	lda gameMode
 	; Compare with pure num / var optimization
 	cmp #$2;keep
-	bne OpenMain_edblock175224
-OpenMain_ctb175222: ;Main true block ;keep 
-	; LineNumber: 3942
+	bne OpenMain_edblock175220
+OpenMain_ctb175218: ;Main true block ;keep 
+	; LineNumber: 3939
 	lda #<txtPressWasd
 	ldx #>txtPressWasd
 	sta localVariable_PrintCenterStringColor_p1
@@ -23807,26 +23785,26 @@ OpenMain_ctb175222: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintCenterStringColor_varPrefixed_c
 	jsr PrintCenterStringColor
-OpenMain_edblock175224
-	; LineNumber: 3945
+OpenMain_edblock175220
+	; LineNumber: 3942
 	lda #$7
 	; Calling storevariable on generic assign expression
 	sta state
-	; LineNumber: 3947
-	jmp OpenMain_edblock175049
-OpenMain_eblock175048
-	; LineNumber: 3946
+	; LineNumber: 3944
+	jmp OpenMain_edblock175045
+OpenMain_eblock175044
+	; LineNumber: 3943
 	; Binary clause Simplified: EQUALS
 	clc
 	lda state
 	; cmp #$00 ignored
-	bne OpenMain_localfailed175233
-	jmp OpenMain_ctb175229
-OpenMain_localfailed175233
-	jmp OpenMain_edblock175231
-OpenMain_ctb175229: ;Main true block ;keep 
-	; LineNumber: 3947
-	; LineNumber: 3949
+	bne OpenMain_localfailed175229
+	jmp OpenMain_ctb175225
+OpenMain_localfailed175229
+	jmp OpenMain_edblock175227
+OpenMain_ctb175225: ;Main true block ;keep 
+	; LineNumber: 3944
+	; LineNumber: 3946
 	lda #<txtLogo
 	ldx #>txtLogo
 	sta localVariable_PrintCenterStringColor_p1
@@ -23838,7 +23816,7 @@ OpenMain_ctb175229: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintCenterStringColor_varPrefixed_c
 	jsr PrintCenterStringColor
-	; LineNumber: 3955
+	; LineNumber: 3952
 	
 ; //		PrintCenterStringColor(#txtSelectGameMode,9,@GREEN);
 ; //		PrintCenterStringColor(#txtSelectGameMode,9,@GREEN);
@@ -23853,7 +23831,7 @@ OpenMain_ctb175229: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintCenterStringColor_varPrefixed_c
 	jsr PrintCenterStringColor
-	; LineNumber: 3956
+	; LineNumber: 3953
 	lda #<txtSinglePlayer2Chars
 	ldx #>txtSinglePlayer2Chars
 	sta localVariable_PrintCenterStringColor_p1
@@ -23865,7 +23843,7 @@ OpenMain_ctb175229: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintCenterStringColor_varPrefixed_c
 	jsr PrintCenterStringColor
-	; LineNumber: 3957
+	; LineNumber: 3954
 	lda #<txtCoop
 	ldx #>txtCoop
 	sta localVariable_PrintCenterStringColor_p1
@@ -23877,7 +23855,7 @@ OpenMain_ctb175229: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintCenterStringColor_varPrefixed_c
 	jsr PrintCenterStringColor
-	; LineNumber: 3959
+	; LineNumber: 3956
 	lda #<txtSingleStart
 	ldx #>txtSingleStart
 	sta localVariable_PrintCenterStringColor_p1
@@ -23889,7 +23867,7 @@ OpenMain_ctb175229: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintCenterStringColor_varPrefixed_c
 	jsr PrintCenterStringColor
-	; LineNumber: 3960
+	; LineNumber: 3957
 	lda #<txtCoopStart
 	ldx #>txtCoopStart
 	sta localVariable_PrintCenterStringColor_p1
@@ -23901,7 +23879,7 @@ OpenMain_ctb175229: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintCenterStringColor_varPrefixed_c
 	jsr PrintCenterStringColor
-	; LineNumber: 3962
+	; LineNumber: 3959
 	lda #<txtAuthor
 	ldx #>txtAuthor
 	sta localVariable_PrintCenterStringColor_p1
@@ -23913,45 +23891,45 @@ OpenMain_ctb175229: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_PrintCenterStringColor_varPrefixed_c
 	jsr PrintCenterStringColor
-	; LineNumber: 3964
+	; LineNumber: 3961
 	lda #$6
 	; Calling storevariable on generic assign expression
 	sta state
-	; LineNumber: 3965
-OpenMain_edblock175231
-OpenMain_edblock175049
-	; LineNumber: 3967
+	; LineNumber: 3962
+OpenMain_edblock175227
+OpenMain_edblock175045
+	; LineNumber: 3964
 	rts
 end_procedure_OpenMain
 	; NodeProcedureDecl 4
 	; ***********  Defining procedure : InitMap
 	;    Procedure type : User-defined procedure
-	; LineNumber: 3972
-	; LineNumber: 3971
+	; LineNumber: 3969
+	; LineNumber: 3968
 localVariable_InitMap_i	dc.b	0
-	; LineNumber: 3971
+	; LineNumber: 3968
 localVariable_InitMap_x	dc.b	0
-	; LineNumber: 3971
+	; LineNumber: 3968
 localVariable_InitMap_y	dc.b	0
-	; LineNumber: 3971
+	; LineNumber: 3968
 localVariable_InitMap_varPrefixed_c	dc.b	0
-InitMap_block175235
+InitMap_block175231
 InitMap
-	; LineNumber: 3973
+	; LineNumber: 3970
 	jsr ClearMap
-	; LineNumber: 3974
+	; LineNumber: 3971
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta countDyn
-	; LineNumber: 3975
+	; LineNumber: 3972
 	; Calling storevariable on generic assign expression
 	sta countAnim
-	; LineNumber: 3979
+	; LineNumber: 3976
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitMap_i
-InitMap_forloop175236
-	; LineNumber: 3977
-	; LineNumber: 3978
+InitMap_forloop175232
+	; LineNumber: 3974
+	; LineNumber: 3975
 	lda localVariable_InitMap_i
 	; Calling storevariable on generic assign expression
 	pha
@@ -23964,43 +23942,43 @@ InitMap_forloop175236
 	tax
 	pla
 	sta deletedObjects,x
-	; LineNumber: 3979
-InitMap_loopstart175237
+	; LineNumber: 3976
+InitMap_loopstart175233
 	; Compare is onpage
 	; Test Inc dec D
 	inc localVariable_InitMap_i
 	lda #$c8
 	cmp localVariable_InitMap_i ;keep
-	bne InitMap_forloop175236
-InitMap_loopdone175241: ;keep
-InitMap_loopend175238
-	; LineNumber: 3995
+	bne InitMap_forloop175232
+InitMap_loopdone175237: ;keep
+InitMap_loopend175234
+	; LineNumber: 3992
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitMap_i
-InitMap_forloop175242
-	; LineNumber: 3981
-	; LineNumber: 3982
+InitMap_forloop175238
+	; LineNumber: 3978
+	; LineNumber: 3979
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_InitMap_i
 	lda lev,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitMap_varPrefixed_c
-	; LineNumber: 3983
+	; LineNumber: 3980
 	; Modulo
 	lda #$14
-InitMap_val_var175268 = $88
-	sta InitMap_val_var175268
+InitMap_val_var175264 = $88
+	sta InitMap_val_var175264
 	lda localVariable_InitMap_i
 	sec
-InitMap_modulo175269
-	sbc InitMap_val_var175268
-	bcs InitMap_modulo175269
-	adc InitMap_val_var175268
+InitMap_modulo175265
+	sbc InitMap_val_var175264
+	bcs InitMap_modulo175265
+	adc InitMap_val_var175264
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitMap_x
-	; LineNumber: 3984
+	; LineNumber: 3981
 	; Right is PURE NUMERIC : Is word =0
 	; 8 bit div
 	lda localVariable_InitMap_i
@@ -24011,11 +23989,11 @@ InitMap_modulo175269
 	jsr div8x8_procedure
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitMap_y
-	; LineNumber: 3985
+	; LineNumber: 3982
 	lda #$5b
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175273
-	; LineNumber: 3985
+	bne InitMap_casenext175269
+	; LineNumber: 3982
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitFontaine_x
@@ -24029,12 +24007,12 @@ InitMap_modulo175269
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitFontaine_grav
 	jsr InitFontaine
-	jmp InitMap_caseend175272
-InitMap_casenext175273
+	jmp InitMap_caseend175268
+InitMap_casenext175269
 	lda #$5d
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175275
-	; LineNumber: 3986
+	bne InitMap_casenext175271
+	; LineNumber: 3983
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitFontaine_x
@@ -24048,12 +24026,12 @@ InitMap_casenext175273
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitFontaine_grav
 	jsr InitFontaine
-	jmp InitMap_caseend175272
-InitMap_casenext175275
+	jmp InitMap_caseend175268
+InitMap_casenext175271
 	lda #$28
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175277
-	; LineNumber: 3987
+	bne InitMap_casenext175273
+	; LineNumber: 3984
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitFontaine_x
@@ -24067,12 +24045,12 @@ InitMap_casenext175275
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitFontaine_grav
 	jsr InitFontaine
-	jmp InitMap_caseend175272
-InitMap_casenext175277
+	jmp InitMap_caseend175268
+InitMap_casenext175273
 	lda #$29
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175279
-	; LineNumber: 3988
+	bne InitMap_casenext175275
+	; LineNumber: 3985
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitFontaine_x
@@ -24086,12 +24064,12 @@ InitMap_casenext175277
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitFontaine_grav
 	jsr InitFontaine
-	jmp InitMap_caseend175272
-InitMap_casenext175279
+	jmp InitMap_caseend175268
+InitMap_casenext175275
 	lda #$31
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175281
-	; LineNumber: 3989
+	bne InitMap_casenext175277
+	; LineNumber: 3986
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitCannon_x
@@ -24105,12 +24083,12 @@ InitMap_casenext175279
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitCannon_grav
 	jsr InitCannon
-	jmp InitMap_caseend175272
-InitMap_casenext175281
+	jmp InitMap_caseend175268
+InitMap_casenext175277
 	lda #$39
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175283
-	; LineNumber: 3990
+	bne InitMap_casenext175279
+	; LineNumber: 3987
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitCannon_x
@@ -24124,12 +24102,12 @@ InitMap_casenext175281
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitCannon_grav
 	jsr InitCannon
-	jmp InitMap_caseend175272
-InitMap_casenext175283
+	jmp InitMap_caseend175268
+InitMap_casenext175279
 	lda #$37
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175285
-	; LineNumber: 3991
+	bne InitMap_casenext175281
+	; LineNumber: 3988
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitCannon_x
@@ -24143,12 +24121,12 @@ InitMap_casenext175283
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitCannon_grav
 	jsr InitCannon
-	jmp InitMap_caseend175272
-InitMap_casenext175285
+	jmp InitMap_caseend175268
+InitMap_casenext175281
 	lda #$33
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175287
-	; LineNumber: 3992
+	bne InitMap_casenext175283
+	; LineNumber: 3989
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitCannon_x
@@ -24162,46 +24140,46 @@ InitMap_casenext175285
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitCannon_grav
 	jsr InitCannon
-InitMap_casenext175287
-InitMap_caseend175272
-	; LineNumber: 3995
-InitMap_loopstart175243
+InitMap_casenext175283
+InitMap_caseend175268
+	; LineNumber: 3992
+InitMap_loopstart175239
 	; Test Inc dec D
 	inc localVariable_InitMap_i
 	lda #$f0
 	cmp localVariable_InitMap_i ;keep
-	beq InitMap_loopdone175289
-InitMap_loopnotdone175290
-	jmp InitMap_forloop175242
-InitMap_loopdone175289
-InitMap_loopend175244
-	; LineNumber: 4044
+	beq InitMap_loopdone175285
+InitMap_loopnotdone175286
+	jmp InitMap_forloop175238
+InitMap_loopdone175285
+InitMap_loopend175240
+	; LineNumber: 4041
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitMap_i
-InitMap_forloop175291
-	; LineNumber: 3998
-	; LineNumber: 3999
+InitMap_forloop175287
+	; LineNumber: 3995
+	; LineNumber: 3996
 	; Load Byte array
 	; CAST type NADA
 	ldx localVariable_InitMap_i
 	lda lev,x 
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitMap_varPrefixed_c
-	; LineNumber: 4000
+	; LineNumber: 3997
 	; Modulo
 	lda #$14
-InitMap_val_var175380 = $88
-	sta InitMap_val_var175380
+InitMap_val_var175376 = $88
+	sta InitMap_val_var175376
 	lda localVariable_InitMap_i
 	sec
-InitMap_modulo175381
-	sbc InitMap_val_var175380
-	bcs InitMap_modulo175381
-	adc InitMap_val_var175380
+InitMap_modulo175377
+	sbc InitMap_val_var175376
+	bcs InitMap_modulo175377
+	adc InitMap_val_var175376
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitMap_x
-	; LineNumber: 4001
+	; LineNumber: 3998
 	; Right is PURE NUMERIC : Is word =0
 	; 8 bit div
 	lda localVariable_InitMap_i
@@ -24212,11 +24190,11 @@ InitMap_modulo175381
 	jsr div8x8_procedure
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitMap_y
-	; LineNumber: 4002
+	; LineNumber: 3999
 	lda #$40
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175385
-	; LineNumber: 4002
+	bne InitMap_casenext175381
+	; LineNumber: 3999
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitCharacter_x
@@ -24227,28 +24205,28 @@ InitMap_modulo175381
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitCharacter_controlId
 	jsr InitCharacter
-	jmp InitMap_caseend175384
-InitMap_casenext175385
+	jmp InitMap_caseend175380
+InitMap_casenext175381
 	lda #$25
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175387
-	; LineNumber: 4004
-	; LineNumber: 4005
+	bne InitMap_casenext175383
+	; LineNumber: 4001
+	; LineNumber: 4002
 	; Binary clause Simplified: EQUALS
 	lda gameMode
 	; Compare with pure num / var optimization
 	cmp #$1;keep
-	bne InitMap_localfailed175394
-	jmp InitMap_ctb175390
-InitMap_localfailed175394: ;keep
+	bne InitMap_localfailed175390
+	jmp InitMap_ctb175386
+InitMap_localfailed175390: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: EQUALS
 	lda gameMode
 	; Compare with pure num / var optimization
 	cmp #$2;keep
-	bne InitMap_edblock175392
-InitMap_ctb175390: ;Main true block ;keep 
-	; LineNumber: 4004
+	bne InitMap_edblock175388
+InitMap_ctb175386: ;Main true block ;keep 
+	; LineNumber: 4001
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitCharacter_x
@@ -24259,14 +24237,14 @@ InitMap_ctb175390: ;Main true block ;keep
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitCharacter_controlId
 	jsr InitCharacter
-InitMap_edblock175392
-	; LineNumber: 4006
-	jmp InitMap_caseend175384
-InitMap_casenext175387
+InitMap_edblock175388
+	; LineNumber: 4003
+	jmp InitMap_caseend175380
+InitMap_casenext175383
 	lda #$61
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175396
-	; LineNumber: 4006
+	bne InitMap_casenext175392
+	; LineNumber: 4003
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitBrick_x
@@ -24274,12 +24252,12 @@ InitMap_casenext175387
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitBrick_y
 	jsr InitBrick
-	jmp InitMap_caseend175384
-InitMap_casenext175396
+	jmp InitMap_caseend175380
+InitMap_casenext175392
 	lda #$62
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175398
-	; LineNumber: 4007
+	bne InitMap_casenext175394
+	; LineNumber: 4004
 	lda #$41
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitStone_tilen
@@ -24293,12 +24271,12 @@ InitMap_casenext175396
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitStone_rollLeftRight
 	jsr InitStone
-	jmp InitMap_caseend175384
-InitMap_casenext175398
+	jmp InitMap_caseend175380
+InitMap_casenext175394
 	lda #$66
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175400
-	; LineNumber: 4008
+	bne InitMap_casenext175396
+	; LineNumber: 4005
 	lda #$65
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitStone_tilen
@@ -24312,12 +24290,12 @@ InitMap_casenext175398
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitStone_rollLeftRight
 	jsr InitStone
-	jmp InitMap_caseend175384
-InitMap_casenext175400
+	jmp InitMap_caseend175380
+InitMap_casenext175396
 	lda #$3d
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175402
-	; LineNumber: 4009
+	bne InitMap_casenext175398
+	; LineNumber: 4006
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitWater_x
@@ -24325,12 +24303,12 @@ InitMap_casenext175400
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitWater_y
 	jsr InitWater
-	jmp InitMap_caseend175384
-InitMap_casenext175402
+	jmp InitMap_caseend175380
+InitMap_casenext175398
 	lda #$27
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175404
-	; LineNumber: 4010
+	bne InitMap_casenext175400
+	; LineNumber: 4007
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitWaterFlow_x
@@ -24344,12 +24322,12 @@ InitMap_casenext175402
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitWaterFlow_grav
 	jsr InitWaterFlow
-	jmp InitMap_caseend175384
-InitMap_casenext175404
+	jmp InitMap_caseend175380
+InitMap_casenext175400
 	lda #$26
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175406
-	; LineNumber: 4011
+	bne InitMap_casenext175402
+	; LineNumber: 4008
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitWaterFlow_x
@@ -24363,12 +24341,12 @@ InitMap_casenext175404
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitWaterFlow_grav
 	jsr InitWaterFlow
-	jmp InitMap_caseend175384
-InitMap_casenext175406
+	jmp InitMap_caseend175380
+InitMap_casenext175402
 	lda #$7b
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175408
-	; LineNumber: 4012
+	bne InitMap_casenext175404
+	; LineNumber: 4009
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitWaterFlow_x
@@ -24382,12 +24360,12 @@ InitMap_casenext175406
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitWaterFlow_grav
 	jsr InitWaterFlow
-	jmp InitMap_caseend175384
-InitMap_casenext175408
+	jmp InitMap_caseend175380
+InitMap_casenext175404
 	lda #$7d
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175410
-	; LineNumber: 4013
+	bne InitMap_casenext175406
+	; LineNumber: 4010
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitWaterFlow_x
@@ -24401,12 +24379,12 @@ InitMap_casenext175408
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitWaterFlow_grav
 	jsr InitWaterFlow
-	jmp InitMap_caseend175384
-InitMap_casenext175410
+	jmp InitMap_caseend175380
+InitMap_casenext175406
 	lda #$73
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175412
-	; LineNumber: 4014
+	bne InitMap_casenext175408
+	; LineNumber: 4011
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitSand_x
@@ -24414,12 +24392,12 @@ InitMap_casenext175410
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitSand_y
 	jsr InitSand
-	jmp InitMap_caseend175384
-InitMap_casenext175412
+	jmp InitMap_caseend175380
+InitMap_casenext175408
 	lda #$5e
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175414
-	; LineNumber: 4015
+	bne InitMap_casenext175410
+	; LineNumber: 4012
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitShiftPlattform_x
@@ -24433,12 +24411,12 @@ InitMap_casenext175412
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitShiftPlattform_grav
 	jsr InitShiftPlattform
-	jmp InitMap_caseend175384
-InitMap_casenext175414
+	jmp InitMap_caseend175380
+InitMap_casenext175410
 	lda #$59
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175416
-	; LineNumber: 4016
+	bne InitMap_casenext175412
+	; LineNumber: 4013
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitShiftPlattform_x
@@ -24452,12 +24430,12 @@ InitMap_casenext175414
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitShiftPlattform_grav
 	jsr InitShiftPlattform
-	jmp InitMap_caseend175384
-InitMap_casenext175416
+	jmp InitMap_caseend175380
+InitMap_casenext175412
 	lda #$3e
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175418
-	; LineNumber: 4017
+	bne InitMap_casenext175414
+	; LineNumber: 4014
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitShiftPlattform_x
@@ -24471,12 +24449,12 @@ InitMap_casenext175416
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitShiftPlattform_grav
 	jsr InitShiftPlattform
-	jmp InitMap_caseend175384
-InitMap_casenext175418
+	jmp InitMap_caseend175380
+InitMap_casenext175414
 	lda #$3c
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175420
-	; LineNumber: 4018
+	bne InitMap_casenext175416
+	; LineNumber: 4015
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitShiftPlattform_x
@@ -24490,12 +24468,12 @@ InitMap_casenext175418
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitShiftPlattform_grav
 	jsr InitShiftPlattform
-	jmp InitMap_caseend175384
-InitMap_casenext175420
+	jmp InitMap_caseend175380
+InitMap_casenext175416
 	lda #$68
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175422
-	; LineNumber: 4019
+	bne InitMap_casenext175418
+	; LineNumber: 4016
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitLadder_x
@@ -24503,12 +24481,12 @@ InitMap_casenext175420
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitLadder_y
 	jsr InitLadder
-	jmp InitMap_caseend175384
-InitMap_casenext175422
+	jmp InitMap_caseend175380
+InitMap_casenext175418
 	lda #$2d
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175424
-	; LineNumber: 4020
+	bne InitMap_casenext175420
+	; LineNumber: 4017
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitRobe_x
@@ -24522,12 +24500,12 @@ InitMap_casenext175422
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitRobe_grav
 	jsr InitRobe
-	jmp InitMap_caseend175384
-InitMap_casenext175424
+	jmp InitMap_caseend175380
+InitMap_casenext175420
 	lda #$5f
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175426
-	; LineNumber: 4021
+	bne InitMap_casenext175422
+	; LineNumber: 4018
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitRobe_x
@@ -24541,12 +24519,12 @@ InitMap_casenext175424
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitRobe_grav
 	jsr InitRobe
-	jmp InitMap_caseend175384
-InitMap_casenext175426
+	jmp InitMap_caseend175380
+InitMap_casenext175422
 	lda #$21
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175428
-	; LineNumber: 4022
+	bne InitMap_casenext175424
+	; LineNumber: 4019
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitRobe_x
@@ -24560,12 +24538,12 @@ InitMap_casenext175426
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitRobe_grav
 	jsr InitRobe
-	jmp InitMap_caseend175384
-InitMap_casenext175428
+	jmp InitMap_caseend175380
+InitMap_casenext175424
 	lda #$7c
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175430
-	; LineNumber: 4023
+	bne InitMap_casenext175426
+	; LineNumber: 4020
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitRobe_x
@@ -24579,12 +24557,12 @@ InitMap_casenext175428
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitRobe_grav
 	jsr InitRobe
-	jmp InitMap_caseend175384
-InitMap_casenext175430
+	jmp InitMap_caseend175380
+InitMap_casenext175426
 	lda #$6f
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175432
-	; LineNumber: 4024
+	bne InitMap_casenext175428
+	; LineNumber: 4021
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitPortal_x
@@ -24595,12 +24573,12 @@ InitMap_casenext175430
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitPortal_exitDir
 	jsr InitPortal
-	jmp InitMap_caseend175384
-InitMap_casenext175432
+	jmp InitMap_caseend175380
+InitMap_casenext175428
 	lda #$63
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175434
-	; LineNumber: 4025
+	bne InitMap_casenext175430
+	; LineNumber: 4022
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitPortalActivate_x
@@ -24608,12 +24586,12 @@ InitMap_casenext175432
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitPortalActivate_y
 	jsr InitPortalActivate
-	jmp InitMap_caseend175384
-InitMap_casenext175434
+	jmp InitMap_caseend175380
+InitMap_casenext175430
 	lda #$38
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175436
-	; LineNumber: 4026
+	bne InitMap_casenext175432
+	; LineNumber: 4023
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitGravPad_x
@@ -24627,12 +24605,12 @@ InitMap_casenext175434
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitGravPad_grav
 	jsr InitGravPad
-	jmp InitMap_caseend175384
-InitMap_casenext175436
+	jmp InitMap_caseend175380
+InitMap_casenext175432
 	lda #$32
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175438
-	; LineNumber: 4027
+	bne InitMap_casenext175434
+	; LineNumber: 4024
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitGravPad_x
@@ -24646,12 +24624,12 @@ InitMap_casenext175436
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitGravPad_grav
 	jsr InitGravPad
-	jmp InitMap_caseend175384
-InitMap_casenext175438
+	jmp InitMap_caseend175380
+InitMap_casenext175434
 	lda #$34
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175440
-	; LineNumber: 4028
+	bne InitMap_casenext175436
+	; LineNumber: 4025
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitGravPad_x
@@ -24665,12 +24643,12 @@ InitMap_casenext175438
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitGravPad_grav
 	jsr InitGravPad
-	jmp InitMap_caseend175384
-InitMap_casenext175440
+	jmp InitMap_caseend175380
+InitMap_casenext175436
 	lda #$36
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175442
-	; LineNumber: 4029
+	bne InitMap_casenext175438
+	; LineNumber: 4026
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitGravPad_x
@@ -24684,12 +24662,12 @@ InitMap_casenext175440
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitGravPad_grav
 	jsr InitGravPad
-	jmp InitMap_caseend175384
-InitMap_casenext175442
+	jmp InitMap_caseend175380
+InitMap_casenext175438
 	lda #$6e
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175444
-	; LineNumber: 4030
+	bne InitMap_casenext175440
+	; LineNumber: 4027
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitMirror_x
@@ -24703,12 +24681,12 @@ InitMap_casenext175442
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitMirror_turn
 	jsr InitMirror
-	jmp InitMap_caseend175384
-InitMap_casenext175444
+	jmp InitMap_caseend175380
+InitMap_casenext175440
 	lda #$6d
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175446
-	; LineNumber: 4031
+	bne InitMap_casenext175442
+	; LineNumber: 4028
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitMirror_x
@@ -24722,12 +24700,12 @@ InitMap_casenext175444
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitMirror_turn
 	jsr InitMirror
-	jmp InitMap_caseend175384
-InitMap_casenext175446
+	jmp InitMap_caseend175380
+InitMap_casenext175442
 	lda #$67
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175448
-	; LineNumber: 4032
+	bne InitMap_casenext175444
+	; LineNumber: 4029
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitMirror_x
@@ -24741,12 +24719,12 @@ InitMap_casenext175446
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitMirror_turn
 	jsr InitMirror
-	jmp InitMap_caseend175384
-InitMap_casenext175448
+	jmp InitMap_caseend175380
+InitMap_casenext175444
 	lda #$74
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175450
-	; LineNumber: 4033
+	bne InitMap_casenext175446
+	; LineNumber: 4030
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitLaserTransport_x
@@ -24754,12 +24732,12 @@ InitMap_casenext175448
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitLaserTransport_y
 	jsr InitLaserTransport
-	jmp InitMap_caseend175384
-InitMap_casenext175450
+	jmp InitMap_caseend175380
+InitMap_casenext175446
 	lda #$64
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175452
-	; LineNumber: 4035
+	bne InitMap_casenext175448
+	; LineNumber: 4032
 	
 ; //			@LEV_LASER_TRANSPORT_ONCE: InitLaserTransportOnce(x,y);
 	lda localVariable_InitMap_x
@@ -24775,12 +24753,12 @@ InitMap_casenext175450
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitBox_dir
 	jsr InitBox
-	jmp InitMap_caseend175384
-InitMap_casenext175452
+	jmp InitMap_caseend175380
+InitMap_casenext175448
 	lda #$65
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175454
-	; LineNumber: 4036
+	bne InitMap_casenext175450
+	; LineNumber: 4033
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitBox_x
@@ -24794,12 +24772,12 @@ InitMap_casenext175452
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitBox_dir
 	jsr InitBox
-	jmp InitMap_caseend175384
-InitMap_casenext175454
+	jmp InitMap_caseend175380
+InitMap_casenext175450
 	lda #$72
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175456
-	; LineNumber: 4037
+	bne InitMap_casenext175452
+	; LineNumber: 4034
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitSwitchManual_x
@@ -24807,12 +24785,12 @@ InitMap_casenext175454
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitSwitchManual_y
 	jsr InitSwitchManual
-	jmp InitMap_caseend175384
-InitMap_casenext175456
+	jmp InitMap_caseend175380
+InitMap_casenext175452
 	lda #$78
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175458
-	; LineNumber: 4038
+	bne InitMap_casenext175454
+	; LineNumber: 4035
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitDoor_x
@@ -24820,12 +24798,12 @@ InitMap_casenext175456
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitDoor_y
 	jsr InitDoor
-	jmp InitMap_caseend175384
-InitMap_casenext175458
+	jmp InitMap_caseend175380
+InitMap_casenext175454
 	lda #$58
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175460
-	; LineNumber: 4039
+	bne InitMap_casenext175456
+	; LineNumber: 4036
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitExit_x
@@ -24833,12 +24811,12 @@ InitMap_casenext175458
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitExit_y
 	jsr InitExit
-	jmp InitMap_caseend175384
-InitMap_casenext175460
+	jmp InitMap_caseend175380
+InitMap_casenext175456
 	lda #$2e
 	cmp localVariable_InitMap_varPrefixed_c ;keep
-	bne InitMap_casenext175462
-	; LineNumber: 4040
+	bne InitMap_casenext175458
+	; LineNumber: 4037
 	lda localVariable_InitMap_x
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitWaypoint_x
@@ -24846,281 +24824,281 @@ InitMap_casenext175460
 	; Calling storevariable on generic assign expression
 	sta localVariable_InitWaypoint_y
 	jsr InitWaypoint
-InitMap_casenext175462
-InitMap_caseend175384
-	; LineNumber: 4043
-InitMap_loopstart175292
+InitMap_casenext175458
+InitMap_caseend175380
+	; LineNumber: 4040
+InitMap_loopstart175288
 	; Test Inc dec D
 	inc localVariable_InitMap_i
 	lda #$f0
 	cmp localVariable_InitMap_i ;keep
-	beq InitMap_loopdone175464
-InitMap_loopnotdone175465
-	jmp InitMap_forloop175291
-InitMap_loopdone175464
-InitMap_loopend175293
-	; LineNumber: 4044
+	beq InitMap_loopdone175460
+InitMap_loopnotdone175461
+	jmp InitMap_forloop175287
+InitMap_loopdone175460
+InitMap_loopend175289
+	; LineNumber: 4041
 	rts
 end_procedure_InitMap
 	; NodeProcedureDecl 4
 	; ***********  Defining procedure : LoopMenu
 	;    Procedure type : User-defined procedure
-	; LineNumber: 4049
+	; LineNumber: 4046
 LoopMenu
-	; LineNumber: 4050
-LoopMenu_while175467
-LoopMenu_loopstart175471
+	; LineNumber: 4047
+LoopMenu_while175463
+LoopMenu_loopstart175467
 	; Binary clause Simplified: EQUALS
 	lda state
 	; Compare with pure num / var optimization
 	cmp #$6;keep
-	bne LoopMenu_localfailed175480
-	jmp LoopMenu_ctb175468
-LoopMenu_localfailed175480: ;keep
+	bne LoopMenu_localfailed175476
+	jmp LoopMenu_ctb175464
+LoopMenu_localfailed175476: ;keep
 	; ; logical OR, second chance
 	; Binary clause Simplified: EQUALS
 	lda state
 	; Compare with pure num / var optimization
 	cmp #$7;keep
-	bne LoopMenu_edblock175470
-LoopMenu_ctb175468: ;Main true block ;keep 
-	; LineNumber: 4050
-	; LineNumber: 4051
+	bne LoopMenu_edblock175466
+LoopMenu_ctb175464: ;Main true block ;keep 
+	; LineNumber: 4047
+	; LineNumber: 4048
 	jsr callReadJoy1
-	; LineNumber: 4052
+	; LineNumber: 4049
 	; Wait for no of raster lines
 	lda #$0
 	clc 
 	adc $9004
 	cmp $9004
 	bne *-3
-	; LineNumber: 4053
+	; LineNumber: 4050
 	; Binary clause Simplified: EQUALS
 	clc
 	lda frameStatus
 	; cmp #$00 ignored
-	bne LoopMenu_edblock175485
-LoopMenu_ctb175483: ;Main true block ;keep 
-	; LineNumber: 4053
-	; LineNumber: 4054
+	bne LoopMenu_edblock175481
+LoopMenu_ctb175479: ;Main true block ;keep 
+	; LineNumber: 4050
+	; LineNumber: 4051
 	jsr UpdateMain
-	; LineNumber: 4055
+	; LineNumber: 4052
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta frameStatus
-	; LineNumber: 4055
+	; LineNumber: 4052
 	; Test Inc dec D
 	inc globaltime
-	; LineNumber: 4057
-LoopMenu_edblock175485
-	; LineNumber: 4058
-	jmp LoopMenu_while175467
-LoopMenu_edblock175470
-LoopMenu_loopend175472
-	; LineNumber: 4059
+	; LineNumber: 4054
+LoopMenu_edblock175481
+	; LineNumber: 4055
+	jmp LoopMenu_while175463
+LoopMenu_edblock175466
+LoopMenu_loopend175468
+	; LineNumber: 4056
 	rts
 end_procedure_LoopMenu
 	; NodeProcedureDecl 4
 	; ***********  Defining procedure : LoopMenu1
 	;    Procedure type : User-defined procedure
-	; LineNumber: 4064
-	; LineNumber: 4063
+	; LineNumber: 4061
+	; LineNumber: 4060
 localVariable_LoopMenu1_exitOpen	dc.b	0
-LoopMenu1_block175488
+LoopMenu1_block175484
 LoopMenu1
-	; LineNumber: 4065
+	; LineNumber: 4062
 	jsr ClearFullScreen
-	; LineNumber: 4066
+	; LineNumber: 4063
 	
 ; // clear screen
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta localVariable_LoopMenu1_exitOpen
-	; LineNumber: 4067
+	; LineNumber: 4064
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta frameStatus
-	; LineNumber: 4068
-LoopMenu1_while175489
-LoopMenu1_loopstart175493
+	; LineNumber: 4065
+LoopMenu1_while175485
+LoopMenu1_loopstart175489
 	; Binary clause Simplified: EQUALS
 	clc
 	lda localVariable_LoopMenu1_exitOpen
 	; cmp #$00 ignored
-	bne LoopMenu1_edblock175492
-LoopMenu1_ctb175490: ;Main true block ;keep 
-	; LineNumber: 4068
-	; LineNumber: 4070
+	bne LoopMenu1_edblock175488
+LoopMenu1_ctb175486: ;Main true block ;keep 
+	; LineNumber: 4065
+	; LineNumber: 4067
 	; Binary clause Simplified: EQUALS
 	clc
 	lda frameStatus
 	; cmp #$00 ignored
-	bne LoopMenu1_edblock175506
-LoopMenu1_ctb175504: ;Main true block ;keep 
-	; LineNumber: 4070
-	; LineNumber: 4071
+	bne LoopMenu1_edblock175502
+LoopMenu1_ctb175500: ;Main true block ;keep 
+	; LineNumber: 4067
+	; LineNumber: 4068
 	
 ; //waitnoraster(0);
 	jsr OpenMain
-	; LineNumber: 4072
+	; LineNumber: 4069
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta frameStatus
-	; LineNumber: 4073
+	; LineNumber: 4070
 	; Calling storevariable on generic assign expression
 	sta localVariable_LoopMenu1_exitOpen
-	; LineNumber: 4074
-LoopMenu1_edblock175506
-	; LineNumber: 4075
-	jmp LoopMenu1_while175489
-LoopMenu1_edblock175492
-LoopMenu1_loopend175494
-	; LineNumber: 4076
+	; LineNumber: 4071
+LoopMenu1_edblock175502
+	; LineNumber: 4072
+	jmp LoopMenu1_while175485
+LoopMenu1_edblock175488
+LoopMenu1_loopend175490
+	; LineNumber: 4073
 	rts
 end_procedure_LoopMenu1
 	; NodeProcedureDecl 4
 	; ***********  Defining procedure : GameLoop
 	;    Procedure type : User-defined procedure
-	; LineNumber: 4081
+	; LineNumber: 4078
 GameLoop
-	; LineNumber: 4082
-GameLoop_while175510
-GameLoop_loopstart175514
+	; LineNumber: 4079
+GameLoop_while175506
+GameLoop_loopstart175510
 	; Binary clause Simplified: NOTEQUALS
 	clc
 	lda #$1
 	; cmp #$00 ignored
-	beq GameLoop_localfailed175550
-	jmp GameLoop_ctb175511
-GameLoop_localfailed175550
-	jmp GameLoop_edblock175513
-GameLoop_ctb175511: ;Main true block ;keep 
-	; LineNumber: 4082
-	; LineNumber: 4083
+	beq GameLoop_localfailed175546
+	jmp GameLoop_ctb175507
+GameLoop_localfailed175546
+	jmp GameLoop_edblock175509
+GameLoop_ctb175507: ;Main true block ;keep 
+	; LineNumber: 4079
+	; LineNumber: 4080
 	jsr callReadJoy1
-	; LineNumber: 4085
+	; LineNumber: 4082
 	; Wait for no of raster lines
 	lda #$0
 	clc 
 	adc $9004
 	cmp $9004
 	bne *-3
-	; LineNumber: 4086
+	; LineNumber: 4083
 	lda #$0
 	cmp state ;keep
-	bne GameLoop_casenext175553
-	; LineNumber: 4087
+	bne GameLoop_casenext175549
+	; LineNumber: 4084
 	jsr LoopMenu1
-	jmp GameLoop_caseend175552
-GameLoop_casenext175553
+	jmp GameLoop_caseend175548
+GameLoop_casenext175549
 	lda #$2
 	cmp state ;keep
-	bne GameLoop_casenext175555
-	; LineNumber: 4089
-	; LineNumber: 4090
+	bne GameLoop_casenext175551
+	; LineNumber: 4086
+	; LineNumber: 4087
 	jsr ClearFullScreen
-	; LineNumber: 4091
+	; LineNumber: 4088
 	jsr InitLevel
-	; LineNumber: 4092
+	; LineNumber: 4089
 	jsr LoopMenu1
-	; LineNumber: 4093
-	jmp GameLoop_caseend175552
-GameLoop_casenext175555
+	; LineNumber: 4090
+	jmp GameLoop_caseend175548
+GameLoop_casenext175551
 	lda #$6
 	cmp state ;keep
-	bne GameLoop_casenext175557
-	; LineNumber: 4094
+	bne GameLoop_casenext175553
+	; LineNumber: 4091
 	jsr LoopMenu
-	jmp GameLoop_caseend175552
-GameLoop_casenext175557
+	jmp GameLoop_caseend175548
+GameLoop_casenext175553
 	lda #$7
 	cmp state ;keep
-	bne GameLoop_casenext175559
-	; LineNumber: 4096
-	; LineNumber: 4097
+	bne GameLoop_casenext175555
+	; LineNumber: 4093
+	; LineNumber: 4094
 	jsr LoopMenu
-	; LineNumber: 4098
-	jmp GameLoop_caseend175552
-GameLoop_casenext175559
+	; LineNumber: 4095
+	jmp GameLoop_caseend175548
+GameLoop_casenext175555
 	lda #$1
 	cmp state ;keep
-	bne GameLoop_casenext175561
-	; LineNumber: 4098
+	bne GameLoop_casenext175557
+	; LineNumber: 4095
 	jsr InitScene
-	jmp GameLoop_caseend175552
-GameLoop_casenext175561
+	jmp GameLoop_caseend175548
+GameLoop_casenext175557
 	lda #$3
 	cmp state ;keep
-	bne GameLoop_casenext175563
-	; LineNumber: 4100
-	; LineNumber: 4102
+	bne GameLoop_casenext175559
+	; LineNumber: 4097
+	; LineNumber: 4099
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta frameStatus
-	; LineNumber: 4103
+	; LineNumber: 4100
 	
 ; // will be updated in raster chain
 	lda #$0
 	; Calling storevariable on generic assign expression
 	sta time
-	; LineNumber: 4104
-GameLoop_while175565
-GameLoop_loopstart175569
+	; LineNumber: 4101
+GameLoop_while175561
+GameLoop_loopstart175565
 	; Binary clause Simplified: EQUALS
 	lda state
 	; Compare with pure num / var optimization
 	cmp #$3;keep
-	bne GameLoop_edblock175568
-GameLoop_ctb175566: ;Main true block ;keep 
-	; LineNumber: 4104
-	; LineNumber: 4105
+	bne GameLoop_edblock175564
+GameLoop_ctb175562: ;Main true block ;keep 
+	; LineNumber: 4101
+	; LineNumber: 4102
 	jsr callReadJoy1
-	; LineNumber: 4106
+	; LineNumber: 4103
 	jsr ReadJoySim
-	; LineNumber: 4107
+	; LineNumber: 4104
 	; Wait for no of raster lines
 	lda #$0
 	clc 
 	adc $9004
 	cmp $9004
 	bne *-3
-	; LineNumber: 4108
+	; LineNumber: 4105
 	; Binary clause Simplified: EQUALS
 	clc
 	lda frameStatus
 	; cmp #$00 ignored
-	bne GameLoop_edblock175582
-GameLoop_ctb175580: ;Main true block ;keep 
-	; LineNumber: 4108
-	; LineNumber: 4109
+	bne GameLoop_edblock175578
+GameLoop_ctb175576: ;Main true block ;keep 
+	; LineNumber: 4105
+	; LineNumber: 4106
 	jsr Update
-	; LineNumber: 4110
+	; LineNumber: 4107
 	jsr Animate
-	; LineNumber: 4111
+	; LineNumber: 4108
 	jsr CycleWater
-	; LineNumber: 4112
+	; LineNumber: 4109
 	jsr DecreaseTextTimer
-	; LineNumber: 4113
+	; LineNumber: 4110
 	lda #$1
 	; Calling storevariable on generic assign expression
 	sta frameStatus
-	; LineNumber: 4113
+	; LineNumber: 4110
 	; Test Inc dec D
 	inc globaltime
-	; LineNumber: 4115
-GameLoop_edblock175582
+	; LineNumber: 4112
+GameLoop_edblock175578
+	; LineNumber: 4113
+	jmp GameLoop_while175561
+GameLoop_edblock175564
+GameLoop_loopend175566
+	; LineNumber: 4114
+GameLoop_casenext175559
+GameLoop_caseend175548
 	; LineNumber: 4116
-	jmp GameLoop_while175565
-GameLoop_edblock175568
-GameLoop_loopend175570
+	jmp GameLoop_while175506
+GameLoop_edblock175509
+GameLoop_loopend175511
 	; LineNumber: 4117
-GameLoop_casenext175563
-GameLoop_caseend175552
-	; LineNumber: 4119
-	jmp GameLoop_while175510
-GameLoop_edblock175513
-GameLoop_loopend175515
-	; LineNumber: 4120
 	rts
 end_procedure_GameLoop
 	; NodeProcedureDecl -1
