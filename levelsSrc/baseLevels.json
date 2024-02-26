@@ -6,7 +6,7 @@
         "AND EXPORT AS DISK GO TO:",
         "HTTPS://FLEISCHGEMUESE.ITCH.IO/FIZZ"
     ],
-    "MaxSingleLevels": 40,
+    "MaxSingleLevels": 48,
     "MaxMultiLevels": 30,
     "Levels": 
     [
